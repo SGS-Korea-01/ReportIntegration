@@ -19,19 +19,25 @@ namespace Sgs.ReportIntegration
 
         private void Initialize()
         {
+            viewPanel.Controls.Clear();
+
+            menuPanel.Controls.Add(physicalMenuPanel);
+            menuPanel.Controls.Add(chemicalMenuPanel);
+            menuPanel.Controls.Add(bomMenuPanel);
+
+            physicalMenuPanel.Left = 2;
+            physicalMenuPanel.Top = 268;
+
+            chemicalMenuPanel.Left = 2;
+            chemicalMenuPanel.Top = 268;
+
             bomMenuPanel.Left = 2;
             bomMenuPanel.Top = 326;
 
-            physicalMenuPanel.Left = 2;
-            physicalMenuPanel.Top = 326;
-
-            chemicalMenuPanel.Left = 2;
-            chemicalMenuPanel.Top = 326;
-
             DefMenu = new UlMenu(viewPanel);
-            DefMenu.Add(new CtrlEditBom(this), bomButton);
             DefMenu.Add(new CtrlEditPhysical(this), physicalButton);
             DefMenu.Add(new CtrlEditChemical(this), chemicalButton);
+            DefMenu.Add(new CtrlEditBom(this), bomButton);
             DefMenu.Index = 0;
         }
 
@@ -42,9 +48,19 @@ namespace Sgs.ReportIntegration
             menuPanel.Size = new Size(84, Height);
             menuPanel.Left = Width - 84;
 
+            physicalMenuPanel.Top = menuPanel.Size.Height - 300;
+            chemicalMenuPanel.Top = menuPanel.Size.Height - 300;
             bomMenuPanel.Top = menuPanel.Size.Height - 242;
-            physicalMenuPanel.Top = menuPanel.Size.Height - 242;
-            chemicalMenuPanel.Top = menuPanel.Size.Height - 242;
+        }
+
+        private void physicalImportButton_Click(object sender, EventArgs e)
+        {
+            (DefMenu.Controls(0) as CtrlEditPhysical).Import();
+        }
+
+        private void chemicalImportButton_Click(object sender, EventArgs e)
+        {
+            //(DefMenu.Controls(1) as CtrlEditChemical).Import();
         }
 
         private void bomImportButton_Click(object sender, EventArgs e)
@@ -61,19 +77,9 @@ namespace Sgs.ReportIntegration
 
                 if (area != EReportArea.None)
                 {
-                    (DefMenu.Controls(0) as CtrlEditBom).Import(area, fName);
+                    (DefMenu.Controls(2) as CtrlEditBom).Import(area, fName);
                 }
             }
-        }
-
-        private void physicalImportButton_Click(object sender, EventArgs e)
-        {
-            (DefMenu.Controls(1) as CtrlEditPhysical).Import();
-        }
-
-        private void chemicalImportButton_Click(object sender, EventArgs e)
-        {
-            //(DefMenu.Controls(1) as CtrlEditChemical).Import();
         }
 
         public void SetMenu(int index)
@@ -84,19 +90,19 @@ namespace Sgs.ReportIntegration
 
             switch (index)
             {
-                // BOM
-                case 0:
-                    bomMenuPanel.Visible = true;
-                    break;
-
                 // Physical
-                case 1:
+                case 0:
                     physicalMenuPanel.Visible = true;
                     break;
 
                 // Chemical
-                case 2:
+                case 1:
                     chemicalMenuPanel.Visible = true;
+                    break;
+
+                // BOM
+                case 2:
+                    bomMenuPanel.Visible = true;
                     break;
             }
         }

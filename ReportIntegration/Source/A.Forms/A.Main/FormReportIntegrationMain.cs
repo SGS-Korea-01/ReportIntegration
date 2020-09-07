@@ -34,7 +34,6 @@ namespace Sgs.ReportIntegration
 
             DefMenu = new UlMenu(viewPanel);
             DefMenu.Add(new CtrlEditRight(), editButton);
-            DefMenu.Add(new CtrlViewRight(), viewButton);
             DefMenu.Add(new CtrlSettingsRight(), settingsButton);
             DefMenu.Add(new CtrlLogRight(), logButton);
             DefMenu.Index = 0;

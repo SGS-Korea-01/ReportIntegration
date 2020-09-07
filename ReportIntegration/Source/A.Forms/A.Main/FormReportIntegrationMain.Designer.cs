@@ -45,7 +45,6 @@
             this.etcOptionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewPanel = new Ulee.Controls.UlPanel();
             this.menuPanel = new Ulee.Controls.UlPanel();
-            this.viewButton = new DevExpress.XtraEditors.SimpleButton();
             this.editButton = new DevExpress.XtraEditors.SimpleButton();
             this.settingsButton = new DevExpress.XtraEditors.SimpleButton();
             this.exitButton = new DevExpress.XtraEditors.SimpleButton();
@@ -202,7 +201,6 @@
             this.menuPanel.BackColor = System.Drawing.Color.Silver;
             this.menuPanel.BevelInner = Ulee.Controls.EUlBevelStyle.None;
             this.menuPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.Lowered;
-            this.menuPanel.Controls.Add(this.viewButton);
             this.menuPanel.Controls.Add(this.editButton);
             this.menuPanel.Controls.Add(this.settingsButton);
             this.menuPanel.Controls.Add(this.exitButton);
@@ -218,25 +216,6 @@
             this.menuPanel.TabIndex = 7;
             this.menuPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
             this.menuPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
-            // 
-            // viewButton
-            // 
-            this.viewButton.AllowFocus = false;
-            this.viewButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewButton.Appearance.Options.UseFont = true;
-            this.viewButton.Appearance.Options.UseTextOptions = true;
-            this.viewButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.viewButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("viewButton.ImageOptions.Image")));
-            this.viewButton.ImageOptions.ImageToTextIndent = 0;
-            this.viewButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.viewButton.Location = new System.Drawing.Point(2, 62);
-            this.viewButton.LookAndFeel.SkinName = "DevExpress Style";
-            this.viewButton.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.viewButton.Name = "viewButton";
-            this.viewButton.Size = new System.Drawing.Size(80, 58);
-            this.viewButton.TabIndex = 33;
-            this.viewButton.TabStop = false;
-            this.viewButton.Text = "VIEW";
             // 
             // editButton
             // 
@@ -260,7 +239,7 @@
             this.editButton.Size = new System.Drawing.Size(80, 58);
             this.editButton.TabIndex = 3;
             this.editButton.TabStop = false;
-            this.editButton.Text = "EDIT";
+            this.editButton.Text = "REPORT";
             // 
             // settingsButton
             // 
@@ -277,7 +256,7 @@
             this.settingsButton.AppearancePressed.Options.UseFont = true;
             this.settingsButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("settingsButton.ImageOptions.Image")));
             this.settingsButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.settingsButton.Location = new System.Drawing.Point(2, 122);
+            this.settingsButton.Location = new System.Drawing.Point(2, 62);
             this.settingsButton.LookAndFeel.SkinName = "DevExpress Style";
             this.settingsButton.LookAndFeel.UseDefaultLookAndFeel = false;
             this.settingsButton.Name = "settingsButton";
@@ -326,7 +305,7 @@
             this.logButton.AppearancePressed.Options.UseFont = true;
             this.logButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("logButton.ImageOptions.Image")));
             this.logButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.logButton.Location = new System.Drawing.Point(2, 182);
+            this.logButton.Location = new System.Drawing.Point(2, 122);
             this.logButton.LookAndFeel.SkinName = "DevExpress Style";
             this.logButton.LookAndFeel.UseDefaultLookAndFeel = false;
             this.logButton.Name = "logButton";
@@ -412,7 +391,6 @@
         private System.Windows.Forms.ToolStripMenuItem prtOptionMenuItem;
         private System.Windows.Forms.ToolStripMenuItem etcOptionMenuItem;
         private Ulee.Controls.UlPanel menuPanel;
-        private DevExpress.XtraEditors.SimpleButton viewButton;
         private DevExpress.XtraEditors.SimpleButton editButton;
         private DevExpress.XtraEditors.SimpleButton settingsButton;
         private DevExpress.XtraEditors.SimpleButton exitButton;

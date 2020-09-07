@@ -25,7 +25,7 @@ namespace Sgs.ReportIntegration
 
         private void CtrlEditChemical_Enter(object sender, EventArgs e)
         {
-            parent.SetMenu(2);
+            parent.SetMenu(1);
         }
     }
 }

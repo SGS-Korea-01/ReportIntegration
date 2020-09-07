@@ -6,12 +6,13 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
+using DevExpress.XtraGrid.Views.Base;
 using DevExpress.Data;
+using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.Utils;
 
 using Ulee.Controls;
 using Ulee.Utils;
-using DevExpress.XtraReports.FavoriteProperties;
 
 namespace Sgs.ReportIntegration
 {
@@ -56,7 +57,7 @@ namespace Sgs.ReportIntegration
             ctrlUs = new CtrlEditPhysicalUs(physicalMainSet);
             ctrlEu = new CtrlEditPhysicalEu(physicalMainSet);
 
-            SetControl(EReportArea.None);
+            SetControl(null);
         }
 
         private void CtrlEditPhysical_Load(object sender, EventArgs e)
@@ -66,7 +67,7 @@ namespace Sgs.ReportIntegration
 
         private void CtrlEditPhysical_Enter(object sender, EventArgs e)
         {
-            parent.SetMenu(1);
+            parent.SetMenu(0);
         }
 
         private void CtrlEditPhysical_Resize(object sender, EventArgs e)
@@ -79,6 +80,11 @@ namespace Sgs.ReportIntegration
             resetButton.Left = gridPanel.Width - 86;
             itemNoEdit.Width = gridPanel.Width - 174;
             physicalGrid.Size = new Size(gridPanel.Width, gridPanel.Height - 84);
+        }
+
+        private void reportPanel_Resize(object sender, EventArgs e)
+        {
+            reportPagePanel.Size = new Size(reportPanel.Width, reportPanel.Height - 30);
         }
 
         private void findButton_Click(object sender, EventArgs e)
@@ -120,18 +126,18 @@ namespace Sgs.ReportIntegration
             physicalRegTimeColumn.SortOrder = ColumnSortOrder.Descending;
         }
 
-        private void physicalGridView_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        private void physicalGridView_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
         {
             if (e.FocusedRowHandle < 0)
             {
-                SetControl(EReportArea.None);
+                SetReportView(EReportArea.None);
                 return;
             }
 
             DataRow row = physicalGridView.GetDataRow(e.FocusedRowHandle);
             physicalMainSet.Fetch(row);
 
-            SetControl(physicalMainSet.AreaNo);
+            SetReportView(physicalMainSet.AreaNo);
         }
 
         private void fromDateEdit_ValueChanged(object sender, EventArgs e)
@@ -150,27 +156,62 @@ namespace Sgs.ReportIntegration
             }
         }
 
-        private void SetControl(EReportArea area)
+        private void SetReportView(EReportArea area)
         {
-            reportPanel.Controls.Clear();
-            reportPanel.BevelInner = EUlBevelStyle.Raised;
-            reportPanel.BevelOuter = EUlBevelStyle.Lowered;
-
             switch (area)
             {
+                case EReportArea.None:
+                    ClearReport();
+                    break;
+
                 case EReportArea.US:
-                    reportPanel.Controls.Add(ctrlUs);
-                    reportPanel.BevelInner = EUlBevelStyle.None;
-                    reportPanel.BevelOuter = EUlBevelStyle.None;
-                    ctrlUs.Dock = DockStyle.Fill;
+                    SetReportUs();
                     break;
 
                 case EReportArea.EU:
-                    reportPanel.Controls.Add(ctrlEu);
-                    reportPanel.BevelInner = EUlBevelStyle.None;
-                    reportPanel.BevelOuter = EUlBevelStyle.None;
-                    ctrlEu.Dock = DockStyle.Fill;
+                    SetReportEu();
                     break;
+            }
+        }
+
+        private void ClearReport()
+        {
+            areaPanel.Text = EReportArea.None.ToDescription();
+            reportNoEdit.Text = "";
+            issuedDateEdit.Text = "";
+            SetControl(null);
+        }
+
+        private void SetReportUs()
+        {
+            areaPanel.Text = EReportArea.US.ToDescription();
+            reportNoEdit.Text = $"F690101/LF-CTS{physicalMainSet.FileNo}";
+            issuedDateEdit.Text = $"{physicalMainSet.ReportedTime.ToString("yyyy. MM. dd")}";
+            SetControl(ctrlUs);
+            ctrlUs.Clear();
+        }
+
+        private void SetReportEu()
+        {
+            areaPanel.Text = EReportArea.EU.ToDescription();
+            reportNoEdit.Text = $"F690101/LF-CTS{physicalMainSet.FileNo}";
+            issuedDateEdit.Text = $"{physicalMainSet.ReportedTime.ToString("yyyy. MM. dd")}";
+            SetControl(ctrlEu);
+        }
+
+        private void SetControl(UlUserControlEng ctrl)
+        {
+            if (ctrl == null)
+            {
+                reportPagePanel.Controls.Clear();
+                reportPagePanel.BevelOuter = EUlBevelStyle.Single;
+            }
+            else
+            {
+                reportPagePanel.Controls.Add(ctrl);
+                reportPagePanel.BevelInner = EUlBevelStyle.None;
+                reportPagePanel.BevelOuter = EUlBevelStyle.None;
+                ctrl.Dock = DockStyle.Fill;
             }
         }
 

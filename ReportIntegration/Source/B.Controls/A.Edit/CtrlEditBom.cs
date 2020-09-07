@@ -69,7 +69,7 @@ namespace Sgs.ReportIntegration
 
         private void CtrlEditBom_Enter(object sender, EventArgs e)
         {
-            parent.SetMenu(0);
+            parent.SetMenu(2);
         }
 
         private void CtrlEditBom_Resize(object sender, EventArgs e)

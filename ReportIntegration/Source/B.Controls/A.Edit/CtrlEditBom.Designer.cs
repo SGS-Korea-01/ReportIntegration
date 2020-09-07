@@ -489,7 +489,8 @@
             this.viewSplit.Panel2MinSize = 260;
             this.viewSplit.Size = new System.Drawing.Size(820, 568);
             this.viewSplit.SplitterDistance = 260;
-            this.viewSplit.TabIndex = 2;
+            this.viewSplit.TabIndex = 0;
+            this.viewSplit.TabStop = false;
             // 
             // gridPanel
             // 

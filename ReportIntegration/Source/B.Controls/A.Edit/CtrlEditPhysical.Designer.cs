@@ -48,6 +48,13 @@
             this.itemNoEdit = new DevExpress.XtraEditors.TextEdit();
             this.label4 = new System.Windows.Forms.Label();
             this.reportPanel = new Ulee.Controls.UlPanel();
+            this.areaPanel = new Ulee.Controls.UlPanel();
+            this.reportPagePanel = new Ulee.Controls.UlPanel();
+            this.issuedDateEdit = new DevExpress.XtraEditors.TextEdit();
+            this.label2 = new System.Windows.Forms.Label();
+            this.reportNoEdit = new DevExpress.XtraEditors.TextEdit();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ulPanel1 = new Ulee.Controls.UlPanel();
             this.bgPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.viewSplit)).BeginInit();
             this.viewSplit.Panel1.SuspendLayout();
@@ -57,6 +64,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.physicalGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.physicalGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemNoEdit.Properties)).BeginInit();
+            this.reportPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.issuedDateEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.reportNoEdit.Properties)).BeginInit();
+            this.ulPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // bgPanel
@@ -82,7 +93,8 @@
             this.viewSplit.Panel2MinSize = 400;
             this.viewSplit.Size = new System.Drawing.Size(820, 568);
             this.viewSplit.SplitterDistance = 260;
-            this.viewSplit.TabIndex = 91;
+            this.viewSplit.TabIndex = 0;
+            this.viewSplit.TabStop = false;
             // 
             // gridPanel
             // 
@@ -382,6 +394,8 @@
             this.itemNoEdit.Properties.Appearance.Options.UseFont = true;
             this.itemNoEdit.Properties.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.itemNoEdit.Properties.AppearanceFocused.Options.UseFont = true;
+            this.itemNoEdit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.itemNoEdit.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.itemNoEdit.Properties.MaxLength = 20;
             this.itemNoEdit.Size = new System.Drawing.Size(86, 22);
             this.itemNoEdit.TabIndex = 4;
@@ -399,8 +413,14 @@
             // 
             this.reportPanel.BevelInner = Ulee.Controls.EUlBevelStyle.None;
             this.reportPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.None;
+            this.reportPanel.Controls.Add(this.ulPanel1);
+            this.reportPanel.Controls.Add(this.reportPagePanel);
+            this.reportPanel.Controls.Add(this.issuedDateEdit);
+            this.reportPanel.Controls.Add(this.label2);
+            this.reportPanel.Controls.Add(this.reportNoEdit);
+            this.reportPanel.Controls.Add(this.label1);
             this.reportPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reportPanel.Font = new System.Drawing.Font("Arial", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportPanel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reportPanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.reportPanel.InnerColor2 = System.Drawing.Color.White;
             this.reportPanel.Location = new System.Drawing.Point(0, 0);
@@ -410,9 +430,121 @@
             this.reportPanel.Size = new System.Drawing.Size(556, 568);
             this.reportPanel.Spacing = 0;
             this.reportPanel.TabIndex = 1;
-            this.reportPanel.Text = "None";
             this.reportPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
             this.reportPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            this.reportPanel.Resize += new System.EventHandler(this.reportPanel_Resize);
+            // 
+            // areaPanel
+            // 
+            this.areaPanel.BackColor = System.Drawing.Color.Black;
+            this.areaPanel.BevelInner = Ulee.Controls.EUlBevelStyle.None;
+            this.areaPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.None;
+            this.areaPanel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.areaPanel.ForeColor = System.Drawing.Color.White;
+            this.areaPanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.areaPanel.InnerColor2 = System.Drawing.Color.White;
+            this.areaPanel.Location = new System.Drawing.Point(2, 2);
+            this.areaPanel.Name = "areaPanel";
+            this.areaPanel.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.areaPanel.OuterColor2 = System.Drawing.Color.White;
+            this.areaPanel.Size = new System.Drawing.Size(66, 22);
+            this.areaPanel.Spacing = 0;
+            this.areaPanel.TabIndex = 89;
+            this.areaPanel.Text = "None";
+            this.areaPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
+            this.areaPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            // 
+            // reportPagePanel
+            // 
+            this.reportPagePanel.BevelInner = Ulee.Controls.EUlBevelStyle.None;
+            this.reportPagePanel.BevelOuter = Ulee.Controls.EUlBevelStyle.None;
+            this.reportPagePanel.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportPagePanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.reportPagePanel.InnerColor2 = System.Drawing.Color.White;
+            this.reportPagePanel.Location = new System.Drawing.Point(0, 30);
+            this.reportPagePanel.Name = "reportPagePanel";
+            this.reportPagePanel.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.reportPagePanel.OuterColor2 = System.Drawing.Color.White;
+            this.reportPagePanel.Size = new System.Drawing.Size(556, 538);
+            this.reportPagePanel.Spacing = 0;
+            this.reportPagePanel.TabIndex = 88;
+            this.reportPagePanel.Text = "None";
+            this.reportPagePanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
+            this.reportPagePanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            // 
+            // issuedDateEdit
+            // 
+            this.issuedDateEdit.EditValue = "2020. 09. 04";
+            this.issuedDateEdit.Location = new System.Drawing.Point(476, 2);
+            this.issuedDateEdit.Name = "issuedDateEdit";
+            this.issuedDateEdit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.issuedDateEdit.Properties.Appearance.Options.UseFont = true;
+            this.issuedDateEdit.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.issuedDateEdit.Properties.AppearanceDisabled.Options.UseFont = true;
+            this.issuedDateEdit.Properties.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.issuedDateEdit.Properties.AppearanceFocused.Options.UseFont = true;
+            this.issuedDateEdit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.issuedDateEdit.Properties.AppearanceReadOnly.Options.UseFont = true;
+            this.issuedDateEdit.Properties.ReadOnly = true;
+            this.issuedDateEdit.Size = new System.Drawing.Size(80, 22);
+            this.issuedDateEdit.TabIndex = 86;
+            this.issuedDateEdit.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(398, 1);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(74, 22);
+            this.label2.TabIndex = 87;
+            this.label2.Text = "Issued Date";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // reportNoEdit
+            // 
+            this.reportNoEdit.EditValue = "F690101/LF-CTSAYHA20-06869";
+            this.reportNoEdit.Location = new System.Drawing.Point(181, 2);
+            this.reportNoEdit.Name = "reportNoEdit";
+            this.reportNoEdit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportNoEdit.Properties.Appearance.Options.UseFont = true;
+            this.reportNoEdit.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportNoEdit.Properties.AppearanceDisabled.Options.UseFont = true;
+            this.reportNoEdit.Properties.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportNoEdit.Properties.AppearanceFocused.Options.UseFont = true;
+            this.reportNoEdit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportNoEdit.Properties.AppearanceReadOnly.Options.UseFont = true;
+            this.reportNoEdit.Properties.ReadOnly = true;
+            this.reportNoEdit.Size = new System.Drawing.Size(200, 22);
+            this.reportNoEdit.TabIndex = 0;
+            this.reportNoEdit.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(85, 1);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(92, 22);
+            this.label1.TabIndex = 85;
+            this.label1.Text = "Test Report No.";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // ulPanel1
+            // 
+            this.ulPanel1.BackColor = System.Drawing.Color.Black;
+            this.ulPanel1.BevelInner = Ulee.Controls.EUlBevelStyle.None;
+            this.ulPanel1.BevelOuter = Ulee.Controls.EUlBevelStyle.Lowered;
+            this.ulPanel1.Controls.Add(this.areaPanel);
+            this.ulPanel1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ulPanel1.ForeColor = System.Drawing.Color.White;
+            this.ulPanel1.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.ulPanel1.InnerColor2 = System.Drawing.Color.White;
+            this.ulPanel1.Location = new System.Drawing.Point(0, 0);
+            this.ulPanel1.Name = "ulPanel1";
+            this.ulPanel1.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.ulPanel1.OuterColor2 = System.Drawing.Color.White;
+            this.ulPanel1.Size = new System.Drawing.Size(70, 26);
+            this.ulPanel1.Spacing = 0;
+            this.ulPanel1.TabIndex = 90;
+            this.ulPanel1.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
+            this.ulPanel1.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
             // 
             // CtrlEditPhysical
             // 
@@ -433,6 +565,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.physicalGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.physicalGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemNoEdit.Properties)).EndInit();
+            this.reportPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.issuedDateEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.reportNoEdit.Properties)).EndInit();
+            this.ulPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -459,5 +595,12 @@
         private System.Windows.Forms.Label label4;
         private Ulee.Controls.UlPanel reportPanel;
         private DevExpress.XtraGrid.Columns.GridColumn physicalProductColumn;
+        public DevExpress.XtraEditors.TextEdit issuedDateEdit;
+        private System.Windows.Forms.Label label2;
+        public DevExpress.XtraEditors.TextEdit reportNoEdit;
+        private System.Windows.Forms.Label label1;
+        private Ulee.Controls.UlPanel reportPagePanel;
+        private Ulee.Controls.UlPanel areaPanel;
+        private Ulee.Controls.UlPanel ulPanel1;
     }
 }
