@@ -31,6 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtrlEditPhysicalUs));
             this.physicalTab = new System.Windows.Forms.TabControl();
             this.physical1Page = new System.Windows.Forms.TabPage();
+            this.p1TestResultEdit = new DevExpress.XtraEditors.TextEdit();
+            this.label25 = new System.Windows.Forms.Label();
+            this.p1TestMethodEdit = new DevExpress.XtraEditors.TextEdit();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.p1OrderNoEdit = new DevExpress.XtraEditors.TextEdit();
+            this.label23 = new System.Windows.Forms.Label();
             this.p1ReportCommentEdit = new DevExpress.XtraEditors.MemoEdit();
             this.label15 = new System.Windows.Forms.Label();
             this.p1TestPeriodEdit = new DevExpress.XtraEditors.TextEdit();
@@ -52,7 +59,6 @@
             this.p1DetailOfSampleEdit = new DevExpress.XtraEditors.TextEdit();
             this.label6 = new System.Windows.Forms.Label();
             this.p1SampleDescriptionEdit = new DevExpress.XtraEditors.TextEdit();
-            this.label5 = new System.Windows.Forms.Label();
             this.p1FileNoEdit = new DevExpress.XtraEditors.TextEdit();
             this.label3 = new System.Windows.Forms.Label();
             this.p1TestAgeEdit = new DevExpress.XtraEditors.TextEdit();
@@ -70,6 +76,8 @@
             this.label16 = new System.Windows.Forms.Label();
             this.p2ResultGrid = new DevExpress.XtraGrid.GridControl();
             this.p2ResultGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.p2ResultLineColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.p2CheckEdit = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.p2ResultTestRequestedColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.p2MemoEdit = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.p2ResultConclusionColumn = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -100,6 +108,8 @@
             this.p4Desc2Edit = new DevExpress.XtraEditors.MemoEdit();
             this.p4FlameGrid = new DevExpress.XtraGrid.GridControl();
             this.p4FlameGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.p4FlameLineColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.p4CheckEdit = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.p4FlameSampleColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.p4SampleTextEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.p4FlameBurningRateColumn = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -113,6 +123,8 @@
             this.p5RowMinusButton = new System.Windows.Forms.Button();
             this.p5StuffGrid = new DevExpress.XtraGrid.GridControl();
             this.p5StuffGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.p5StuffLineColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.p5CheckEdit = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.p5StuffTestItemColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.p5MemoEdit = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.p5StuffResultColumn = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -127,9 +139,20 @@
             this.imagePanel = new Ulee.Controls.UlPanel();
             this.p6DescPanel = new Ulee.Controls.UlPanel();
             this.p6ImageBox = new System.Windows.Forms.PictureBox();
+            this.p2RowUpButton = new System.Windows.Forms.Button();
+            this.p2RowDownButton = new System.Windows.Forms.Button();
+            this.p3RowUpButton = new System.Windows.Forms.Button();
+            this.p3RowDownButton = new System.Windows.Forms.Button();
+            this.p4RowUpButton = new System.Windows.Forms.Button();
+            this.p4RowDownButton = new System.Windows.Forms.Button();
+            this.p5RowUpButton = new System.Windows.Forms.Button();
+            this.p5RowDownButton = new System.Windows.Forms.Button();
             this.bgPanel.SuspendLayout();
             this.physicalTab.SuspendLayout();
             this.physical1Page.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.p1TestResultEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.p1TestMethodEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.p1OrderNoEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1ReportCommentEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1TestPeriodEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1ReceivedDateEdit.Properties)).BeginInit();
@@ -150,6 +173,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.p2ImageBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2ResultGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2ResultGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.p2CheckEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2MemoEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2TextEdit)).BeginInit();
             this.physical3Page.SuspendLayout();
@@ -165,12 +189,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.p4Desc2Edit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p4FlameGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p4FlameGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.p4CheckEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p4SampleTextEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p4BurningRateTextEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p4Desc1Edit.Properties)).BeginInit();
             this.physical5Page.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.p5StuffGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p5StuffGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.p5CheckEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p5MemoEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p5TextEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p5Desc2Edit.Properties)).BeginInit();
@@ -208,6 +234,13 @@
             // physical1Page
             // 
             this.physical1Page.BackColor = System.Drawing.Color.Transparent;
+            this.physical1Page.Controls.Add(this.p1TestResultEdit);
+            this.physical1Page.Controls.Add(this.label25);
+            this.physical1Page.Controls.Add(this.p1TestMethodEdit);
+            this.physical1Page.Controls.Add(this.label24);
+            this.physical1Page.Controls.Add(this.label5);
+            this.physical1Page.Controls.Add(this.p1OrderNoEdit);
+            this.physical1Page.Controls.Add(this.label23);
             this.physical1Page.Controls.Add(this.p1ReportCommentEdit);
             this.physical1Page.Controls.Add(this.label15);
             this.physical1Page.Controls.Add(this.p1TestPeriodEdit);
@@ -229,7 +262,6 @@
             this.physical1Page.Controls.Add(this.p1DetailOfSampleEdit);
             this.physical1Page.Controls.Add(this.label6);
             this.physical1Page.Controls.Add(this.p1SampleDescriptionEdit);
-            this.physical1Page.Controls.Add(this.label5);
             this.physical1Page.Controls.Add(this.p1FileNoEdit);
             this.physical1Page.Controls.Add(this.label3);
             this.physical1Page.Controls.Add(this.p1TestAgeEdit);
@@ -248,6 +280,87 @@
             this.physical1Page.UseVisualStyleBackColor = true;
             this.physical1Page.Resize += new System.EventHandler(this.physical1Page_Resize);
             // 
+            // p1TestResultEdit
+            // 
+            this.p1TestResultEdit.EditValue = "";
+            this.p1TestResultEdit.Location = new System.Drawing.Point(168, 424);
+            this.p1TestResultEdit.Name = "p1TestResultEdit";
+            this.p1TestResultEdit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p1TestResultEdit.Properties.Appearance.Options.UseFont = true;
+            this.p1TestResultEdit.Properties.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p1TestResultEdit.Properties.AppearanceFocused.Options.UseFont = true;
+            this.p1TestResultEdit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p1TestResultEdit.Properties.AppearanceReadOnly.Options.UseFont = true;
+            this.p1TestResultEdit.Properties.MaxLength = 100;
+            this.p1TestResultEdit.Size = new System.Drawing.Size(376, 22);
+            this.p1TestResultEdit.TabIndex = 16;
+            // 
+            // label25
+            // 
+            this.label25.Location = new System.Drawing.Point(0, 423);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(164, 22);
+            this.label25.TabIndex = 120;
+            this.label25.Text = "Test Results";
+            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // p1TestMethodEdit
+            // 
+            this.p1TestMethodEdit.EditValue = "";
+            this.p1TestMethodEdit.Location = new System.Drawing.Point(168, 396);
+            this.p1TestMethodEdit.Name = "p1TestMethodEdit";
+            this.p1TestMethodEdit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p1TestMethodEdit.Properties.Appearance.Options.UseFont = true;
+            this.p1TestMethodEdit.Properties.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p1TestMethodEdit.Properties.AppearanceFocused.Options.UseFont = true;
+            this.p1TestMethodEdit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p1TestMethodEdit.Properties.AppearanceReadOnly.Options.UseFont = true;
+            this.p1TestMethodEdit.Properties.MaxLength = 100;
+            this.p1TestMethodEdit.Size = new System.Drawing.Size(376, 22);
+            this.p1TestMethodEdit.TabIndex = 15;
+            // 
+            // label24
+            // 
+            this.label24.Location = new System.Drawing.Point(0, 395);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(164, 22);
+            this.label24.TabIndex = 118;
+            this.label24.Text = "Test Method";
+            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(312, 145);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(84, 22);
+            this.label5.TabIndex = 116;
+            this.label5.Text = "Order No.";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // p1OrderNoEdit
+            // 
+            this.p1OrderNoEdit.EditValue = "";
+            this.p1OrderNoEdit.Location = new System.Drawing.Point(406, 146);
+            this.p1OrderNoEdit.Name = "p1OrderNoEdit";
+            this.p1OrderNoEdit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p1OrderNoEdit.Properties.Appearance.Options.UseFont = true;
+            this.p1OrderNoEdit.Properties.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p1OrderNoEdit.Properties.AppearanceFocused.Options.UseFont = true;
+            this.p1OrderNoEdit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p1OrderNoEdit.Properties.AppearanceReadOnly.Options.UseFont = true;
+            this.p1OrderNoEdit.Properties.MaxLength = 40;
+            this.p1OrderNoEdit.Size = new System.Drawing.Size(138, 22);
+            this.p1OrderNoEdit.TabIndex = 6;
+            // 
+            // label23
+            // 
+            this.label23.Location = new System.Drawing.Point(312, 89);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(84, 22);
+            this.label23.TabIndex = 114;
+            this.label23.Text = "Sample Desc";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // p1ReportCommentEdit
             // 
             this.p1ReportCommentEdit.EditValue = "";
@@ -263,7 +376,7 @@
             this.p1ReportCommentEdit.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.p1ReportCommentEdit.Properties.WordWrap = false;
             this.p1ReportCommentEdit.Size = new System.Drawing.Size(376, 48);
-            this.p1ReportCommentEdit.TabIndex = 14;
+            this.p1ReportCommentEdit.TabIndex = 17;
             // 
             // label15
             // 
@@ -277,7 +390,7 @@
             // p1TestPeriodEdit
             // 
             this.p1TestPeriodEdit.EditValue = "";
-            this.p1TestPeriodEdit.Location = new System.Drawing.Point(168, 424);
+            this.p1TestPeriodEdit.Location = new System.Drawing.Point(168, 368);
             this.p1TestPeriodEdit.Name = "p1TestPeriodEdit";
             this.p1TestPeriodEdit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p1TestPeriodEdit.Properties.Appearance.Options.UseFont = true;
@@ -285,13 +398,13 @@
             this.p1TestPeriodEdit.Properties.AppearanceFocused.Options.UseFont = true;
             this.p1TestPeriodEdit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p1TestPeriodEdit.Properties.AppearanceReadOnly.Options.UseFont = true;
-            this.p1TestPeriodEdit.Properties.MaxLength = 20;
+            this.p1TestPeriodEdit.Properties.MaxLength = 40;
             this.p1TestPeriodEdit.Size = new System.Drawing.Size(376, 22);
-            this.p1TestPeriodEdit.TabIndex = 13;
+            this.p1TestPeriodEdit.TabIndex = 14;
             // 
             // label14
             // 
-            this.label14.Location = new System.Drawing.Point(0, 423);
+            this.label14.Location = new System.Drawing.Point(0, 367);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(164, 22);
             this.label14.TabIndex = 112;
@@ -301,7 +414,7 @@
             // p1ReceivedDateEdit
             // 
             this.p1ReceivedDateEdit.EditValue = "";
-            this.p1ReceivedDateEdit.Location = new System.Drawing.Point(168, 396);
+            this.p1ReceivedDateEdit.Location = new System.Drawing.Point(168, 340);
             this.p1ReceivedDateEdit.Name = "p1ReceivedDateEdit";
             this.p1ReceivedDateEdit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p1ReceivedDateEdit.Properties.Appearance.Options.UseFont = true;
@@ -311,11 +424,11 @@
             this.p1ReceivedDateEdit.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.p1ReceivedDateEdit.Properties.MaxLength = 20;
             this.p1ReceivedDateEdit.Size = new System.Drawing.Size(376, 22);
-            this.p1ReceivedDateEdit.TabIndex = 12;
+            this.p1ReceivedDateEdit.TabIndex = 13;
             // 
             // label13
             // 
-            this.label13.Location = new System.Drawing.Point(0, 395);
+            this.label13.Location = new System.Drawing.Point(0, 339);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(164, 22);
             this.label13.TabIndex = 110;
@@ -325,7 +438,7 @@
             // p1AssessedAgeEdit
             // 
             this.p1AssessedAgeEdit.EditValue = "";
-            this.p1AssessedAgeEdit.Location = new System.Drawing.Point(168, 368);
+            this.p1AssessedAgeEdit.Location = new System.Drawing.Point(168, 312);
             this.p1AssessedAgeEdit.Name = "p1AssessedAgeEdit";
             this.p1AssessedAgeEdit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p1AssessedAgeEdit.Properties.Appearance.Options.UseFont = true;
@@ -335,11 +448,11 @@
             this.p1AssessedAgeEdit.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.p1AssessedAgeEdit.Properties.MaxLength = 20;
             this.p1AssessedAgeEdit.Size = new System.Drawing.Size(376, 22);
-            this.p1AssessedAgeEdit.TabIndex = 11;
+            this.p1AssessedAgeEdit.TabIndex = 12;
             // 
             // label12
             // 
-            this.label12.Location = new System.Drawing.Point(0, 367);
+            this.label12.Location = new System.Drawing.Point(0, 311);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(164, 22);
             this.label12.TabIndex = 108;
@@ -349,7 +462,7 @@
             // p1CountryOfDestinationEdit
             // 
             this.p1CountryOfDestinationEdit.EditValue = "";
-            this.p1CountryOfDestinationEdit.Location = new System.Drawing.Point(168, 284);
+            this.p1CountryOfDestinationEdit.Location = new System.Drawing.Point(406, 228);
             this.p1CountryOfDestinationEdit.Name = "p1CountryOfDestinationEdit";
             this.p1CountryOfDestinationEdit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p1CountryOfDestinationEdit.Properties.Appearance.Options.UseFont = true;
@@ -358,22 +471,22 @@
             this.p1CountryOfDestinationEdit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p1CountryOfDestinationEdit.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.p1CountryOfDestinationEdit.Properties.MaxLength = 50;
-            this.p1CountryOfDestinationEdit.Size = new System.Drawing.Size(376, 22);
-            this.p1CountryOfDestinationEdit.TabIndex = 8;
+            this.p1CountryOfDestinationEdit.Size = new System.Drawing.Size(138, 22);
+            this.p1CountryOfDestinationEdit.TabIndex = 9;
             // 
             // label11
             // 
-            this.label11.Location = new System.Drawing.Point(0, 283);
+            this.label11.Location = new System.Drawing.Point(312, 227);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(164, 22);
+            this.label11.Size = new System.Drawing.Size(96, 22);
             this.label11.TabIndex = 106;
-            this.label11.Text = "Country of Destination";
+            this.label11.Text = "Country of Dest";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // p1CountryOfOriginEdit
             // 
             this.p1CountryOfOriginEdit.EditValue = "";
-            this.p1CountryOfOriginEdit.Location = new System.Drawing.Point(168, 256);
+            this.p1CountryOfOriginEdit.Location = new System.Drawing.Point(168, 228);
             this.p1CountryOfOriginEdit.Name = "p1CountryOfOriginEdit";
             this.p1CountryOfOriginEdit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p1CountryOfOriginEdit.Properties.Appearance.Options.UseFont = true;
@@ -382,12 +495,12 @@
             this.p1CountryOfOriginEdit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p1CountryOfOriginEdit.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.p1CountryOfOriginEdit.Properties.MaxLength = 50;
-            this.p1CountryOfOriginEdit.Size = new System.Drawing.Size(376, 22);
-            this.p1CountryOfOriginEdit.TabIndex = 7;
+            this.p1CountryOfOriginEdit.Size = new System.Drawing.Size(138, 22);
+            this.p1CountryOfOriginEdit.TabIndex = 8;
             // 
             // label10
             // 
-            this.label10.Location = new System.Drawing.Point(0, 255);
+            this.label10.Location = new System.Drawing.Point(0, 227);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(164, 22);
             this.label10.TabIndex = 104;
@@ -397,7 +510,7 @@
             // p1ManufacturerEdit
             // 
             this.p1ManufacturerEdit.EditValue = "";
-            this.p1ManufacturerEdit.Location = new System.Drawing.Point(168, 202);
+            this.p1ManufacturerEdit.Location = new System.Drawing.Point(168, 174);
             this.p1ManufacturerEdit.Name = "p1ManufacturerEdit";
             this.p1ManufacturerEdit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p1ManufacturerEdit.Properties.Appearance.Options.UseFont = true;
@@ -409,11 +522,11 @@
             this.p1ManufacturerEdit.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.p1ManufacturerEdit.Properties.WordWrap = false;
             this.p1ManufacturerEdit.Size = new System.Drawing.Size(376, 48);
-            this.p1ManufacturerEdit.TabIndex = 6;
+            this.p1ManufacturerEdit.TabIndex = 7;
             // 
             // label9
             // 
-            this.label9.Location = new System.Drawing.Point(0, 200);
+            this.label9.Location = new System.Drawing.Point(0, 172);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(162, 22);
             this.label9.TabIndex = 101;
@@ -423,7 +536,7 @@
             // p1LabeledAgeEdit
             // 
             this.p1LabeledAgeEdit.EditValue = "";
-            this.p1LabeledAgeEdit.Location = new System.Drawing.Point(168, 312);
+            this.p1LabeledAgeEdit.Location = new System.Drawing.Point(168, 256);
             this.p1LabeledAgeEdit.Name = "p1LabeledAgeEdit";
             this.p1LabeledAgeEdit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p1LabeledAgeEdit.Properties.Appearance.Options.UseFont = true;
@@ -433,11 +546,11 @@
             this.p1LabeledAgeEdit.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.p1LabeledAgeEdit.Properties.MaxLength = 20;
             this.p1LabeledAgeEdit.Size = new System.Drawing.Size(376, 22);
-            this.p1LabeledAgeEdit.TabIndex = 9;
+            this.p1LabeledAgeEdit.TabIndex = 10;
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(0, 311);
+            this.label8.Location = new System.Drawing.Point(0, 255);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(164, 22);
             this.label8.TabIndex = 100;
@@ -447,7 +560,7 @@
             // p1ItemNoEdit
             // 
             this.p1ItemNoEdit.EditValue = "";
-            this.p1ItemNoEdit.Location = new System.Drawing.Point(168, 174);
+            this.p1ItemNoEdit.Location = new System.Drawing.Point(168, 146);
             this.p1ItemNoEdit.Name = "p1ItemNoEdit";
             this.p1ItemNoEdit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p1ItemNoEdit.Properties.Appearance.Options.UseFont = true;
@@ -456,12 +569,12 @@
             this.p1ItemNoEdit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p1ItemNoEdit.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.p1ItemNoEdit.Properties.MaxLength = 40;
-            this.p1ItemNoEdit.Size = new System.Drawing.Size(376, 22);
+            this.p1ItemNoEdit.Size = new System.Drawing.Size(138, 22);
             this.p1ItemNoEdit.TabIndex = 5;
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(0, 173);
+            this.label7.Location = new System.Drawing.Point(0, 145);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(164, 22);
             this.label7.TabIndex = 98;
@@ -471,7 +584,7 @@
             // p1DetailOfSampleEdit
             // 
             this.p1DetailOfSampleEdit.EditValue = "";
-            this.p1DetailOfSampleEdit.Location = new System.Drawing.Point(168, 146);
+            this.p1DetailOfSampleEdit.Location = new System.Drawing.Point(168, 118);
             this.p1DetailOfSampleEdit.Name = "p1DetailOfSampleEdit";
             this.p1DetailOfSampleEdit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p1DetailOfSampleEdit.Properties.Appearance.Options.UseFont = true;
@@ -485,7 +598,7 @@
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(0, 145);
+            this.label6.Location = new System.Drawing.Point(0, 117);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(164, 22);
             this.label6.TabIndex = 96;
@@ -495,7 +608,7 @@
             // p1SampleDescriptionEdit
             // 
             this.p1SampleDescriptionEdit.EditValue = "";
-            this.p1SampleDescriptionEdit.Location = new System.Drawing.Point(168, 118);
+            this.p1SampleDescriptionEdit.Location = new System.Drawing.Point(406, 90);
             this.p1SampleDescriptionEdit.Name = "p1SampleDescriptionEdit";
             this.p1SampleDescriptionEdit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p1SampleDescriptionEdit.Properties.Appearance.Options.UseFont = true;
@@ -504,17 +617,8 @@
             this.p1SampleDescriptionEdit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p1SampleDescriptionEdit.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.p1SampleDescriptionEdit.Properties.MaxLength = 50;
-            this.p1SampleDescriptionEdit.Size = new System.Drawing.Size(376, 22);
+            this.p1SampleDescriptionEdit.Size = new System.Drawing.Size(138, 22);
             this.p1SampleDescriptionEdit.TabIndex = 3;
-            // 
-            // label5
-            // 
-            this.label5.Location = new System.Drawing.Point(0, 117);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(164, 22);
-            this.label5.TabIndex = 94;
-            this.label5.Text = "Sample Description";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // p1FileNoEdit
             // 
@@ -528,7 +632,7 @@
             this.p1FileNoEdit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p1FileNoEdit.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.p1FileNoEdit.Properties.MaxLength = 40;
-            this.p1FileNoEdit.Size = new System.Drawing.Size(376, 22);
+            this.p1FileNoEdit.Size = new System.Drawing.Size(138, 22);
             this.p1FileNoEdit.TabIndex = 2;
             // 
             // label3
@@ -543,7 +647,7 @@
             // p1TestAgeEdit
             // 
             this.p1TestAgeEdit.EditValue = "";
-            this.p1TestAgeEdit.Location = new System.Drawing.Point(168, 340);
+            this.p1TestAgeEdit.Location = new System.Drawing.Point(168, 284);
             this.p1TestAgeEdit.Name = "p1TestAgeEdit";
             this.p1TestAgeEdit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p1TestAgeEdit.Properties.Appearance.Options.UseFont = true;
@@ -553,11 +657,11 @@
             this.p1TestAgeEdit.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.p1TestAgeEdit.Properties.MaxLength = 20;
             this.p1TestAgeEdit.Size = new System.Drawing.Size(376, 22);
-            this.p1TestAgeEdit.TabIndex = 10;
+            this.p1TestAgeEdit.TabIndex = 11;
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(0, 339);
+            this.label2.Location = new System.Drawing.Point(0, 283);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(164, 22);
             this.label2.TabIndex = 90;
@@ -616,6 +720,8 @@
             // 
             // physical2Page
             // 
+            this.physical2Page.Controls.Add(this.p2RowUpButton);
+            this.physical2Page.Controls.Add(this.p2RowDownButton);
             this.physical2Page.Controls.Add(this.p2RowPluseButton);
             this.physical2Page.Controls.Add(this.p2RowMinusButton);
             this.physical2Page.Controls.Add(this.p2NameEdit);
@@ -642,6 +748,7 @@
             this.p2RowPluseButton.TabIndex = 0;
             this.p2RowPluseButton.TabStop = false;
             this.p2RowPluseButton.UseVisualStyleBackColor = true;
+            this.p2RowPluseButton.Click += new System.EventHandler(this.p2RowPluseButton_Click);
             // 
             // p2RowMinusButton
             // 
@@ -652,6 +759,7 @@
             this.p2RowMinusButton.TabIndex = 0;
             this.p2RowMinusButton.TabStop = false;
             this.p2RowMinusButton.UseVisualStyleBackColor = true;
+            this.p2RowMinusButton.Click += new System.EventHandler(this.p2RowMinusButton_Click);
             // 
             // p2NameEdit
             // 
@@ -668,7 +776,7 @@
             this.p2NameEdit.Properties.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.p2NameEdit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p2NameEdit.Properties.AppearanceReadOnly.Options.UseFont = true;
-            this.p2NameEdit.Properties.MaxLength = 20;
+            this.p2NameEdit.Properties.MaxLength = 40;
             this.p2NameEdit.Size = new System.Drawing.Size(220, 22);
             this.p2NameEdit.TabIndex = 1;
             // 
@@ -712,7 +820,8 @@
             this.p2ResultGrid.Name = "p2ResultGrid";
             this.p2ResultGrid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.p2MemoEdit,
-            this.p2TextEdit});
+            this.p2TextEdit,
+            this.p2CheckEdit});
             this.p2ResultGrid.Size = new System.Drawing.Size(540, 323);
             this.p2ResultGrid.TabIndex = 0;
             this.p2ResultGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -742,6 +851,7 @@
             this.p2ResultGridView.Appearance.ViewCaption.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p2ResultGridView.Appearance.ViewCaption.Options.UseFont = true;
             this.p2ResultGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.p2ResultLineColumn,
             this.p2ResultTestRequestedColumn,
             this.p2ResultConclusionColumn,
             this.p2ResultNoColumn});
@@ -759,6 +869,45 @@
             this.p2ResultGridView.OptionsView.ShowGroupPanel = false;
             this.p2ResultGridView.OptionsView.ShowIndicator = false;
             this.p2ResultGridView.Tag = 1;
+            // 
+            // p2ResultLineColumn
+            // 
+            this.p2ResultLineColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p2ResultLineColumn.AppearanceCell.Options.UseFont = true;
+            this.p2ResultLineColumn.AppearanceCell.Options.UseTextOptions = true;
+            this.p2ResultLineColumn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.p2ResultLineColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p2ResultLineColumn.AppearanceHeader.Options.UseFont = true;
+            this.p2ResultLineColumn.AppearanceHeader.Options.UseTextOptions = true;
+            this.p2ResultLineColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.p2ResultLineColumn.Caption = "Line";
+            this.p2ResultLineColumn.ColumnEdit = this.p2CheckEdit;
+            this.p2ResultLineColumn.FieldName = "Line";
+            this.p2ResultLineColumn.Name = "p2ResultLineColumn";
+            this.p2ResultLineColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.p2ResultLineColumn.OptionsColumn.AllowIncrementalSearch = false;
+            this.p2ResultLineColumn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.p2ResultLineColumn.OptionsColumn.AllowMove = false;
+            this.p2ResultLineColumn.OptionsColumn.AllowShowHide = false;
+            this.p2ResultLineColumn.OptionsColumn.AllowSize = false;
+            this.p2ResultLineColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.p2ResultLineColumn.OptionsColumn.FixedWidth = true;
+            this.p2ResultLineColumn.OptionsColumn.ImmediateUpdateRowPosition = DevExpress.Utils.DefaultBoolean.False;
+            this.p2ResultLineColumn.OptionsColumn.Printable = DevExpress.Utils.DefaultBoolean.False;
+            this.p2ResultLineColumn.OptionsFilter.AllowAutoFilter = false;
+            this.p2ResultLineColumn.OptionsFilter.AllowFilter = false;
+            this.p2ResultLineColumn.Visible = true;
+            this.p2ResultLineColumn.VisibleIndex = 0;
+            this.p2ResultLineColumn.Width = 32;
+            // 
+            // p2CheckEdit
+            // 
+            this.p2CheckEdit.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p2CheckEdit.Appearance.Options.UseFont = true;
+            this.p2CheckEdit.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p2CheckEdit.AppearanceFocused.Options.UseFont = true;
+            this.p2CheckEdit.AutoHeight = false;
+            this.p2CheckEdit.Name = "p2CheckEdit";
             // 
             // p2ResultTestRequestedColumn
             // 
@@ -781,8 +930,8 @@
             this.p2ResultTestRequestedColumn.OptionsFilter.AllowAutoFilter = false;
             this.p2ResultTestRequestedColumn.OptionsFilter.AllowFilter = false;
             this.p2ResultTestRequestedColumn.Visible = true;
-            this.p2ResultTestRequestedColumn.VisibleIndex = 0;
-            this.p2ResultTestRequestedColumn.Width = 438;
+            this.p2ResultTestRequestedColumn.VisibleIndex = 1;
+            this.p2ResultTestRequestedColumn.Width = 406;
             // 
             // p2MemoEdit
             // 
@@ -821,7 +970,7 @@
             this.p2ResultConclusionColumn.OptionsFilter.AllowAutoFilter = false;
             this.p2ResultConclusionColumn.OptionsFilter.AllowFilter = false;
             this.p2ResultConclusionColumn.Visible = true;
-            this.p2ResultConclusionColumn.VisibleIndex = 1;
+            this.p2ResultConclusionColumn.VisibleIndex = 2;
             this.p2ResultConclusionColumn.Width = 80;
             // 
             // p2TextEdit
@@ -844,6 +993,8 @@
             // 
             // physical3Page
             // 
+            this.physical3Page.Controls.Add(this.p3RowUpButton);
+            this.physical3Page.Controls.Add(this.p3RowDownButton);
             this.physical3Page.Controls.Add(this.p3Desc2Edit);
             this.physical3Page.Controls.Add(this.label19);
             this.physical3Page.Controls.Add(this.p3Desc1Edit);
@@ -855,7 +1006,7 @@
             this.physical3Page.Location = new System.Drawing.Point(4, 24);
             this.physical3Page.Margin = new System.Windows.Forms.Padding(0);
             this.physical3Page.Name = "physical3Page";
-            this.physical3Page.Size = new System.Drawing.Size(292, 272);
+            this.physical3Page.Size = new System.Drawing.Size(548, 510);
             this.physical3Page.TabIndex = 2;
             this.physical3Page.Tag = "2";
             this.physical3Page.Text = "  Page 3  ";
@@ -873,7 +1024,7 @@
             this.p3Desc2Edit.Properties.AppearanceFocused.Options.UseFont = true;
             this.p3Desc2Edit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p3Desc2Edit.Properties.AppearanceReadOnly.Options.UseFont = true;
-            this.p3Desc2Edit.Properties.MaxLength = 500;
+            this.p3Desc2Edit.Properties.MaxLength = 250;
             this.p3Desc2Edit.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.p3Desc2Edit.Size = new System.Drawing.Size(540, 67);
             this.p3Desc2Edit.TabIndex = 2;
@@ -899,7 +1050,7 @@
             this.p3Desc1Edit.Properties.AppearanceFocused.Options.UseFont = true;
             this.p3Desc1Edit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p3Desc1Edit.Properties.AppearanceReadOnly.Options.UseFont = true;
-            this.p3Desc1Edit.Properties.MaxLength = 500;
+            this.p3Desc1Edit.Properties.MaxLength = 100;
             this.p3Desc1Edit.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.p3Desc1Edit.Properties.WordWrap = false;
             this.p3Desc1Edit.Size = new System.Drawing.Size(540, 35);
@@ -924,6 +1075,7 @@
             this.p3RowPluseButton.TabIndex = 0;
             this.p3RowPluseButton.TabStop = false;
             this.p3RowPluseButton.UseVisualStyleBackColor = true;
+            this.p3RowPluseButton.Click += new System.EventHandler(this.p3RowPluseButton_Click);
             // 
             // p3RowMinusButton
             // 
@@ -934,6 +1086,7 @@
             this.p3RowMinusButton.TabIndex = 0;
             this.p3RowMinusButton.TabStop = false;
             this.p3RowMinusButton.UseVisualStyleBackColor = true;
+            this.p3RowMinusButton.Click += new System.EventHandler(this.p3RowMinusButton_Click);
             // 
             // label17
             // 
@@ -1018,7 +1171,7 @@
             this.p3ClauseLineColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.p3ClauseLineColumn.Caption = "Line";
             this.p3ClauseLineColumn.ColumnEdit = this.p3CheckEdit;
-            this.p3ClauseLineColumn.FieldName = "UnderLine";
+            this.p3ClauseLineColumn.FieldName = "Line";
             this.p3ClauseLineColumn.MinWidth = 32;
             this.p3ClauseLineColumn.Name = "p3ClauseLineColumn";
             this.p3ClauseLineColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
@@ -1179,6 +1332,8 @@
             // 
             // physical4Page
             // 
+            this.physical4Page.Controls.Add(this.p4RowUpButton);
+            this.physical4Page.Controls.Add(this.p4RowDownButton);
             this.physical4Page.Controls.Add(this.p4RowPluseButton);
             this.physical4Page.Controls.Add(this.p4RowMinusButton);
             this.physical4Page.Controls.Add(this.p4Desc2Edit);
@@ -1189,7 +1344,7 @@
             this.physical4Page.Location = new System.Drawing.Point(4, 24);
             this.physical4Page.Margin = new System.Windows.Forms.Padding(0);
             this.physical4Page.Name = "physical4Page";
-            this.physical4Page.Size = new System.Drawing.Size(292, 272);
+            this.physical4Page.Size = new System.Drawing.Size(548, 510);
             this.physical4Page.TabIndex = 3;
             this.physical4Page.Tag = "3";
             this.physical4Page.Text = "  Page 4  ";
@@ -1205,6 +1360,7 @@
             this.p4RowPluseButton.TabIndex = 99;
             this.p4RowPluseButton.TabStop = false;
             this.p4RowPluseButton.UseVisualStyleBackColor = true;
+            this.p4RowPluseButton.Click += new System.EventHandler(this.p4RowPluseButton_Click);
             // 
             // p4RowMinusButton
             // 
@@ -1215,6 +1371,7 @@
             this.p4RowMinusButton.TabIndex = 100;
             this.p4RowMinusButton.TabStop = false;
             this.p4RowMinusButton.UseVisualStyleBackColor = true;
+            this.p4RowMinusButton.Click += new System.EventHandler(this.p4RowMinusButton_Click);
             // 
             // p4Desc2Edit
             // 
@@ -1227,7 +1384,7 @@
             this.p4Desc2Edit.Properties.AppearanceFocused.Options.UseFont = true;
             this.p4Desc2Edit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p4Desc2Edit.Properties.AppearanceReadOnly.Options.UseFont = true;
-            this.p4Desc2Edit.Properties.MaxLength = 500;
+            this.p4Desc2Edit.Properties.MaxLength = 250;
             this.p4Desc2Edit.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.p4Desc2Edit.Properties.WordWrap = false;
             this.p4Desc2Edit.Size = new System.Drawing.Size(540, 64);
@@ -1242,7 +1399,8 @@
             this.p4FlameGrid.Name = "p4FlameGrid";
             this.p4FlameGrid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.p4SampleTextEdit,
-            this.p4BurningRateTextEdit});
+            this.p4BurningRateTextEdit,
+            this.p4CheckEdit});
             this.p4FlameGrid.Size = new System.Drawing.Size(540, 349);
             this.p4FlameGrid.TabIndex = 1;
             this.p4FlameGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -1272,6 +1430,7 @@
             this.p4FlameGridView.Appearance.ViewCaption.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p4FlameGridView.Appearance.ViewCaption.Options.UseFont = true;
             this.p4FlameGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.p4FlameLineColumn,
             this.p4FlameSampleColumn,
             this.p4FlameBurningRateColumn,
             this.p4FlameNoColumn});
@@ -1290,6 +1449,48 @@
             this.p4FlameGridView.OptionsView.ShowGroupPanel = false;
             this.p4FlameGridView.OptionsView.ShowIndicator = false;
             this.p4FlameGridView.Tag = 1;
+            // 
+            // p4FlameLineColumn
+            // 
+            this.p4FlameLineColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p4FlameLineColumn.AppearanceCell.Options.UseFont = true;
+            this.p4FlameLineColumn.AppearanceCell.Options.UseTextOptions = true;
+            this.p4FlameLineColumn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.p4FlameLineColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p4FlameLineColumn.AppearanceHeader.Options.UseFont = true;
+            this.p4FlameLineColumn.AppearanceHeader.Options.UseTextOptions = true;
+            this.p4FlameLineColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.p4FlameLineColumn.Caption = "Line";
+            this.p4FlameLineColumn.ColumnEdit = this.p4CheckEdit;
+            this.p4FlameLineColumn.FieldName = "Line";
+            this.p4FlameLineColumn.Name = "p4FlameLineColumn";
+            this.p4FlameLineColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.p4FlameLineColumn.OptionsColumn.AllowIncrementalSearch = false;
+            this.p4FlameLineColumn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.p4FlameLineColumn.OptionsColumn.AllowMove = false;
+            this.p4FlameLineColumn.OptionsColumn.AllowShowHide = false;
+            this.p4FlameLineColumn.OptionsColumn.AllowSize = false;
+            this.p4FlameLineColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.p4FlameLineColumn.OptionsColumn.FixedWidth = true;
+            this.p4FlameLineColumn.OptionsColumn.ImmediateUpdateRowPosition = DevExpress.Utils.DefaultBoolean.False;
+            this.p4FlameLineColumn.OptionsFilter.AllowAutoFilter = false;
+            this.p4FlameLineColumn.OptionsFilter.AllowFilter = false;
+            this.p4FlameLineColumn.Visible = true;
+            this.p4FlameLineColumn.VisibleIndex = 0;
+            this.p4FlameLineColumn.Width = 32;
+            // 
+            // p4CheckEdit
+            // 
+            this.p4CheckEdit.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p4CheckEdit.Appearance.Options.UseFont = true;
+            this.p4CheckEdit.Appearance.Options.UseTextOptions = true;
+            this.p4CheckEdit.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.p4CheckEdit.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p4CheckEdit.AppearanceFocused.Options.UseFont = true;
+            this.p4CheckEdit.AppearanceFocused.Options.UseTextOptions = true;
+            this.p4CheckEdit.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.p4CheckEdit.AutoHeight = false;
+            this.p4CheckEdit.Name = "p4CheckEdit";
             // 
             // p4FlameSampleColumn
             // 
@@ -1316,8 +1517,8 @@
             this.p4FlameSampleColumn.OptionsFilter.AllowAutoFilter = false;
             this.p4FlameSampleColumn.OptionsFilter.AllowFilter = false;
             this.p4FlameSampleColumn.Visible = true;
-            this.p4FlameSampleColumn.VisibleIndex = 0;
-            this.p4FlameSampleColumn.Width = 259;
+            this.p4FlameSampleColumn.VisibleIndex = 1;
+            this.p4FlameSampleColumn.Width = 243;
             // 
             // p4SampleTextEdit
             // 
@@ -1354,8 +1555,8 @@
             this.p4FlameBurningRateColumn.OptionsFilter.AllowAutoFilter = false;
             this.p4FlameBurningRateColumn.OptionsFilter.AllowFilter = false;
             this.p4FlameBurningRateColumn.Visible = true;
-            this.p4FlameBurningRateColumn.VisibleIndex = 1;
-            this.p4FlameBurningRateColumn.Width = 259;
+            this.p4FlameBurningRateColumn.VisibleIndex = 2;
+            this.p4FlameBurningRateColumn.Width = 243;
             // 
             // p4BurningRateTextEdit
             // 
@@ -1396,7 +1597,7 @@
             this.p4Desc1Edit.Properties.AppearanceFocused.Options.UseFont = true;
             this.p4Desc1Edit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p4Desc1Edit.Properties.AppearanceReadOnly.Options.UseFont = true;
-            this.p4Desc1Edit.Properties.MaxLength = 20;
+            this.p4Desc1Edit.Properties.MaxLength = 100;
             this.p4Desc1Edit.Size = new System.Drawing.Size(540, 22);
             this.p4Desc1Edit.TabIndex = 0;
             // 
@@ -1412,6 +1613,8 @@
             // 
             // physical5Page
             // 
+            this.physical5Page.Controls.Add(this.p5RowUpButton);
+            this.physical5Page.Controls.Add(this.p5RowDownButton);
             this.physical5Page.Controls.Add(this.p5RowPluseButton);
             this.physical5Page.Controls.Add(this.p5RowMinusButton);
             this.physical5Page.Controls.Add(this.p5StuffGrid);
@@ -1437,6 +1640,7 @@
             this.p5RowPluseButton.TabIndex = 99;
             this.p5RowPluseButton.TabStop = false;
             this.p5RowPluseButton.UseVisualStyleBackColor = true;
+            this.p5RowPluseButton.Click += new System.EventHandler(this.p5RowPluseButton_Click);
             // 
             // p5RowMinusButton
             // 
@@ -1447,6 +1651,7 @@
             this.p5RowMinusButton.TabIndex = 100;
             this.p5RowMinusButton.TabStop = false;
             this.p5RowMinusButton.UseVisualStyleBackColor = true;
+            this.p5RowMinusButton.Click += new System.EventHandler(this.p5RowMinusButton_Click);
             // 
             // p5StuffGrid
             // 
@@ -1457,7 +1662,8 @@
             this.p5StuffGrid.Name = "p5StuffGrid";
             this.p5StuffGrid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.p5TextEdit,
-            this.p5MemoEdit});
+            this.p5MemoEdit,
+            this.p5CheckEdit});
             this.p5StuffGrid.Size = new System.Drawing.Size(540, 367);
             this.p5StuffGrid.TabIndex = 2;
             this.p5StuffGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -1487,6 +1693,7 @@
             this.p5StuffGridView.Appearance.ViewCaption.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p5StuffGridView.Appearance.ViewCaption.Options.UseFont = true;
             this.p5StuffGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.p5StuffLineColumn,
             this.p5StuffTestItemColumn,
             this.p5StuffResultColumn,
             this.p5StuffRequirementColumn,
@@ -1506,6 +1713,47 @@
             this.p5StuffGridView.OptionsView.ShowIndicator = false;
             this.p5StuffGridView.Tag = 1;
             // 
+            // p5StuffLineColumn
+            // 
+            this.p5StuffLineColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p5StuffLineColumn.AppearanceCell.Options.UseFont = true;
+            this.p5StuffLineColumn.AppearanceCell.Options.UseTextOptions = true;
+            this.p5StuffLineColumn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.p5StuffLineColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p5StuffLineColumn.AppearanceHeader.Options.UseFont = true;
+            this.p5StuffLineColumn.AppearanceHeader.Options.UseTextOptions = true;
+            this.p5StuffLineColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.p5StuffLineColumn.Caption = "Line";
+            this.p5StuffLineColumn.ColumnEdit = this.p5CheckEdit;
+            this.p5StuffLineColumn.FieldName = "Line";
+            this.p5StuffLineColumn.Name = "p5StuffLineColumn";
+            this.p5StuffLineColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.p5StuffLineColumn.OptionsColumn.AllowIncrementalSearch = false;
+            this.p5StuffLineColumn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.p5StuffLineColumn.OptionsColumn.AllowMove = false;
+            this.p5StuffLineColumn.OptionsColumn.AllowShowHide = false;
+            this.p5StuffLineColumn.OptionsColumn.AllowSize = false;
+            this.p5StuffLineColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.p5StuffLineColumn.OptionsColumn.FixedWidth = true;
+            this.p5StuffLineColumn.OptionsFilter.AllowAutoFilter = false;
+            this.p5StuffLineColumn.OptionsFilter.AllowFilter = false;
+            this.p5StuffLineColumn.Visible = true;
+            this.p5StuffLineColumn.VisibleIndex = 0;
+            this.p5StuffLineColumn.Width = 32;
+            // 
+            // p5CheckEdit
+            // 
+            this.p5CheckEdit.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p5CheckEdit.Appearance.Options.UseFont = true;
+            this.p5CheckEdit.Appearance.Options.UseTextOptions = true;
+            this.p5CheckEdit.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.p5CheckEdit.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p5CheckEdit.AppearanceFocused.Options.UseFont = true;
+            this.p5CheckEdit.AppearanceFocused.Options.UseTextOptions = true;
+            this.p5CheckEdit.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.p5CheckEdit.AutoHeight = false;
+            this.p5CheckEdit.Name = "p5CheckEdit";
+            // 
             // p5StuffTestItemColumn
             // 
             this.p5StuffTestItemColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1516,8 +1764,6 @@
             this.p5StuffTestItemColumn.ColumnEdit = this.p5MemoEdit;
             this.p5StuffTestItemColumn.FieldName = "TestItem";
             this.p5StuffTestItemColumn.Name = "p5StuffTestItemColumn";
-            this.p5StuffTestItemColumn.OptionsColumn.AllowEdit = false;
-            this.p5StuffTestItemColumn.OptionsColumn.AllowFocus = false;
             this.p5StuffTestItemColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
             this.p5StuffTestItemColumn.OptionsColumn.AllowIncrementalSearch = false;
             this.p5StuffTestItemColumn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
@@ -1526,12 +1772,11 @@
             this.p5StuffTestItemColumn.OptionsColumn.AllowSize = false;
             this.p5StuffTestItemColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.p5StuffTestItemColumn.OptionsColumn.FixedWidth = true;
-            this.p5StuffTestItemColumn.OptionsColumn.ReadOnly = true;
             this.p5StuffTestItemColumn.OptionsFilter.AllowAutoFilter = false;
             this.p5StuffTestItemColumn.OptionsFilter.AllowFilter = false;
             this.p5StuffTestItemColumn.Visible = true;
-            this.p5StuffTestItemColumn.VisibleIndex = 0;
-            this.p5StuffTestItemColumn.Width = 338;
+            this.p5StuffTestItemColumn.VisibleIndex = 1;
+            this.p5StuffTestItemColumn.Width = 306;
             // 
             // p5MemoEdit
             // 
@@ -1561,8 +1806,6 @@
             this.p5StuffResultColumn.FieldName = "Result";
             this.p5StuffResultColumn.MaxWidth = 90;
             this.p5StuffResultColumn.Name = "p5StuffResultColumn";
-            this.p5StuffResultColumn.OptionsColumn.AllowEdit = false;
-            this.p5StuffResultColumn.OptionsColumn.AllowFocus = false;
             this.p5StuffResultColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
             this.p5StuffResultColumn.OptionsColumn.AllowIncrementalSearch = false;
             this.p5StuffResultColumn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
@@ -1571,11 +1814,10 @@
             this.p5StuffResultColumn.OptionsColumn.AllowSize = false;
             this.p5StuffResultColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.p5StuffResultColumn.OptionsColumn.FixedWidth = true;
-            this.p5StuffResultColumn.OptionsColumn.ReadOnly = true;
             this.p5StuffResultColumn.OptionsFilter.AllowAutoFilter = false;
             this.p5StuffResultColumn.OptionsFilter.AllowFilter = false;
             this.p5StuffResultColumn.Visible = true;
-            this.p5StuffResultColumn.VisibleIndex = 1;
+            this.p5StuffResultColumn.VisibleIndex = 2;
             this.p5StuffResultColumn.Width = 90;
             // 
             // p5TextEdit
@@ -1606,8 +1848,18 @@
             this.p5StuffRequirementColumn.ColumnEdit = this.p5TextEdit;
             this.p5StuffRequirementColumn.FieldName = "Requirement";
             this.p5StuffRequirementColumn.Name = "p5StuffRequirementColumn";
+            this.p5StuffRequirementColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.p5StuffRequirementColumn.OptionsColumn.AllowIncrementalSearch = false;
+            this.p5StuffRequirementColumn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.p5StuffRequirementColumn.OptionsColumn.AllowMove = false;
+            this.p5StuffRequirementColumn.OptionsColumn.AllowShowHide = false;
+            this.p5StuffRequirementColumn.OptionsColumn.AllowSize = false;
+            this.p5StuffRequirementColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.p5StuffRequirementColumn.OptionsColumn.FixedWidth = true;
+            this.p5StuffRequirementColumn.OptionsFilter.AllowAutoFilter = false;
+            this.p5StuffRequirementColumn.OptionsFilter.AllowFilter = false;
             this.p5StuffRequirementColumn.Visible = true;
-            this.p5StuffRequirementColumn.VisibleIndex = 2;
+            this.p5StuffRequirementColumn.VisibleIndex = 3;
             this.p5StuffRequirementColumn.Width = 90;
             // 
             // p5StuffNoColumn
@@ -1615,6 +1867,19 @@
             this.p5StuffNoColumn.Caption = "No";
             this.p5StuffNoColumn.FieldName = "No";
             this.p5StuffNoColumn.Name = "p5StuffNoColumn";
+            this.p5StuffNoColumn.OptionsColumn.AllowEdit = false;
+            this.p5StuffNoColumn.OptionsColumn.AllowFocus = false;
+            this.p5StuffNoColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.p5StuffNoColumn.OptionsColumn.AllowIncrementalSearch = false;
+            this.p5StuffNoColumn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.p5StuffNoColumn.OptionsColumn.AllowMove = false;
+            this.p5StuffNoColumn.OptionsColumn.AllowShowHide = false;
+            this.p5StuffNoColumn.OptionsColumn.AllowSize = false;
+            this.p5StuffNoColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.p5StuffNoColumn.OptionsColumn.FixedWidth = true;
+            this.p5StuffNoColumn.OptionsColumn.ReadOnly = true;
+            this.p5StuffNoColumn.OptionsFilter.AllowAutoFilter = false;
+            this.p5StuffNoColumn.OptionsFilter.AllowFilter = false;
             this.p5StuffNoColumn.SortMode = DevExpress.XtraGrid.ColumnSortMode.Value;
             this.p5StuffNoColumn.Width = 20;
             // 
@@ -1629,7 +1894,7 @@
             this.p5Desc2Edit.Properties.AppearanceFocused.Options.UseFont = true;
             this.p5Desc2Edit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p5Desc2Edit.Properties.AppearanceReadOnly.Options.UseFont = true;
-            this.p5Desc2Edit.Properties.MaxLength = 20;
+            this.p5Desc2Edit.Properties.MaxLength = 50;
             this.p5Desc2Edit.Size = new System.Drawing.Size(270, 22);
             this.p5Desc2Edit.TabIndex = 1;
             // 
@@ -1644,7 +1909,7 @@
             this.p5Desc1Edit.Properties.AppearanceFocused.Options.UseFont = true;
             this.p5Desc1Edit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p5Desc1Edit.Properties.AppearanceReadOnly.Options.UseFont = true;
-            this.p5Desc1Edit.Properties.MaxLength = 500;
+            this.p5Desc1Edit.Properties.MaxLength = 250;
             this.p5Desc1Edit.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.p5Desc1Edit.Properties.WordWrap = false;
             this.p5Desc1Edit.Size = new System.Drawing.Size(540, 64);
@@ -1667,7 +1932,7 @@
             this.physical6Page.Location = new System.Drawing.Point(4, 24);
             this.physical6Page.Name = "physical6Page";
             this.physical6Page.Padding = new System.Windows.Forms.Padding(3);
-            this.physical6Page.Size = new System.Drawing.Size(292, 272);
+            this.physical6Page.Size = new System.Drawing.Size(548, 510);
             this.physical6Page.TabIndex = 5;
             this.physical6Page.Tag = "5";
             this.physical6Page.Text = "  Page 6  ";
@@ -1681,7 +1946,7 @@
             this.p6FileNoPanel.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p6FileNoPanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.p6FileNoPanel.InnerColor2 = System.Drawing.Color.White;
-            this.p6FileNoPanel.Location = new System.Drawing.Point(8, 484);
+            this.p6FileNoPanel.Location = new System.Drawing.Point(8, 454);
             this.p6FileNoPanel.Name = "p6FileNoPanel";
             this.p6FileNoPanel.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.p6FileNoPanel.OuterColor2 = System.Drawing.Color.White;
@@ -1704,7 +1969,7 @@
             this.imagePanel.Name = "imagePanel";
             this.imagePanel.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.imagePanel.OuterColor2 = System.Drawing.Color.White;
-            this.imagePanel.Size = new System.Drawing.Size(532, 470);
+            this.imagePanel.Size = new System.Drawing.Size(532, 440);
             this.imagePanel.Spacing = 0;
             this.imagePanel.TabIndex = 3;
             this.imagePanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
@@ -1733,10 +1998,98 @@
             this.p6ImageBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.p6ImageBox.Location = new System.Drawing.Point(8, 64);
             this.p6ImageBox.Name = "p6ImageBox";
-            this.p6ImageBox.Size = new System.Drawing.Size(516, 396);
+            this.p6ImageBox.Size = new System.Drawing.Size(516, 366);
             this.p6ImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.p6ImageBox.TabIndex = 0;
             this.p6ImageBox.TabStop = false;
+            // 
+            // p2RowUpButton
+            // 
+            this.p2RowUpButton.Image = ((System.Drawing.Image)(resources.GetObject("p2RowUpButton.Image")));
+            this.p2RowUpButton.Location = new System.Drawing.Point(442, 5);
+            this.p2RowUpButton.Name = "p2RowUpButton";
+            this.p2RowUpButton.Size = new System.Drawing.Size(24, 24);
+            this.p2RowUpButton.TabIndex = 89;
+            this.p2RowUpButton.TabStop = false;
+            this.p2RowUpButton.UseVisualStyleBackColor = true;
+            this.p2RowUpButton.Click += new System.EventHandler(this.p2RowUpButton_Click);
+            // 
+            // p2RowDownButton
+            // 
+            this.p2RowDownButton.Image = ((System.Drawing.Image)(resources.GetObject("p2RowDownButton.Image")));
+            this.p2RowDownButton.Location = new System.Drawing.Point(468, 5);
+            this.p2RowDownButton.Name = "p2RowDownButton";
+            this.p2RowDownButton.Size = new System.Drawing.Size(24, 24);
+            this.p2RowDownButton.TabIndex = 90;
+            this.p2RowDownButton.TabStop = false;
+            this.p2RowDownButton.UseVisualStyleBackColor = true;
+            this.p2RowDownButton.Click += new System.EventHandler(this.p2RowDownButton_Click);
+            // 
+            // p3RowUpButton
+            // 
+            this.p3RowUpButton.Image = ((System.Drawing.Image)(resources.GetObject("p3RowUpButton.Image")));
+            this.p3RowUpButton.Location = new System.Drawing.Point(442, 96);
+            this.p3RowUpButton.Name = "p3RowUpButton";
+            this.p3RowUpButton.Size = new System.Drawing.Size(24, 24);
+            this.p3RowUpButton.TabIndex = 99;
+            this.p3RowUpButton.TabStop = false;
+            this.p3RowUpButton.UseVisualStyleBackColor = true;
+            this.p3RowUpButton.Click += new System.EventHandler(this.p3RowUpButton_Click);
+            // 
+            // p3RowDownButton
+            // 
+            this.p3RowDownButton.Image = ((System.Drawing.Image)(resources.GetObject("p3RowDownButton.Image")));
+            this.p3RowDownButton.Location = new System.Drawing.Point(468, 96);
+            this.p3RowDownButton.Name = "p3RowDownButton";
+            this.p3RowDownButton.Size = new System.Drawing.Size(24, 24);
+            this.p3RowDownButton.TabIndex = 100;
+            this.p3RowDownButton.TabStop = false;
+            this.p3RowDownButton.UseVisualStyleBackColor = true;
+            this.p3RowDownButton.Click += new System.EventHandler(this.p3RowDownButton_Click);
+            // 
+            // p4RowUpButton
+            // 
+            this.p4RowUpButton.Image = ((System.Drawing.Image)(resources.GetObject("p4RowUpButton.Image")));
+            this.p4RowUpButton.Location = new System.Drawing.Point(442, 59);
+            this.p4RowUpButton.Name = "p4RowUpButton";
+            this.p4RowUpButton.Size = new System.Drawing.Size(24, 24);
+            this.p4RowUpButton.TabIndex = 101;
+            this.p4RowUpButton.TabStop = false;
+            this.p4RowUpButton.UseVisualStyleBackColor = true;
+            this.p4RowUpButton.Click += new System.EventHandler(this.p4RowUpButton_Click);
+            // 
+            // p4RowDownButton
+            // 
+            this.p4RowDownButton.Image = ((System.Drawing.Image)(resources.GetObject("p4RowDownButton.Image")));
+            this.p4RowDownButton.Location = new System.Drawing.Point(468, 59);
+            this.p4RowDownButton.Name = "p4RowDownButton";
+            this.p4RowDownButton.Size = new System.Drawing.Size(24, 24);
+            this.p4RowDownButton.TabIndex = 102;
+            this.p4RowDownButton.TabStop = false;
+            this.p4RowDownButton.UseVisualStyleBackColor = true;
+            this.p4RowDownButton.Click += new System.EventHandler(this.p4RowDownButton_Click);
+            // 
+            // p5RowUpButton
+            // 
+            this.p5RowUpButton.Image = ((System.Drawing.Image)(resources.GetObject("p5RowUpButton.Image")));
+            this.p5RowUpButton.Location = new System.Drawing.Point(442, 111);
+            this.p5RowUpButton.Name = "p5RowUpButton";
+            this.p5RowUpButton.Size = new System.Drawing.Size(24, 24);
+            this.p5RowUpButton.TabIndex = 103;
+            this.p5RowUpButton.TabStop = false;
+            this.p5RowUpButton.UseVisualStyleBackColor = true;
+            this.p5RowUpButton.Click += new System.EventHandler(this.p5RowUpButton_Click);
+            // 
+            // p5RowDownButton
+            // 
+            this.p5RowDownButton.Image = ((System.Drawing.Image)(resources.GetObject("p5RowDownButton.Image")));
+            this.p5RowDownButton.Location = new System.Drawing.Point(468, 111);
+            this.p5RowDownButton.Name = "p5RowDownButton";
+            this.p5RowDownButton.Size = new System.Drawing.Size(24, 24);
+            this.p5RowDownButton.TabIndex = 104;
+            this.p5RowDownButton.TabStop = false;
+            this.p5RowDownButton.UseVisualStyleBackColor = true;
+            this.p5RowDownButton.Click += new System.EventHandler(this.p5RowDownButton_Click);
             // 
             // CtrlEditPhysicalUs
             // 
@@ -1744,9 +2097,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "CtrlEditPhysicalUs";
             this.Size = new System.Drawing.Size(556, 538);
+            this.Load += new System.EventHandler(this.CtrlEditPhysicalUs_Load);
+            this.Enter += new System.EventHandler(this.CtrlEditPhysicalUs_Enter);
             this.bgPanel.ResumeLayout(false);
             this.physicalTab.ResumeLayout(false);
             this.physical1Page.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.p1TestResultEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.p1TestMethodEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.p1OrderNoEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1ReportCommentEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1TestPeriodEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1ReceivedDateEdit.Properties)).EndInit();
@@ -1767,6 +2125,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.p2ImageBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2ResultGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2ResultGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.p2CheckEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2MemoEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2TextEdit)).EndInit();
             this.physical3Page.ResumeLayout(false);
@@ -1782,12 +2141,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.p4Desc2Edit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p4FlameGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p4FlameGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.p4CheckEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p4SampleTextEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p4BurningRateTextEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p4Desc1Edit.Properties)).EndInit();
             this.physical5Page.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.p5StuffGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p5StuffGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.p5CheckEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p5MemoEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p5TextEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p5Desc2Edit.Properties)).EndInit();
@@ -1838,7 +2199,6 @@
         public DevExpress.XtraEditors.TextEdit p1DetailOfSampleEdit;
         private System.Windows.Forms.Label label6;
         public DevExpress.XtraEditors.TextEdit p1SampleDescriptionEdit;
-        private System.Windows.Forms.Label label5;
         public DevExpress.XtraEditors.TextEdit p1FileNoEdit;
         private System.Windows.Forms.Label label3;
         public DevExpress.XtraEditors.TextEdit p1TestAgeEdit;
@@ -1900,5 +2260,26 @@
         private DevExpress.XtraGrid.Columns.GridColumn p2ResultNoColumn;
         private DevExpress.XtraGrid.Columns.GridColumn p4FlameNoColumn;
         private DevExpress.XtraGrid.Columns.GridColumn p5StuffNoColumn;
+        public DevExpress.XtraEditors.TextEdit p1TestResultEdit;
+        private System.Windows.Forms.Label label25;
+        public DevExpress.XtraEditors.TextEdit p1TestMethodEdit;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label5;
+        public DevExpress.XtraEditors.TextEdit p1OrderNoEdit;
+        private System.Windows.Forms.Label label23;
+        private DevExpress.XtraGrid.Columns.GridColumn p2ResultLineColumn;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit p2CheckEdit;
+        private DevExpress.XtraGrid.Columns.GridColumn p4FlameLineColumn;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit p4CheckEdit;
+        private DevExpress.XtraGrid.Columns.GridColumn p5StuffLineColumn;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit p5CheckEdit;
+        private System.Windows.Forms.Button p2RowUpButton;
+        private System.Windows.Forms.Button p2RowDownButton;
+        private System.Windows.Forms.Button p3RowUpButton;
+        private System.Windows.Forms.Button p3RowDownButton;
+        private System.Windows.Forms.Button p4RowUpButton;
+        private System.Windows.Forms.Button p4RowDownButton;
+        private System.Windows.Forms.Button p5RowUpButton;
+        private System.Windows.Forms.Button p5RowDownButton;
     }
 }

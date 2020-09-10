@@ -118,6 +118,12 @@
     <Compile Include="Source\A.Forms\B.Dialog\DialogProfJobListView.Designer.cs">
       <DependentUpon>DialogProfJobListView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\A.Forms\B.Dialog\DialogReportPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\A.Forms\B.Dialog\DialogReportPreview.Designer.cs">
+      <DependentUpon>DialogReportPreview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\B.Controls\A.Edit\CtrlEditBom.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -222,6 +228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Source\A.Forms\B.Dialog\DialogProfJobListView.resx">
       <DependentUpon>DialogProfJobListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\A.Forms\B.Dialog\DialogReportPreview.resx">
+      <DependentUpon>DialogReportPreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\B.Controls\A.Edit\CtrlEditBom.resx">
       <DependentUpon>CtrlEditBom.cs</DependentUpon>

@@ -15,41 +15,69 @@ namespace Sgs.ReportIntegration
 {
     public partial class CtrlEditPhysicalUs : UlUserControlEng
     {
-        private PhysicalMainDataSet dataSet;
+        public PhysicalMainDataSet MainSet;
 
-        private List<PhysicalPage2Row> page2Rows;
+        public PhysicalImageDataSet ImageSet;
 
-        private List<PhysicalPage3Row> page3Rows;
+        public PhysicalP2DataSet P2Set;
 
-        private List<PhysicalPage4Row> page4Rows;
+        public PhysicalP3DataSet P3Set;
 
-        private List<PhysicalPage5Row> page5Rows;
+        public PhysicalP4DataSet P4Set;
 
-        public CtrlEditPhysicalUs(PhysicalMainDataSet set)
+        public PhysicalP5DataSet P5Set;
+
+        public List<PhysicalPage2Row> P2Rows;
+
+        public List<PhysicalPage3Row> P3Rows;
+
+        public List<PhysicalPage4Row> P4Rows;
+
+        public List<PhysicalPage5Row> P5Rows;
+
+        private GridBookmark p2Bookmark;
+
+        private GridBookmark p3Bookmark;
+
+        private GridBookmark p4Bookmark;
+
+        private GridBookmark p5Bookmark;
+
+        public CtrlEditPhysicalUs()
         {
-            dataSet = set;
-            page2Rows = new List<PhysicalPage2Row>();
-            page3Rows = new List<PhysicalPage3Row>();
-            page4Rows = new List<PhysicalPage4Row>();
-            page5Rows = new List<PhysicalPage5Row>();
-
             InitializeComponent();
             Initialize();
         }
 
         private void Initialize()
         {
-            p2ResultGrid.DataSource = page2Rows;
+            p2Bookmark = new GridBookmark(p2ResultGridView);
+            P2Rows = new List<PhysicalPage2Row>();
+            p2ResultGrid.DataSource = P2Rows;
             AppHelper.SetGridEvenRow(p2ResultGridView);
 
-            p3ClauseGrid.DataSource = page3Rows;
+            p3Bookmark = new GridBookmark(p3ClauseGridView);
+            P3Rows = new List<PhysicalPage3Row>();
+            p3ClauseGrid.DataSource = P3Rows;
             AppHelper.SetGridEvenRow(p3ClauseGridView);
 
-            p4FlameGrid.DataSource = page4Rows;
+            p4Bookmark = new GridBookmark(p4FlameGridView);
+            P4Rows = new List<PhysicalPage4Row>();
+            p4FlameGrid.DataSource = P4Rows;
             AppHelper.SetGridEvenRow(p4FlameGridView);
 
-            p5StuffGrid.DataSource = page5Rows;
+            p5Bookmark = new GridBookmark(p5StuffGridView);
+            P5Rows = new List<PhysicalPage5Row>();
+            p5StuffGrid.DataSource = P5Rows;
             AppHelper.SetGridEvenRow(p5StuffGridView);
+        }
+
+        private void CtrlEditPhysicalUs_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void CtrlEditPhysicalUs_Enter(object sender, EventArgs e)
+        {
         }
 
         private void physicalTab_Resize(object sender, EventArgs e)
@@ -62,18 +90,18 @@ namespace Sgs.ReportIntegration
 
             p1ClientNameEdit.Width = width - 172;
             p1ClientAddressEdit.Width = width - 172;
-            p1FileNoEdit.Width = width - 172;
-            p1SampleDescriptionEdit.Width = width - 172;
+            p1SampleDescriptionEdit.Width = width - 410;
             p1DetailOfSampleEdit.Width = width - 172;
-            p1ItemNoEdit.Width = width - 172;
+            p1OrderNoEdit.Width = width - 410;
             p1ManufacturerEdit.Width = width - 172;
-            p1CountryOfOriginEdit.Width = width - 172;
-            p1CountryOfDestinationEdit.Width = width - 172;
+            p1CountryOfDestinationEdit.Width = width - 410;
             p1LabeledAgeEdit.Width = width - 172;
             p1TestAgeEdit.Width = width - 172;
             p1AssessedAgeEdit.Width = width - 172;
             p1ReceivedDateEdit.Width = width - 172;
             p1TestPeriodEdit.Width = width - 172;
+            p1TestMethodEdit.Width = width - 172;
+            p1TestResultEdit.Width = width - 172;
             p1ReportCommentEdit.Width = width - 172;
         }
 
@@ -83,7 +111,9 @@ namespace Sgs.ReportIntegration
             int height = physical2Page.Height;
 
             p2ResultGrid.Size = new Size(width - 8, height - 187);
-            p2ResultTestRequestedColumn.Width = width - 110;
+            p2ResultTestRequestedColumn.Width = width - 142;
+            p2RowUpButton.Left = width - 106;
+            p2RowDownButton.Left = width - 80;
             p2RowPluseButton.Left = width - 54;
             p2RowMinusButton.Left = width - 28;
 
@@ -105,6 +135,8 @@ namespace Sgs.ReportIntegration
             p3ClauseGrid.Size = new Size(width - 8, height - 201);
             p3ClauseDescriptionColumn.Width = width - 242;
 
+            p3RowUpButton.Left = width - 106;
+            p3RowDownButton.Left = width - 80;
             p3RowPluseButton.Left = width - 54;
             p3RowMinusButton.Left = width - 28;
 
@@ -119,9 +151,11 @@ namespace Sgs.ReportIntegration
             int height = physical4Page.Height;
 
             p4FlameGrid.Size = new Size(width - 8, height - 161);
-            p4FlameSampleColumn.Width = (width - 30) / 2;
-            p4FlameBurningRateColumn.Width = (width - 30) / 2;
+            p4FlameSampleColumn.Width = (width - 62) / 2;
+            p4FlameBurningRateColumn.Width = (width - 62) / 2;
 
+            p4RowUpButton.Left = width - 106;
+            p4RowDownButton.Left = width - 80;
             p4RowPluseButton.Left = width - 54;
             p4RowMinusButton.Left = width - 28;
 
@@ -136,8 +170,10 @@ namespace Sgs.ReportIntegration
             int height = physical5Page.Height;
 
             p5StuffGrid.Size = new Size(width - 8, height - 143);
-            p5StuffTestItemColumn.Width = width - 210;
+            p5StuffTestItemColumn.Width = width - 242;
 
+            p5RowUpButton.Left = width - 106;
+            p5RowDownButton.Left = width - 80;
             p5RowPluseButton.Left = width - 54;
             p5RowMinusButton.Left = width - 28;
 
@@ -158,311 +194,681 @@ namespace Sgs.ReportIntegration
         {
         }
 
-        public void Clear()
+        private void p2RowUpButton_Click(object sender, EventArgs e)
         {
-            p1ClientNameEdit.Text = dataSet.ClientName;
-            p1ClientAddressEdit.Text = dataSet.ClientAddress;
-            p1FileNoEdit.Text = dataSet.FileNo;
-            p1SampleDescriptionEdit.Text = dataSet.SampleDescription;
-            p1DetailOfSampleEdit.Text = dataSet.DetailOfSample;
-            p1ItemNoEdit.Text = dataSet.ItemNo;
-            p1ManufacturerEdit.Text = dataSet.Manufacturer;
-            p1CountryOfOriginEdit.Text = dataSet.CountryOfOrigin;
-            p1CountryOfDestinationEdit.Text = "-";
-            p1LabeledAgeEdit.Text = "None";
-            p1TestAgeEdit.Text = "None";
-            p1AssessedAgeEdit.Text = "All ages";
-            p1ReceivedDateEdit.Text = dataSet.ReceivedTime.ToString("yyyy. MM. dd");
-            p1TestPeriodEdit.Text = $"{dataSet.ReceivedTime.ToString("yyyy. MM. dd")}  to  {dataSet.RequiredTime.ToString("yyyy. MM. dd")}";
-            p1ReportCommentEdit.Text = dataSet.ReportComments;
+            int index = p2ResultGridView.FocusedRowHandle;
 
-            PhysicalPage2Row p2Row = new PhysicalPage2Row();
-            p2Row.No = 0;
-            p2Row.Requested = "US Public Law 110-314(Comsumer Plroduct Safety Improvement Act of 2008, CPSIA):";
-            p2Row.Conclusion = "-";
-            page2Rows.Add(p2Row);
+            if (index <= 0) return;
 
-            p2Row = new PhysicalPage2Row();
-            p2Row.No = 1;
-            p2Row.Requested = "- ASTM F963-17: Standard Consumer Safety Specification on Toy Safety\r\n  (Excluding clause 4.3.5 Heavy Element)";
-            p2Row.Conclusion = "PASS";
-            page2Rows.Add(p2Row);
+            PhysicalPage2Row row = NewP2Row();
+            row.No = P2Rows[index].No;
+            row.Line = P2Rows[index].Line;
+            row.Requested = P2Rows[index].Requested;
+            row.Conclusion = P2Rows[index].Conclusion;
 
-            p2Row = new PhysicalPage2Row();
-            p2Row.No = 2;
-            p2Row.Requested = "Flammability of toys(16 C.F.R. 1500.44)";
-            p2Row.Conclusion = "PASS";
-            page2Rows.Add(p2Row);
+            p2Bookmark.Get();
+            P2Rows.RemoveAt(index);
+            P2Rows.Insert(index - 1, row);
+            ReorderP2Rows();
+            AppHelper.RefreshGridData(p2ResultGridView);
+            
+            p2Bookmark.Goto();
+            p2ResultGridView.MoveBy(-1);
 
-            p2Row = new PhysicalPage2Row();
-            p2Row.No = 3;
-            p2Row.Requested = "Small part(16 C.F.R. 1501)";
-            p2Row.Conclusion = "PASS";
-            page2Rows.Add(p2Row);
+            p2ResultGrid.Focus();
+        }
 
-            p2Row = new PhysicalPage2Row();
-            p2Row.No = 4;
-            p2Row.Requested = "Sharp points and edges(16 C.F.R. 1500.48 and 49)";
-            p2Row.Conclusion = "PASS";
-            page2Rows.Add(p2Row);
+        private void p2RowDownButton_Click(object sender, EventArgs e)
+        {
+            int index = p2ResultGridView.FocusedRowHandle;
+
+            if (index >= P2Rows.Count - 1) return;
+
+            PhysicalPage2Row row = NewP2Row();
+            row.No = P2Rows[index].No;
+            row.Line = P2Rows[index].Line;
+            row.Requested = P2Rows[index].Requested;
+            row.Conclusion = P2Rows[index].Conclusion;
+
+            p2Bookmark.Get();
+            P2Rows.RemoveAt(index);
+
+            if (index < P2Rows.Count - 1)
+            {
+                P2Rows.Insert(index + 1, row);
+            }
+            else
+            {
+                P2Rows.Add(row);
+            }
+            
+            ReorderP2Rows();
+            AppHelper.RefreshGridData(p2ResultGridView);
+
+            p2Bookmark.Goto();
+            p2ResultGridView.MoveBy(1);
+
+            p2ResultGrid.Focus();
+        }
+
+        private void p2RowPluseButton_Click(object sender, EventArgs e)
+        {
+            int index = p2ResultGridView.FocusedRowHandle;
+
+            p2Bookmark.Get();
+
+            if ((index < 0) || (index == P2Rows.Count-1))
+            {
+                P2Rows.Add(NewP2Row());
+            }
+            else
+            {
+                P2Rows.Insert(index+1, NewP2Row());
+            }
+
+            ReorderP2Rows();
+            AppHelper.RefreshGridData(p2ResultGridView);
+
+            p2Bookmark.Goto();
+            p2ResultGridView.MoveBy(1);
+            
+            p2ResultGrid.Focus();
+        }
+
+        private void p2RowMinusButton_Click(object sender, EventArgs e)
+        {
+            int index = p2ResultGridView.FocusedRowHandle;
+
+            if (index < 0) return;
+
+            p2Bookmark.Get();
+            P2Rows.RemoveAt(index);
+
+            ReorderP2Rows();
+            AppHelper.RefreshGridData(p2ResultGridView);
+
+            p2Bookmark.Goto();
+
+            p2ResultGrid.Focus();
+        }
+
+        private void p3RowUpButton_Click(object sender, EventArgs e)
+        {
+            int index = p3ClauseGridView.FocusedRowHandle;
+
+            if (index <= 0) return;
+
+            PhysicalPage3Row row = NewP3Row();
+            row.No = P3Rows[index].No;
+            row.Line = P3Rows[index].Line;
+            row.Clause = P3Rows[index].Clause;
+            row.Description = P3Rows[index].Description;
+            row.Result = P3Rows[index].Result;
+
+            p3Bookmark.Get();
+            P3Rows.RemoveAt(index);
+            P3Rows.Insert(index - 1, row);
+            ReorderP3Rows();
+            AppHelper.RefreshGridData(p3ClauseGridView);
+
+            p3Bookmark.Goto();
+            p3ClauseGridView.MoveBy(-1);
+
+            p3ClauseGridView.Focus();
+        }
+
+        private void p3RowDownButton_Click(object sender, EventArgs e)
+        {
+            int index = p3ClauseGridView.FocusedRowHandle;
+
+            if (index >= P3Rows.Count - 1) return;
+
+            PhysicalPage3Row row = NewP3Row();
+            row.No = P3Rows[index].No;
+            row.Line = P3Rows[index].Line;
+            row.Clause = P3Rows[index].Clause;
+            row.Description = P3Rows[index].Description;
+            row.Result = P3Rows[index].Result;
+
+            p3Bookmark.Get();
+            P3Rows.RemoveAt(index);
+
+            if (index < P3Rows.Count - 1)
+            {
+                P3Rows.Insert(index + 1, row);
+            }
+            else
+            {
+                P3Rows.Add(row);
+            }
+
+            ReorderP3Rows();
+            AppHelper.RefreshGridData(p3ClauseGridView);
+
+            p3Bookmark.Goto();
+            p3ClauseGridView.MoveBy(1);
+
+            p3ClauseGrid.Focus();
+        }
+
+        private void p3RowPluseButton_Click(object sender, EventArgs e)
+        {
+            int index = p3ClauseGridView.FocusedRowHandle;
+
+            p3Bookmark.Get();
+
+            if ((index < 0) || (index == P3Rows.Count - 1))
+            {
+                P3Rows.Add(NewP3Row());
+            }
+            else
+            {
+                P3Rows.Insert(index + 1, NewP3Row());
+            }
+
+            ReorderP3Rows();
+            AppHelper.RefreshGridData(p3ClauseGridView);
+
+            p3Bookmark.Goto();
+            p3ClauseGridView.MoveBy(1);
+
+            p3ClauseGrid.Focus();
+        }
+
+        private void p3RowMinusButton_Click(object sender, EventArgs e)
+        {
+            int index = p3ClauseGridView.FocusedRowHandle;
+
+            if (index < 0) return;
+
+            p3Bookmark.Get();
+            P3Rows.RemoveAt(index);
+
+            ReorderP3Rows();
+            AppHelper.RefreshGridData(p3ClauseGridView);
+
+            p3Bookmark.Goto();
+
+            p3ClauseGrid.Focus();
+        }
+
+        private void p4RowUpButton_Click(object sender, EventArgs e)
+        {
+            int index = p4FlameGridView.FocusedRowHandle;
+
+            if (index <= 0) return;
+
+            PhysicalPage4Row row = NewP4Row();
+            row.No = P4Rows[index].No;
+            row.Line = P4Rows[index].Line;
+            row.Sample = P4Rows[index].Sample;
+            row.BurningRate = P4Rows[index].BurningRate;
+
+            p4Bookmark.Get();
+            P4Rows.RemoveAt(index);
+            P4Rows.Insert(index - 1, row);
+            ReorderP4Rows();
+            AppHelper.RefreshGridData(p4FlameGridView);
+
+            p4Bookmark.Goto();
+            p4FlameGridView.MoveBy(-1);
+
+            p4FlameGrid.Focus();
+        }
+
+        private void p4RowDownButton_Click(object sender, EventArgs e)
+        {
+            int index = p4FlameGridView.FocusedRowHandle;
+
+            if (index >= P4Rows.Count - 1) return;
+
+            PhysicalPage4Row row = NewP4Row();
+            row.No = P4Rows[index].No;
+            row.Line = P4Rows[index].Line;
+            row.Sample = P4Rows[index].Sample;
+            row.BurningRate = P4Rows[index].BurningRate;
+
+            p4Bookmark.Get();
+            P4Rows.RemoveAt(index);
+
+            if (index < P4Rows.Count - 1)
+            {
+                P4Rows.Insert(index + 1, row);
+            }
+            else
+            {
+                P4Rows.Add(row);
+            }
+
+            ReorderP4Rows();
+            AppHelper.RefreshGridData(p4FlameGridView);
+
+            p4Bookmark.Goto();
+            p4FlameGridView.MoveBy(1);
+
+            p4FlameGrid.Focus();
+        }
+
+        private void p4RowPluseButton_Click(object sender, EventArgs e)
+        {
+            int index = p4FlameGridView.FocusedRowHandle;
+
+            p4Bookmark.Get();
+
+            if ((index < 0) || (index == P4Rows.Count - 1))
+            {
+                P4Rows.Add(NewP4Row());
+            }
+            else
+            {
+                P4Rows.Insert(index + 1, NewP4Row());
+            }
+
+            ReorderP4Rows();
+            AppHelper.RefreshGridData(p4FlameGridView);
+
+            p4Bookmark.Goto();
+            p4FlameGridView.MoveBy(1);
+
+            p4FlameGrid.Focus();
+        }
+
+        private void p4RowMinusButton_Click(object sender, EventArgs e)
+        {
+            int index = p4FlameGridView.FocusedRowHandle;
+
+            if (index < 0) return;
+
+            p4Bookmark.Get();
+            P4Rows.RemoveAt(index);
+
+            ReorderP4Rows();
+            AppHelper.RefreshGridData(p4FlameGridView);
+
+            p4Bookmark.Goto();
+
+            p4FlameGrid.Focus();
+        }
+
+        private void p5RowUpButton_Click(object sender, EventArgs e)
+        {
+            int index = p5StuffGridView.FocusedRowHandle;
+
+            if (index <= 0) return;
+
+            PhysicalPage5Row row = NewP5Row();
+            row.No = P5Rows[index].No;
+            row.Line = P5Rows[index].Line;
+            row.TestItem = P5Rows[index].TestItem;
+            row.Result = P5Rows[index].Result;
+            row.Requirement = P5Rows[index].Requirement;
+
+            p5Bookmark.Get();
+            P5Rows.RemoveAt(index);
+            P5Rows.Insert(index - 1, row);
+            ReorderP5Rows();
+            AppHelper.RefreshGridData(p5StuffGridView);
+
+            p5Bookmark.Goto();
+            p5StuffGridView.MoveBy(-1);
+
+            p5StuffGrid.Focus();
+        }
+
+        private void p5RowDownButton_Click(object sender, EventArgs e)
+        {
+            int index = p5StuffGridView.FocusedRowHandle;
+
+            if (index >= P5Rows.Count - 1) return;
+
+            PhysicalPage5Row row = NewP5Row();
+            row.No = P5Rows[index].No;
+            row.Line = P5Rows[index].Line;
+            row.TestItem = P5Rows[index].TestItem;
+            row.Result = P5Rows[index].Result;
+            row.Requirement = P5Rows[index].Requirement;
+
+            p5Bookmark.Get();
+            P5Rows.RemoveAt(index);
+
+            if (index < P5Rows.Count - 1)
+            {
+                P5Rows.Insert(index + 1, row);
+            }
+            else
+            {
+                P5Rows.Add(row);
+            }
+
+            ReorderP5Rows();
+            AppHelper.RefreshGridData(p5StuffGridView);
+
+            p5Bookmark.Goto();
+            p5StuffGridView.MoveBy(1);
+
+            p5StuffGrid.Focus();
+        }
+
+        private void p5RowPluseButton_Click(object sender, EventArgs e)
+        {
+            int index = p5StuffGridView.FocusedRowHandle;
+
+            p5Bookmark.Get();
+
+            if ((index < 0) || (index == P5Rows.Count - 1))
+            {
+                P5Rows.Add(NewP5Row());
+            }
+            else
+            {
+                P5Rows.Insert(index + 1, NewP5Row());
+            }
+
+            ReorderP5Rows();
+            AppHelper.RefreshGridData(p5StuffGridView);
+
+            p5Bookmark.Goto();
+            p5StuffGridView.MoveBy(1);
+
+            p5StuffGrid.Focus();
+        }
+
+        private void p5RowMinusButton_Click(object sender, EventArgs e)
+        {
+            int index = p5StuffGridView.FocusedRowHandle;
+
+            if (index < 0) return;
+
+            p5Bookmark.Get();
+            P5Rows.RemoveAt(index);
+
+            ReorderP5Rows();
+            AppHelper.RefreshGridData(p5StuffGridView);
+
+            p5Bookmark.Goto();
+
+            p5StuffGrid.Focus();
+        }
+
+        private PhysicalPage2Row NewP2Row()
+        {
+            PhysicalPage2Row row = new PhysicalPage2Row();
+
+            row.No = 0;
+            row.Line = false;
+            row.Requested = "";
+            row.Conclusion = "";
+
+            return row;
+        }
+
+        private PhysicalPage3Row NewP3Row()
+        {
+            PhysicalPage3Row row = new PhysicalPage3Row();
+
+            row.No = 0;
+            row.Line = false;
+            row.Clause = "";
+            row.Description = "";
+            row.Result = "";
+
+            return row;
+        }
+
+        private PhysicalPage4Row NewP4Row()
+        {
+            PhysicalPage4Row row = new PhysicalPage4Row();
+
+            row.No = 0;
+            row.Line = false;
+            row.Sample = "";
+            row.BurningRate = "";
+
+            return row;
+        }
+
+        private PhysicalPage5Row NewP5Row()
+        {
+            PhysicalPage5Row row = new PhysicalPage5Row();
+
+            row.No = 0;
+            row.Line = false;
+            row.TestItem = "";
+            row.Result = "";
+            row.Requirement = "";
+
+            return row;
+        }
+
+        private void ReorderP2Rows()
+        {
+            for (int i=0; i<P2Rows.Count; i++)
+            {
+                P2Rows[i].No = i;
+            }
+        }
+
+        private void ReorderP3Rows()
+        {
+            for (int i = 0; i < P3Rows.Count; i++)
+            {
+                P3Rows[i].No = i;
+            }
+        }
+
+        private void ReorderP4Rows()
+        {
+            for (int i = 0; i < P4Rows.Count; i++)
+            {
+                P4Rows[i].No = i;
+            }
+        }
+
+        private void ReorderP5Rows()
+        {
+            for (int i = 0; i < P5Rows.Count; i++)
+            {
+                P5Rows[i].No = i;
+            }
+        }
+
+        private void RefreshGrid()
+        {
+            AppHelper.RefreshGridData(p2ResultGridView);
+            AppHelper.RefreshGridData(p3ClauseGridView);
+            AppHelper.RefreshGridData(p4FlameGridView);
+            AppHelper.RefreshGridData(p5StuffGridView);
+        }
+
+        public void SetControlToDataSet()
+        {
+            p2ResultGridView.PostEditor();
+            p3ClauseGridView.PostEditor();
+            p4FlameGridView.PostEditor();
+            p5StuffGridView.PostEditor();
+
+            MainSet.P1ClientName = p1ClientNameEdit.Text;
+            MainSet.P1ClientAddress = p1ClientAddressEdit.Text;
+            MainSet.P1FileNo = p1FileNoEdit.Text;
+            MainSet.P1SampleDescription = p1SampleDescriptionEdit.Text;
+            MainSet.P1DetailOfSample = p1DetailOfSampleEdit.Text;
+            MainSet.P1ItemNo = p1ItemNoEdit.Text;
+            MainSet.P1Manufacturer = p1ManufacturerEdit.Text;
+            MainSet.P1CountryOfOrigin = p1CountryOfOriginEdit.Text;
+            MainSet.P1CountryOfDestination = p1CountryOfDestinationEdit.Text;
+            MainSet.P1LabeledAge = p1LabeledAgeEdit.Text;
+            MainSet.P1TestAge = p1TestAgeEdit.Text;
+            MainSet.P1AssessedAge = p1AssessedAgeEdit.Text;
+            MainSet.P1ReceivedDate = p1ReceivedDateEdit.Text;
+            MainSet.P1TestPeriod = p1TestPeriodEdit.Text;
+            MainSet.P1TestMethod = p1TestMethodEdit.Text;
+            MainSet.P1TestResults = p1TestResultEdit.Text;
+            MainSet.P1Comments = p1ReportCommentEdit.Text;
+            MainSet.P2Name = p2NameEdit.Text;
+            MainSet.P3Description1 = p3Desc1Edit.Text;
+            MainSet.P3Description2 = p3Desc2Edit.Text;
+            MainSet.P4Description1 = p4Desc1Edit.Text;
+            MainSet.P4Description2 = p4Desc2Edit.Text;
+            MainSet.P5Description1 = p5Desc1Edit.Text;
+            MainSet.P5Description2 = p5Desc2Edit.Text;
+        }
+
+        public void SetDataSetToControl()
+        {
+            ImageSet.MainNo = MainSet.RecNo;
+            ImageSet.Select();
+            SetDataSetToPage1();
+
+            P2Set.MainNo = MainSet.RecNo;
+            P2Set.Select();
+            SetDataSetToPage2();
+
+            P3Set.MainNo = MainSet.RecNo;
+            P3Set.Select();
+            SetDataSetToPage3();
+
+            P4Set.MainNo = MainSet.RecNo;
+            P4Set.Select();
+            SetDataSetToPage4();
+
+            P5Set.MainNo = MainSet.RecNo;
+            P5Set.Select();
+            SetDataSetToPage5();
+
+            SetDataSetToPage6();
+            RefreshGrid();
+        }
+
+        private void SetDataSetToPage1()
+        {
+            p1ClientNameEdit.Text = MainSet.P1ClientName;
+            p1ClientAddressEdit.Text = MainSet.P1ClientAddress;
+            p1FileNoEdit.Text = MainSet.P1FileNo;
+            p1SampleDescriptionEdit.Text = MainSet.P1SampleDescription;
+            p1DetailOfSampleEdit.Text = MainSet.P1DetailOfSample;
+            p1ItemNoEdit.Text = MainSet.P1ItemNo;
+            p1OrderNoEdit.Text = MainSet.P1OrderNo;
+            p1ManufacturerEdit.Text = MainSet.P1Manufacturer;
+            p1CountryOfOriginEdit.Text = MainSet.P1CountryOfOrigin;
+            p1CountryOfDestinationEdit.Text = MainSet.P1CountryOfDestination;
+            p1LabeledAgeEdit.Text = MainSet.P1LabeledAge;
+            p1TestAgeEdit.Text = MainSet.P1TestAge;
+            p1AssessedAgeEdit.Text = MainSet.P1AssessedAge;
+            p1ReceivedDateEdit.Text = MainSet.P1ReceivedDate;
+            p1TestPeriodEdit.Text = MainSet.P1TestPeriod;
+            p1TestMethodEdit.Text = MainSet.P1TestMethod;
+            p1TestResultEdit.Text = MainSet.P1TestResults;
+            p1ReportCommentEdit.Text = MainSet.P1Comments;
+        }
+
+        private void SetDataSetToPage2()
+        {
+            p2ImageBox.Image = ImageSet.Signature;
+            p2NameEdit.Text = MainSet.P2Name;
+
+            P2Rows.Clear();
+            for (int i = 0; i < P2Set.RowCount; i++)
+            {
+                P2Set.Fetch(i);
+
+                PhysicalPage2Row p2Row = new PhysicalPage2Row();
+                p2Row.No = P2Set.No;
+                p2Row.Line = P2Set.Line;
+                p2Row.Requested = P2Set.Requested;
+                p2Row.Conclusion = P2Set.Conclusion;
+                P2Rows.Add(p2Row);
+            }
 
             p2ResultNoColumn.SortOrder = ColumnSortOrder.Ascending;
+        }
 
+        private void SetDataSetToPage3()
+        {
             p3Desc1Edit.Text = "As specified in ASTM F963-17 standard consumer safety specification on toys safety.";
-            p3Desc2Edit.Text = 
-                "N/A = Not Applicable                **Visual Examination\r\n" + 
-                "NT = Not tested as per client's request.\r\n\r\n" +
+            p3Desc2Edit.Text =
+                "N/A = Not Applicable                **Visual Examination\r\n" +
+                "NT = Not tested as per clients request.\r\n\r\n" +
                 "N.B. : - Only applicable clauses were shown";
 
-            PhysicalPage3Row p3Row = new PhysicalPage3Row();
-            p3Row.No = 0;
-            p3Row.UnderLine = false;
-            p3Row.Clause = "4";
-            p3Row.Description = "Safety Requirements";
-            p3Row.Result = "-";
-            page3Rows.Add(p3Row);
+            P3Rows.Clear();
+            for (int i = 0; i < P3Set.RowCount; i++)
+            {
+                P3Set.Fetch(i);
 
-            p3Row = new PhysicalPage3Row();
-            p3Row.No = 1;
-            p3Row.UnderLine = false;
-            p3Row.Clause = " 4.1";
-            p3Row.Description = "Material Quality**";
-            p3Row.Result = "Pass";
-            page3Rows.Add(p3Row);
-
-            p3Row = new PhysicalPage3Row();
-            p3Row.No = 2;
-            p3Row.UnderLine = false;
-            p3Row.Clause = " 4.2";
-            p3Row.Description = "Flammability Test(16 C.F.R. 1500.44)";
-            p3Row.Result = "Pass(See Note 1)";
-            page3Rows.Add(p3Row);
-
-            p3Row = new PhysicalPage3Row();
-            p3Row.No = 3;
-            p3Row.UnderLine = false;
-            p3Row.Clause = " 4.3";
-            p3Row.Description = "Toxicology";
-            p3Row.Result = "-";
-            page3Rows.Add(p3Row);
-
-            p3Row = new PhysicalPage3Row();
-            p3Row.No = 4;
-            p3Row.UnderLine = false;
-            p3Row.Clause = " 4.3.5";
-            p3Row.Description = "Heavy Elements";
-            p3Row.Result = "";
-            page3Rows.Add(p3Row);
-
-            p3Row = new PhysicalPage3Row();
-            p3Row.No = 5;
-            p3Row.UnderLine = false;
-            p3Row.Clause = "";
-            p3Row.Description = "4.3.5.1 Hravy Elements in Paint/Similar Coating Materials";
-            p3Row.Result = "";
-            page3Rows.Add(p3Row);
-
-            p3Row = new PhysicalPage3Row();
-            p3Row.No = 6;
-            p3Row.UnderLine = false;
-            p3Row.Clause = "";
-            p3Row.Description = "4.3.5.2 Heavy Metal in Substrate Materials";
-            p3Row.Result = "";
-            page3Rows.Add(p3Row);
-
-            p3Row = new PhysicalPage3Row();
-            p3Row.No = 7;
-            p3Row.UnderLine = false;
-            p3Row.Clause = " 4.3.7";
-            p3Row.Description = "Styffing Materials";
-            p3Row.Result = "Pass(See Note 2)";
-            page3Rows.Add(p3Row);
-
-            p3Row = new PhysicalPage3Row();
-            p3Row.No = 8;
-            p3Row.UnderLine = false;
-            p3Row.Clause = " 4.6";
-            p3Row.Description = "Small Objects";
-            p3Row.Result = "-";
-            page3Rows.Add(p3Row);
-
-            p3Row = new PhysicalPage3Row();
-            p3Row.No = 9;
-            p3Row.UnderLine = false;
-            p3Row.Clause = " 4.6.1";
-            p3Row.Description = "Small Objects";
-            p3Row.Result = "Pass";
-            page3Rows.Add(p3Row);
-
-            p3Row = new PhysicalPage3Row();
-            p3Row.No = 10;
-            p3Row.UnderLine = false;
-            p3Row.Clause = " 4.7";
-            p3Row.Description = "Accessible Edges(16 C.F.R. 1500.49)";
-            p3Row.Result = "Pass";
-            page3Rows.Add(p3Row);
-
-            p3Row = new PhysicalPage3Row();
-            p3Row.No = 11;
-            p3Row.UnderLine = false;
-            p3Row.Clause = " 4.9";
-            p3Row.Description = "Accessible Points(16 C.F.R. 1500.48)";
-            p3Row.Result = "Pass";
-            page3Rows.Add(p3Row);
-
-            p3Row = new PhysicalPage3Row();
-            p3Row.No = 12;
-            p3Row.UnderLine = false;
-            p3Row.Clause = " 4.14";
-            p3Row.Description = "Cords, Straps and Elastic";
-            p3Row.Result = "Pass";
-            page3Rows.Add(p3Row);
-
-            p3Row = new PhysicalPage3Row();
-            p3Row.No = 13;
-            p3Row.UnderLine = true;
-            p3Row.Clause = " 4.27";
-            p3Row.Description = "Stuffed and Beanbag-Type Toys";
-            p3Row.Result = "Pass";
-            page3Rows.Add(p3Row);
-
-            p3Row = new PhysicalPage3Row();
-            p3Row.No = 14;
-            p3Row.UnderLine = false;
-            p3Row.Clause = " 5";
-            p3Row.Description = "Safety Labeling Requirements";
-            p3Row.Result = "-";
-            page3Rows.Add(p3Row);
-
-            p3Row = new PhysicalPage3Row();
-            p3Row.No = 15;
-            p3Row.UnderLine = true;
-            p3Row.Clause = " 5.2";
-            p3Row.Description = "Age Grading Labeling";
-            p3Row.Result = "Pass";
-            page3Rows.Add(p3Row);
-
-            p3Row = new PhysicalPage3Row();
-            p3Row.No = 16;
-            p3Row.UnderLine = false;
-            p3Row.Clause = "7";
-            p3Row.Description = "Producer's Markings";
-            p3Row.Result = "-";
-            page3Rows.Add(p3Row);
-
-            p3Row = new PhysicalPage3Row();
-            p3Row.No = 17;
-            p3Row.UnderLine = true;
-            p3Row.Clause = " 7.1";
-            p3Row.Description = "Producer's Markings";
-            p3Row.Result = "Present";
-            page3Rows.Add(p3Row);
-
-            p3Row = new PhysicalPage3Row();
-            p3Row.No = 18;
-            p3Row.UnderLine = false;
-            p3Row.Clause = "8";
-            p3Row.Description = "Test Methods";
-            p3Row.Result = "-";
-            page3Rows.Add(p3Row);
-
-            p3Row = new PhysicalPage3Row();
-            p3Row.No = 19;
-            p3Row.UnderLine = false;
-            p3Row.Clause = " 8.5";
-            p3Row.Description = "Normal Use Testings";
-            p3Row.Result = "Pass";
-            page3Rows.Add(p3Row);
-
-            p3Row = new PhysicalPage3Row();
-            p3Row.No = 20;
-            p3Row.UnderLine = false;
-            p3Row.Clause = " 8.7";
-            p3Row.Description = "Impact Test";
-            p3Row.Result = "Pass";
-            page3Rows.Add(p3Row);
-
-            p3Row = new PhysicalPage3Row();
-            p3Row.No = 21;
-            p3Row.UnderLine = false;
-            p3Row.Clause = " 8.8";
-            p3Row.Description = "Torque Test";
-            p3Row.Result = "Pass";
-            page3Rows.Add(p3Row);
-
-            p3Row = new PhysicalPage3Row();
-            p3Row.No = 22;
-            p3Row.UnderLine = false;
-            p3Row.Clause = " 8.9";
-            p3Row.Description = "Tension Test";
-            p3Row.Result = "Pass";
-            page3Rows.Add(p3Row);
-
-            p3Row = new PhysicalPage3Row();
-            p3Row.No = 23;
-            p3Row.UnderLine = false;
-            p3Row.Clause = " 8.23";
-            p3Row.Description = "Test for Loops and Cords";
-            p3Row.Result = "Pass";
-            page3Rows.Add(p3Row);
-
-            p3Row = new PhysicalPage3Row();
-            p3Row.No = 24;
-            p3Row.UnderLine = false;
-            p3Row.Clause = " 8.29";
-            p3Row.Description = "Stuffing Materials Evaluation";
-            p3Row.Result = "Pass";
-            page3Rows.Add(p3Row);
+                PhysicalPage3Row p3Row = new PhysicalPage3Row();
+                p3Row.No = P3Set.No;
+                p3Row.Line = P3Set.Line;
+                p3Row.Clause = P3Set.Clause;
+                p3Row.Description = P3Set.Description;
+                p3Row.Result = P3Set.Result;
+                P3Rows.Add(p3Row);
+            }
 
             p3ClauseNoColumn.SortOrder = ColumnSortOrder.Ascending;
+        }
 
+        private void SetDataSetToPage4()
+        {
             p4Desc1Edit.Text = "Flammability Test(Clause 4.2)";
             p4Desc2Edit.Text =
                 "*Burning rate has been rounded to the nearest one tenth of an inch per second.\r\n\r\n" +
                 "Requirement: A toy / component is considered a \"flammable solid\" if it ignites and burns with a self-sustaining\r\n" +
                 "             flame at a rate greater than 0.1 in./s along its major axis.";
 
-            PhysicalPage4Row p4Row = new PhysicalPage4Row();
-            p4Row.No = 0;
-            p4Row.Sample = "Panda toy";
-            p4Row.BurningRate = "0.1*";
-            page4Rows.Add(p4Row);
+            P4Rows.Clear();
+            for (int i = 0; i < P4Set.RowCount; i++)
+            {
+                P4Set.Fetch(i);
+
+                PhysicalPage4Row p4Row = new PhysicalPage4Row();
+                p4Row.No = P4Set.No;
+                p4Row.Line = P4Set.Line;
+                p4Row.Sample = P4Set.Sample;
+                p4Row.BurningRate = P4Set.BurningRate;
+                P4Rows.Add(p4Row);
+            }
 
             p4FlameNoColumn.SortOrder = ColumnSortOrder.Ascending;
+        }
 
+        private void SetDataSetToPage5()
+        {
             p5Desc1Edit.Text =
                 "Suffing Materials(Clause 4.3.7)\r\n\r\n" +
                 "Method: With reference to ASTM F963-17 Clause 8.29. Visual inspection is performed using a stereo widerfield\r\n" +
                 "microscope, or equivalent, at 10 x magnification and adequate illumination.";
             p5Desc2Edit.Text = "Polyester fiber";
 
-            PhysicalPage5Row p5Row = new PhysicalPage5Row();
-            p5Row.No = 0;
-            p5Row.TestItem = 
-                "   1. Objectionable matter originating from\r\n" +
-                "      Insect, bird and rodent or other animal\r\n" +
-                "      infestation";
-            p5Row.Result = "Absent";
-            p5Row.Requirement = "Absent";
-            page5Rows.Add(p5Row);
+            P5Rows.Clear();
+            for (int i = 0; i < P5Set.RowCount; i++)
+            {
+                P5Set.Fetch(i);
 
-            p5Row = new PhysicalPage5Row();
-            p5Row.No = 1;
-            p5Row.TestItem = "Comment";
-            p5Row.Result = "PASS";
-            p5Row.Requirement = "-";
-            page5Rows.Add(p5Row);
+                PhysicalPage5Row p5Row = new PhysicalPage5Row();
+                p5Row.No = P5Set.No;
+                p5Row.Line = P5Set.Line;
+                p5Row.TestItem = P5Set.TestItem;
+                p5Row.Result = P5Set.Result;
+                p5Row.Requirement = P5Set.Requirement;
+                P5Rows.Add(p5Row);
+            }
 
             p5StuffNoColumn.SortOrder = ColumnSortOrder.Ascending;
+        }
 
-            p6ImageBox.Image = dataSet.Image;
-            p6FileNoPanel.Text = dataSet.FileNo;
+        private void SetDataSetToPage6()
+        {
+            ImageSet.Fetch();
+            p6ImageBox.Image = ImageSet.Picture;
+            p6FileNoPanel.Text = MainSet.P1FileNo;
         }
     }
 
     public class PhysicalPage2Row
     {
         public int No { get; set; }
+
+        public bool Line { get; set; }
 
         public string Requested { get; set; }
 
@@ -471,6 +877,7 @@ namespace Sgs.ReportIntegration
         public PhysicalPage2Row()
         {
             No = 0;
+            Line = false;
             Requested = "";
             Conclusion = "";
         }
@@ -480,7 +887,7 @@ namespace Sgs.ReportIntegration
     {
         public int No { get; set; }
 
-        public bool UnderLine { get; set; }
+        public bool Line { get; set; }
 
         public string Clause { get; set; }
 
@@ -491,7 +898,7 @@ namespace Sgs.ReportIntegration
         public PhysicalPage3Row()
         {
             No = 0;
-            UnderLine = false;
+            Line = false;
             Clause = "";
             Description = "";
             Result = "";
@@ -502,6 +909,8 @@ namespace Sgs.ReportIntegration
     {
         public int No { get; set; }
 
+        public bool Line { get; set; }
+
         public string Sample { get; set; }
 
         public string BurningRate { get; set; }
@@ -509,6 +918,7 @@ namespace Sgs.ReportIntegration
         public PhysicalPage4Row()
         {
             No = 0;
+            Line = false;
             Sample = "";
             BurningRate = "";
         }
@@ -517,6 +927,8 @@ namespace Sgs.ReportIntegration
     public class PhysicalPage5Row
     {
         public int No { get; set; }
+
+        public bool Line { get; set; }
 
         public string TestItem { get; set; }
 
@@ -527,6 +939,7 @@ namespace Sgs.ReportIntegration
         public PhysicalPage5Row()
         {
             No = 0;
+            Line = false;
             TestItem = "";
             Result = "";
             Requirement = "";

@@ -58,7 +58,6 @@ namespace Sgs.ReportIntegration
             DB.Open();
 
             Settings = new AppSettings();
-
             TotalLog[ELogTag.Note] = $"Create application resource";
         }
 
@@ -67,7 +66,6 @@ namespace Sgs.ReportIntegration
             if (DB.Connect.State == ConnectionState.Open)
             {
                 DB.Close();
-                DbLog[ELogTag.Note] = $"Close MS-SQL Server";
             }
 
             TotalLog[ELogTag.Note] = $"Destroy application resource";

@@ -275,7 +275,6 @@ namespace Sgs.ReportIntegration
             {
                 BeginTrans(trans);
                 command.CommandText = sql;
-                command.ExecuteNonQuery();
                 RecNo = (Int64)command.ExecuteScalar();
                 CommitTrans(trans);
             }
@@ -315,20 +314,6 @@ namespace Sgs.ReportIntegration
     {
         public Int64 RecNo { get; set; }
 
-        public EReportArea AreaNo { get; set; }
-
-        public string ProductNo { get; set; }
-
-        public string ClientNo { get; set; }
-
-        public string ClientName { get; set; }
-
-        public string ClientAddress { get; set; }
-
-        public string JobNo { get; set; }
-
-        public string FileNo { get; set; }
-
         public DateTime RegTime { get; set; }
 
         public DateTime ReceivedTime { get; set; }
@@ -337,21 +322,63 @@ namespace Sgs.ReportIntegration
 
         public DateTime ReportedTime { get; set; }
 
-        public string ItemNo { get; set; }
+        public EReportArea AreaNo { get; set; }
 
-        public string ReportComments { get; set; }
+        public string ProductNo { get; set; }
 
-        public string SampleDescription { get; set; }
+        public string JobNo { get; set; }
 
-        public string DetailOfSample { get; set; }
+        public string P1ClientNo { get; set; }
 
-        public string Manufacturer { get; set; }
+        public string P1ClientName { get; set; }
 
-        public string CountryOfOrigin { get; set; }
+        public string P1ClientAddress { get; set; }
 
-        public Bitmap Image { get; set; }
+        public string P1FileNo { get; set; }
 
-        private ImageConverter imageConvert;
+        public string P1SampleDescription { get; set; }
+
+        public string P1DetailOfSample { get; set; }
+
+        public string P1ItemNo { get; set; }
+
+        public string P1OrderNo { get; set; }
+
+        public string P1Manufacturer { get; set; }
+
+        public string P1CountryOfOrigin { get; set; }
+
+        public string P1CountryOfDestination { get; set; }
+
+        public string P1LabeledAge { get; set; }
+
+        public string P1TestAge { get; set; }
+
+        public string P1AssessedAge { get; set; }
+
+        public string P1ReceivedDate { get; set; }
+
+        public string P1TestPeriod { get; set; }
+
+        public string P1TestMethod { get; set; }
+
+        public string P1TestResults { get; set; }
+
+        public string P1Comments { get; set; }
+
+        public string P2Name { get; set; }
+
+        public string P3Description1 { get; set; }
+
+        public string P3Description2 { get; set; }
+
+        public string P4Description1 { get; set; }
+
+        public string P4Description2 { get; set; }
+
+        public string P5Description1 { get; set; }
+
+        public string P5Description2 { get; set; }
 
         public string From { get; set; }
 
@@ -360,12 +387,11 @@ namespace Sgs.ReportIntegration
         public PhysicalMainDataSet(SqlConnection connect, SqlCommand command, SqlDataAdapter adapter)
             : base(connect, command, adapter)
         {
-            imageConvert = new ImageConverter();
         }
 
         public void Select(SqlTransaction trans = null)
         {
-            string sql = " select * from TB_PHYSICAL_M where pk_recno>0 ";
+            string sql = " select * from TB_PHYMAIN where pk_recno>0 ";
 
             if (AreaNo != EReportArea.None)
             {
@@ -397,14 +423,15 @@ namespace Sgs.ReportIntegration
         public void Insert(SqlTransaction trans = null)
         {
             string sql =
-                $" insert into TB_PHYSICAL_M values " +
+                $" insert into TB_PHYMAIN values " +
                 $" ('{RegTime.ToString(AppRes.csDateTimeFormat)}', '{ReceivedTime.ToString(AppRes.csDateTimeFormat)}', " +
                 $" '{RequiredTime.ToString(AppRes.csDateTimeFormat)}', '{ReportedTime.ToString(AppRes.csDateTimeFormat)}', " +
-                $" {(int)AreaNo}, '{ProductNo}', '{ClientNo}', '{ClientName}', @clientaddress, '{JobNo}', '{FileNo}', '{ItemNo}', " +
-                $" '{ReportComments}', '{SampleDescription}', '{DetailOfSample}', '{Manufacturer}', '{CountryOfOrigin}', @image); " +
+                $" {(int)AreaNo}, '{ProductNo}', '{JobNo}', '{P1ClientNo}', '{P1ClientName}', '{P1ClientAddress}', " +
+                $" '{P1FileNo}', '{P1SampleDescription}', '{P1DetailOfSample}', '{P1ItemNo}', '{P1OrderNo}', '{P1Manufacturer}', " +
+                $" '{P1CountryOfOrigin}', '{P1CountryOfDestination}', '{P1LabeledAge}', '{P1TestAge}', '{P1AssessedAge}', " +
+                $" '{P1ReceivedDate}', '{P1TestPeriod}', '{P1TestMethod}', '{P1TestResults}', '{P1Comments}', '{P2Name}', " +
+                $" '{P3Description1}', '{P3Description2}', '{P4Description1}', '{P4Description2}', '{P5Description1}', '{P5Description2}'); " +
                 $" select cast(scope_identity() as bigint); ";
-
-            byte[] imageRaw = (Image == null) ? null : (byte[])imageConvert.ConvertTo(Image, typeof(byte[]));
 
             SetTrans(trans);
 
@@ -412,14 +439,59 @@ namespace Sgs.ReportIntegration
             {
                 BeginTrans(trans);
                 command.CommandText = sql;
-
-                command.Parameters.Clear();
-                command.Parameters.Add("@clientaddress", SqlDbType.VarChar);
-                command.Parameters["@clientaddress"].Value = ClientAddress;
-                command.Parameters.Add("@image", SqlDbType.Image);
-                command.Parameters["@image"].Value = imageRaw;
-
                 RecNo = (Int64)command.ExecuteScalar();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Update(SqlTransaction trans = null)
+        {
+            string sql =
+                $" update TB_PHYMAIN set " +
+                $" regtime='{RegTime.ToString(AppRes.csDateTimeFormat)}', receivedtime='{ReceivedTime.ToString(AppRes.csDateTimeFormat)}', " +
+                $" requiredtime='{RequiredTime.ToString(AppRes.csDateTimeFormat)}', reportedtime='{ReportedTime.ToString(AppRes.csDateTimeFormat)}', " +
+                $" areano={(int)AreaNo}, productno='{ProductNo}', jobno='{JobNo}', p1clientno='{P1ClientNo}', p1clientname='{P1ClientName}', " +
+                $" p1clientaddress='{P1ClientAddress}', p1fileno='{P1FileNo}', p1sampledesc='{P1SampleDescription}', " +
+                $" p1detailsample='{P1DetailOfSample}', p1itemno='{P1ItemNo}', p1orderno='{P1OrderNo}', p1manufacturer='{P1Manufacturer}', " +
+                $" p1countryorigin='{P1CountryOfOrigin}', p1countrydest='{P1CountryOfDestination}', p1labelage='{P1LabeledAge}', " +
+                $" p1testage='{P1TestAge}', p1assessedage='{P1AssessedAge}', p1recevdate='{P1ReceivedDate}', p1testperiod='{P1TestPeriod}', " +
+                $" p1testmethod='{P1TestMethod}', p1testresult='{P1TestResults}', p1comment='{P1Comments}', p2name='{P2Name}', " +
+                $" p3desc1='{P3Description1}', p3desc2='{P3Description2}', p4desc1='{P4Description1}', p4desc2='{P4Description2}', " +
+                $" p5desc1='{P5Description1}', p5desc2='{P5Description2}' " +
+                $" where pk_recno={RecNo} ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Delete(SqlTransaction trans = null)
+        {
+            string sql =
+                $" delete from TB_PHYMAIN " +
+                $" where pk_recno={RecNo} ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
                 CommitTrans(trans);
             }
             catch (Exception e)
@@ -436,53 +508,625 @@ namespace Sgs.ReportIntegration
             }
             else
             {
-                AreaNo = EReportArea.None;
-                ProductNo = "";
-                ClientNo = "";
-                ClientName = "";
-                ClientAddress = "";
-                JobNo = "";
-                FileNo = "";
+                RecNo = 0;
                 RegTime = DateTime.Now;
                 ReceivedTime = DateTime.Now;
                 RequiredTime = DateTime.Now;
                 ReportedTime = DateTime.Now;
-                ItemNo = "";
-                ReportComments = "";
-                SampleDescription = "";
-                DetailOfSample = "";
-                Manufacturer = "";
-                CountryOfOrigin = "";
-                Image = null;
+                AreaNo = EReportArea.None;
+                ProductNo = "";
+                JobNo = "";
+                P1ClientNo = "";
+                P1ClientName = "";
+                P1ClientAddress = "";
+                P1FileNo = "";
+                P1SampleDescription = "";
+                P1DetailOfSample = "";
+                P1ItemNo = "";
+                P1OrderNo = "";
+                P1Manufacturer = "";
+                P1CountryOfOrigin = "";
+                P1CountryOfDestination = "";
+                P1LabeledAge = "";
+                P1TestAge = "";
+                P1AssessedAge = "";
+                P1ReceivedDate = "";
+                P1TestPeriod = "";
+                P1TestMethod = "";
+                P1TestResults = "";
+                P1Comments = "";
+                P2Name = "";
+                P3Description1 = "";
+                P3Description2 = "";
+                P4Description1 = "";
+                P4Description2 = "";
+                P5Description1 = "";
+                P5Description2 = "";
             }
         }
 
         public void Fetch(DataRow row)
         {
             RecNo = Convert.ToInt64(row["pk_recno"]);
-            AreaNo = (EReportArea)Convert.ToInt32(row["areano"]);
-            ProductNo = Convert.ToString(row["productno"]);
-            ClientNo = Convert.ToString(row["clientno"]);
-            ClientName = Convert.ToString(row["clientname"]);
-            ClientAddress = Convert.ToString(row["clientaddr"]);
-            JobNo = Convert.ToString(row["jobno"]);
-            FileNo = Convert.ToString(row["fileno"]);
             RegTime = Convert.ToDateTime(row["regtime"]);
             ReceivedTime = Convert.ToDateTime(row["receivedtime"]);
             RequiredTime = Convert.ToDateTime(row["requiredtime"]);
             ReportedTime = Convert.ToDateTime(row["reportedtime"]);
-            ItemNo = Convert.ToString(row["itemno"]);
-            ReportComments = Convert.ToString(row["reportcomments"]);
-            SampleDescription = Convert.ToString(row["sampledesc"]);
-            DetailOfSample = Convert.ToString(row["detailofsample"]);
-            Manufacturer = Convert.ToString(row["manufacturer"]);
-            CountryOfOrigin = Convert.ToString(row["country"]);
-            byte[] imageRaw = (byte[])row["image"];
+            AreaNo = (EReportArea)Convert.ToInt32(row["areano"]);
+            ProductNo = Convert.ToString(row["productno"]);
+            JobNo = Convert.ToString(row["jobno"]);
+            P1ClientNo = Convert.ToString(row["p1clientno"]);
+            P1ClientName = Convert.ToString(row["p1clientname"]);
+            P1ClientAddress = Convert.ToString(row["p1clientaddress"]);
+            P1FileNo = Convert.ToString(row["p1fileno"]);
+            P1SampleDescription = Convert.ToString(row["p1sampledesc"]);
+            P1DetailOfSample = Convert.ToString(row["p1detailsample"]);
+            P1ItemNo = Convert.ToString(row["p1itemno"]);
+            P1OrderNo = Convert.ToString(row["p1orderno"]);
+            P1Manufacturer = Convert.ToString(row["p1manufacturer"]);
+            P1CountryOfOrigin = Convert.ToString(row["p1countryorigin"]);
+            P1CountryOfDestination = Convert.ToString(row["p1countrydest"]);
+            P1LabeledAge = Convert.ToString(row["p1labelage"]);
+            P1TestAge = Convert.ToString(row["p1testage"]);
+            P1AssessedAge = Convert.ToString(row["p1assessedage"]);
+            P1ReceivedDate = Convert.ToString(row["p1recevdate"]);
+            P1TestPeriod = Convert.ToString(row["p1testperiod"]);
+            P1TestMethod = Convert.ToString(row["p1testmethod"]);
+            P1TestResults = Convert.ToString(row["p1testresult"]);
+            P1Comments = Convert.ToString(row["p1comment"]);
+            P2Name = Convert.ToString(row["p2name"]);
+            P3Description1 = Convert.ToString(row["p3desc1"]);
+            P3Description2 = Convert.ToString(row["p3desc2"]);
+            P4Description1 = Convert.ToString(row["p4desc1"]);
+            P4Description2 = Convert.ToString(row["p4desc2"]);
+            P5Description1 = Convert.ToString(row["p5desc1"]);
+            P5Description2 = Convert.ToString(row["p5desc2"]);
+        }
+    }
 
-            if (imageRaw == null)
-                Image = null;
+    public class PhysicalP2DataSet : UlSqlDataSet
+    {
+        public Int64 RecNo { get; set; }
+
+        public Int64 MainNo { get; set; }
+
+        public int No { get; set; }
+
+        public bool Line { get; set; }
+
+        public string Requested { get; set; }
+
+        public string Conclusion { get; set; }
+
+        public PhysicalP2DataSet(SqlConnection connect, SqlCommand command, SqlDataAdapter adapter)
+            : base(connect, command, adapter)
+        {
+        }
+
+        public void Select(SqlTransaction trans = null)
+        {
+            SetTrans(trans);
+            command.CommandText =
+                $" select * from TB_PHYP2 " +
+                $" where fk_phymainno={MainNo} " +
+                $" order by no asc ";
+            dataSet.Clear();
+            dataAdapter.Fill(dataSet);
+        }
+
+        public void Insert(SqlTransaction trans = null)
+        {
+            string sql =
+                $" insert into TB_PHYP2 values " +
+                $" ({MainNo}, {No}, {Convert.ToInt32(Line)}, '{Requested}', '{Conclusion}'); " +
+                $" select cast(scope_identity() as bigint); ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                RecNo = (Int64)command.ExecuteScalar();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Delete(SqlTransaction trans = null)
+        {
+            string sql =
+                $" delete from TB_PHYP2 " +
+                $" where fk_phymainno={MainNo} ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Fetch(int index = 0, int tableNo = 0)
+        {
+            if (index < GetRowCount(tableNo))
+            {
+                Fetch(dataSet.Tables[tableNo].Rows[index]);
+            }
             else
-                Image = new Bitmap(new MemoryStream(imageRaw));
+            {
+                RecNo = 0;
+                MainNo = 0;
+                No = 0;
+                Line = false;
+                Requested = "";
+                Conclusion = "";
+            }
+        }
+
+        public void Fetch(DataRow row)
+        {
+            RecNo = Convert.ToInt64(row["pk_recno"]);
+            MainNo = Convert.ToInt64(row["fk_phymainno"]);
+            No = Convert.ToInt32(row["no"]);
+            Line = Convert.ToBoolean(row["line"]);
+            Requested = Convert.ToString(row["requested"]);
+            Conclusion = Convert.ToString(row["conclusion"]);
+        }
+    }
+
+    public class PhysicalP3DataSet : UlSqlDataSet
+    {
+        public Int64 RecNo { get; set; }
+
+        public Int64 MainNo { get; set; }
+
+        public int No { get; set; }
+
+        public bool Line { get; set; }
+
+        public string Clause { get; set; }
+
+        public string Description { get; set; }
+
+        public string Result { get; set; }
+
+        public PhysicalP3DataSet(SqlConnection connect, SqlCommand command, SqlDataAdapter adapter)
+            : base(connect, command, adapter)
+        {
+        }
+
+        public void Select(SqlTransaction trans = null)
+        {
+            SetTrans(trans);
+            command.CommandText =
+                $" select * from TB_PHYP3 " +
+                $" where fk_phymainno={MainNo} " +
+                $" order by no asc ";
+            dataSet.Clear();
+            dataAdapter.Fill(dataSet);
+        }
+
+        public void Insert(SqlTransaction trans = null)
+        {
+            string sql =
+                $" insert into TB_PHYP3 values " +
+                $" ({MainNo}, {No}, {Convert.ToInt32(Line)}, '{Clause}', '{Description}', '{Result}'); " +
+                $" select cast(scope_identity() as bigint); ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                RecNo = (Int64)command.ExecuteScalar();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Delete(SqlTransaction trans = null)
+        {
+            string sql =
+                $" delete from TB_PHYP3 " +
+                $" where fk_phymainno={MainNo} ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Fetch(int index = 0, int tableNo = 0)
+        {
+            if (index < GetRowCount(tableNo))
+            {
+                Fetch(dataSet.Tables[tableNo].Rows[index]);
+            }
+            else
+            {
+                RecNo = 0;
+                MainNo = 0;
+                No = 0;
+                Line = false;
+                Clause = "";
+                Description = "";
+                Result = "";
+            }
+        }
+
+        public void Fetch(DataRow row)
+        {
+            RecNo = Convert.ToInt64(row["pk_recno"]);
+            MainNo = Convert.ToInt64(row["fk_phymainno"]);
+            No = Convert.ToInt32(row["no"]);
+            Line = Convert.ToBoolean(row["line"]);
+            Clause = Convert.ToString(row["clause"]);
+            Description = Convert.ToString(row["description"]);
+            Result = Convert.ToString(row["result"]);
+        }
+    }
+
+    public class PhysicalP4DataSet : UlSqlDataSet
+    {
+        public Int64 RecNo { get; set; }
+
+        public Int64 MainNo { get; set; }
+
+        public int No { get; set; }
+
+        public bool Line { get; set; }
+
+        public string Sample { get; set; }
+
+        public string BurningRate { get; set; }
+
+        public PhysicalP4DataSet(SqlConnection connect, SqlCommand command, SqlDataAdapter adapter)
+            : base(connect, command, adapter)
+        {
+        }
+
+        public void Select(SqlTransaction trans = null)
+        {
+            SetTrans(trans);
+            command.CommandText =
+                $" select * from TB_PHYP4 " +
+                $" where fk_phymainno={MainNo} " +
+                $" order by no asc ";
+            dataSet.Clear();
+            dataAdapter.Fill(dataSet);
+        }
+
+        public void Insert(SqlTransaction trans = null)
+        {
+            string sql =
+                $" insert into TB_PHYP4 values " +
+                $" ({MainNo}, {No}, {Convert.ToInt32(Line)}, '{Sample}', '{BurningRate}'); " +
+                $" select cast(scope_identity() as bigint); ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                RecNo = (Int64)command.ExecuteScalar();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Delete(SqlTransaction trans = null)
+        {
+            string sql =
+                $" delete from TB_PHYP4 " +
+                $" where fk_phymainno={MainNo} ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Fetch(int index = 0, int tableNo = 0)
+        {
+            if (index < GetRowCount(tableNo))
+            {
+                Fetch(dataSet.Tables[tableNo].Rows[index]);
+            }
+            else
+            {
+                RecNo = 0;
+                MainNo = 0;
+                No = 0;
+                Line = false;
+                Sample = "";
+                BurningRate = "";
+            }
+        }
+
+        public void Fetch(DataRow row)
+        {
+            RecNo = Convert.ToInt64(row["pk_recno"]);
+            MainNo = Convert.ToInt64(row["fk_phymainno"]);
+            No = Convert.ToInt32(row["no"]);
+            Line = Convert.ToBoolean(row["line"]);
+            Sample = Convert.ToString(row["sample"]);
+            BurningRate = Convert.ToString(row["burningrate"]);
+        }
+    }
+
+    public class PhysicalP5DataSet : UlSqlDataSet
+    {
+        public Int64 RecNo { get; set; }
+
+        public Int64 MainNo { get; set; }
+
+        public int No { get; set; }
+
+        public bool Line { get; set; }
+
+        public string TestItem { get; set; }
+
+        public string Result { get; set; }
+
+        public string Requirement { get; set; }
+
+        public PhysicalP5DataSet(SqlConnection connect, SqlCommand command, SqlDataAdapter adapter)
+            : base(connect, command, adapter)
+        {
+        }
+
+        public void Select(SqlTransaction trans = null)
+        {
+            SetTrans(trans);
+            command.CommandText =
+                $" select * from TB_PHYP5 " +
+                $" where fk_phymainno={MainNo} " +
+                $" order by no asc ";
+            dataSet.Clear();
+            dataAdapter.Fill(dataSet);
+        }
+
+        public void Insert(SqlTransaction trans = null)
+        {
+            string sql =
+                $" insert into TB_PHYP5 values " +
+                $" ({MainNo}, {No}, {Convert.ToInt32(Line)}, '{TestItem}', '{Result}', '{Requirement}'); " +
+                $" select cast(scope_identity() as bigint); ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                RecNo = (Int64)command.ExecuteScalar();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Delete(SqlTransaction trans = null)
+        {
+            string sql =
+                $" delete from TB_PHYP5 " +
+                $" where fk_phymainno={MainNo} ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Fetch(int index = 0, int tableNo = 0)
+        {
+            if (index < GetRowCount(tableNo))
+            {
+                Fetch(dataSet.Tables[tableNo].Rows[index]);
+            }
+            else
+            {
+                RecNo = 0;
+                MainNo = 0;
+                No = 0;
+                Line = false;
+                TestItem = "";
+                Result = "";
+                Requirement = "";
+            }
+        }
+
+        public void Fetch(DataRow row)
+        {
+            RecNo = Convert.ToInt64(row["pk_recno"]);
+            MainNo = Convert.ToInt64(row["fk_phymainno"]);
+            No = Convert.ToInt32(row["no"]);
+            Line = Convert.ToBoolean(row["line"]);
+            TestItem = Convert.ToString(row["testitem"]);
+            Result = Convert.ToString(row["result"]);
+            Requirement = Convert.ToString(row["requirement"]);
+        }
+    }
+
+    public class PhysicalImageDataSet : UlSqlDataSet
+    {
+        public Int64 RecNo { get; set; }
+
+        public Int64 MainNo { get; set; }
+
+        public Bitmap Signature { get; set; }
+
+        public Bitmap Picture { get; set; }
+
+        private ImageConverter imageConvert;
+
+        public PhysicalImageDataSet(SqlConnection connect, SqlCommand command, SqlDataAdapter adapter)
+            : base(connect, command, adapter)
+        {
+            imageConvert = new ImageConverter();
+        }
+
+        public void Select(SqlTransaction trans = null)
+        {
+            SetTrans(trans);
+            command.CommandText =
+                $" select * from TB_PHYIMAGE " +
+                $" where fk_phymainno={MainNo} ";
+            dataSet.Clear();
+            dataAdapter.Fill(dataSet);
+        }
+
+        public void Insert(SqlTransaction trans = null)
+        {
+            string sql =
+                $" insert into TB_PHYIMAGE values " +
+                $" ({MainNo}, @signature, @picture); " +
+                $" select cast(scope_identity() as bigint); ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+
+                command.Parameters.Clear();
+
+                if (Signature == null)
+                {
+                    SqlParameter signatureParam = new SqlParameter("@signature", SqlDbType.Image);
+                    signatureParam.Value = DBNull.Value;
+                    command.Parameters.Add(signatureParam);
+                }
+                else
+                {
+                    command.Parameters.Add("@signature", SqlDbType.Image);
+                    command.Parameters["@signature"].Value = (byte[])imageConvert.ConvertTo(Signature, typeof(byte[]));
+                }
+
+                if (Picture == null)
+                {
+                    SqlParameter pictureParam = new SqlParameter("@picture", SqlDbType.Image);
+                    pictureParam.Value = DBNull.Value;
+                    command.Parameters.Add(pictureParam);
+                }
+                else
+                {
+                    command.Parameters.Add("@picture", SqlDbType.Image);
+                    command.Parameters["@picture"].Value = (byte[])imageConvert.ConvertTo(Picture, typeof(byte[]));
+                }
+
+                RecNo = (Int64)command.ExecuteScalar();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Delete(SqlTransaction trans = null)
+        {
+            string sql =
+                $" delete from TB_PHYIMAGE " +
+                $" where fk_phymainno={MainNo} ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Fetch(int index = 0, int tableNo = 0)
+        {
+            if (index < GetRowCount(tableNo))
+            {
+                Fetch(dataSet.Tables[tableNo].Rows[index]);
+            }
+            else
+            {
+                RecNo = 0;
+                MainNo = 0;
+                Signature = null;
+                Picture = null;
+            }
+        }
+
+        public void Fetch(DataRow row)
+        {
+            RecNo = Convert.ToInt64(row["pk_recno"]);
+            MainNo = Convert.ToInt64(row["fk_phymainno"]);
+
+            if (row["signature"] == DBNull.Value) Signature = null;
+            else
+            {
+                byte[] signatureRaw = (byte[])row["signature"];
+                Signature = (signatureRaw == null) ? null : new Bitmap(new MemoryStream(signatureRaw));
+            }
+
+            if (row["picture"] == DBNull.Value) Picture = null;
+            else
+            {
+                byte[] pictureRaw = (byte[])row["picture"];
+                Picture = (pictureRaw == null) ? null : new Bitmap(new MemoryStream(pictureRaw));
+            }
         }
     }
 

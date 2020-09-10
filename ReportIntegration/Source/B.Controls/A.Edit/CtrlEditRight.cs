@@ -58,6 +58,26 @@ namespace Sgs.ReportIntegration
             (DefMenu.Controls(0) as CtrlEditPhysical).Import();
         }
 
+        private void physicalDeleteButton_Click(object sender, EventArgs e)
+        {
+            (DefMenu.Controls(0) as CtrlEditPhysical).Delete();
+        }
+
+        private void physicalPrintButton_Click(object sender, EventArgs e)
+        {
+            (DefMenu.Controls(0) as CtrlEditPhysical).Print();
+        }
+
+        private void physicalSaveButton_Click(object sender, EventArgs e)
+        {
+            (DefMenu.Controls(0) as CtrlEditPhysical).Save();
+        }
+
+        private void physicalCancelButton_Click(object sender, EventArgs e)
+        {
+            (DefMenu.Controls(0) as CtrlEditPhysical).Cancel();
+        }
+
         private void chemicalImportButton_Click(object sender, EventArgs e)
         {
             //(DefMenu.Controls(1) as CtrlEditChemical).Import();

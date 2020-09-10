@@ -30,26 +30,26 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtrlEditRight));
             this.menuPanel = new Ulee.Controls.UlPanel();
+            this.bomButton = new DevExpress.XtraEditors.SimpleButton();
+            this.chemicalButton = new DevExpress.XtraEditors.SimpleButton();
+            this.physicalButton = new DevExpress.XtraEditors.SimpleButton();
             this.chemicalMenuPanel = new Ulee.Controls.UlPanel();
+            this.chemicalSaveButton = new DevExpress.XtraEditors.SimpleButton();
+            this.chemicalCancelButton = new DevExpress.XtraEditors.SimpleButton();
+            this.chemicalPrintButton = new DevExpress.XtraEditors.SimpleButton();
             this.chemicalDeleteButton = new DevExpress.XtraEditors.SimpleButton();
             this.chemicalImportButton = new DevExpress.XtraEditors.SimpleButton();
             this.physicalMenuPanel = new Ulee.Controls.UlPanel();
+            this.physicalSaveButton = new DevExpress.XtraEditors.SimpleButton();
+            this.physicalCancelButton = new DevExpress.XtraEditors.SimpleButton();
+            this.physicalPrintButton = new DevExpress.XtraEditors.SimpleButton();
             this.physicalDeleteButton = new DevExpress.XtraEditors.SimpleButton();
             this.physicalImportButton = new DevExpress.XtraEditors.SimpleButton();
             this.bomMenuPanel = new Ulee.Controls.UlPanel();
+            this.bomPrintButton = new DevExpress.XtraEditors.SimpleButton();
             this.bomDeleteButton = new DevExpress.XtraEditors.SimpleButton();
             this.bomImportButton = new DevExpress.XtraEditors.SimpleButton();
-            this.chemicalButton = new DevExpress.XtraEditors.SimpleButton();
-            this.physicalButton = new DevExpress.XtraEditors.SimpleButton();
-            this.bomButton = new DevExpress.XtraEditors.SimpleButton();
             this.viewPanel = new Ulee.Controls.UlPanel();
-            this.bomPrintButton = new DevExpress.XtraEditors.SimpleButton();
-            this.chemicalPrintButton = new DevExpress.XtraEditors.SimpleButton();
-            this.physicalPrintButton = new DevExpress.XtraEditors.SimpleButton();
-            this.physicalSaveButton = new DevExpress.XtraEditors.SimpleButton();
-            this.physicalCancelButton = new DevExpress.XtraEditors.SimpleButton();
-            this.chemicalSaveButton = new DevExpress.XtraEditors.SimpleButton();
-            this.chemicalCancelButton = new DevExpress.XtraEditors.SimpleButton();
             this.bgPanel.SuspendLayout();
             this.menuPanel.SuspendLayout();
             this.chemicalMenuPanel.SuspendLayout();
@@ -86,6 +86,63 @@
             this.menuPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
             this.menuPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
             // 
+            // bomButton
+            // 
+            this.bomButton.AllowFocus = false;
+            this.bomButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bomButton.Appearance.Options.UseFont = true;
+            this.bomButton.Appearance.Options.UseTextOptions = true;
+            this.bomButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.bomButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bomButton.ImageOptions.Image")));
+            this.bomButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.bomButton.Location = new System.Drawing.Point(2, 122);
+            this.bomButton.LookAndFeel.SkinName = "DevExpress Style";
+            this.bomButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.bomButton.Name = "bomButton";
+            this.bomButton.Size = new System.Drawing.Size(80, 58);
+            this.bomButton.TabIndex = 36;
+            this.bomButton.TabStop = false;
+            this.bomButton.Tag = "0";
+            this.bomButton.Text = "BOM";
+            // 
+            // chemicalButton
+            // 
+            this.chemicalButton.AllowFocus = false;
+            this.chemicalButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chemicalButton.Appearance.Options.UseFont = true;
+            this.chemicalButton.Appearance.Options.UseTextOptions = true;
+            this.chemicalButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.chemicalButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("chemicalButton.ImageOptions.Image")));
+            this.chemicalButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.chemicalButton.Location = new System.Drawing.Point(2, 62);
+            this.chemicalButton.LookAndFeel.SkinName = "DevExpress Style";
+            this.chemicalButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.chemicalButton.Name = "chemicalButton";
+            this.chemicalButton.Size = new System.Drawing.Size(80, 58);
+            this.chemicalButton.TabIndex = 38;
+            this.chemicalButton.TabStop = false;
+            this.chemicalButton.Tag = "0";
+            this.chemicalButton.Text = "CHEMICAL";
+            // 
+            // physicalButton
+            // 
+            this.physicalButton.AllowFocus = false;
+            this.physicalButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.physicalButton.Appearance.Options.UseFont = true;
+            this.physicalButton.Appearance.Options.UseTextOptions = true;
+            this.physicalButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.physicalButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("physicalButton.ImageOptions.Image")));
+            this.physicalButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.physicalButton.Location = new System.Drawing.Point(2, 2);
+            this.physicalButton.LookAndFeel.SkinName = "DevExpress Style";
+            this.physicalButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.physicalButton.Name = "physicalButton";
+            this.physicalButton.Size = new System.Drawing.Size(80, 58);
+            this.physicalButton.TabIndex = 37;
+            this.physicalButton.TabStop = false;
+            this.physicalButton.Tag = "0";
+            this.physicalButton.Text = "PHYSICAL";
+            // 
             // chemicalMenuPanel
             // 
             this.chemicalMenuPanel.BackColor = System.Drawing.Color.Silver;
@@ -107,6 +164,63 @@
             this.chemicalMenuPanel.TabIndex = 41;
             this.chemicalMenuPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
             this.chemicalMenuPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            // 
+            // chemicalSaveButton
+            // 
+            this.chemicalSaveButton.AllowFocus = false;
+            this.chemicalSaveButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chemicalSaveButton.Appearance.Options.UseBorderColor = true;
+            this.chemicalSaveButton.Appearance.Options.UseFont = true;
+            this.chemicalSaveButton.Appearance.Options.UseTextOptions = true;
+            this.chemicalSaveButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.chemicalSaveButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("chemicalSaveButton.ImageOptions.Image")));
+            this.chemicalSaveButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.chemicalSaveButton.Location = new System.Drawing.Point(0, 180);
+            this.chemicalSaveButton.LookAndFeel.SkinName = "DevExpress Style";
+            this.chemicalSaveButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.chemicalSaveButton.Name = "chemicalSaveButton";
+            this.chemicalSaveButton.Size = new System.Drawing.Size(80, 58);
+            this.chemicalSaveButton.TabIndex = 46;
+            this.chemicalSaveButton.TabStop = false;
+            this.chemicalSaveButton.Text = "SAVE";
+            // 
+            // chemicalCancelButton
+            // 
+            this.chemicalCancelButton.AllowFocus = false;
+            this.chemicalCancelButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chemicalCancelButton.Appearance.Options.UseBorderColor = true;
+            this.chemicalCancelButton.Appearance.Options.UseFont = true;
+            this.chemicalCancelButton.Appearance.Options.UseTextOptions = true;
+            this.chemicalCancelButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.chemicalCancelButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("chemicalCancelButton.ImageOptions.Image")));
+            this.chemicalCancelButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.chemicalCancelButton.Location = new System.Drawing.Point(0, 240);
+            this.chemicalCancelButton.LookAndFeel.SkinName = "DevExpress Style";
+            this.chemicalCancelButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.chemicalCancelButton.Name = "chemicalCancelButton";
+            this.chemicalCancelButton.Size = new System.Drawing.Size(80, 58);
+            this.chemicalCancelButton.TabIndex = 45;
+            this.chemicalCancelButton.TabStop = false;
+            this.chemicalCancelButton.Text = "CANCEL";
+            // 
+            // chemicalPrintButton
+            // 
+            this.chemicalPrintButton.AllowFocus = false;
+            this.chemicalPrintButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chemicalPrintButton.Appearance.Options.UseFont = true;
+            this.chemicalPrintButton.Appearance.Options.UseTextOptions = true;
+            this.chemicalPrintButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.chemicalPrintButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("chemicalPrintButton.ImageOptions.Image")));
+            this.chemicalPrintButton.ImageOptions.ImageToTextIndent = 0;
+            this.chemicalPrintButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.chemicalPrintButton.Location = new System.Drawing.Point(0, 120);
+            this.chemicalPrintButton.LookAndFeel.SkinName = "DevExpress Style";
+            this.chemicalPrintButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.chemicalPrintButton.Name = "chemicalPrintButton";
+            this.chemicalPrintButton.Size = new System.Drawing.Size(80, 58);
+            this.chemicalPrintButton.TabIndex = 41;
+            this.chemicalPrintButton.TabStop = false;
+            this.chemicalPrintButton.Text = "PRINT";
             // 
             // chemicalDeleteButton
             // 
@@ -169,6 +283,66 @@
             this.physicalMenuPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
             this.physicalMenuPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
             // 
+            // physicalSaveButton
+            // 
+            this.physicalSaveButton.AllowFocus = false;
+            this.physicalSaveButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.physicalSaveButton.Appearance.Options.UseBorderColor = true;
+            this.physicalSaveButton.Appearance.Options.UseFont = true;
+            this.physicalSaveButton.Appearance.Options.UseTextOptions = true;
+            this.physicalSaveButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.physicalSaveButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("physicalSaveButton.ImageOptions.Image")));
+            this.physicalSaveButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.physicalSaveButton.Location = new System.Drawing.Point(0, 180);
+            this.physicalSaveButton.LookAndFeel.SkinName = "DevExpress Style";
+            this.physicalSaveButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.physicalSaveButton.Name = "physicalSaveButton";
+            this.physicalSaveButton.Size = new System.Drawing.Size(80, 58);
+            this.physicalSaveButton.TabIndex = 44;
+            this.physicalSaveButton.TabStop = false;
+            this.physicalSaveButton.Text = "SAVE";
+            this.physicalSaveButton.Click += new System.EventHandler(this.physicalSaveButton_Click);
+            // 
+            // physicalCancelButton
+            // 
+            this.physicalCancelButton.AllowFocus = false;
+            this.physicalCancelButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.physicalCancelButton.Appearance.Options.UseBorderColor = true;
+            this.physicalCancelButton.Appearance.Options.UseFont = true;
+            this.physicalCancelButton.Appearance.Options.UseTextOptions = true;
+            this.physicalCancelButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.physicalCancelButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("physicalCancelButton.ImageOptions.Image")));
+            this.physicalCancelButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.physicalCancelButton.Location = new System.Drawing.Point(0, 240);
+            this.physicalCancelButton.LookAndFeel.SkinName = "DevExpress Style";
+            this.physicalCancelButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.physicalCancelButton.Name = "physicalCancelButton";
+            this.physicalCancelButton.Size = new System.Drawing.Size(80, 58);
+            this.physicalCancelButton.TabIndex = 43;
+            this.physicalCancelButton.TabStop = false;
+            this.physicalCancelButton.Text = "CANCEL";
+            this.physicalCancelButton.Click += new System.EventHandler(this.physicalCancelButton_Click);
+            // 
+            // physicalPrintButton
+            // 
+            this.physicalPrintButton.AllowFocus = false;
+            this.physicalPrintButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.physicalPrintButton.Appearance.Options.UseFont = true;
+            this.physicalPrintButton.Appearance.Options.UseTextOptions = true;
+            this.physicalPrintButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.physicalPrintButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("physicalPrintButton.ImageOptions.Image")));
+            this.physicalPrintButton.ImageOptions.ImageToTextIndent = 0;
+            this.physicalPrintButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.physicalPrintButton.Location = new System.Drawing.Point(0, 120);
+            this.physicalPrintButton.LookAndFeel.SkinName = "DevExpress Style";
+            this.physicalPrintButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.physicalPrintButton.Name = "physicalPrintButton";
+            this.physicalPrintButton.Size = new System.Drawing.Size(80, 58);
+            this.physicalPrintButton.TabIndex = 42;
+            this.physicalPrintButton.TabStop = false;
+            this.physicalPrintButton.Text = "PRINT";
+            this.physicalPrintButton.Click += new System.EventHandler(this.physicalPrintButton_Click);
+            // 
             // physicalDeleteButton
             // 
             this.physicalDeleteButton.AllowFocus = false;
@@ -187,6 +361,7 @@
             this.physicalDeleteButton.TabStop = false;
             this.physicalDeleteButton.Tag = "0";
             this.physicalDeleteButton.Text = "DELETE";
+            this.physicalDeleteButton.Click += new System.EventHandler(this.physicalDeleteButton_Click);
             // 
             // physicalImportButton
             // 
@@ -228,6 +403,25 @@
             this.bomMenuPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
             this.bomMenuPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
             // 
+            // bomPrintButton
+            // 
+            this.bomPrintButton.AllowFocus = false;
+            this.bomPrintButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bomPrintButton.Appearance.Options.UseFont = true;
+            this.bomPrintButton.Appearance.Options.UseTextOptions = true;
+            this.bomPrintButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.bomPrintButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bomPrintButton.ImageOptions.Image")));
+            this.bomPrintButton.ImageOptions.ImageToTextIndent = 0;
+            this.bomPrintButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.bomPrintButton.Location = new System.Drawing.Point(0, 182);
+            this.bomPrintButton.LookAndFeel.SkinName = "DevExpress Style";
+            this.bomPrintButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.bomPrintButton.Name = "bomPrintButton";
+            this.bomPrintButton.Size = new System.Drawing.Size(80, 58);
+            this.bomPrintButton.TabIndex = 40;
+            this.bomPrintButton.TabStop = false;
+            this.bomPrintButton.Text = "PRINT";
+            // 
             // bomDeleteButton
             // 
             this.bomDeleteButton.AllowFocus = false;
@@ -267,63 +461,6 @@
             this.bomImportButton.Text = "IMPORT";
             this.bomImportButton.Click += new System.EventHandler(this.bomImportButton_Click);
             // 
-            // chemicalButton
-            // 
-            this.chemicalButton.AllowFocus = false;
-            this.chemicalButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chemicalButton.Appearance.Options.UseFont = true;
-            this.chemicalButton.Appearance.Options.UseTextOptions = true;
-            this.chemicalButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.chemicalButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("chemicalButton.ImageOptions.Image")));
-            this.chemicalButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.chemicalButton.Location = new System.Drawing.Point(2, 62);
-            this.chemicalButton.LookAndFeel.SkinName = "DevExpress Style";
-            this.chemicalButton.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.chemicalButton.Name = "chemicalButton";
-            this.chemicalButton.Size = new System.Drawing.Size(80, 58);
-            this.chemicalButton.TabIndex = 38;
-            this.chemicalButton.TabStop = false;
-            this.chemicalButton.Tag = "0";
-            this.chemicalButton.Text = "CHEMICAL";
-            // 
-            // physicalButton
-            // 
-            this.physicalButton.AllowFocus = false;
-            this.physicalButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.physicalButton.Appearance.Options.UseFont = true;
-            this.physicalButton.Appearance.Options.UseTextOptions = true;
-            this.physicalButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.physicalButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("physicalButton.ImageOptions.Image")));
-            this.physicalButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.physicalButton.Location = new System.Drawing.Point(2, 2);
-            this.physicalButton.LookAndFeel.SkinName = "DevExpress Style";
-            this.physicalButton.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.physicalButton.Name = "physicalButton";
-            this.physicalButton.Size = new System.Drawing.Size(80, 58);
-            this.physicalButton.TabIndex = 37;
-            this.physicalButton.TabStop = false;
-            this.physicalButton.Tag = "0";
-            this.physicalButton.Text = "PHYSICAL";
-            // 
-            // bomButton
-            // 
-            this.bomButton.AllowFocus = false;
-            this.bomButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bomButton.Appearance.Options.UseFont = true;
-            this.bomButton.Appearance.Options.UseTextOptions = true;
-            this.bomButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.bomButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bomButton.ImageOptions.Image")));
-            this.bomButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.bomButton.Location = new System.Drawing.Point(2, 122);
-            this.bomButton.LookAndFeel.SkinName = "DevExpress Style";
-            this.bomButton.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.bomButton.Name = "bomButton";
-            this.bomButton.Size = new System.Drawing.Size(80, 58);
-            this.bomButton.TabIndex = 36;
-            this.bomButton.TabStop = false;
-            this.bomButton.Tag = "0";
-            this.bomButton.Text = "BOM";
-            // 
             // viewPanel
             // 
             this.viewPanel.BevelInner = Ulee.Controls.EUlBevelStyle.None;
@@ -342,139 +479,6 @@
             this.viewPanel.TabIndex = 9;
             this.viewPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
             this.viewPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
-            // 
-            // bomPrintButton
-            // 
-            this.bomPrintButton.AllowFocus = false;
-            this.bomPrintButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bomPrintButton.Appearance.Options.UseFont = true;
-            this.bomPrintButton.Appearance.Options.UseTextOptions = true;
-            this.bomPrintButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.bomPrintButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("viewButton.ImageOptions.Image")));
-            this.bomPrintButton.ImageOptions.ImageToTextIndent = 0;
-            this.bomPrintButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.bomPrintButton.Location = new System.Drawing.Point(0, 182);
-            this.bomPrintButton.LookAndFeel.SkinName = "DevExpress Style";
-            this.bomPrintButton.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.bomPrintButton.Name = "bomPrintButton";
-            this.bomPrintButton.Size = new System.Drawing.Size(80, 58);
-            this.bomPrintButton.TabIndex = 40;
-            this.bomPrintButton.TabStop = false;
-            this.bomPrintButton.Text = "PRINT";
-            // 
-            // chemicalPrintButton
-            // 
-            this.chemicalPrintButton.AllowFocus = false;
-            this.chemicalPrintButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chemicalPrintButton.Appearance.Options.UseFont = true;
-            this.chemicalPrintButton.Appearance.Options.UseTextOptions = true;
-            this.chemicalPrintButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.chemicalPrintButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image1")));
-            this.chemicalPrintButton.ImageOptions.ImageToTextIndent = 0;
-            this.chemicalPrintButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.chemicalPrintButton.Location = new System.Drawing.Point(0, 120);
-            this.chemicalPrintButton.LookAndFeel.SkinName = "DevExpress Style";
-            this.chemicalPrintButton.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.chemicalPrintButton.Name = "chemicalPrintButton";
-            this.chemicalPrintButton.Size = new System.Drawing.Size(80, 58);
-            this.chemicalPrintButton.TabIndex = 41;
-            this.chemicalPrintButton.TabStop = false;
-            this.chemicalPrintButton.Text = "PRINT";
-            // 
-            // physicalPrintButton
-            // 
-            this.physicalPrintButton.AllowFocus = false;
-            this.physicalPrintButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.physicalPrintButton.Appearance.Options.UseFont = true;
-            this.physicalPrintButton.Appearance.Options.UseTextOptions = true;
-            this.physicalPrintButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.physicalPrintButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
-            this.physicalPrintButton.ImageOptions.ImageToTextIndent = 0;
-            this.physicalPrintButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.physicalPrintButton.Location = new System.Drawing.Point(0, 120);
-            this.physicalPrintButton.LookAndFeel.SkinName = "DevExpress Style";
-            this.physicalPrintButton.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.physicalPrintButton.Name = "physicalPrintButton";
-            this.physicalPrintButton.Size = new System.Drawing.Size(80, 58);
-            this.physicalPrintButton.TabIndex = 42;
-            this.physicalPrintButton.TabStop = false;
-            this.physicalPrintButton.Text = "PRINT";
-            // 
-            // physicalSaveButton
-            // 
-            this.physicalSaveButton.AllowFocus = false;
-            this.physicalSaveButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.physicalSaveButton.Appearance.Options.UseBorderColor = true;
-            this.physicalSaveButton.Appearance.Options.UseFont = true;
-            this.physicalSaveButton.Appearance.Options.UseTextOptions = true;
-            this.physicalSaveButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.physicalSaveButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("saveButton.ImageOptions.Image")));
-            this.physicalSaveButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.physicalSaveButton.Location = new System.Drawing.Point(0, 180);
-            this.physicalSaveButton.LookAndFeel.SkinName = "DevExpress Style";
-            this.physicalSaveButton.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.physicalSaveButton.Name = "physicalSaveButton";
-            this.physicalSaveButton.Size = new System.Drawing.Size(80, 58);
-            this.physicalSaveButton.TabIndex = 44;
-            this.physicalSaveButton.TabStop = false;
-            this.physicalSaveButton.Text = "SAVE";
-            // 
-            // physicalCancelButton
-            // 
-            this.physicalCancelButton.AllowFocus = false;
-            this.physicalCancelButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.physicalCancelButton.Appearance.Options.UseBorderColor = true;
-            this.physicalCancelButton.Appearance.Options.UseFont = true;
-            this.physicalCancelButton.Appearance.Options.UseTextOptions = true;
-            this.physicalCancelButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.physicalCancelButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("cancelButton.ImageOptions.Image")));
-            this.physicalCancelButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.physicalCancelButton.Location = new System.Drawing.Point(0, 240);
-            this.physicalCancelButton.LookAndFeel.SkinName = "DevExpress Style";
-            this.physicalCancelButton.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.physicalCancelButton.Name = "physicalCancelButton";
-            this.physicalCancelButton.Size = new System.Drawing.Size(80, 58);
-            this.physicalCancelButton.TabIndex = 43;
-            this.physicalCancelButton.TabStop = false;
-            this.physicalCancelButton.Text = "CANCEL";
-            // 
-            // chemicalSaveButton
-            // 
-            this.chemicalSaveButton.AllowFocus = false;
-            this.chemicalSaveButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chemicalSaveButton.Appearance.Options.UseBorderColor = true;
-            this.chemicalSaveButton.Appearance.Options.UseFont = true;
-            this.chemicalSaveButton.Appearance.Options.UseTextOptions = true;
-            this.chemicalSaveButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.chemicalSaveButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.chemicalSaveButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.chemicalSaveButton.Location = new System.Drawing.Point(0, 180);
-            this.chemicalSaveButton.LookAndFeel.SkinName = "DevExpress Style";
-            this.chemicalSaveButton.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.chemicalSaveButton.Name = "chemicalSaveButton";
-            this.chemicalSaveButton.Size = new System.Drawing.Size(80, 58);
-            this.chemicalSaveButton.TabIndex = 46;
-            this.chemicalSaveButton.TabStop = false;
-            this.chemicalSaveButton.Text = "SAVE";
-            // 
-            // chemicalCancelButton
-            // 
-            this.chemicalCancelButton.AllowFocus = false;
-            this.chemicalCancelButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chemicalCancelButton.Appearance.Options.UseBorderColor = true;
-            this.chemicalCancelButton.Appearance.Options.UseFont = true;
-            this.chemicalCancelButton.Appearance.Options.UseTextOptions = true;
-            this.chemicalCancelButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.chemicalCancelButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image1")));
-            this.chemicalCancelButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.chemicalCancelButton.Location = new System.Drawing.Point(0, 240);
-            this.chemicalCancelButton.LookAndFeel.SkinName = "DevExpress Style";
-            this.chemicalCancelButton.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.chemicalCancelButton.Name = "chemicalCancelButton";
-            this.chemicalCancelButton.Size = new System.Drawing.Size(80, 58);
-            this.chemicalCancelButton.TabIndex = 45;
-            this.chemicalCancelButton.TabStop = false;
-            this.chemicalCancelButton.Text = "CANCEL";
             // 
             // CtrlEditRight
             // 
