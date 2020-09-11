@@ -310,6 +310,30 @@ namespace Sgs.ReportIntegration
         }
     }
 
+    public class PhysicalUsDataSet : UlSqlDataSet
+    {
+        public Int64 RecNo { get; set; }
+
+        public PhysicalUsDataSet(SqlConnection connect, SqlCommand command, SqlDataAdapter adapter)
+            : base(connect, command, adapter)
+        {
+        }
+
+        public void Select(SqlTransaction trans = null)
+        {
+            SetTrans(trans);
+            command.CommandText =
+                $" select * from TB_PHYMAIN where pk_recno={RecNo}; " +
+                $" select * from TB_PHYIMAGE where fk_phymainno={RecNo}; " +
+                $" select * from TB_PHYP2 where fk_phymainno={RecNo}; " +
+                $" select * from TB_PHYP3 where fk_phymainno={RecNo}; " +
+                $" select * from TB_PHYP4 where fk_phymainno={RecNo}; " +
+                $" select * from TB_PHYP5 where fk_phymainno={RecNo}; ";
+            dataSet.Clear();
+            dataAdapter.Fill(dataSet);
+        }
+    }
+
     public class PhysicalMainDataSet : UlSqlDataSet
     {
         public Int64 RecNo { get; set; }

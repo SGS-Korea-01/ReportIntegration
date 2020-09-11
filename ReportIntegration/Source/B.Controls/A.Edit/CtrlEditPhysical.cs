@@ -21,6 +21,8 @@ namespace Sgs.ReportIntegration
 
         private GridBookmark bookmark;
 
+        private PhysicalUsDataSet phyUsSet;
+
         private PhysicalMainDataSet phyMainSet;
 
         private PhysicalImageDataSet phyImageSet;
@@ -39,8 +41,11 @@ namespace Sgs.ReportIntegration
 
         private CtrlEditPhysicalEu ctrlEu;
 
+        //private bool first;
+
         public CtrlEditPhysical(CtrlEditRight parent)
         {
+            //first = true;
             this.parent = parent;
 
             InitializeComponent();
@@ -49,6 +54,7 @@ namespace Sgs.ReportIntegration
 
         private void Initialize()
         {
+            phyUsSet = new PhysicalUsDataSet(AppRes.DB.Connect, null, null);
             phyMainSet = new PhysicalMainDataSet(AppRes.DB.Connect, null, null);
             phyImageSet = new PhysicalImageDataSet(AppRes.DB.Connect, null, null);
             phyP2Set = new PhysicalP2DataSet(AppRes.DB.Connect, null, null);
@@ -163,6 +169,15 @@ namespace Sgs.ReportIntegration
 
             DataRow row = physicalGridView.GetDataRow(e.FocusedRowHandle);
             phyMainSet.Fetch(row);
+
+            //if (first == true)
+            //{
+            //    PhysicalUsDataSet set = new PhysicalUsDataSet(AppRes.DB.Connect, null, null);
+            //    set.RecNo = phyMainSet.RecNo;
+            //    set.Select();
+            //    set.DataSet.WriteXmlSchema(@"..\..\Xsd\PhysicalUs.xsd");
+            //    first = false;
+            //}
 
             SetReportView(phyMainSet.AreaNo);
         }
@@ -301,8 +316,11 @@ namespace Sgs.ReportIntegration
         {
             if (physicalGridView.FocusedRowHandle < 0) return;
 
+            phyUsSet.RecNo = phyMainSet.RecNo;
+            phyUsSet.Select();
+
             BindingSource bind = new BindingSource();
-            bind.DataSource = phyMainSet;
+            bind.DataSource = phyUsSet.DataSet;
 
             ReportUsPhysical report = new ReportUsPhysical();
             report.DataSource = bind;

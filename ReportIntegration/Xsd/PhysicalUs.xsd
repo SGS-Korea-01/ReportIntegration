@@ -1,0 +1,109 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Table">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="pk_recno" type="xs:long" minOccurs="0" />
+              <xs:element name="regtime" type="xs:string" minOccurs="0" />
+              <xs:element name="receivedtime" type="xs:string" minOccurs="0" />
+              <xs:element name="requiredtime" type="xs:string" minOccurs="0" />
+              <xs:element name="reportedtime" type="xs:string" minOccurs="0" />
+              <xs:element name="areano" type="xs:int" minOccurs="0" />
+              <xs:element name="productno" type="xs:string" minOccurs="0" />
+              <xs:element name="jobno" type="xs:string" minOccurs="0" />
+              <xs:element name="p1clientno" type="xs:string" minOccurs="0" />
+              <xs:element name="p1clientname" type="xs:string" minOccurs="0" />
+              <xs:element name="p1clientaddress" type="xs:string" minOccurs="0" />
+              <xs:element name="p1fileno" type="xs:string" minOccurs="0" />
+              <xs:element name="p1sampledesc" type="xs:string" minOccurs="0" />
+              <xs:element name="p1detailsample" type="xs:string" minOccurs="0" />
+              <xs:element name="p1itemno" type="xs:string" minOccurs="0" />
+              <xs:element name="p1orderno" type="xs:string" minOccurs="0" />
+              <xs:element name="p1manufacturer" type="xs:string" minOccurs="0" />
+              <xs:element name="p1countryorigin" type="xs:string" minOccurs="0" />
+              <xs:element name="p1countrydest" type="xs:string" minOccurs="0" />
+              <xs:element name="p1labelage" type="xs:string" minOccurs="0" />
+              <xs:element name="p1testage" type="xs:string" minOccurs="0" />
+              <xs:element name="p1assessedage" type="xs:string" minOccurs="0" />
+              <xs:element name="p1recevdate" type="xs:string" minOccurs="0" />
+              <xs:element name="p1testperiod" type="xs:string" minOccurs="0" />
+              <xs:element name="p1testmethod" type="xs:string" minOccurs="0" />
+              <xs:element name="p1testresult" type="xs:string" minOccurs="0" />
+              <xs:element name="p1comment" type="xs:string" minOccurs="0" />
+              <xs:element name="p2name" type="xs:string" minOccurs="0" />
+              <xs:element name="p3desc1" type="xs:string" minOccurs="0" />
+              <xs:element name="p3desc2" type="xs:string" minOccurs="0" />
+              <xs:element name="p4desc1" type="xs:string" minOccurs="0" />
+              <xs:element name="p4desc2" type="xs:string" minOccurs="0" />
+              <xs:element name="p5desc1" type="xs:string" minOccurs="0" />
+              <xs:element name="p5desc2" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Table1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="pk_recno" type="xs:long" minOccurs="0" />
+              <xs:element name="fk_phymainno" type="xs:long" minOccurs="0" />
+              <xs:element name="signature" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="picture" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Table2">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="pk_recno" type="xs:long" minOccurs="0" />
+              <xs:element name="fk_phymainno" type="xs:long" minOccurs="0" />
+              <xs:element name="no" type="xs:int" minOccurs="0" />
+              <xs:element name="line" type="xs:int" minOccurs="0" />
+              <xs:element name="requested" type="xs:string" minOccurs="0" />
+              <xs:element name="conclusion" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Table3">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="pk_recno" type="xs:long" minOccurs="0" />
+              <xs:element name="fk_phymainno" type="xs:long" minOccurs="0" />
+              <xs:element name="no" type="xs:int" minOccurs="0" />
+              <xs:element name="line" type="xs:int" minOccurs="0" />
+              <xs:element name="clause" type="xs:string" minOccurs="0" />
+              <xs:element name="description" type="xs:string" minOccurs="0" />
+              <xs:element name="result" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Table4">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="pk_recno" type="xs:long" minOccurs="0" />
+              <xs:element name="fk_phymainno" type="xs:long" minOccurs="0" />
+              <xs:element name="no" type="xs:int" minOccurs="0" />
+              <xs:element name="line" type="xs:int" minOccurs="0" />
+              <xs:element name="sample" type="xs:string" minOccurs="0" />
+              <xs:element name="burningrate" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Table5">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="pk_recno" type="xs:long" minOccurs="0" />
+              <xs:element name="fk_phymainno" type="xs:long" minOccurs="0" />
+              <xs:element name="no" type="xs:int" minOccurs="0" />
+              <xs:element name="line" type="xs:int" minOccurs="0" />
+              <xs:element name="testitem" type="xs:string" minOccurs="0" />
+              <xs:element name="result" type="xs:string" minOccurs="0" />
+              <xs:element name="requirement" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
