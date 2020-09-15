@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.Versioning;
-using System.Text;
-using System.Threading.Tasks;
 
 using Ulee.Utils;
 
@@ -18,8 +14,18 @@ namespace Sgs.ReportIntegration
         None = -1,
         [Description("ASTM")]
         US = 0,
-        [Description("EU")]
+        [Description("EN")]
         EU = 1
+    }
+
+    public enum EReportApproval
+    {
+        [Description("None")]
+        None = -1,
+        [Description("Not Approved")]
+        NotApproved = 0,
+        [Description("Approved")]
+        Approved = 1
     }
     #endregion
 
@@ -129,6 +135,88 @@ namespace Sgs.ReportIntegration
             Name = "";
             MaterialNo = "";
             MaterialName = "";
+        }
+    }
+
+    public class PhysicalPage2Row
+    {
+        public int No { get; set; }
+
+        public bool Line { get; set; }
+
+        public string Requested { get; set; }
+
+        public string Conclusion { get; set; }
+
+        public PhysicalPage2Row()
+        {
+            No = 0;
+            Line = false;
+            Requested = "";
+            Conclusion = "";
+        }
+    }
+
+    public class PhysicalPage3Row
+    {
+        public int No { get; set; }
+
+        public bool Line { get; set; }
+
+        public string Clause { get; set; }
+
+        public string Description { get; set; }
+
+        public string Result { get; set; }
+
+        public PhysicalPage3Row()
+        {
+            No = 0;
+            Line = false;
+            Clause = "";
+            Description = "";
+            Result = "";
+        }
+    }
+
+    public class PhysicalPage4Row
+    {
+        public int No { get; set; }
+
+        public bool Line { get; set; }
+
+        public string Sample { get; set; }
+
+        public string BurningRate { get; set; }
+
+        public PhysicalPage4Row()
+        {
+            No = 0;
+            Line = false;
+            Sample = "";
+            BurningRate = "";
+        }
+    }
+
+    public class PhysicalPage5Row
+    {
+        public int No { get; set; }
+
+        public bool Line { get; set; }
+
+        public string TestItem { get; set; }
+
+        public string Result { get; set; }
+
+        public string Requirement { get; set; }
+
+        public PhysicalPage5Row()
+        {
+            No = 0;
+            Line = false;
+            TestItem = "";
+            Result = "";
+            Requirement = "";
         }
     }
     #endregion

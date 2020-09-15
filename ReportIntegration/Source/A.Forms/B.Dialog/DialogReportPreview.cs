@@ -1,41 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 
-using Ulee.Controls;
+using DevExpress.XtraEditors;
+using DevExpress.XtraPrinting.Preview;
+using DevExpress.XtraReports.UI;
 
-namespace Sgs.ReportIntegration.Source
+namespace Sgs.ReportIntegration
 {
-    public partial class DialogReportPreview : UlFormEng
+    public partial class DialogReportPreview : XtraForm
     {
-        public object Source 
-        { 
-            get { return reportPreview.DocumentSource; }
-            set { reportPreview.DocumentSource = value; } 
+        public object Source
+        {
+            get { return docPreview.DocumentSource; }
+            set { docPreview.DocumentSource = value; }
         }
 
         public DialogReportPreview()
         {
             InitializeComponent();
-            Initialize();
         }
 
-        private void Initialize()
+        private void ReportWork_Load(object sender, EventArgs e)
         {
         }
 
-        private void DialogReportPreview_Load(object sender, EventArgs e)
+        private void nBIofficeList_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
+            //ReportForm rpt = new ReportForm();
+            //rpt.CreateDocument();
+            //ReportPrintTool tool = new ReportPrintTool(rpt);
+            //documentViewer1.DocumentSource = rpt;
         }
 
-        private void DialogReportPreview_Resize(object sender, EventArgs e)
-        {
-            if (Width < 1024) Width = 1024;
-            if (Height < 640) Height = 640;
-        }
     }
 }

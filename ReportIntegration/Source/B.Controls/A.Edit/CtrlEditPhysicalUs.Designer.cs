@@ -68,6 +68,8 @@
             this.p1ClientNameEdit = new DevExpress.XtraEditors.TextEdit();
             this.label4 = new System.Windows.Forms.Label();
             this.physical2Page = new System.Windows.Forms.TabPage();
+            this.p2RowUpButton = new System.Windows.Forms.Button();
+            this.p2RowDownButton = new System.Windows.Forms.Button();
             this.p2RowPluseButton = new System.Windows.Forms.Button();
             this.p2RowMinusButton = new System.Windows.Forms.Button();
             this.p2NameEdit = new DevExpress.XtraEditors.TextEdit();
@@ -84,6 +86,8 @@
             this.p2TextEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.p2ResultNoColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.physical3Page = new System.Windows.Forms.TabPage();
+            this.p3RowUpButton = new System.Windows.Forms.Button();
+            this.p3RowDownButton = new System.Windows.Forms.Button();
             this.p3Desc2Edit = new DevExpress.XtraEditors.MemoEdit();
             this.label19 = new System.Windows.Forms.Label();
             this.p3Desc1Edit = new DevExpress.XtraEditors.MemoEdit();
@@ -103,6 +107,8 @@
             this.p3ResultTextEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.p3ClauseNoColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.physical4Page = new System.Windows.Forms.TabPage();
+            this.p4RowUpButton = new System.Windows.Forms.Button();
+            this.p4RowDownButton = new System.Windows.Forms.Button();
             this.p4RowPluseButton = new System.Windows.Forms.Button();
             this.p4RowMinusButton = new System.Windows.Forms.Button();
             this.p4Desc2Edit = new DevExpress.XtraEditors.MemoEdit();
@@ -119,6 +125,8 @@
             this.p4Desc1Edit = new DevExpress.XtraEditors.TextEdit();
             this.label20 = new System.Windows.Forms.Label();
             this.physical5Page = new System.Windows.Forms.TabPage();
+            this.p5RowUpButton = new System.Windows.Forms.Button();
+            this.p5RowDownButton = new System.Windows.Forms.Button();
             this.p5RowPluseButton = new System.Windows.Forms.Button();
             this.p5RowMinusButton = new System.Windows.Forms.Button();
             this.p5StuffGrid = new DevExpress.XtraGrid.GridControl();
@@ -139,14 +147,6 @@
             this.imagePanel = new Ulee.Controls.UlPanel();
             this.p6DescPanel = new Ulee.Controls.UlPanel();
             this.p6ImageBox = new System.Windows.Forms.PictureBox();
-            this.p2RowUpButton = new System.Windows.Forms.Button();
-            this.p2RowDownButton = new System.Windows.Forms.Button();
-            this.p3RowUpButton = new System.Windows.Forms.Button();
-            this.p3RowDownButton = new System.Windows.Forms.Button();
-            this.p4RowUpButton = new System.Windows.Forms.Button();
-            this.p4RowDownButton = new System.Windows.Forms.Button();
-            this.p5RowUpButton = new System.Windows.Forms.Button();
-            this.p5RowDownButton = new System.Windows.Forms.Button();
             this.bgPanel.SuspendLayout();
             this.physicalTab.SuspendLayout();
             this.physical1Page.SuspendLayout();
@@ -732,12 +732,34 @@
             this.physical2Page.Location = new System.Drawing.Point(4, 24);
             this.physical2Page.Margin = new System.Windows.Forms.Padding(0);
             this.physical2Page.Name = "physical2Page";
-            this.physical2Page.Size = new System.Drawing.Size(548, 510);
+            this.physical2Page.Size = new System.Drawing.Size(292, 272);
             this.physical2Page.TabIndex = 1;
             this.physical2Page.Tag = "1";
             this.physical2Page.Text = "  Page 2  ";
             this.physical2Page.UseVisualStyleBackColor = true;
             this.physical2Page.Resize += new System.EventHandler(this.physical2Page_Resize);
+            // 
+            // p2RowUpButton
+            // 
+            this.p2RowUpButton.Image = ((System.Drawing.Image)(resources.GetObject("p2RowUpButton.Image")));
+            this.p2RowUpButton.Location = new System.Drawing.Point(442, 5);
+            this.p2RowUpButton.Name = "p2RowUpButton";
+            this.p2RowUpButton.Size = new System.Drawing.Size(24, 24);
+            this.p2RowUpButton.TabIndex = 89;
+            this.p2RowUpButton.TabStop = false;
+            this.p2RowUpButton.UseVisualStyleBackColor = true;
+            this.p2RowUpButton.Click += new System.EventHandler(this.p2RowUpButton_Click);
+            // 
+            // p2RowDownButton
+            // 
+            this.p2RowDownButton.Image = ((System.Drawing.Image)(resources.GetObject("p2RowDownButton.Image")));
+            this.p2RowDownButton.Location = new System.Drawing.Point(468, 5);
+            this.p2RowDownButton.Name = "p2RowDownButton";
+            this.p2RowDownButton.Size = new System.Drawing.Size(24, 24);
+            this.p2RowDownButton.TabIndex = 90;
+            this.p2RowDownButton.TabStop = false;
+            this.p2RowDownButton.UseVisualStyleBackColor = true;
+            this.p2RowDownButton.Click += new System.EventHandler(this.p2RowDownButton_Click);
             // 
             // p2RowPluseButton
             // 
@@ -1006,12 +1028,34 @@
             this.physical3Page.Location = new System.Drawing.Point(4, 24);
             this.physical3Page.Margin = new System.Windows.Forms.Padding(0);
             this.physical3Page.Name = "physical3Page";
-            this.physical3Page.Size = new System.Drawing.Size(548, 510);
+            this.physical3Page.Size = new System.Drawing.Size(292, 272);
             this.physical3Page.TabIndex = 2;
             this.physical3Page.Tag = "2";
             this.physical3Page.Text = "  Page 3  ";
             this.physical3Page.UseVisualStyleBackColor = true;
             this.physical3Page.Resize += new System.EventHandler(this.physical3Page_Resize);
+            // 
+            // p3RowUpButton
+            // 
+            this.p3RowUpButton.Image = ((System.Drawing.Image)(resources.GetObject("p3RowUpButton.Image")));
+            this.p3RowUpButton.Location = new System.Drawing.Point(442, 96);
+            this.p3RowUpButton.Name = "p3RowUpButton";
+            this.p3RowUpButton.Size = new System.Drawing.Size(24, 24);
+            this.p3RowUpButton.TabIndex = 99;
+            this.p3RowUpButton.TabStop = false;
+            this.p3RowUpButton.UseVisualStyleBackColor = true;
+            this.p3RowUpButton.Click += new System.EventHandler(this.p3RowUpButton_Click);
+            // 
+            // p3RowDownButton
+            // 
+            this.p3RowDownButton.Image = ((System.Drawing.Image)(resources.GetObject("p3RowDownButton.Image")));
+            this.p3RowDownButton.Location = new System.Drawing.Point(468, 96);
+            this.p3RowDownButton.Name = "p3RowDownButton";
+            this.p3RowDownButton.Size = new System.Drawing.Size(24, 24);
+            this.p3RowDownButton.TabIndex = 100;
+            this.p3RowDownButton.TabStop = false;
+            this.p3RowDownButton.UseVisualStyleBackColor = true;
+            this.p3RowDownButton.Click += new System.EventHandler(this.p3RowDownButton_Click);
             // 
             // p3Desc2Edit
             // 
@@ -1351,6 +1395,28 @@
             this.physical4Page.UseVisualStyleBackColor = true;
             this.physical4Page.Resize += new System.EventHandler(this.physical4Page_Resize);
             // 
+            // p4RowUpButton
+            // 
+            this.p4RowUpButton.Image = ((System.Drawing.Image)(resources.GetObject("p4RowUpButton.Image")));
+            this.p4RowUpButton.Location = new System.Drawing.Point(442, 59);
+            this.p4RowUpButton.Name = "p4RowUpButton";
+            this.p4RowUpButton.Size = new System.Drawing.Size(24, 24);
+            this.p4RowUpButton.TabIndex = 101;
+            this.p4RowUpButton.TabStop = false;
+            this.p4RowUpButton.UseVisualStyleBackColor = true;
+            this.p4RowUpButton.Click += new System.EventHandler(this.p4RowUpButton_Click);
+            // 
+            // p4RowDownButton
+            // 
+            this.p4RowDownButton.Image = ((System.Drawing.Image)(resources.GetObject("p4RowDownButton.Image")));
+            this.p4RowDownButton.Location = new System.Drawing.Point(468, 59);
+            this.p4RowDownButton.Name = "p4RowDownButton";
+            this.p4RowDownButton.Size = new System.Drawing.Size(24, 24);
+            this.p4RowDownButton.TabIndex = 102;
+            this.p4RowDownButton.TabStop = false;
+            this.p4RowDownButton.UseVisualStyleBackColor = true;
+            this.p4RowDownButton.Click += new System.EventHandler(this.p4RowDownButton_Click);
+            // 
             // p4RowPluseButton
             // 
             this.p4RowPluseButton.Image = ((System.Drawing.Image)(resources.GetObject("p4RowPluseButton.Image")));
@@ -1630,6 +1696,28 @@
             this.physical5Page.Text = "  Page 5  ";
             this.physical5Page.UseVisualStyleBackColor = true;
             this.physical5Page.Resize += new System.EventHandler(this.physical5Page_Resize);
+            // 
+            // p5RowUpButton
+            // 
+            this.p5RowUpButton.Image = ((System.Drawing.Image)(resources.GetObject("p5RowUpButton.Image")));
+            this.p5RowUpButton.Location = new System.Drawing.Point(442, 111);
+            this.p5RowUpButton.Name = "p5RowUpButton";
+            this.p5RowUpButton.Size = new System.Drawing.Size(24, 24);
+            this.p5RowUpButton.TabIndex = 103;
+            this.p5RowUpButton.TabStop = false;
+            this.p5RowUpButton.UseVisualStyleBackColor = true;
+            this.p5RowUpButton.Click += new System.EventHandler(this.p5RowUpButton_Click);
+            // 
+            // p5RowDownButton
+            // 
+            this.p5RowDownButton.Image = ((System.Drawing.Image)(resources.GetObject("p5RowDownButton.Image")));
+            this.p5RowDownButton.Location = new System.Drawing.Point(468, 111);
+            this.p5RowDownButton.Name = "p5RowDownButton";
+            this.p5RowDownButton.Size = new System.Drawing.Size(24, 24);
+            this.p5RowDownButton.TabIndex = 104;
+            this.p5RowDownButton.TabStop = false;
+            this.p5RowDownButton.UseVisualStyleBackColor = true;
+            this.p5RowDownButton.Click += new System.EventHandler(this.p5RowDownButton_Click);
             // 
             // p5RowPluseButton
             // 
@@ -1932,7 +2020,7 @@
             this.physical6Page.Location = new System.Drawing.Point(4, 24);
             this.physical6Page.Name = "physical6Page";
             this.physical6Page.Padding = new System.Windows.Forms.Padding(3);
-            this.physical6Page.Size = new System.Drawing.Size(548, 510);
+            this.physical6Page.Size = new System.Drawing.Size(292, 272);
             this.physical6Page.TabIndex = 5;
             this.physical6Page.Tag = "5";
             this.physical6Page.Text = "  Page 6  ";
@@ -2002,94 +2090,6 @@
             this.p6ImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.p6ImageBox.TabIndex = 0;
             this.p6ImageBox.TabStop = false;
-            // 
-            // p2RowUpButton
-            // 
-            this.p2RowUpButton.Image = ((System.Drawing.Image)(resources.GetObject("p2RowUpButton.Image")));
-            this.p2RowUpButton.Location = new System.Drawing.Point(442, 5);
-            this.p2RowUpButton.Name = "p2RowUpButton";
-            this.p2RowUpButton.Size = new System.Drawing.Size(24, 24);
-            this.p2RowUpButton.TabIndex = 89;
-            this.p2RowUpButton.TabStop = false;
-            this.p2RowUpButton.UseVisualStyleBackColor = true;
-            this.p2RowUpButton.Click += new System.EventHandler(this.p2RowUpButton_Click);
-            // 
-            // p2RowDownButton
-            // 
-            this.p2RowDownButton.Image = ((System.Drawing.Image)(resources.GetObject("p2RowDownButton.Image")));
-            this.p2RowDownButton.Location = new System.Drawing.Point(468, 5);
-            this.p2RowDownButton.Name = "p2RowDownButton";
-            this.p2RowDownButton.Size = new System.Drawing.Size(24, 24);
-            this.p2RowDownButton.TabIndex = 90;
-            this.p2RowDownButton.TabStop = false;
-            this.p2RowDownButton.UseVisualStyleBackColor = true;
-            this.p2RowDownButton.Click += new System.EventHandler(this.p2RowDownButton_Click);
-            // 
-            // p3RowUpButton
-            // 
-            this.p3RowUpButton.Image = ((System.Drawing.Image)(resources.GetObject("p3RowUpButton.Image")));
-            this.p3RowUpButton.Location = new System.Drawing.Point(442, 96);
-            this.p3RowUpButton.Name = "p3RowUpButton";
-            this.p3RowUpButton.Size = new System.Drawing.Size(24, 24);
-            this.p3RowUpButton.TabIndex = 99;
-            this.p3RowUpButton.TabStop = false;
-            this.p3RowUpButton.UseVisualStyleBackColor = true;
-            this.p3RowUpButton.Click += new System.EventHandler(this.p3RowUpButton_Click);
-            // 
-            // p3RowDownButton
-            // 
-            this.p3RowDownButton.Image = ((System.Drawing.Image)(resources.GetObject("p3RowDownButton.Image")));
-            this.p3RowDownButton.Location = new System.Drawing.Point(468, 96);
-            this.p3RowDownButton.Name = "p3RowDownButton";
-            this.p3RowDownButton.Size = new System.Drawing.Size(24, 24);
-            this.p3RowDownButton.TabIndex = 100;
-            this.p3RowDownButton.TabStop = false;
-            this.p3RowDownButton.UseVisualStyleBackColor = true;
-            this.p3RowDownButton.Click += new System.EventHandler(this.p3RowDownButton_Click);
-            // 
-            // p4RowUpButton
-            // 
-            this.p4RowUpButton.Image = ((System.Drawing.Image)(resources.GetObject("p4RowUpButton.Image")));
-            this.p4RowUpButton.Location = new System.Drawing.Point(442, 59);
-            this.p4RowUpButton.Name = "p4RowUpButton";
-            this.p4RowUpButton.Size = new System.Drawing.Size(24, 24);
-            this.p4RowUpButton.TabIndex = 101;
-            this.p4RowUpButton.TabStop = false;
-            this.p4RowUpButton.UseVisualStyleBackColor = true;
-            this.p4RowUpButton.Click += new System.EventHandler(this.p4RowUpButton_Click);
-            // 
-            // p4RowDownButton
-            // 
-            this.p4RowDownButton.Image = ((System.Drawing.Image)(resources.GetObject("p4RowDownButton.Image")));
-            this.p4RowDownButton.Location = new System.Drawing.Point(468, 59);
-            this.p4RowDownButton.Name = "p4RowDownButton";
-            this.p4RowDownButton.Size = new System.Drawing.Size(24, 24);
-            this.p4RowDownButton.TabIndex = 102;
-            this.p4RowDownButton.TabStop = false;
-            this.p4RowDownButton.UseVisualStyleBackColor = true;
-            this.p4RowDownButton.Click += new System.EventHandler(this.p4RowDownButton_Click);
-            // 
-            // p5RowUpButton
-            // 
-            this.p5RowUpButton.Image = ((System.Drawing.Image)(resources.GetObject("p5RowUpButton.Image")));
-            this.p5RowUpButton.Location = new System.Drawing.Point(442, 111);
-            this.p5RowUpButton.Name = "p5RowUpButton";
-            this.p5RowUpButton.Size = new System.Drawing.Size(24, 24);
-            this.p5RowUpButton.TabIndex = 103;
-            this.p5RowUpButton.TabStop = false;
-            this.p5RowUpButton.UseVisualStyleBackColor = true;
-            this.p5RowUpButton.Click += new System.EventHandler(this.p5RowUpButton_Click);
-            // 
-            // p5RowDownButton
-            // 
-            this.p5RowDownButton.Image = ((System.Drawing.Image)(resources.GetObject("p5RowDownButton.Image")));
-            this.p5RowDownButton.Location = new System.Drawing.Point(468, 111);
-            this.p5RowDownButton.Name = "p5RowDownButton";
-            this.p5RowDownButton.Size = new System.Drawing.Size(24, 24);
-            this.p5RowDownButton.TabIndex = 104;
-            this.p5RowDownButton.TabStop = false;
-            this.p5RowDownButton.UseVisualStyleBackColor = true;
-            this.p5RowDownButton.Click += new System.EventHandler(this.p5RowDownButton_Click);
             // 
             // CtrlEditPhysicalUs
             // 

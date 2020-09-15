@@ -93,6 +93,8 @@ namespace Sgs.ReportIntegration
                 set.From = "";
                 set.To = "";
             }
+
+            set.AreaNo = (EReportArea)areaCombo.SelectedValue;
             set.ProductNo = itemNoEdit.Text.Trim();
             set.JobNo = string.Empty;
             set.Select();

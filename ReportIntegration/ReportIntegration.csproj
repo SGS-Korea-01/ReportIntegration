@@ -122,7 +122,7 @@
     <Compile Include="Source\A.Forms\B.Dialog\DialogReportPreview.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Source\A.Forms\B.Dialog\DialogReportPreview.Designer.cs">
+    <Compile Include="Source\A.Forms\B.Dialog\DialogReportPreview.designer.cs">
       <DependentUpon>DialogReportPreview.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\B.Controls\A.Edit\CtrlEditBom.cs">
@@ -203,6 +203,12 @@
     <Compile Include="Source\C.Units\UnitAppResource.cs" />
     <Compile Include="Source\C.Units\UnitAppType.cs" />
     <Compile Include="Source\C.Units\UnitGridBookmark.cs" />
+    <Compile Include="Source\D.Reports\ReportEuPhysical.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Source\D.Reports\ReportEuPhysical.Designer.cs">
+      <DependentUpon>ReportEuPhysical.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\D.Reports\ReportUsPhysical.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -268,6 +274,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Source\B.Controls\C.Settings\CtrlSettingsRight.resx">
       <DependentUpon>CtrlSettingsRight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\D.Reports\ReportEuPhysical.resx">
+      <DependentUpon>ReportEuPhysical.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\D.Reports\ReportUsPhysical.resx">
       <DependentUpon>ReportUsPhysical.cs</DependentUpon>

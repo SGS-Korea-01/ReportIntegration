@@ -2,16 +2,16 @@
 using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
-
 using DevExpress.XtraReports.UI;
 
 namespace Sgs.ReportIntegration
 {
-    public partial class ReportUsPhysical : XtraReport
+    public partial class ReportEuPhysical : DevExpress.XtraReports.UI.XtraReport
     {
-        public ReportUsPhysical()
+        public ReportEuPhysical()
         {
             InitializeComponent();
         }
+
     }
 }
