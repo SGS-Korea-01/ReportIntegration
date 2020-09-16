@@ -836,7 +836,7 @@
             this.physical2Page.Location = new System.Drawing.Point(4, 24);
             this.physical2Page.Margin = new System.Windows.Forms.Padding(0);
             this.physical2Page.Name = "physical2Page";
-            this.physical2Page.Size = new System.Drawing.Size(292, 272);
+            this.physical2Page.Size = new System.Drawing.Size(548, 510);
             this.physical2Page.TabIndex = 1;
             this.physical2Page.Tag = "1";
             this.physical2Page.Text = "  Page 2  ";
@@ -2044,7 +2044,7 @@
             this.physical5Page.Location = new System.Drawing.Point(4, 24);
             this.physical5Page.Margin = new System.Windows.Forms.Padding(0);
             this.physical5Page.Name = "physical5Page";
-            this.physical5Page.Size = new System.Drawing.Size(548, 510);
+            this.physical5Page.Size = new System.Drawing.Size(292, 272);
             this.physical5Page.TabIndex = 4;
             this.physical5Page.Tag = "4";
             this.physical5Page.Text = "  Page 5  ";

@@ -344,7 +344,7 @@ namespace Sgs.ReportIntegration
 
         public DateTime ReportedTime { get; set; }
 
-        public EReportApproval Approval { get; set; }
+        public bool Approval { get; set; }
 
         public EReportArea AreaNo { get; set; }
 
@@ -416,6 +416,8 @@ namespace Sgs.ReportIntegration
 
         public string To { get; set; }
 
+        public EReportApproval ReportApproval { get; set; }
+
         public PhysicalMainDataSet(SqlConnection connect, SqlCommand command, SqlDataAdapter adapter)
             : base(connect, command, adapter)
         {
@@ -425,9 +427,9 @@ namespace Sgs.ReportIntegration
         {
             string sql = " select * from TB_PHYMAIN where pk_recno>0 ";
 
-            if (Approval != EReportApproval.None)
+            if (ReportApproval != EReportApproval.None)
             {
-                sql += $" and approval={(int)Approval} ";
+                sql += $" and approval={(int)ReportApproval} ";
             }
             if (AreaNo != EReportArea.None)
             {
@@ -462,7 +464,7 @@ namespace Sgs.ReportIntegration
                 $" insert into TB_PHYMAIN values ( " +
                 $" '{RegTime.ToString(AppRes.csDateTimeFormat)}', '{ReceivedTime.ToString(AppRes.csDateTimeFormat)}', " +
                 $" '{RequiredTime.ToString(AppRes.csDateTimeFormat)}', '{ReportedTime.ToString(AppRes.csDateTimeFormat)}', " +
-                $" {(int)Approval}, {(int)AreaNo}, '{ProductNo}', '{JobNo}', '{P1ClientNo}', '{P1ClientName}', " +
+                $" {Convert.ToInt32(Approval)}, {(int)AreaNo}, '{ProductNo}', '{JobNo}', '{P1ClientNo}', '{P1ClientName}', " +
                 $" '{P1ClientAddress}', '{P1FileNo}', '{P1SampleDescription}', '{P1DetailOfSample}', '{P1ItemNo}', " +
                 $" '{P1OrderNo}', '{P1Packaging}', '{P1Instruction}', '{P1Buyer}', '{P1Manufacturer}', '{P1CountryOfOrigin}', " +
                 $" '{P1CountryOfDestination}', '{P1LabeledAge}', '{P1TestAge}', '{P1AssessedAge}', '{P1ReceivedDate}', " +
@@ -489,7 +491,7 @@ namespace Sgs.ReportIntegration
         public void Update(SqlTransaction trans = null)
         {
             string sql =
-                $" update TB_PHYMAIN set approval={(int)Approval}, areano={(int)AreaNo}, productno='{ProductNo}', jobno='{JobNo}', " +
+                $" update TB_PHYMAIN set approval={Convert.ToInt32(Approval)}, areano={(int)AreaNo}, productno='{ProductNo}', jobno='{JobNo}', " +
                 $" p1clientno='{P1ClientNo}', p1clientname='{P1ClientName}', p1clientaddress='{P1ClientAddress}', p1fileno='{P1FileNo}', " +
                 $" p1sampledesc='{P1SampleDescription}', p1detailsample='{P1DetailOfSample}', p1itemno='{P1ItemNo}', p1orderno='{P1OrderNo}', " +
                 $" p1packaging='{P1Packaging}', p1instruction='{P1Instruction}', p1buyer='{P1Buyer}', p1manufacturer='{P1Manufacturer}', " +
@@ -549,7 +551,7 @@ namespace Sgs.ReportIntegration
                 ReceivedTime = DateTime.Now;
                 RequiredTime = DateTime.Now;
                 ReportedTime = DateTime.Now;
-                Approval = EReportApproval.None;
+                Approval = false;
                 AreaNo = EReportArea.None;
                 ProductNo = "";
                 JobNo = "";
@@ -593,7 +595,7 @@ namespace Sgs.ReportIntegration
             ReceivedTime = Convert.ToDateTime(row["receivedtime"]);
             RequiredTime = Convert.ToDateTime(row["requiredtime"]);
             ReportedTime = Convert.ToDateTime(row["reportedtime"]);
-            Approval = (EReportApproval)Convert.ToInt32(row["approval"]);
+            Approval = Convert.ToBoolean(row["approval"]);
             AreaNo = (EReportArea)Convert.ToInt32(row["areano"]);
             ProductNo = Convert.ToString(row["productno"]);
             JobNo = Convert.ToString(row["jobno"]);

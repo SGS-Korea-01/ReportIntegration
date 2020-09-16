@@ -65,11 +65,14 @@ namespace Sgs.ReportIntegration
             profJobSet = new ProfJobDataSet(AppRes.DB.Connect, null, null);
 
             bookmark = new GridBookmark(physicalGridView);
-
             AppHelper.SetGridEvenRow(physicalGridView);
 
             physicalAreaColumn.DisplayFormat.FormatType = FormatType.Custom;
             physicalAreaColumn.DisplayFormat.Format = new ReportAreaFormat();
+
+            approvalCombo.DataSource = EnumHelper.GetNameValues<EReportApproval>();
+            approvalCombo.DisplayMember = "Name";
+            approvalCombo.ValueMember = "Value";
 
             areaCombo.DataSource = EnumHelper.GetNameValues<EReportArea>();
             areaCombo.DisplayMember = "Name";
@@ -113,8 +116,7 @@ namespace Sgs.ReportIntegration
         {
             findButton.Left = gridPanel.Width - 86;
             resetButton.Left = gridPanel.Width - 86;
-            itemNoEdit.Width = gridPanel.Width - 174;
-            physicalGrid.Size = new Size(gridPanel.Width, gridPanel.Height - 84);
+            physicalGrid.Size = new Size(gridPanel.Width, gridPanel.Height - 142);
         }
 
         private void reportPanel_Resize(object sender, EventArgs e)
@@ -154,6 +156,7 @@ namespace Sgs.ReportIntegration
             dateCheck.Checked = true;
             fromDateEdit.Value = DateTime.Now.AddDays(-30);
             toDateEdit.Value = DateTime.Now;
+            approvalCombo.SelectedIndex = 0;
             areaCombo.SelectedIndex = 0;
             itemNoEdit.Text = string.Empty;
             findButton.PerformClick();
@@ -535,7 +538,7 @@ namespace Sgs.ReportIntegration
             phyMainSet.ReceivedTime = profJobSet.ReceivedTime;
             phyMainSet.RequiredTime = profJobSet.RequiredTime;
             phyMainSet.ReportedTime = profJobSet.ReportedTime;
-            phyMainSet.Approval = EReportApproval.NotApproved;
+            phyMainSet.Approval = false;
             phyMainSet.AreaNo = profJobSet.AreaNo;
             phyMainSet.ProductNo = profJobSet.ProductNo;
             phyMainSet.JobNo = profJobSet.JobNo;
