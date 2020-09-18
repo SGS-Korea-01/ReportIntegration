@@ -105,7 +105,7 @@ namespace Sgs.ReportIntegration
 
         private void CtrlEditPhysical_Enter(object sender, EventArgs e)
         {
-            parent.SetMenu(0);
+            parent.SetMenu(1);
         }
 
         private void CtrlEditPhysical_Resize(object sender, EventArgs e)
@@ -263,12 +263,14 @@ namespace Sgs.ReportIntegration
 
             try
             {
+                dialog.Type = EReportType.Physical;
                 dialog.ShowDialog();
             }
             finally
             {
                 if (dialog.DialogResult == DialogResult.OK)
                 {
+                    profJobSet.Type = EReportType.Physical;
                     profJobSet.JobNo = dialog.JobNo;
                     profJobSet.Select();
                     profJobSet.Fetch();
@@ -496,12 +498,12 @@ namespace Sgs.ReportIntegration
 
             if (profJobSet.Empty == true) return;
             if (area == EReportArea.None) return;
-            if (string.IsNullOrWhiteSpace(profJobSet.ProductNo) == true) return;
+            if (string.IsNullOrWhiteSpace(profJobSet.OrderNo) == true) return;
 
             phyMainSet.From = "";
             phyMainSet.To = "";
             phyMainSet.AreaNo = area;
-            phyMainSet.ProductNo = profJobSet.ProductNo;
+            phyMainSet.ProductNo = profJobSet.OrderNo;
             phyMainSet.Select();
 
             if (phyMainSet.Empty == false)
@@ -540,7 +542,7 @@ namespace Sgs.ReportIntegration
             phyMainSet.ReportedTime = profJobSet.ReportedTime;
             phyMainSet.Approval = false;
             phyMainSet.AreaNo = profJobSet.AreaNo;
-            phyMainSet.ProductNo = profJobSet.ProductNo;
+            phyMainSet.ProductNo = profJobSet.OrderNo;
             phyMainSet.JobNo = profJobSet.JobNo;
             phyMainSet.P1ClientNo = profJobSet.ClientNo;
             phyMainSet.P1ClientName = profJobSet.ClientName;
@@ -571,7 +573,7 @@ namespace Sgs.ReportIntegration
                 phyMainSet.P3Description1 = "As specified in ASTM F963-17 standard consumer safety specification on toys safety.";
                 phyMainSet.P3Description2 =
                     "N/A = Not Applicable                **Visual Examination\r\n" +
-                    "NT = Not tested as per clients request.\r\n\r\n" +
+                    "NT = Not tested as per client's request.\r\n\r\n" +
                     "N.B. : - Only applicable clauses were shown";
                 
                 phyMainSet.P4Description1 = "Flammability Test(Clause 4.2)";
@@ -592,12 +594,12 @@ namespace Sgs.ReportIntegration
                 phyMainSet.P3Description1 =
                     "European Standard on Safety of Toys\r\n" +
                     "- Mechanical & Physical Properties\r\n" +
-                    "As specified in European standard on safety of toys EN 71 Part 1:2014 + A1:2018";
+                    "As specified in European standard on safety of toys EN 71 Part 1:2014+A1:2018";
                 phyMainSet.P3Description2 = "";
                 
                 phyMainSet.P4Description1 =
                     "- Flammability of Toys\r\n" +
-                    "As specified in European standard on safety of toys EN71 PART 2: 2011 + A1:2014";
+                    "As specified in European standard on safety of toys EN71 PART 2: 2011+A1:2014";
                 phyMainSet.P4Description2 =
                     "* Surface Flash of Pile Fabrics (Clause 4.1)";
                 phyMainSet.P4Description3 =
@@ -615,12 +617,12 @@ namespace Sgs.ReportIntegration
                     "   contains a mechanism that may be damaged if soak washed. The manufacturer should, if applicable, provide\r\n" +
                     "   instructions on how the toy has to be cleaned.\r\n\r\n" +
                     "2. CE marking should be visible from outside the packaging and its height must be at least 5 mm.\r\n\r\n" +
-                    "3. Manufacturer’s and Importers name, registered trade name or registered trade mark and the address at which\r\n" +
+                    "3. Manufacturer's and Importer's name, registered trade name or registered trade mark and the address at which\r\n" +
                     "   the manufacturer can be contacted must be indicated on the toy or, where that is not possible, on its packaging\r\n" +
-                    "   or in a document accompanying the toy.\r\n\r\n";
-                    //"4. Manufacturers must ensure that their toys bear a type, batch, serial or model number or other element allowing\r\n" +
-                    //"   their identification, or where the size or nature of the toy does not allow it, that the required information is\r\n" +
-                    //"   provided on the packaging or in a document accompanying the toy.";
+                    "   or in a document accompanying the toy.\r\n\r\n" +
+                    "4. Manufacturers must ensure that their toys bear a type, batch, serial or model number or other element allowing\r\n" +
+                    "   their identification, or where the size or nature of the toy does not allow it, that the required information is\r\n" +
+                    "   provided on the packaging or in a document accompanying the toy.";
             }
 
             phyMainSet.Insert(trans);
@@ -687,7 +689,7 @@ namespace Sgs.ReportIntegration
                 phyP2Set.No = 2;
                 phyP2Set.Line = false;
                 phyP2Set.Requested = "Labeling requirement (Washing/Cleaning Label, CE mark, importer / manufacturer mark (name, address), product identification) according to the Directive 2009/48/EC-Safety of toys";
-                phyP2Set.Conclusion = "See note1*";
+                phyP2Set.Conclusion = "See note 1*";
                 phyP2Set.Insert(trans);
             }
         }
@@ -812,14 +814,14 @@ namespace Sgs.ReportIntegration
                 phyP3Set.No = 16;
                 phyP3Set.Line = false;
                 phyP3Set.Clause = "7";
-                phyP3Set.Description = "Producers Markings";
+                phyP3Set.Description = "Producer's Markings";
                 phyP3Set.Result = "-";
                 phyP3Set.Insert(trans);
 
                 phyP3Set.No = 17;
                 phyP3Set.Line = true;
                 phyP3Set.Clause = " 7.1";
-                phyP3Set.Description = "Producers Markings";
+                phyP3Set.Description = "Producer's Markings";
                 phyP3Set.Result = "Present";
                 phyP3Set.Insert(trans);
 
@@ -1060,14 +1062,14 @@ namespace Sgs.ReportIntegration
 
                 phyP5Set.No = 2;
                 phyP5Set.Line = true;
-                phyP5Set.TestItem = "Importer’s Name & Address";
+                phyP5Set.TestItem = "Importer's Name & Address";
                 phyP5Set.Result = "Present";
                 phyP5Set.Requirement = "Affixed label and Hangtag";
                 phyP5Set.Insert(trans);
 
                 phyP5Set.No = 3;
                 phyP5Set.Line = true;
-                phyP5Set.TestItem = "Manufacturer’s Name & Address";
+                phyP5Set.TestItem = "Manufacturer's Name & Address";
                 phyP5Set.Result = "Present";
                 phyP5Set.Requirement = "Affixed label and Hangtag";
                 phyP5Set.Insert(trans);

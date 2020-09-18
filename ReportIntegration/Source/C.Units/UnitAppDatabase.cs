@@ -464,13 +464,17 @@ namespace Sgs.ReportIntegration
                 $" insert into TB_PHYMAIN values ( " +
                 $" '{RegTime.ToString(AppRes.csDateTimeFormat)}', '{ReceivedTime.ToString(AppRes.csDateTimeFormat)}', " +
                 $" '{RequiredTime.ToString(AppRes.csDateTimeFormat)}', '{ReportedTime.ToString(AppRes.csDateTimeFormat)}', " +
-                $" {Convert.ToInt32(Approval)}, {(int)AreaNo}, '{ProductNo}', '{JobNo}', '{P1ClientNo}', '{P1ClientName}', " +
-                $" '{P1ClientAddress}', '{P1FileNo}', '{P1SampleDescription}', '{P1DetailOfSample}', '{P1ItemNo}', " +
-                $" '{P1OrderNo}', '{P1Packaging}', '{P1Instruction}', '{P1Buyer}', '{P1Manufacturer}', '{P1CountryOfOrigin}', " +
-                $" '{P1CountryOfDestination}', '{P1LabeledAge}', '{P1TestAge}', '{P1AssessedAge}', '{P1ReceivedDate}', " +
-                $" '{P1TestPeriod}', '{P1TestMethod}', '{P1TestResults}', '{P1Comments}', '{P2Name}', '{P3Description1}', " +
-                $" '{P3Description2}', '{P4Description1}', '{P4Description2}', '{P4Description3}', '{P5Description1}', " +
-                $" '{P5Description2}'); " +
+                $" {Convert.ToInt32(Approval)}, {(int)AreaNo}, '{ProductNo.Replace("'", "''")}', '{JobNo.Replace("'", "''")}', " + 
+                $" '{P1ClientNo.Replace("'", "''")}', '{P1ClientName.Replace("'", "''")}', '{P1ClientAddress.Replace("'", "''")}', " +
+                $" '{P1FileNo.Replace("'", "''")}', '{P1SampleDescription.Replace("'", "''")}', '{P1DetailOfSample.Replace("'", "''")}', " +
+                $" '{P1ItemNo.Replace("'", "''")}', '{P1OrderNo.Replace("'", "''")}', '{P1Packaging.Replace("'", "''")}', " +
+                $" '{P1Instruction.Replace("'", "''")}', '{P1Buyer.Replace("'", "''")}', '{P1Manufacturer.Replace("'", "''")}', " + 
+                $" '{P1CountryOfOrigin.Replace("'", "''")}', '{P1CountryOfDestination.Replace("'", "''")}', '{P1LabeledAge.Replace("'", "''")}', " +
+                $" '{P1TestAge.Replace("'", "''")}', '{P1AssessedAge.Replace("'", "''")}', '{P1ReceivedDate.Replace("'", "''")}', " +
+                $" '{P1TestPeriod.Replace("'", "''")}', '{P1TestMethod.Replace("'", "''")}', '{P1TestResults.Replace("'", "''")}', " + 
+                $" '{P1Comments.Replace("'", "''")}', '{P2Name.Replace("'", "''")}', '{P3Description1.Replace("'", "''")}', " +
+                $" '{P3Description2.Replace("'", "''")}', '{P4Description1.Replace("'", "''")}', '{P4Description2.Replace("'", "''")}', " + 
+                $" '{P4Description3.Replace("'", "''")}', '{P5Description1.Replace("'", "''")}', '{P5Description2.Replace("'", "''")}'); " +
                 $" select cast(scope_identity() as bigint); ";
 
             SetTrans(trans);
@@ -491,15 +495,15 @@ namespace Sgs.ReportIntegration
         public void Update(SqlTransaction trans = null)
         {
             string sql =
-                $" update TB_PHYMAIN set approval={Convert.ToInt32(Approval)}, areano={(int)AreaNo}, productno='{ProductNo}', jobno='{JobNo}', " +
-                $" p1clientno='{P1ClientNo}', p1clientname='{P1ClientName}', p1clientaddress='{P1ClientAddress}', p1fileno='{P1FileNo}', " +
-                $" p1sampledesc='{P1SampleDescription}', p1detailsample='{P1DetailOfSample}', p1itemno='{P1ItemNo}', p1orderno='{P1OrderNo}', " +
-                $" p1packaging='{P1Packaging}', p1instruction='{P1Instruction}', p1buyer='{P1Buyer}', p1manufacturer='{P1Manufacturer}', " +
-                $" p1countryorigin='{P1CountryOfOrigin}', p1countrydest='{P1CountryOfDestination}', p1labelage='{P1LabeledAge}', " +
-                $" p1testage='{P1TestAge}', p1assessedage='{P1AssessedAge}', p1recevdate='{P1ReceivedDate}', p1testperiod='{P1TestPeriod}', " +
-                $" p1testmethod='{P1TestMethod}', p1testresult='{P1TestResults}', p1comment='{P1Comments}', p2name='{P2Name}', " +
-                $" p3desc1='{P3Description1}', p3desc2='{P3Description2}', p4desc1='{P4Description1}', p4desc2='{P4Description2}', " +
-                $" p4desc3='{P4Description3}', p5desc1='{P5Description1}', p5desc2='{P5Description2}' " +
+                $" update TB_PHYMAIN set approval={Convert.ToInt32(Approval)}, areano={(int)AreaNo}, productno='{ProductNo.Replace("'", "''")}', jobno='{JobNo.Replace("'", "''")}', " +
+                $" p1clientno='{P1ClientNo.Replace("'", "''")}', p1clientname='{P1ClientName.Replace("'", "''")}', p1clientaddress='{P1ClientAddress.Replace("'", "''")}', p1fileno='{P1FileNo.Replace("'", "''")}', " +
+                $" p1sampledesc='{P1SampleDescription.Replace("'", "''")}', p1detailsample='{P1DetailOfSample.Replace("'", "''")}', p1itemno='{P1ItemNo.Replace("'", "''")}', p1orderno='{P1OrderNo.Replace("'", "''")}', " +
+                $" p1packaging='{P1Packaging.Replace("'", "''")}', p1instruction='{P1Instruction.Replace("'", "''")}', p1buyer='{P1Buyer.Replace("'", "''")}', p1manufacturer='{P1Manufacturer.Replace("'", "''")}', " +
+                $" p1countryorigin='{P1CountryOfOrigin.Replace("'", "''")}', p1countrydest='{P1CountryOfDestination.Replace("'", "''")}', p1labelage='{P1LabeledAge.Replace("'", "''")}', " +
+                $" p1testage='{P1TestAge.Replace("'", "''")}', p1assessedage='{P1AssessedAge.Replace("'", "''")}', p1recevdate='{P1ReceivedDate.Replace("'", "''")}', p1testperiod='{P1TestPeriod.Replace("'", "''")}', " +
+                $" p1testmethod='{P1TestMethod.Replace("'", "''")}', p1testresult='{P1TestResults.Replace("'", "''")}', p1comment='{P1Comments.Replace("'", "''")}', p2name='{P2Name.Replace("'", "''")}', " +
+                $" p3desc1='{P3Description1.Replace("'", "''")}', p3desc2='{P3Description2.Replace("'", "''")}', p4desc1='{P4Description1.Replace("'", "''")}', p4desc2='{P4Description2.Replace("'", "''")}', " +
+                $" p4desc3='{P4Description3.Replace("'", "''")}', p5desc1='{P5Description1.Replace("'", "''")}', p5desc2='{P5Description2.Replace("'", "''")}' " +
                 $" where pk_recno={RecNo} ";
 
             SetTrans(trans);
@@ -666,7 +670,7 @@ namespace Sgs.ReportIntegration
         {
             string sql =
                 $" insert into TB_PHYP2 values " +
-                $" ({MainNo}, {No}, {Convert.ToInt32(Line)}, '{Requested}', '{Conclusion}'); " +
+                $" ({MainNo}, {No}, {Convert.ToInt32(Line)}, '{Requested.Replace("'", "''")}', '{Conclusion.Replace("'", "''")}'); " +
                 $" select cast(scope_identity() as bigint); ";
 
             SetTrans(trans);
@@ -769,7 +773,7 @@ namespace Sgs.ReportIntegration
         {
             string sql =
                 $" insert into TB_PHYP3 values " +
-                $" ({MainNo}, {No}, {Convert.ToInt32(Line)}, '{Clause}', '{Description}', '{Result}'); " +
+                $" ({MainNo}, {No}, {Convert.ToInt32(Line)}, '{Clause.Replace("'", "''")}', '{Description.Replace("'", "''")}', '{Result.Replace("'", "''")}'); " +
                 $" select cast(scope_identity() as bigint); ";
 
             SetTrans(trans);
@@ -874,7 +878,7 @@ namespace Sgs.ReportIntegration
         {
             string sql =
                 $" insert into TB_PHYP40 values " +
-                $" ({MainNo}, {No}, {Convert.ToInt32(Line)}, '{Clause}', '{Description}', '{Result}'); " +
+                $" ({MainNo}, {No}, {Convert.ToInt32(Line)}, '{Clause.Replace("'", "''")}', '{Description.Replace("'", "''")}', '{Result.Replace("'", "''")}'); " +
                 $" select cast(scope_identity() as bigint); ";
 
             SetTrans(trans);
@@ -977,7 +981,7 @@ namespace Sgs.ReportIntegration
         {
             string sql =
                 $" insert into TB_PHYP41 values " +
-                $" ({MainNo}, {No}, {Convert.ToInt32(Line)}, '{Sample}', '{BurningRate}'); " +
+                $" ({MainNo}, {No}, {Convert.ToInt32(Line)}, '{Sample.Replace("'", "''")}', '{BurningRate.Replace("'", "''")}'); " +
                 $" select cast(scope_identity() as bigint); ";
 
             SetTrans(trans);
@@ -1080,7 +1084,7 @@ namespace Sgs.ReportIntegration
         {
             string sql =
                 $" insert into TB_PHYP5 values " +
-                $" ({MainNo}, {No}, {Convert.ToInt32(Line)}, '{TestItem}', '{Result}', '{Requirement}'); " +
+                $" ({MainNo}, {No}, {Convert.ToInt32(Line)}, '{TestItem.Replace("'", "''")}', '{Result.Replace("'", "''")}', '{Requirement.Replace("'", "''")}'); " +
                 $" select cast(scope_identity() as bigint); ";
 
             SetTrans(trans);
@@ -1283,11 +1287,520 @@ namespace Sgs.ReportIntegration
         }
     }
 
-    public class ProfJobDataSet : UlSqlDataSet
+    public class ChemicalMainDataSet : UlSqlDataSet
     {
+        public Int64 RecNo { get; set; }
+
+        public DateTime RegTime { get; set; }
+
+        public DateTime ReceivedTime { get; set; }
+
+        public DateTime RequiredTime { get; set; }
+
+        public DateTime ReportedTime { get; set; }
+
+        public bool Approval { get; set; }
+
         public EReportArea AreaNo { get; set; }
 
         public string ProductNo { get; set; }
+
+        public string JobNo { get; set; }
+
+        public string P1ClientNo { get; set; }
+
+        public string P1ClientName { get; set; }
+
+        public string P1ClientAddress { get; set; }
+
+        public string P1FileNo { get; set; }
+
+        public string P1SampleDescription { get; set; }
+
+        public string P1ItemNo { get; set; }
+
+        public string P1OrderNo { get; set; }
+
+        public string P1Manufacturer { get; set; }
+
+        public string P1CountryOfOrigin { get; set; }
+
+        public string P1CountryOfDestination { get; set; }
+
+        public string P1ReceivedDate { get; set; }
+
+        public string P1TestPeriod { get; set; }
+
+        public string P1TestMethod { get; set; }
+
+        public string P1TestResults { get; set; }
+
+        public string P1Comments { get; set; }
+
+        public string P1TestRequested { get; set; }
+
+        public string P1Conclusion { get; set; }
+
+        public string P2Description1 { get; set; }
+
+        public string P2Description2 { get; set; }
+
+        public string P2Description3 { get; set; }
+
+        public string P3Description1 { get; set; }
+
+        public string From { get; set; }
+
+        public string To { get; set; }
+
+        public EReportApproval ReportApproval { get; set; }
+
+        public ChemicalMainDataSet(SqlConnection connect, SqlCommand command, SqlDataAdapter adapter)
+            : base(connect, command, adapter)
+        {
+        }
+
+        public void Select(SqlTransaction trans = null)
+        {
+            string sql = " select * from TB_CHEMAIN where pk_recno>0 ";
+
+            if (ReportApproval != EReportApproval.None)
+            {
+                sql += $" and approval={(int)ReportApproval} ";
+            }
+            if (AreaNo != EReportArea.None)
+            {
+                sql += $" and areano={(int)AreaNo} ";
+            }
+            if (string.IsNullOrWhiteSpace(ProductNo) == false)
+            {
+                sql += $" and productno like '{ProductNo}%%' ";
+            }
+            if (string.IsNullOrWhiteSpace(From) == false)
+            {
+                if (From == To)
+                {
+                    sql += $" and regtime like '{From}%%' ";
+                }
+                else
+                {
+                    sql += $" and (regtime>='{From} 00:00:00.000' ";
+                    sql += $" and regtime<='{To} 23:59:59.999') ";
+                }
+            }
+
+            SetTrans(trans);
+            command.CommandText = sql;
+            dataSet.Clear();
+            dataAdapter.Fill(dataSet);
+        }
+
+        public void Insert(SqlTransaction trans = null)
+        {
+            string sql =
+                $" insert into TB_CHEMAIN values ( " +
+                $" '{RegTime.ToString(AppRes.csDateTimeFormat)}', '{ReceivedTime.ToString(AppRes.csDateTimeFormat)}', " +
+                $" '{RequiredTime.ToString(AppRes.csDateTimeFormat)}', '{ReportedTime.ToString(AppRes.csDateTimeFormat)}', " +
+                $" {Convert.ToInt32(Approval)}, {(int)AreaNo}, '{ProductNo.Replace("'", "''")}', '{JobNo.Replace("'", "''")}', " +
+                $" '{P1ClientNo.Replace("'", "''")}', '{P1ClientName.Replace("'", "''")}', '{P1ClientAddress.Replace("'", "''")}', " +
+                $" '{P1FileNo.Replace("'", "''")}', '{P1SampleDescription.Replace("'", "''")}', '{P1ItemNo.Replace("'", "''")}', " +
+                $" '{P1OrderNo.Replace("'", "''")}', '{P1Manufacturer.Replace("'", "''")}', '{P1CountryOfOrigin.Replace("'", "''")}', " +
+                $" '{P1CountryOfDestination.Replace("'", "''")}', '{P1ReceivedDate.Replace("'", "''")}', '{P1TestPeriod.Replace("'", "''")}', " +
+                $" '{P1TestMethod.Replace("'", "''")}', '{P1TestResults.Replace("'", "''")}', '{P1Comments.Replace("'", "''")}', " +
+                $" '{P1TestRequested.Replace("'", "''")}', '{P1Conclusion.Replace("'", "''")}', '{P2Description1.Replace("'", "''")}', " +
+                $" '{P2Description2.Replace("'", "''")}', '{P2Description3.Replace("'", "''")}', '{P3Description1.Replace("'", "''")}'); " +
+                $" select cast(scope_identity() as bigint); ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                RecNo = (Int64)command.ExecuteScalar();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Update(SqlTransaction trans = null)
+        {
+            string sql =
+                $" update TB_CHEMAIN set " +
+                $" approval={Convert.ToInt32(Approval)}, areano={(int)AreaNo}, productno='{ProductNo.Replace("'", "''")}', " +
+                $" jobno='{JobNo.Replace("'", "''")}', p1clientno='{P1ClientNo.Replace("'", "''")}', " +
+                $" p1clientname='{P1ClientName.Replace("'", "''")}', p1clientaddress='{P1ClientAddress.Replace("'", "''")}', " +
+                $" p1fileno='{P1FileNo.Replace("'", "''")}', p1sampledesc ='{P1SampleDescription.Replace("'", "''")}', " +
+                $" p1itemno='{P1ItemNo.Replace("'", "''")}', p1orderno='{P1OrderNo.Replace("'", "''")}', " +
+                $" p1manufacturer='{P1Manufacturer.Replace("'", "''")}', p1countryorigin='{P1CountryOfOrigin.Replace("'", "''")}', " +
+                $" p1countrydest='{P1CountryOfDestination.Replace("'", "''")}', p1recevdate='{P1ReceivedDate.Replace("'", "''")}', " +
+                $" p1testperiod='{P1TestPeriod.Replace("'", "''")}', p1testmethod='{P1TestMethod.Replace("'", "''")}', " +
+                $" p1testresult='{P1TestResults.Replace("'", "''")}', p1comment='{P1Comments.Replace("'", "''")}', " +
+                $" p1testrequested='{P1TestRequested.Replace("'", "''")}', p1conclusion='{P1Conclusion.Replace("'", "''")}', " +
+                $" p2desc1='{P2Description1.Replace("'", "''")}', p2desc2='{P2Description2.Replace("'", "''")}', " + 
+                $" p2desc3='{P2Description3.Replace("'", "''")}', p3desc1='{P3Description1.Replace("'", "''")}' " +
+                $" where pk_recno={RecNo} ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Delete(SqlTransaction trans = null)
+        {
+            string sql =
+                $" delete from TB_CHEMAIN " +
+                $" where pk_recno={RecNo} ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Fetch(int index = 0, int tableNo = 0)
+        {
+            if (index < GetRowCount(tableNo))
+            {
+                Fetch(dataSet.Tables[tableNo].Rows[index]);
+            }
+            else
+            {
+                RecNo = 0;
+                RegTime = DateTime.Now;
+                ReceivedTime = DateTime.Now;
+                RequiredTime = DateTime.Now;
+                ReportedTime = DateTime.Now;
+                Approval = false;
+                AreaNo = EReportArea.None;
+                ProductNo = "";
+                JobNo = "";
+                P1ClientNo = "";
+                P1ClientName = "";
+                P1ClientAddress = "";
+                P1FileNo = "";
+                P1SampleDescription = "";
+                P1ItemNo = "";
+                P1OrderNo = "";
+                P1Manufacturer = "";
+                P1CountryOfOrigin = "";
+                P1CountryOfDestination = "";
+                P1ReceivedDate = "";
+                P1TestPeriod = "";
+                P1TestMethod = "";
+                P1TestResults = "";
+                P1Comments = "";
+                P1TestRequested = "";
+                P1Conclusion = "";
+                P2Description1 = "";
+                P2Description2 = "";
+                P2Description3 = "";
+                P3Description1 = "";
+            }
+        }
+
+        public void Fetch(DataRow row)
+        {
+            RecNo = Convert.ToInt64(row["pk_recno"]);
+            RegTime = Convert.ToDateTime(row["regtime"]);
+            ReceivedTime = Convert.ToDateTime(row["receivedtime"]);
+            RequiredTime = Convert.ToDateTime(row["requiredtime"]);
+            ReportedTime = Convert.ToDateTime(row["reportedtime"]);
+            Approval = Convert.ToBoolean(row["approval"]);
+            AreaNo = (EReportArea)Convert.ToInt32(row["areano"]);
+            ProductNo = Convert.ToString(row["productno"]);
+            JobNo = Convert.ToString(row["jobno"]);
+            P1ClientNo = Convert.ToString(row["p1clientno"]);
+            P1ClientName = Convert.ToString(row["p1clientname"]);
+            P1ClientAddress = Convert.ToString(row["p1clientaddress"]);
+            P1FileNo = Convert.ToString(row["p1fileno"]);
+            P1SampleDescription = Convert.ToString(row["p1sampledesc"]);
+            P1ItemNo = Convert.ToString(row["p1itemno"]);
+            P1OrderNo = Convert.ToString(row["p1orderno"]);
+            P1Manufacturer = Convert.ToString(row["p1manufacturer"]);
+            P1CountryOfOrigin = Convert.ToString(row["p1countryorigin"]);
+            P1CountryOfDestination = Convert.ToString(row["p1countrydest"]);
+            P1ReceivedDate = Convert.ToString(row["p1recevdate"]);
+            P1TestPeriod = Convert.ToString(row["p1testperiod"]);
+            P1TestMethod = Convert.ToString(row["p1testmethod"]);
+            P1TestResults = Convert.ToString(row["p1testresult"]);
+            P1Comments = Convert.ToString(row["p1comment"]);
+            P1TestRequested = Convert.ToString(row["p1testrequested"]);
+            P1Conclusion = Convert.ToString(row["p1conclusion"]);
+            P2Description1 = Convert.ToString(row["p2desc1"]);
+            P2Description2 = Convert.ToString(row["p2desc2"]);
+            P2Description3 = Convert.ToString(row["p2desc3"]);
+            P3Description1 = Convert.ToString(row["p3desc1"]);
+        }
+    }
+    public class ChemicalImageDataSet : UlSqlDataSet
+    {
+        public Int64 RecNo { get; set; }
+
+        public Int64 MainNo { get; set; }
+
+        public Bitmap Signature { get; set; }
+
+        public Bitmap Picture { get; set; }
+
+        private ImageConverter imageConvert;
+
+        public ChemicalImageDataSet(SqlConnection connect, SqlCommand command, SqlDataAdapter adapter)
+            : base(connect, command, adapter)
+        {
+            imageConvert = new ImageConverter();
+        }
+
+        public void Select(SqlTransaction trans = null)
+        {
+            SetTrans(trans);
+            command.CommandText =
+                $" select * from TB_CHEIMAGE " +
+                $" where fk_chemainno={MainNo} ";
+            dataSet.Clear();
+            dataAdapter.Fill(dataSet);
+        }
+
+        public void Insert(SqlTransaction trans = null)
+        {
+            string sql =
+                $" insert into TB_CHEIMAGE values " +
+                $" ({MainNo}, @signature, @picture); " +
+                $" select cast(scope_identity() as bigint); ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+
+                command.Parameters.Clear();
+
+                if (Signature == null)
+                {
+                    SqlParameter signatureParam = new SqlParameter("@signature", SqlDbType.Image);
+                    signatureParam.Value = DBNull.Value;
+                    command.Parameters.Add(signatureParam);
+                }
+                else
+                {
+                    command.Parameters.Add("@signature", SqlDbType.Image);
+                    command.Parameters["@signature"].Value = (byte[])imageConvert.ConvertTo(Signature, typeof(byte[]));
+                }
+
+                if (Picture == null)
+                {
+                    SqlParameter pictureParam = new SqlParameter("@picture", SqlDbType.Image);
+                    pictureParam.Value = DBNull.Value;
+                    command.Parameters.Add(pictureParam);
+                }
+                else
+                {
+                    command.Parameters.Add("@picture", SqlDbType.Image);
+                    command.Parameters["@picture"].Value = (byte[])imageConvert.ConvertTo(Picture, typeof(byte[]));
+                }
+
+                RecNo = (Int64)command.ExecuteScalar();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Delete(SqlTransaction trans = null)
+        {
+            string sql =
+                $" delete from TB_CHEIMAGE " +
+                $" where fk_chemainno={MainNo} ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Fetch(int index = 0, int tableNo = 0)
+        {
+            if (index < GetRowCount(tableNo))
+            {
+                Fetch(dataSet.Tables[tableNo].Rows[index]);
+            }
+            else
+            {
+                RecNo = 0;
+                MainNo = 0;
+                Signature = null;
+                Picture = null;
+            }
+        }
+
+        public void Fetch(DataRow row)
+        {
+            RecNo = Convert.ToInt64(row["pk_recno"]);
+            MainNo = Convert.ToInt64(row["fk_chemainno"]);
+
+            if (row["signature"] == DBNull.Value) Signature = null;
+            else
+            {
+                byte[] signatureRaw = (byte[])row["signature"];
+                Signature = (signatureRaw == null) ? null : new Bitmap(new MemoryStream(signatureRaw));
+            }
+
+            if (row["picture"] == DBNull.Value) Picture = null;
+            else
+            {
+                byte[] pictureRaw = (byte[])row["picture"];
+                Picture = (pictureRaw == null) ? null : new Bitmap(new MemoryStream(pictureRaw));
+            }
+        }
+    }
+
+    public class ChemicalP2DataSet : UlSqlDataSet
+    {
+        public Int64 RecNo { get; set; }
+
+        public Int64 MainNo { get; set; }
+
+        public string Name { get; set; }
+
+        public string LoValue { get; set; }
+
+        public string HiValue { get; set; }
+
+        public string ReportValue { get; set; }
+
+        public string FormatValue { get; set; }
+
+        public ChemicalP2DataSet(SqlConnection connect, SqlCommand command, SqlDataAdapter adapter)
+            : base(connect, command, adapter)
+        {
+        }
+
+        public void Select(SqlTransaction trans = null)
+        {
+            SetTrans(trans);
+            command.CommandText =
+                $" select * from TB_CHEP2 " +
+                $" where fk_chemainno={MainNo} " +
+                $" order by pk_recno ";
+            dataSet.Clear();
+            dataAdapter.Fill(dataSet);
+        }
+
+        public void Insert(SqlTransaction trans = null)
+        {
+            string sql =
+                $" insert into TB_CHEP2 values " +
+                $" ({MainNo}, '{Name}', '{LoValue}', '{HiValue}', '{ReportValue}', '{FormatValue}'); " +
+                $" select cast(scope_identity() as bigint); ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                RecNo = (Int64)command.ExecuteScalar();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Delete(SqlTransaction trans = null)
+        {
+            string sql =
+                $" delete from TB_CHEP2 " +
+                $" where fk_chemainno={MainNo} ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Fetch(int index = 0, int tableNo = 0)
+        {
+            if (index < GetRowCount(tableNo))
+            {
+                Fetch(dataSet.Tables[tableNo].Rows[index]);
+            }
+            else
+            {
+                RecNo = 0;
+                MainNo = 0;
+                Name = "";
+                LoValue = "";
+                HiValue = "";
+                ReportValue = "";
+                FormatValue = "";
+            }
+        }
+
+        public void Fetch(DataRow row)
+        {
+            RecNo = Convert.ToInt64(row["pk_recno"]);
+            MainNo = Convert.ToInt64(row["fk_chemainno"]);
+            Name = Convert.ToString(row["itemname"]);
+            LoValue = Convert.ToString(row["lovalue"]);
+            HiValue = Convert.ToString(row["hivalue"]);
+            ReportValue = Convert.ToString(row["reportvalue"]);
+            FormatValue = Convert.ToString(row["formatvalue"]);
+        }
+    }
+
+    public class ProfJobDataSet : UlSqlDataSet
+    {
+        public EReportType Type { get;set; }
+
+        public EReportArea AreaNo { get; set; }
+
+        public string OrderNo { get; set; }
 
         // CLIENT.CLI_CODE
         public string ClientNo { get; set; }
@@ -1370,17 +1883,32 @@ namespace Sgs.ReportIntegration
             }
             else
             {
-                if (string.IsNullOrWhiteSpace(ProductNo) == false)
+                switch (Type)
                 {
-                    if (AreaNo == EReportArea.None)
-                    {
-                        sql += $" and t1.orderno like '{ProductNo}%%' ";
-                    }
-                    else
-                    {
-                        sql += $" and t1.orderno='{ProductNo} -{AreaNo.ToDescription()}' ";
-                    }
+                    case EReportType.Physical:
+                        if (string.IsNullOrWhiteSpace(OrderNo) == false)
+                        {
+                            if (AreaNo == EReportArea.None)
+                            {
+                                sql += $" and t3.jobcomments like '{OrderNo}%%' ";
+                            }
+                            else
+                            {
+                                sql += $" and t3.jobcomments='{OrderNo} -{AreaNo.ToDescription()}' ";
+                            }
+                        }
+                        sql += $" and t1.pro_job in (select pro_job from PROFJOB_CUID_SCHEME_ANALYTE where formattedvalue is null)";
+                        break;
+
+                    case EReportType.Chemical:
+                        if (string.IsNullOrWhiteSpace(OrderNo) == false)
+                        {
+                            sql += $" and t3.jobcomments like '%%{OrderNo}%%' ";
+                        }
+                        sql += $" and t1.pro_job in (select pro_job from PROFJOB_CUID_SCHEME_ANALYTE where formattedvalue is not null)";
+                        break;
                 }
+
                 if (string.IsNullOrWhiteSpace(From) == false)
                 {
                     if (From == To)
@@ -1409,8 +1937,9 @@ namespace Sgs.ReportIntegration
             }
             else
             {
+                Type = EReportType.None;
                 AreaNo = EReportArea.None;
-                ProductNo = "";
+                OrderNo = "";
                 ClientNo = "";
                 ClientName = "";
                 ClientAddress = "";
@@ -1432,31 +1961,32 @@ namespace Sgs.ReportIntegration
 
         public void Fetch(DataRow row)
         {
-            string[] strs = Convert.ToString(row["orderno"]).Split('-');
+            AreaNo = EReportArea.None;
+            OrderNo = Convert.ToString(row["orderno"]);
 
-            if (strs.Length > 1)
+            if (Type == EReportType.Physical)
             {
-                switch (strs[1].ToUpper().Trim())
+                string[] strs = OrderNo.Split('-');
+
+                if (strs.Length > 1)
                 {
-                    case "ASTM":
-                        AreaNo = EReportArea.US;
-                        break;
+                    switch (strs[1].ToUpper().Trim())
+                    {
+                        case "ASTM":
+                            AreaNo = EReportArea.US;
+                            break;
 
-                    case "EN":
-                        AreaNo = EReportArea.EU;
-                        break;
+                        case "EN":
+                            AreaNo = EReportArea.EU;
+                            break;
+                    }
 
-                    default:
-                        AreaNo = EReportArea.None;
-                        break;
+                    OrderNo = strs[0].Trim();
                 }
-
-                ProductNo = strs[0].Trim();
-            }
-            else
-            {
-                AreaNo = EReportArea.None;
-                ProductNo = "";
+                else
+                {
+                    OrderNo = "";
+                }
             }
 
             ClientNo = Convert.ToString(row["cli_code"]);
@@ -1484,6 +2014,96 @@ namespace Sgs.ReportIntegration
                 Image = null;
             else
                 Image = new Bitmap(new MemoryStream(imageRaw));
+        }
+    }
+
+    public class ProfJobSchemeDataSet : UlSqlDataSet
+    {
+        public EReportArea Area { get; set; }
+
+        public string MaterialNo { get; set; }
+
+        public string Name { get; set; }
+
+        public string LoValue { get; set; }
+
+        public string HiValue { get; set; }
+
+        public string ReportValue { get; set; }
+
+        public string FormatValue { get; set; }
+
+        public ProfJobSchemeDataSet(SqlConnection connect, SqlCommand command, SqlDataAdapter adapter)
+            : base(connect, command, adapter)
+        {
+        }
+
+        public void Select(SqlTransaction trans = null)
+        {
+            SetTrans(trans);
+            command.CommandText =
+                $" select t2.sch_code, t3.description, " +
+                $"     t2.lvl1lowerlimit, t2.lvl1upperlimit, " +
+                $"     t2.repdetlimit, t1.formattedvalue " +
+                $" from PROFJOB t0 " +
+                $"     Join PROFJOB_CUID_SCHEME_ANALYTE t1 on " +
+                $"         (t1.pro_job=t0.pro_job) " +
+                $"     join PROFJOB_SCHEME_ANALYTE t2 on " +
+                $"         (t2.labcode=t1.labcode and t2.pro_job=t1.pro_job and " +
+                $"         t2.sch_code=t1.sch_code and t2.analytecode=t1.analytecode) " +
+                $"     join SCHEME_ANALYTE t3 on " +
+                $"         (t3.labcode=t1.labcode and t3.sch_code=t1.sch_code and " +
+                $"         t3.schversion=t1.schversion and t3.analytecode=t1.analytecode) " +
+                $" where t0.orderno='{MaterialNo}' ";
+            dataSet.Clear();
+            dataAdapter.Fill(dataSet);
+        }
+
+        public void Fetch(int index = 0, int tableNo = 0)
+        {
+            if (index < GetRowCount(tableNo))
+            {
+                Fetch(dataSet.Tables[tableNo].Rows[index]);
+            }
+            else
+            {
+                Area = EReportArea.US;
+                //JobNo = "";
+                Name = "";
+                LoValue = "";
+                HiValue = "";
+                ReportValue = "";
+                FormatValue = "";
+            }
+        }
+
+        public void Fetch(DataRow row)
+        {
+            string area = Convert.ToString(row["sch_code"]);
+            //JobNo = Convert.ToString(row["pro_job"]);
+            Name = Convert.ToString(row["description"]);
+            LoValue = Convert.ToString(row["lvl1lowerlimit"]);
+            HiValue = Convert.ToString(row["lvl1upperlimit"]);
+            ReportValue = Convert.ToString(row["repdetlimit"]);
+            FormatValue = Convert.ToString(row["formattedlimit"]);
+
+            if (area.Substring(4, 2) == "AS")
+            {
+                Area = EReportArea.US;
+            }
+            else
+            {
+                Area = EReportArea.EU;
+            }
+
+            if (string.IsNullOrWhiteSpace(FormatValue) == true)
+            {
+                FormatValue = "--";
+            }
+            else if (FormatValue.Substring(0, 1) == "<")
+            {
+                FormatValue = "ND";
+            }
         }
     }
 }

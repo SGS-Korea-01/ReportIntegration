@@ -46,16 +46,23 @@
             this.physicalDeleteButton = new DevExpress.XtraEditors.SimpleButton();
             this.physicalImportButton = new DevExpress.XtraEditors.SimpleButton();
             this.bomMenuPanel = new Ulee.Controls.UlPanel();
-            this.bomPrintButton = new DevExpress.XtraEditors.SimpleButton();
             this.bomDeleteButton = new DevExpress.XtraEditors.SimpleButton();
             this.bomImportButton = new DevExpress.XtraEditors.SimpleButton();
             this.viewPanel = new Ulee.Controls.UlPanel();
+            this.integrationButton = new DevExpress.XtraEditors.SimpleButton();
+            this.integMenuPanel = new Ulee.Controls.UlPanel();
+            this.integSaveButton = new DevExpress.XtraEditors.SimpleButton();
+            this.integCancelButton = new DevExpress.XtraEditors.SimpleButton();
+            this.integPrintButton = new DevExpress.XtraEditors.SimpleButton();
+            this.integDeleteButton = new DevExpress.XtraEditors.SimpleButton();
+            this.integImportButton = new DevExpress.XtraEditors.SimpleButton();
             this.bgPanel.SuspendLayout();
             this.menuPanel.SuspendLayout();
             this.chemicalMenuPanel.SuspendLayout();
             this.physicalMenuPanel.SuspendLayout();
             this.bomMenuPanel.SuspendLayout();
             this.viewPanel.SuspendLayout();
+            this.integMenuPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // bgPanel
@@ -71,6 +78,7 @@
             this.menuPanel.BackColor = System.Drawing.Color.Silver;
             this.menuPanel.BevelInner = Ulee.Controls.EUlBevelStyle.None;
             this.menuPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.Lowered;
+            this.menuPanel.Controls.Add(this.integrationButton);
             this.menuPanel.Controls.Add(this.bomButton);
             this.menuPanel.Controls.Add(this.chemicalButton);
             this.menuPanel.Controls.Add(this.physicalButton);
@@ -95,7 +103,7 @@
             this.bomButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
             this.bomButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bomButton.ImageOptions.Image")));
             this.bomButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.bomButton.Location = new System.Drawing.Point(2, 122);
+            this.bomButton.Location = new System.Drawing.Point(2, 2);
             this.bomButton.LookAndFeel.SkinName = "DevExpress Style";
             this.bomButton.LookAndFeel.UseDefaultLookAndFeel = false;
             this.bomButton.Name = "bomButton";
@@ -114,7 +122,7 @@
             this.chemicalButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
             this.chemicalButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("chemicalButton.ImageOptions.Image")));
             this.chemicalButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.chemicalButton.Location = new System.Drawing.Point(2, 62);
+            this.chemicalButton.Location = new System.Drawing.Point(2, 122);
             this.chemicalButton.LookAndFeel.SkinName = "DevExpress Style";
             this.chemicalButton.LookAndFeel.UseDefaultLookAndFeel = false;
             this.chemicalButton.Name = "chemicalButton";
@@ -133,7 +141,7 @@
             this.physicalButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
             this.physicalButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("physicalButton.ImageOptions.Image")));
             this.physicalButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.physicalButton.Location = new System.Drawing.Point(2, 2);
+            this.physicalButton.Location = new System.Drawing.Point(2, 62);
             this.physicalButton.LookAndFeel.SkinName = "DevExpress Style";
             this.physicalButton.LookAndFeel.UseDefaultLookAndFeel = false;
             this.physicalButton.Name = "physicalButton";
@@ -183,6 +191,7 @@
             this.chemicalSaveButton.TabIndex = 46;
             this.chemicalSaveButton.TabStop = false;
             this.chemicalSaveButton.Text = "SAVE";
+            this.chemicalSaveButton.Click += new System.EventHandler(this.chemicalSaveButton_Click);
             // 
             // chemicalCancelButton
             // 
@@ -202,6 +211,7 @@
             this.chemicalCancelButton.TabIndex = 45;
             this.chemicalCancelButton.TabStop = false;
             this.chemicalCancelButton.Text = "CANCEL";
+            this.chemicalCancelButton.Click += new System.EventHandler(this.chemicalCancelButton_Click);
             // 
             // chemicalPrintButton
             // 
@@ -221,6 +231,7 @@
             this.chemicalPrintButton.TabIndex = 41;
             this.chemicalPrintButton.TabStop = false;
             this.chemicalPrintButton.Text = "PRINT";
+            this.chemicalPrintButton.Click += new System.EventHandler(this.chemicalPrintButton_Click);
             // 
             // chemicalDeleteButton
             // 
@@ -240,6 +251,7 @@
             this.chemicalDeleteButton.TabStop = false;
             this.chemicalDeleteButton.Tag = "0";
             this.chemicalDeleteButton.Text = "DELETE";
+            this.chemicalDeleteButton.Click += new System.EventHandler(this.chemicalDeleteButton_Click);
             // 
             // chemicalImportButton
             // 
@@ -388,12 +400,11 @@
             this.bomMenuPanel.BackColor = System.Drawing.Color.Silver;
             this.bomMenuPanel.BevelInner = Ulee.Controls.EUlBevelStyle.None;
             this.bomMenuPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.None;
-            this.bomMenuPanel.Controls.Add(this.bomPrintButton);
             this.bomMenuPanel.Controls.Add(this.bomDeleteButton);
             this.bomMenuPanel.Controls.Add(this.bomImportButton);
             this.bomMenuPanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.bomMenuPanel.InnerColor2 = System.Drawing.Color.White;
-            this.bomMenuPanel.Location = new System.Drawing.Point(652, 328);
+            this.bomMenuPanel.Location = new System.Drawing.Point(737, 328);
             this.bomMenuPanel.Name = "bomMenuPanel";
             this.bomMenuPanel.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.bomMenuPanel.OuterColor2 = System.Drawing.Color.White;
@@ -402,25 +413,6 @@
             this.bomMenuPanel.TabIndex = 39;
             this.bomMenuPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
             this.bomMenuPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
-            // 
-            // bomPrintButton
-            // 
-            this.bomPrintButton.AllowFocus = false;
-            this.bomPrintButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bomPrintButton.Appearance.Options.UseFont = true;
-            this.bomPrintButton.Appearance.Options.UseTextOptions = true;
-            this.bomPrintButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.bomPrintButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bomPrintButton.ImageOptions.Image")));
-            this.bomPrintButton.ImageOptions.ImageToTextIndent = 0;
-            this.bomPrintButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.bomPrintButton.Location = new System.Drawing.Point(0, 182);
-            this.bomPrintButton.LookAndFeel.SkinName = "DevExpress Style";
-            this.bomPrintButton.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.bomPrintButton.Name = "bomPrintButton";
-            this.bomPrintButton.Size = new System.Drawing.Size(80, 58);
-            this.bomPrintButton.TabIndex = 40;
-            this.bomPrintButton.TabStop = false;
-            this.bomPrintButton.Text = "PRINT";
             // 
             // bomDeleteButton
             // 
@@ -431,7 +423,7 @@
             this.bomDeleteButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
             this.bomDeleteButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bomDeleteButton.ImageOptions.Image")));
             this.bomDeleteButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.bomDeleteButton.Location = new System.Drawing.Point(0, 122);
+            this.bomDeleteButton.Location = new System.Drawing.Point(0, 182);
             this.bomDeleteButton.LookAndFeel.SkinName = "DevExpress Style";
             this.bomDeleteButton.LookAndFeel.UseDefaultLookAndFeel = false;
             this.bomDeleteButton.Name = "bomDeleteButton";
@@ -440,6 +432,7 @@
             this.bomDeleteButton.TabStop = false;
             this.bomDeleteButton.Tag = "0";
             this.bomDeleteButton.Text = "DELETE";
+            this.bomDeleteButton.Click += new System.EventHandler(this.bomDeleteButton_Click);
             // 
             // bomImportButton
             // 
@@ -450,7 +443,7 @@
             this.bomImportButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
             this.bomImportButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bomImportButton.ImageOptions.Image")));
             this.bomImportButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.bomImportButton.Location = new System.Drawing.Point(0, 62);
+            this.bomImportButton.Location = new System.Drawing.Point(0, 122);
             this.bomImportButton.LookAndFeel.SkinName = "DevExpress Style";
             this.bomImportButton.LookAndFeel.UseDefaultLookAndFeel = false;
             this.bomImportButton.Name = "bomImportButton";
@@ -465,6 +458,7 @@
             // 
             this.viewPanel.BevelInner = Ulee.Controls.EUlBevelStyle.None;
             this.viewPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.None;
+            this.viewPanel.Controls.Add(this.integMenuPanel);
             this.viewPanel.Controls.Add(this.physicalMenuPanel);
             this.viewPanel.Controls.Add(this.bomMenuPanel);
             this.viewPanel.Controls.Add(this.chemicalMenuPanel);
@@ -480,6 +474,147 @@
             this.viewPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
             this.viewPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
             // 
+            // integrationButton
+            // 
+            this.integrationButton.AllowFocus = false;
+            this.integrationButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.integrationButton.Appearance.Options.UseFont = true;
+            this.integrationButton.Appearance.Options.UseTextOptions = true;
+            this.integrationButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.integrationButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.integrationButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.integrationButton.Location = new System.Drawing.Point(2, 182);
+            this.integrationButton.LookAndFeel.SkinName = "DevExpress Style";
+            this.integrationButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.integrationButton.Name = "integrationButton";
+            this.integrationButton.Size = new System.Drawing.Size(80, 58);
+            this.integrationButton.TabIndex = 39;
+            this.integrationButton.TabStop = false;
+            this.integrationButton.Tag = "0";
+            this.integrationButton.Text = "INTEGR.";
+            // 
+            // integMenuPanel
+            // 
+            this.integMenuPanel.BackColor = System.Drawing.Color.Silver;
+            this.integMenuPanel.BevelInner = Ulee.Controls.EUlBevelStyle.None;
+            this.integMenuPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.None;
+            this.integMenuPanel.Controls.Add(this.integSaveButton);
+            this.integMenuPanel.Controls.Add(this.integCancelButton);
+            this.integMenuPanel.Controls.Add(this.integPrintButton);
+            this.integMenuPanel.Controls.Add(this.integDeleteButton);
+            this.integMenuPanel.Controls.Add(this.integImportButton);
+            this.integMenuPanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.integMenuPanel.InnerColor2 = System.Drawing.Color.White;
+            this.integMenuPanel.Location = new System.Drawing.Point(652, 270);
+            this.integMenuPanel.Name = "integMenuPanel";
+            this.integMenuPanel.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.integMenuPanel.OuterColor2 = System.Drawing.Color.White;
+            this.integMenuPanel.Size = new System.Drawing.Size(80, 298);
+            this.integMenuPanel.Spacing = 0;
+            this.integMenuPanel.TabIndex = 42;
+            this.integMenuPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
+            this.integMenuPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            // 
+            // integSaveButton
+            // 
+            this.integSaveButton.AllowFocus = false;
+            this.integSaveButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.integSaveButton.Appearance.Options.UseBorderColor = true;
+            this.integSaveButton.Appearance.Options.UseFont = true;
+            this.integSaveButton.Appearance.Options.UseTextOptions = true;
+            this.integSaveButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.integSaveButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image1")));
+            this.integSaveButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.integSaveButton.Location = new System.Drawing.Point(0, 180);
+            this.integSaveButton.LookAndFeel.SkinName = "DevExpress Style";
+            this.integSaveButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.integSaveButton.Name = "integSaveButton";
+            this.integSaveButton.Size = new System.Drawing.Size(80, 58);
+            this.integSaveButton.TabIndex = 46;
+            this.integSaveButton.TabStop = false;
+            this.integSaveButton.Text = "SAVE";
+            this.integSaveButton.Click += new System.EventHandler(this.integSaveButton_Click);
+            // 
+            // integCancelButton
+            // 
+            this.integCancelButton.AllowFocus = false;
+            this.integCancelButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.integCancelButton.Appearance.Options.UseBorderColor = true;
+            this.integCancelButton.Appearance.Options.UseFont = true;
+            this.integCancelButton.Appearance.Options.UseTextOptions = true;
+            this.integCancelButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.integCancelButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
+            this.integCancelButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.integCancelButton.Location = new System.Drawing.Point(0, 240);
+            this.integCancelButton.LookAndFeel.SkinName = "DevExpress Style";
+            this.integCancelButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.integCancelButton.Name = "integCancelButton";
+            this.integCancelButton.Size = new System.Drawing.Size(80, 58);
+            this.integCancelButton.TabIndex = 45;
+            this.integCancelButton.TabStop = false;
+            this.integCancelButton.Text = "CANCEL";
+            this.integCancelButton.Click += new System.EventHandler(this.integCancelButton_Click);
+            // 
+            // integPrintButton
+            // 
+            this.integPrintButton.AllowFocus = false;
+            this.integPrintButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.integPrintButton.Appearance.Options.UseFont = true;
+            this.integPrintButton.Appearance.Options.UseTextOptions = true;
+            this.integPrintButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.integPrintButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
+            this.integPrintButton.ImageOptions.ImageToTextIndent = 0;
+            this.integPrintButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.integPrintButton.Location = new System.Drawing.Point(0, 120);
+            this.integPrintButton.LookAndFeel.SkinName = "DevExpress Style";
+            this.integPrintButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.integPrintButton.Name = "integPrintButton";
+            this.integPrintButton.Size = new System.Drawing.Size(80, 58);
+            this.integPrintButton.TabIndex = 41;
+            this.integPrintButton.TabStop = false;
+            this.integPrintButton.Text = "PRINT";
+            this.integPrintButton.Click += new System.EventHandler(this.integPrintButton_Click);
+            // 
+            // integDeleteButton
+            // 
+            this.integDeleteButton.AllowFocus = false;
+            this.integDeleteButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.integDeleteButton.Appearance.Options.UseFont = true;
+            this.integDeleteButton.Appearance.Options.UseTextOptions = true;
+            this.integDeleteButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.integDeleteButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton4.ImageOptions.Image")));
+            this.integDeleteButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.integDeleteButton.Location = new System.Drawing.Point(0, 60);
+            this.integDeleteButton.LookAndFeel.SkinName = "DevExpress Style";
+            this.integDeleteButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.integDeleteButton.Name = "integDeleteButton";
+            this.integDeleteButton.Size = new System.Drawing.Size(80, 58);
+            this.integDeleteButton.TabIndex = 37;
+            this.integDeleteButton.TabStop = false;
+            this.integDeleteButton.Tag = "0";
+            this.integDeleteButton.Text = "DELETE";
+            this.integDeleteButton.Click += new System.EventHandler(this.integDeleteButton_Click);
+            // 
+            // integImportButton
+            // 
+            this.integImportButton.AllowFocus = false;
+            this.integImportButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.integImportButton.Appearance.Options.UseFont = true;
+            this.integImportButton.Appearance.Options.UseTextOptions = true;
+            this.integImportButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.integImportButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton5.ImageOptions.Image")));
+            this.integImportButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.integImportButton.Location = new System.Drawing.Point(0, 0);
+            this.integImportButton.LookAndFeel.SkinName = "DevExpress Style";
+            this.integImportButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.integImportButton.Name = "integImportButton";
+            this.integImportButton.Size = new System.Drawing.Size(80, 58);
+            this.integImportButton.TabIndex = 36;
+            this.integImportButton.TabStop = false;
+            this.integImportButton.Tag = "0";
+            this.integImportButton.Text = "IMPORT";
+            this.integImportButton.Click += new System.EventHandler(this.integImportButton_Click);
+            // 
             // CtrlEditRight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -493,6 +628,7 @@
             this.physicalMenuPanel.ResumeLayout(false);
             this.bomMenuPanel.ResumeLayout(false);
             this.viewPanel.ResumeLayout(false);
+            this.integMenuPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -513,12 +649,18 @@
         private Ulee.Controls.UlPanel physicalMenuPanel;
         private DevExpress.XtraEditors.SimpleButton physicalDeleteButton;
         private DevExpress.XtraEditors.SimpleButton physicalImportButton;
-        private DevExpress.XtraEditors.SimpleButton bomPrintButton;
         private DevExpress.XtraEditors.SimpleButton physicalPrintButton;
         private DevExpress.XtraEditors.SimpleButton chemicalPrintButton;
         private DevExpress.XtraEditors.SimpleButton physicalSaveButton;
         private DevExpress.XtraEditors.SimpleButton physicalCancelButton;
         private DevExpress.XtraEditors.SimpleButton chemicalSaveButton;
         private DevExpress.XtraEditors.SimpleButton chemicalCancelButton;
+        private DevExpress.XtraEditors.SimpleButton integrationButton;
+        private Ulee.Controls.UlPanel integMenuPanel;
+        private DevExpress.XtraEditors.SimpleButton integSaveButton;
+        private DevExpress.XtraEditors.SimpleButton integCancelButton;
+        private DevExpress.XtraEditors.SimpleButton integPrintButton;
+        private DevExpress.XtraEditors.SimpleButton integDeleteButton;
+        private DevExpress.XtraEditors.SimpleButton integImportButton;
     }
 }

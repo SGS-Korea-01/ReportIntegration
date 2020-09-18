@@ -21,9 +21,13 @@ namespace Sgs.ReportIntegration
         {
             viewPanel.Controls.Clear();
 
+            menuPanel.Controls.Add(bomMenuPanel);
             menuPanel.Controls.Add(physicalMenuPanel);
             menuPanel.Controls.Add(chemicalMenuPanel);
-            menuPanel.Controls.Add(bomMenuPanel);
+            menuPanel.Controls.Add(integMenuPanel);
+
+            bomMenuPanel.Left = 2;
+            bomMenuPanel.Top = 326;
 
             physicalMenuPanel.Left = 2;
             physicalMenuPanel.Top = 268;
@@ -31,13 +35,14 @@ namespace Sgs.ReportIntegration
             chemicalMenuPanel.Left = 2;
             chemicalMenuPanel.Top = 268;
 
-            bomMenuPanel.Left = 2;
-            bomMenuPanel.Top = 326;
+            integMenuPanel.Left = 2;
+            integMenuPanel.Top = 268;
 
             DefMenu = new UlMenu(viewPanel);
+            DefMenu.Add(new CtrlEditBom(this), bomButton);
             DefMenu.Add(new CtrlEditPhysical(this), physicalButton);
             DefMenu.Add(new CtrlEditChemical(this), chemicalButton);
-            DefMenu.Add(new CtrlEditBom(this), bomButton);
+            DefMenu.Add(new CtrlEditIntegration(this), integrationButton);
             DefMenu.Index = 0;
         }
 
@@ -48,39 +53,10 @@ namespace Sgs.ReportIntegration
             menuPanel.Size = new Size(84, Height);
             menuPanel.Left = Width - 84;
 
+            bomMenuPanel.Top = menuPanel.Size.Height - 242;
             physicalMenuPanel.Top = menuPanel.Size.Height - 300;
             chemicalMenuPanel.Top = menuPanel.Size.Height - 300;
-            bomMenuPanel.Top = menuPanel.Size.Height - 242;
-        }
-
-        private void physicalImportButton_Click(object sender, EventArgs e)
-        {
-            (DefMenu.Controls(0) as CtrlEditPhysical).Import();
-        }
-
-        private void physicalDeleteButton_Click(object sender, EventArgs e)
-        {
-            (DefMenu.Controls(0) as CtrlEditPhysical).Delete();
-        }
-
-        private void physicalPrintButton_Click(object sender, EventArgs e)
-        {
-            (DefMenu.Controls(0) as CtrlEditPhysical).Print();
-        }
-
-        private void physicalSaveButton_Click(object sender, EventArgs e)
-        {
-            (DefMenu.Controls(0) as CtrlEditPhysical).Save();
-        }
-
-        private void physicalCancelButton_Click(object sender, EventArgs e)
-        {
-            (DefMenu.Controls(0) as CtrlEditPhysical).Cancel();
-        }
-
-        private void chemicalImportButton_Click(object sender, EventArgs e)
-        {
-            //(DefMenu.Controls(1) as CtrlEditChemical).Import();
+            integMenuPanel.Top = menuPanel.Size.Height - 300;
         }
 
         private void bomImportButton_Click(object sender, EventArgs e)
@@ -97,9 +73,89 @@ namespace Sgs.ReportIntegration
 
                 if (area != EReportArea.None)
                 {
-                    (DefMenu.Controls(2) as CtrlEditBom).Import(area, fName);
+                    (DefMenu.Controls(0) as CtrlEditBom).Import(area, fName);
                 }
             }
+        }
+
+        private void bomDeleteButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void physicalImportButton_Click(object sender, EventArgs e)
+        {
+            (DefMenu.Controls(1) as CtrlEditPhysical).Import();
+        }
+
+        private void physicalDeleteButton_Click(object sender, EventArgs e)
+        {
+            (DefMenu.Controls(1) as CtrlEditPhysical).Delete();
+        }
+
+        private void physicalPrintButton_Click(object sender, EventArgs e)
+        {
+            (DefMenu.Controls(1) as CtrlEditPhysical).Print();
+        }
+
+        private void physicalSaveButton_Click(object sender, EventArgs e)
+        {
+            (DefMenu.Controls(1) as CtrlEditPhysical).Save();
+        }
+
+        private void physicalCancelButton_Click(object sender, EventArgs e)
+        {
+            (DefMenu.Controls(1) as CtrlEditPhysical).Cancel();
+        }
+
+        private void chemicalImportButton_Click(object sender, EventArgs e)
+        {
+            (DefMenu.Controls(2) as CtrlEditChemical).Import();
+        }
+
+        private void chemicalDeleteButton_Click(object sender, EventArgs e)
+        {
+            //(DefMenu.Controls(2) as CtrlEditChemical).Delete();
+        }
+
+        private void chemicalPrintButton_Click(object sender, EventArgs e)
+        {
+            //(DefMenu.Controls(2) as CtrlEditChemical).Print();
+        }
+
+        private void chemicalSaveButton_Click(object sender, EventArgs e)
+        {
+            //(DefMenu.Controls(2) as CtrlEditChemical).Save();
+        }
+
+        private void chemicalCancelButton_Click(object sender, EventArgs e)
+        {
+            //(DefMenu.Controls(2) as CtrlEditChemical).Cancel();
+        }
+
+        private void integImportButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void integDeleteButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void integPrintButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void integSaveButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void integCancelButton_Click(object sender, EventArgs e)
+        {
+
         }
 
         public void SetMenu(int index)
@@ -107,22 +163,28 @@ namespace Sgs.ReportIntegration
             bomMenuPanel.Visible = false;
             physicalMenuPanel.Visible = false;
             chemicalMenuPanel.Visible = false;
+            integMenuPanel.Visible = false;
 
             switch (index)
             {
-                // Physical
+                // BOM
                 case 0:
+                    bomMenuPanel.Visible = true;
+                    break;
+
+                // Physical
+                case 1:
                     physicalMenuPanel.Visible = true;
                     break;
 
                 // Chemical
-                case 1:
+                case 2:
                     chemicalMenuPanel.Visible = true;
                     break;
 
-                // BOM
-                case 2:
-                    bomMenuPanel.Visible = true;
+                // Integration
+                case 3:
+                    integMenuPanel.Visible = true;
                     break;
             }
         }

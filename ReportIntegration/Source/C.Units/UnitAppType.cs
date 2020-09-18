@@ -27,6 +27,19 @@ namespace Sgs.ReportIntegration
         [Description("Approved")]
         Approved = 1
     }
+
+    public enum EReportType
+    {
+        [Description("None")]
+        None = -1,
+        [Description("Physical")]
+        Physical = 0,
+        [Description("Chemical")]
+        Chemical = 1,
+        [Description("Integration")]
+        Integration = 2
+    }
+
     #endregion
 
     #region GridTypeFormat
@@ -217,6 +230,31 @@ namespace Sgs.ReportIntegration
             TestItem = "";
             Result = "";
             Requirement = "";
+        }
+    }
+
+    public class ChemicalPage2Row
+    {
+        public Int64 RecNo { get; set; }
+
+        public string HiLimit { get; set; }
+
+        public string LoLimit { get; set; }
+
+        public string ReportLimit { get; set; }
+
+        public string FormatValue { get; set; }
+
+        public string Name { get; set; }
+
+        public ChemicalPage2Row()
+        {
+            RecNo = 0;
+            HiLimit = "";
+            LoLimit = "";
+            ReportLimit = "";
+            FormatValue = "";
+            Name = "";
         }
     }
     #endregion

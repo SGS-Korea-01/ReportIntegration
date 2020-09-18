@@ -1,3 +1,4 @@
+
 CREATE TABLE [dbo].[TB_PHYMAIN](
 	[pk_recno] [bigint] IDENTITY(1,1) NOT NULL,
 	[regtime] [varchar](23) NOT NULL,
@@ -38,7 +39,7 @@ CREATE TABLE [dbo].[TB_PHYMAIN](
 	[p4desc3] [varchar](500) NOT NULL,
 	[p5desc1] [varchar](500) NOT NULL,
 	[p5desc2] [varchar](1500) NOT NULL,
-	CONSTRAINT [PK_TB_PHYMAIN] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_TB_PHYMAIN] PRIMARY KEY CLUSTERED 
 (
 	[pk_recno] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
@@ -66,7 +67,7 @@ CREATE TABLE [dbo].[TB_PHYP2](
 	[no] [int] NOT NULL,
 	[line] [int] NOT NULL,
 	[requested] [varchar](250) NOT NULL,
-	[conclusion] [varchar](10) NOT NULL,
+	[conclusion] [varchar](20) NOT NULL,
  CONSTRAINT [PK_TB_PHYP2] PRIMARY KEY CLUSTERED 
 (
 	[pk_recno] ASC
@@ -122,7 +123,7 @@ CREATE TABLE [dbo].[TB_PHYP41](
 	[no] [int] NOT NULL,
 	[line] [int] NOT NULL,
 	[sample] [varchar](50) NOT NULL,
-	[burningrate] [varchar](10) NOT NULL,
+	[burningrate] [varchar](20) NOT NULL,
  CONSTRAINT [PK_TB_PHYP41] PRIMARY KEY CLUSTERED 
 (
 	[pk_recno] ASC

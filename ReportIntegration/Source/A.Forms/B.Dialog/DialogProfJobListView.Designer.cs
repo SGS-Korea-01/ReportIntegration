@@ -42,7 +42,7 @@
             this.reportItemNoColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.reportProductColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.reportClientColumn = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.label1 = new System.Windows.Forms.Label();
+            this.itemNoLabel = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.areaCombo = new System.Windows.Forms.ComboBox();
@@ -58,7 +58,7 @@
             this.bgPanel.Controls.Add(this.areaCombo);
             this.bgPanel.Controls.Add(this.label19);
             this.bgPanel.Controls.Add(this.okButton);
-            this.bgPanel.Controls.Add(this.label1);
+            this.bgPanel.Controls.Add(this.itemNoLabel);
             this.bgPanel.Controls.Add(this.cancelButton);
             this.bgPanel.Controls.Add(this.reportGrid);
             this.bgPanel.Controls.Add(this.toDateEdit);
@@ -68,7 +68,7 @@
             this.bgPanel.Controls.Add(this.resetButton);
             this.bgPanel.Controls.Add(this.findButton);
             this.bgPanel.Controls.Add(this.itemNoEdit);
-            this.bgPanel.Size = new System.Drawing.Size(684, 547);
+            this.bgPanel.Size = new System.Drawing.Size(706, 547);
             // 
             // toDateEdit
             // 
@@ -122,7 +122,7 @@
             this.resetButton.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resetButton.Image = ((System.Drawing.Image)(resources.GetObject("resetButton.Image")));
             this.resetButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.resetButton.Location = new System.Drawing.Point(608, 8);
+            this.resetButton.Location = new System.Drawing.Point(630, 8);
             this.resetButton.Name = "resetButton";
             this.resetButton.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.resetButton.Size = new System.Drawing.Size(68, 24);
@@ -136,7 +136,7 @@
             this.findButton.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.findButton.Image = ((System.Drawing.Image)(resources.GetObject("findButton.Image")));
             this.findButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.findButton.Location = new System.Drawing.Point(538, 8);
+            this.findButton.Location = new System.Drawing.Point(560, 8);
             this.findButton.Name = "findButton";
             this.findButton.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.findButton.Size = new System.Drawing.Size(68, 24);
@@ -148,7 +148,7 @@
             // itemNoEdit
             // 
             this.itemNoEdit.EditValue = "";
-            this.itemNoEdit.Location = new System.Drawing.Point(432, 9);
+            this.itemNoEdit.Location = new System.Drawing.Point(454, 9);
             this.itemNoEdit.Name = "itemNoEdit";
             this.itemNoEdit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.itemNoEdit.Properties.Appearance.Options.UseFont = true;
@@ -163,7 +163,7 @@
             this.reportGrid.LookAndFeel.UseDefaultLookAndFeel = false;
             this.reportGrid.MainView = this.reportGridView;
             this.reportGrid.Name = "reportGrid";
-            this.reportGrid.Size = new System.Drawing.Size(668, 462);
+            this.reportGrid.Size = new System.Drawing.Size(690, 462);
             this.reportGrid.TabIndex = 7;
             this.reportGrid.TabStop = false;
             this.reportGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -309,16 +309,16 @@
             this.reportClientColumn.VisibleIndex = 3;
             this.reportClientColumn.Width = 190;
             // 
-            // label1
+            // itemNoLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(398, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(31, 15);
-            this.label1.TabIndex = 110;
-            this.label1.Text = "Item";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.itemNoLabel.AutoSize = true;
+            this.itemNoLabel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.itemNoLabel.Location = new System.Drawing.Point(398, 12);
+            this.itemNoLabel.Name = "itemNoLabel";
+            this.itemNoLabel.Size = new System.Drawing.Size(53, 15);
+            this.itemNoLabel.TabIndex = 110;
+            this.itemNoLabel.Text = "Item No.";
+            this.itemNoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // okButton
             // 
@@ -326,7 +326,7 @@
             this.okButton.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.okButton.Image = ((System.Drawing.Image)(resources.GetObject("okButton.Image")));
             this.okButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.okButton.Location = new System.Drawing.Point(472, 506);
+            this.okButton.Location = new System.Drawing.Point(494, 506);
             this.okButton.Name = "okButton";
             this.okButton.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.okButton.Size = new System.Drawing.Size(100, 32);
@@ -341,7 +341,7 @@
             this.cancelButton.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancelButton.Image = ((System.Drawing.Image)(resources.GetObject("cancelButton.Image")));
             this.cancelButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cancelButton.Location = new System.Drawing.Point(576, 506);
+            this.cancelButton.Location = new System.Drawing.Point(598, 506);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
             this.cancelButton.Size = new System.Drawing.Size(100, 32);
@@ -373,15 +373,16 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(684, 547);
+            this.ClientSize = new System.Drawing.Size(706, 547);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "DialogProfJobListView";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Import Physical Report";
+            this.Text = "Import";
             this.Load += new System.EventHandler(this.DialogProfJobListView_Load);
+            this.Shown += new System.EventHandler(this.DialogProfJobListView_Shown);
             this.bgPanel.ResumeLayout(false);
             this.bgPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.itemNoEdit.Properties)).EndInit();
@@ -407,7 +408,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn reportItemNoColumn;
         private DevExpress.XtraGrid.Columns.GridColumn reportProductColumn;
         private DevExpress.XtraGrid.Columns.GridColumn reportClientColumn;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label itemNoLabel;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.ComboBox areaCombo;

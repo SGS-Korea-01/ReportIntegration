@@ -51,37 +51,35 @@
     <ApplicationIcon>SgsLogo48.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Charts.v20.1.Core, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Data.Desktop.v20.1, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Data.v20.1, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.DataAccess.v20.1, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.DataAccess.v20.1.UI, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Office.v20.1.Core, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Pdf.v20.1.Core, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.PivotGrid.v20.1.Core, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Printing.v20.1.Core, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.RichEdit.v20.1.Core, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.RichEdit.v20.1.Export, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Sparkline.v20.1.Core, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Spreadsheet.v20.1.Core, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Utils.v20.1, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Utils.v20.1.UI, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Xpo.v20.1, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraBars.v20.1, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraCharts.v20.1, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraEditors.v20.1, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraGauges.v20.1.Core, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraGrid.v20.1, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraLayout.v20.1, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraNavBar.v20.1, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraPrinting.v20.1, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.CodeParser.v20.1, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraReports.v20.1, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraReports.v20.1.Extensions, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraRichEdit.v20.1, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraSpreadsheet.v20.1, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraTreeList.v20.1, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraVerticalGrid.v20.1, Version=20.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Charts.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.Desktop.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.DataAccess.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.DataAccess.v20.1.UI, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v20.1.Export, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Spreadsheet.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v20.1.UI, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraEditors.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraLayout.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraNavBar.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPrinting.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v20.1.Extensions, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraRichEdit.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraSpreadsheet.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -139,18 +137,6 @@
     <Compile Include="Source\B.Controls\A.Edit\CtrlEditChemical.Designer.cs">
       <DependentUpon>CtrlEditChemical.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\B.Controls\A.Edit\CtrlEditChemicalUs.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Source\B.Controls\A.Edit\CtrlEditChemicalUs.Designer.cs">
-      <DependentUpon>CtrlEditChemicalUs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Source\B.Controls\A.Edit\CtrlEditIntegration.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Source\B.Controls\A.Edit\CtrlEditIntegration.Designer.cs">
-      <DependentUpon>CtrlEditIntegration.cs</DependentUpon>
-    </Compile>
     <Compile Include="Source\B.Controls\A.Edit\CtrlEditPhysical.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -187,6 +173,18 @@
     <Compile Include="Source\B.Controls\B.View\CtrlViewRight.Designer.cs">
       <DependentUpon>CtrlViewRight.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\B.Controls\D.Log\CtrlLogRight.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\B.Controls\D.Log\CtrlLogRight.Designer.cs">
+      <DependentUpon>CtrlLogRight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\B.Controls\D.Log\CtrlLogView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\B.Controls\D.Log\CtrlLogView.Designer.cs">
+      <DependentUpon>CtrlLogView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\B.Controls\C.Settings\CtrlSettingsReport.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -199,14 +197,6 @@
     <Compile Include="Source\B.Controls\C.Settings\CtrlSettingsRight.Designer.cs">
       <DependentUpon>CtrlSettingsRight.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\B.Controls\D.Log\CtrlLogRight.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Source\B.Controls\D.Log\CtrlLogRight.Designer.cs" />
-    <Compile Include="Source\B.Controls\D.Log\CtrlLogView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Source\B.Controls\D.Log\CtrlLogView.Designer.cs" />
     <Compile Include="Source\C.Units\UnitAppDatabase.cs" />
     <Compile Include="Source\C.Units\UnitAppHelper.cs" />
     <Compile Include="Source\C.Units\UnitAppInvalidThread.cs" />
@@ -218,12 +208,6 @@
     </Compile>
     <Compile Include="Source\D.Reports\ReportEuPhysical.Designer.cs">
       <DependentUpon>ReportEuPhysical.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Source\D.Reports\ReportUsChemical.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Source\D.Reports\ReportUsChemical.Designer.cs">
-      <DependentUpon>ReportUsChemical.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\D.Reports\ReportUsPhysical.cs">
       <SubType>Component</SubType>
@@ -261,12 +245,6 @@
     <EmbeddedResource Include="Source\B.Controls\A.Edit\CtrlEditChemical.resx">
       <DependentUpon>CtrlEditChemical.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\B.Controls\A.Edit\CtrlEditChemicalUs.resx">
-      <DependentUpon>CtrlEditChemicalUs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\B.Controls\A.Edit\CtrlEditIntegration.resx">
-      <DependentUpon>CtrlEditIntegration.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Source\B.Controls\A.Edit\CtrlEditPhysical.resx">
       <DependentUpon>CtrlEditPhysical.cs</DependentUpon>
     </EmbeddedResource>
@@ -285,19 +263,20 @@
     <EmbeddedResource Include="Source\B.Controls\B.View\CtrlViewRight.resx">
       <DependentUpon>CtrlViewRight.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Source\B.Controls\D.Log\CtrlLogRight.resx">
+      <DependentUpon>CtrlLogRight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\B.Controls\D.Log\CtrlLogView.resx">
+      <DependentUpon>CtrlLogView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\B.Controls\C.Settings\CtrlSettingsReport.resx">
       <DependentUpon>CtrlSettingsReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\B.Controls\C.Settings\CtrlSettingsRight.resx">
       <DependentUpon>CtrlSettingsRight.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\B.Controls\D.Log\CtrlLogRight.resx" />
-    <EmbeddedResource Include="Source\B.Controls\D.Log\CtrlLogView.resx" />
     <EmbeddedResource Include="Source\D.Reports\ReportEuPhysical.resx">
       <DependentUpon>ReportEuPhysical.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\D.Reports\ReportUsChemical.resx">
-      <DependentUpon>ReportUsChemical.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\D.Reports\ReportUsPhysical.resx">
       <DependentUpon>ReportUsPhysical.cs</DependentUpon>
