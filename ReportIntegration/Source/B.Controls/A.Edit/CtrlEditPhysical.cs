@@ -498,12 +498,12 @@ namespace Sgs.ReportIntegration
 
             if (profJobSet.Empty == true) return;
             if (area == EReportArea.None) return;
-            if (string.IsNullOrWhiteSpace(profJobSet.OrderNo) == true) return;
+            if (string.IsNullOrWhiteSpace(profJobSet.ItemNo) == true) return;
 
             phyMainSet.From = "";
             phyMainSet.To = "";
             phyMainSet.AreaNo = area;
-            phyMainSet.ProductNo = profJobSet.OrderNo;
+            phyMainSet.ProductNo = profJobSet.ItemNo;
             phyMainSet.Select();
 
             if (phyMainSet.Empty == false)
@@ -542,13 +542,13 @@ namespace Sgs.ReportIntegration
             phyMainSet.ReportedTime = profJobSet.ReportedTime;
             phyMainSet.Approval = false;
             phyMainSet.AreaNo = profJobSet.AreaNo;
-            phyMainSet.ProductNo = profJobSet.OrderNo;
+            phyMainSet.ProductNo = profJobSet.ItemNo;
             phyMainSet.JobNo = profJobSet.JobNo;
             phyMainSet.P1ClientNo = profJobSet.ClientNo;
             phyMainSet.P1ClientName = profJobSet.ClientName;
             phyMainSet.P1ClientAddress = profJobSet.ClientAddress;
             phyMainSet.P1FileNo = profJobSet.FileNo;
-            phyMainSet.P1SampleDescription = profJobSet.SampleDescription;
+            phyMainSet.P1SampleDescription = profJobSet.SampleRemark;
             phyMainSet.P1DetailOfSample = profJobSet.DetailOfSample;
             phyMainSet.P1ItemNo = profJobSet.ItemNo;
             phyMainSet.P1OrderNo = "-";

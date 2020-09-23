@@ -115,22 +115,22 @@ namespace Sgs.ReportIntegration
 
         private void chemicalDeleteButton_Click(object sender, EventArgs e)
         {
-            //(DefMenu.Controls(2) as CtrlEditChemical).Delete();
+            (DefMenu.Controls(2) as CtrlEditChemical).Delete();
         }
 
         private void chemicalPrintButton_Click(object sender, EventArgs e)
         {
-            //(DefMenu.Controls(2) as CtrlEditChemical).Print();
+            (DefMenu.Controls(2) as CtrlEditChemical).Print();
         }
 
         private void chemicalSaveButton_Click(object sender, EventArgs e)
         {
-            //(DefMenu.Controls(2) as CtrlEditChemical).Save();
+            (DefMenu.Controls(2) as CtrlEditChemical).Save();
         }
 
         private void chemicalCancelButton_Click(object sender, EventArgs e)
         {
-            //(DefMenu.Controls(2) as CtrlEditChemical).Cancel();
+            (DefMenu.Controls(2) as CtrlEditChemical).Cancel();
         }
 
         private void integImportButton_Click(object sender, EventArgs e)

@@ -78,9 +78,6 @@
             this.p2RowDownButton = new System.Windows.Forms.Button();
             this.p2RowPluseButton = new System.Windows.Forms.Button();
             this.p2RowMinusButton = new System.Windows.Forms.Button();
-            this.p2NameEdit = new DevExpress.XtraEditors.TextEdit();
-            this.p2SgsNameLabel = new System.Windows.Forms.Label();
-            this.p2ImageBox = new System.Windows.Forms.PictureBox();
             this.label16 = new System.Windows.Forms.Label();
             this.p2ResultGrid = new DevExpress.XtraGrid.GridControl();
             this.p2ResultGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -166,6 +163,10 @@
             this.imagePanel = new Ulee.Controls.UlPanel();
             this.p6DescPanel = new Ulee.Controls.UlPanel();
             this.p6ImageBox = new System.Windows.Forms.PictureBox();
+            this.physicalSignPage = new System.Windows.Forms.TabPage();
+            this.p2NameEdit = new DevExpress.XtraEditors.TextEdit();
+            this.p2SgsNameLabel = new System.Windows.Forms.Label();
+            this.p2ImageBox = new System.Windows.Forms.PictureBox();
             this.bgPanel.SuspendLayout();
             this.physicalTab.SuspendLayout();
             this.physical1Page.SuspendLayout();
@@ -191,8 +192,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.p1ClientAddressEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1ClientNameEdit.Properties)).BeginInit();
             this.physical2Page.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.p2NameEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.p2ImageBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2ResultGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2ResultGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2CheckEdit)).BeginInit();
@@ -232,6 +231,9 @@
             this.physical6Page.SuspendLayout();
             this.imagePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.p6ImageBox)).BeginInit();
+            this.physicalSignPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.p2NameEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.p2ImageBox)).BeginInit();
             this.SuspendLayout();
             // 
             // bgPanel
@@ -248,6 +250,7 @@
             this.physicalTab.Controls.Add(this.physical4Page);
             this.physicalTab.Controls.Add(this.physical5Page);
             this.physicalTab.Controls.Add(this.physical6Page);
+            this.physicalTab.Controls.Add(this.physicalSignPage);
             this.physicalTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.physicalTab.Location = new System.Drawing.Point(0, 0);
             this.physicalTab.Margin = new System.Windows.Forms.Padding(0);
@@ -828,9 +831,6 @@
             this.physical2Page.Controls.Add(this.p2RowDownButton);
             this.physical2Page.Controls.Add(this.p2RowPluseButton);
             this.physical2Page.Controls.Add(this.p2RowMinusButton);
-            this.physical2Page.Controls.Add(this.p2NameEdit);
-            this.physical2Page.Controls.Add(this.p2SgsNameLabel);
-            this.physical2Page.Controls.Add(this.p2ImageBox);
             this.physical2Page.Controls.Add(this.label16);
             this.physical2Page.Controls.Add(this.p2ResultGrid);
             this.physical2Page.Location = new System.Drawing.Point(4, 24);
@@ -887,46 +887,6 @@
             this.p2RowMinusButton.UseVisualStyleBackColor = true;
             this.p2RowMinusButton.Click += new System.EventHandler(this.p2RowMinusButton_Click);
             // 
-            // p2NameEdit
-            // 
-            this.p2NameEdit.EditValue = "";
-            this.p2NameEdit.Location = new System.Drawing.Point(324, 480);
-            this.p2NameEdit.Name = "p2NameEdit";
-            this.p2NameEdit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.p2NameEdit.Properties.Appearance.Options.UseFont = true;
-            this.p2NameEdit.Properties.Appearance.Options.UseTextOptions = true;
-            this.p2NameEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.p2NameEdit.Properties.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.p2NameEdit.Properties.AppearanceFocused.Options.UseFont = true;
-            this.p2NameEdit.Properties.AppearanceFocused.Options.UseTextOptions = true;
-            this.p2NameEdit.Properties.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.p2NameEdit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.p2NameEdit.Properties.AppearanceReadOnly.Options.UseFont = true;
-            this.p2NameEdit.Properties.MaxLength = 40;
-            this.p2NameEdit.Size = new System.Drawing.Size(220, 22);
-            this.p2NameEdit.TabIndex = 1;
-            // 
-            // p2SgsNameLabel
-            // 
-            this.p2SgsNameLabel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.p2SgsNameLabel.Location = new System.Drawing.Point(324, 358);
-            this.p2SgsNameLabel.Name = "p2SgsNameLabel";
-            this.p2SgsNameLabel.Size = new System.Drawing.Size(220, 22);
-            this.p2SgsNameLabel.TabIndex = 88;
-            this.p2SgsNameLabel.Text = "SGS Korea Co., Ltd.";
-            this.p2SgsNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // p2ImageBox
-            // 
-            this.p2ImageBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.p2ImageBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.p2ImageBox.Location = new System.Drawing.Point(324, 383);
-            this.p2ImageBox.Name = "p2ImageBox";
-            this.p2ImageBox.Size = new System.Drawing.Size(220, 91);
-            this.p2ImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.p2ImageBox.TabIndex = 87;
-            this.p2ImageBox.TabStop = false;
-            // 
             // label16
             // 
             this.label16.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
@@ -948,7 +908,7 @@
             this.p2MemoEdit,
             this.p2TextEdit,
             this.p2CheckEdit});
-            this.p2ResultGrid.Size = new System.Drawing.Size(540, 323);
+            this.p2ResultGrid.Size = new System.Drawing.Size(540, 473);
             this.p2ResultGrid.TabIndex = 0;
             this.p2ResultGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.p2ResultGridView});
@@ -1129,7 +1089,7 @@
             this.physical3Page.Location = new System.Drawing.Point(4, 24);
             this.physical3Page.Margin = new System.Windows.Forms.Padding(0);
             this.physical3Page.Name = "physical3Page";
-            this.physical3Page.Size = new System.Drawing.Size(292, 272);
+            this.physical3Page.Size = new System.Drawing.Size(548, 510);
             this.physical3Page.TabIndex = 2;
             this.physical3Page.Tag = "2";
             this.physical3Page.Text = "  Page 3  ";
@@ -1219,7 +1179,7 @@
             this.p3ClauseTextEdit,
             this.p3DescTextEdit,
             this.p3ResultTextEdit});
-            this.p3ClauseGrid.Size = new System.Drawing.Size(540, 380);
+            this.p3ClauseGrid.Size = new System.Drawing.Size(540, 382);
             this.p3ClauseGrid.TabIndex = 1;
             this.p3ClauseGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.p3ClauseGridView});
@@ -1458,7 +1418,7 @@
             this.physical4Page.Location = new System.Drawing.Point(4, 24);
             this.physical4Page.Margin = new System.Windows.Forms.Padding(0);
             this.physical4Page.Name = "physical4Page";
-            this.physical4Page.Size = new System.Drawing.Size(292, 272);
+            this.physical4Page.Size = new System.Drawing.Size(548, 510);
             this.physical4Page.TabIndex = 3;
             this.physical4Page.Tag = "3";
             this.physical4Page.Text = "  Page 4  ";
@@ -2044,7 +2004,7 @@
             this.physical5Page.Location = new System.Drawing.Point(4, 24);
             this.physical5Page.Margin = new System.Windows.Forms.Padding(0);
             this.physical5Page.Name = "physical5Page";
-            this.physical5Page.Size = new System.Drawing.Size(292, 272);
+            this.physical5Page.Size = new System.Drawing.Size(548, 510);
             this.physical5Page.TabIndex = 4;
             this.physical5Page.Tag = "4";
             this.physical5Page.Text = "  Page 5  ";
@@ -2383,7 +2343,7 @@
             this.physical6Page.Location = new System.Drawing.Point(4, 24);
             this.physical6Page.Name = "physical6Page";
             this.physical6Page.Padding = new System.Windows.Forms.Padding(3);
-            this.physical6Page.Size = new System.Drawing.Size(292, 272);
+            this.physical6Page.Size = new System.Drawing.Size(548, 510);
             this.physical6Page.TabIndex = 5;
             this.physical6Page.Tag = "5";
             this.physical6Page.Text = "  Page 6  ";
@@ -2454,6 +2414,59 @@
             this.p6ImageBox.TabIndex = 0;
             this.p6ImageBox.TabStop = false;
             // 
+            // physicalSignPage
+            // 
+            this.physicalSignPage.Controls.Add(this.p2NameEdit);
+            this.physicalSignPage.Controls.Add(this.p2SgsNameLabel);
+            this.physicalSignPage.Controls.Add(this.p2ImageBox);
+            this.physicalSignPage.Location = new System.Drawing.Point(4, 24);
+            this.physicalSignPage.Name = "physicalSignPage";
+            this.physicalSignPage.Padding = new System.Windows.Forms.Padding(3);
+            this.physicalSignPage.Size = new System.Drawing.Size(548, 510);
+            this.physicalSignPage.TabIndex = 6;
+            this.physicalSignPage.Text = "  Signature  ";
+            this.physicalSignPage.UseVisualStyleBackColor = true;
+            // 
+            // p2NameEdit
+            // 
+            this.p2NameEdit.EditValue = "";
+            this.p2NameEdit.Location = new System.Drawing.Point(22, 144);
+            this.p2NameEdit.Name = "p2NameEdit";
+            this.p2NameEdit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p2NameEdit.Properties.Appearance.Options.UseFont = true;
+            this.p2NameEdit.Properties.Appearance.Options.UseTextOptions = true;
+            this.p2NameEdit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.p2NameEdit.Properties.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p2NameEdit.Properties.AppearanceFocused.Options.UseFont = true;
+            this.p2NameEdit.Properties.AppearanceFocused.Options.UseTextOptions = true;
+            this.p2NameEdit.Properties.AppearanceFocused.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.p2NameEdit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p2NameEdit.Properties.AppearanceReadOnly.Options.UseFont = true;
+            this.p2NameEdit.Properties.MaxLength = 40;
+            this.p2NameEdit.Size = new System.Drawing.Size(220, 22);
+            this.p2NameEdit.TabIndex = 89;
+            // 
+            // p2SgsNameLabel
+            // 
+            this.p2SgsNameLabel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.p2SgsNameLabel.Location = new System.Drawing.Point(22, 22);
+            this.p2SgsNameLabel.Name = "p2SgsNameLabel";
+            this.p2SgsNameLabel.Size = new System.Drawing.Size(220, 22);
+            this.p2SgsNameLabel.TabIndex = 91;
+            this.p2SgsNameLabel.Text = "SGS Korea Co., Ltd.";
+            this.p2SgsNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // p2ImageBox
+            // 
+            this.p2ImageBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.p2ImageBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.p2ImageBox.Location = new System.Drawing.Point(22, 47);
+            this.p2ImageBox.Name = "p2ImageBox";
+            this.p2ImageBox.Size = new System.Drawing.Size(220, 91);
+            this.p2ImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.p2ImageBox.TabIndex = 90;
+            this.p2ImageBox.TabStop = false;
+            // 
             // CtrlEditPhysicalEu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -2485,8 +2498,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.p1ClientAddressEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1ClientNameEdit.Properties)).EndInit();
             this.physical2Page.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.p2NameEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.p2ImageBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2ResultGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2ResultGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2CheckEdit)).EndInit();
@@ -2526,6 +2537,9 @@
             this.physical6Page.ResumeLayout(false);
             this.imagePanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.p6ImageBox)).EndInit();
+            this.physicalSignPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.p2NameEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.p2ImageBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2576,9 +2590,6 @@
         private System.Windows.Forms.Button p2RowDownButton;
         private System.Windows.Forms.Button p2RowPluseButton;
         private System.Windows.Forms.Button p2RowMinusButton;
-        public DevExpress.XtraEditors.TextEdit p2NameEdit;
-        private System.Windows.Forms.Label p2SgsNameLabel;
-        private System.Windows.Forms.PictureBox p2ImageBox;
         private System.Windows.Forms.Label label16;
         private DevExpress.XtraGrid.GridControl p2ResultGrid;
         private DevExpress.XtraGrid.Views.Grid.GridView p2ResultGridView;
@@ -2670,5 +2681,9 @@
         private System.Windows.Forms.Label label18;
         private DevExpress.XtraEditors.MemoEdit p5Desc2Edit;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit p5TitleTextEdit;
+        private System.Windows.Forms.TabPage physicalSignPage;
+        public DevExpress.XtraEditors.TextEdit p2NameEdit;
+        private System.Windows.Forms.Label p2SgsNameLabel;
+        private System.Windows.Forms.PictureBox p2ImageBox;
     }
 }

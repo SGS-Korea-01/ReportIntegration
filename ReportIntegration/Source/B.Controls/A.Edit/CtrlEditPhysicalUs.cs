@@ -105,21 +105,12 @@ namespace Sgs.ReportIntegration
             int width = physical2Page.Width;
             int height = physical2Page.Height;
 
-            p2ResultGrid.Size = new Size(width - 8, height - 187);
+            p2ResultGrid.Size = new Size(width - 8, height - 37);
             p2ResultTestRequestedColumn.Width = width - 142;
             p2RowUpButton.Left = width - 106;
             p2RowDownButton.Left = width - 80;
             p2RowPluseButton.Left = width - 54;
             p2RowMinusButton.Left = width - 28;
-
-            p2SgsNameLabel.Left = width - 224;
-            p2SgsNameLabel.Top = height - 152;
-
-            p2ImageBox.Left = width - 224;
-            p2ImageBox.Top = height - 127;
-
-            p2NameEdit.Left = width - 224;
-            p2NameEdit.Top = height - 30;
         }
 
         private void physical3Page_Resize(object sender, EventArgs e)

@@ -1,0 +1,46 @@
+select  c.pro_proj, b.description, a.*
+from profjob_cuid_scheme_analyte a 
+inner join scheme_analyte b on (a.labcode = b.labcode and a.schversion = b.schversion and a.sch_code = b.sch_code and a.ANALYTECODE = b.analytecode)
+inner join profjob c on (a.labcode = c.labcode and a.pro_job = c.pro_job)
+where a.PRO_JOB='AYN19-012431'
+
+
+select top(8) t1.pro_job, t2.sch_code, t3.description, t2.LVL1LOWERLIMIT, t2.LVL1UPPERLIMIT, t2.REPDETLIMIT, t1.FORMATTEDVALUE 
+	from PROFJOBUSER t0
+	join profjob_cuid_scheme_analyte t1 on (t1.pro_job=t0.pro_job)
+	join PROFJOB_SCHEME_ANALYTE t2 on (t2.LABCODE=t1.LABCODE and t2.PRO_JOB=t1.PRO_JOB and t2.sch_code=t1.SCH_CODE and t2.ANALYTECODE=t1.ANALYTECODE)
+	join SCHEME_ANALYTE t3 on (t3.LABCODE=t1.LABCODE and t3.sch_code=t1.SCH_CODE and t3.schversion=t1.SCHVERSION and t3.ANALYTECODE=t1.ANALYTECODE)
+where t0.jobcomments like '%200432A%' 
+
+select t3.description from PROFJOB_SCHEME_ANALYTE t1
+	join scheme_analyte t3 on (t3.labcode = t1.labcode and t3.schversion = t1.schversion and t3.sch_code = t1.sch_code and t3.ANALYTECODE = t1.analytecode)
+where t1.pro_job='AYN19-012431'
+
+select t1.LVL1LOWERLIMIT, t1.LVL1UPPERLIMIT, t1.REPDETLIMIT, t2.FORMATTEDVALUE 
+from PROFJOB_SCHEME_ANALYTE t1
+join PROFJOB_CUID_SCHEME_ANALYTE t2 on t2.PRO_JOB=t1.PRO_JOB
+where t1.pro_job='AYN19-012431'
+
+select * from PROFJOB_CUID_SCHEME_ANALYTE where pro_job='AYN19-012431'
+
+select * from PROFJOB_SCHEME_ANALYTE
+
+select * from profjob
+
+select * from PROFJOBUSER where JOBCOMMENTS like '%200432A%'
+
+ select t2.cli_code, t2.cli_name, t2.address1, t2.address2,         
+     t2.address3, t2.state, t2.country, t1.orderno, t1.pro_job,     
+     t1.pro_proj, t1.registered, t1.received, t1.required,          
+     t1.lastreported, t3.jobcomments, t3.comments1, t4.sam_remarks, 
+     t4.description_1, t4.description_3, t4.description_4, t5.photo 
+ from PROFJOB t1                                                    
+     join CLIENT t2 on t2.cli_code=t1.cli_code                      
+     join PROFJOBUSER t3 on t3.pro_job=t1.pro_job                   
+     join PROFJOB_CUIDUSER t4 on t4.pro_job=t1.pro_job              
+     join USERPROFJOB_PHOTORTF t5 on t5.pro_job=t1.pro_job
+ where t3.JOBCOMMENTS like '%abvef0095%' 
+ and t1.PRO_JOB in (select PRO_JOB from PROFJOB_CUID_SCHEME_ANALYTE where FORMATTEDVALUE is null)
+
+ select * from PROFJOB_CUID_SCHEME_ANALYTE where pro_job='AYN20-103090'
+ 

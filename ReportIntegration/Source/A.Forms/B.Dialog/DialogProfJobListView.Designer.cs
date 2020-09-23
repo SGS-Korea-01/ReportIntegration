@@ -39,6 +39,7 @@
             this.reportGrid = new DevExpress.XtraGrid.GridControl();
             this.reportGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.reportRegTimeColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.reportAreaColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.reportItemNoColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.reportProductColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.reportClientColumn = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -171,29 +172,30 @@
             // 
             // reportGridView
             // 
-            this.reportGridView.Appearance.EvenRow.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportGridView.Appearance.EvenRow.Font = new System.Drawing.Font("Arial", 9F);
             this.reportGridView.Appearance.EvenRow.Options.UseFont = true;
             this.reportGridView.Appearance.FixedLine.Options.UseFont = true;
-            this.reportGridView.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportGridView.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 9F);
             this.reportGridView.Appearance.FocusedCell.Options.UseFont = true;
-            this.reportGridView.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportGridView.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 9F);
             this.reportGridView.Appearance.FocusedRow.Options.UseFont = true;
-            this.reportGridView.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportGridView.Appearance.HeaderPanel.Font = new System.Drawing.Font("Arial", 9F);
             this.reportGridView.Appearance.HeaderPanel.Options.UseFont = true;
-            this.reportGridView.Appearance.HideSelectionRow.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportGridView.Appearance.HideSelectionRow.Font = new System.Drawing.Font("Arial", 9F);
             this.reportGridView.Appearance.HideSelectionRow.Options.UseFont = true;
-            this.reportGridView.Appearance.OddRow.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportGridView.Appearance.OddRow.Font = new System.Drawing.Font("Arial", 9F);
             this.reportGridView.Appearance.OddRow.Options.UseFont = true;
-            this.reportGridView.Appearance.Preview.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportGridView.Appearance.Preview.Font = new System.Drawing.Font("Arial", 9F);
             this.reportGridView.Appearance.Preview.Options.UseFont = true;
-            this.reportGridView.Appearance.Row.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportGridView.Appearance.Row.Font = new System.Drawing.Font("Arial", 9F);
             this.reportGridView.Appearance.Row.Options.UseFont = true;
-            this.reportGridView.Appearance.SelectedRow.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportGridView.Appearance.SelectedRow.Font = new System.Drawing.Font("Arial", 9F);
             this.reportGridView.Appearance.SelectedRow.Options.UseFont = true;
-            this.reportGridView.Appearance.ViewCaption.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportGridView.Appearance.ViewCaption.Font = new System.Drawing.Font("Arial", 9F);
             this.reportGridView.Appearance.ViewCaption.Options.UseFont = true;
             this.reportGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.reportRegTimeColumn,
+            this.reportAreaColumn,
             this.reportItemNoColumn,
             this.reportProductColumn,
             this.reportClientColumn});
@@ -243,6 +245,36 @@
             this.reportRegTimeColumn.VisibleIndex = 0;
             this.reportRegTimeColumn.Width = 124;
             // 
+            // reportAreaColumn
+            // 
+            this.reportAreaColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F);
+            this.reportAreaColumn.AppearanceCell.Options.UseFont = true;
+            this.reportAreaColumn.AppearanceCell.Options.UseTextOptions = true;
+            this.reportAreaColumn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.reportAreaColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F);
+            this.reportAreaColumn.AppearanceHeader.Options.UseFont = true;
+            this.reportAreaColumn.AppearanceHeader.Options.UseTextOptions = true;
+            this.reportAreaColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.reportAreaColumn.Caption = "Area";
+            this.reportAreaColumn.FieldName = "AreaNo";
+            this.reportAreaColumn.MaxWidth = 52;
+            this.reportAreaColumn.MinWidth = 52;
+            this.reportAreaColumn.Name = "reportAreaColumn";
+            this.reportAreaColumn.OptionsColumn.AllowEdit = false;
+            this.reportAreaColumn.OptionsColumn.AllowFocus = false;
+            this.reportAreaColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.reportAreaColumn.OptionsColumn.AllowIncrementalSearch = false;
+            this.reportAreaColumn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.reportAreaColumn.OptionsColumn.AllowMove = false;
+            this.reportAreaColumn.OptionsColumn.AllowShowHide = false;
+            this.reportAreaColumn.OptionsColumn.AllowSize = false;
+            this.reportAreaColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.reportAreaColumn.OptionsColumn.FixedWidth = true;
+            this.reportAreaColumn.OptionsColumn.ImmediateUpdateRowPosition = DevExpress.Utils.DefaultBoolean.False;
+            this.reportAreaColumn.OptionsColumn.Printable = DevExpress.Utils.DefaultBoolean.False;
+            this.reportAreaColumn.OptionsColumn.ReadOnly = true;
+            this.reportAreaColumn.Width = 52;
+            // 
             // reportItemNoColumn
             // 
             this.reportItemNoColumn.Caption = "Item No.";
@@ -262,7 +294,7 @@
             this.reportItemNoColumn.OptionsFilter.AllowAutoFilter = false;
             this.reportItemNoColumn.OptionsFilter.AllowFilter = false;
             this.reportItemNoColumn.Visible = true;
-            this.reportItemNoColumn.VisibleIndex = 1;
+            this.reportItemNoColumn.VisibleIndex = 2;
             this.reportItemNoColumn.Width = 170;
             // 
             // reportProductColumn
@@ -284,7 +316,7 @@
             this.reportProductColumn.OptionsFilter.AllowAutoFilter = false;
             this.reportProductColumn.OptionsFilter.AllowFilter = false;
             this.reportProductColumn.Visible = true;
-            this.reportProductColumn.VisibleIndex = 2;
+            this.reportProductColumn.VisibleIndex = 3;
             this.reportProductColumn.Width = 162;
             // 
             // reportClientColumn
@@ -306,7 +338,7 @@
             this.reportClientColumn.OptionsFilter.AllowAutoFilter = false;
             this.reportClientColumn.OptionsFilter.AllowFilter = false;
             this.reportClientColumn.Visible = true;
-            this.reportClientColumn.VisibleIndex = 3;
+            this.reportClientColumn.VisibleIndex = 4;
             this.reportClientColumn.Width = 190;
             // 
             // itemNoLabel
@@ -413,5 +445,6 @@
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.ComboBox areaCombo;
         private System.Windows.Forms.Label label19;
+        private DevExpress.XtraGrid.Columns.GridColumn reportAreaColumn;
     }
 }

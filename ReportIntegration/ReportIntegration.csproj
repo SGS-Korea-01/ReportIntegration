@@ -139,6 +139,12 @@
     <Compile Include="Source\B.Controls\A.Edit\CtrlEditChemical.Designer.cs">
       <DependentUpon>CtrlEditChemical.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\B.Controls\A.Edit\CtrlEditChemicalEu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\B.Controls\A.Edit\CtrlEditChemicalEu.Designer.cs">
+      <DependentUpon>CtrlEditChemicalEu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\B.Controls\A.Edit\CtrlEditChemicalUs.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -213,6 +219,12 @@
     <Compile Include="Source\C.Units\UnitAppResource.cs" />
     <Compile Include="Source\C.Units\UnitAppType.cs" />
     <Compile Include="Source\C.Units\UnitGridBookmark.cs" />
+    <Compile Include="Source\D.Reports\ReportEuChemical.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Source\D.Reports\ReportEuChemical.Designer.cs">
+      <DependentUpon>ReportEuChemical.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\D.Reports\ReportEuPhysical.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -261,6 +273,9 @@
     <EmbeddedResource Include="Source\B.Controls\A.Edit\CtrlEditChemical.resx">
       <DependentUpon>CtrlEditChemical.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Source\B.Controls\A.Edit\CtrlEditChemicalEu.resx">
+      <DependentUpon>CtrlEditChemicalEu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\B.Controls\A.Edit\CtrlEditChemicalUs.resx">
       <DependentUpon>CtrlEditChemicalUs.cs</DependentUpon>
     </EmbeddedResource>
@@ -293,6 +308,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Source\B.Controls\D.Log\CtrlLogRight.resx" />
     <EmbeddedResource Include="Source\B.Controls\D.Log\CtrlLogView.resx" />
+    <EmbeddedResource Include="Source\D.Reports\ReportEuChemical.resx">
+      <DependentUpon>ReportEuChemical.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\D.Reports\ReportEuPhysical.resx">
       <DependentUpon>ReportEuPhysical.cs</DependentUpon>
     </EmbeddedResource>

@@ -7,9 +7,9 @@ using DevExpress.XtraReports.UI;
 
 namespace Sgs.ReportIntegration
 {
-    public partial class ReportUsChemical : XtraReport
+    public partial class ReportEuChemical : XtraReport
     {
-        public ReportUsChemical()
+        public ReportEuChemical()
         {
             InitializeComponent();
         }

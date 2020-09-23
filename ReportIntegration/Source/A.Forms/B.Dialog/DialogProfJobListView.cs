@@ -42,6 +42,9 @@ namespace Sgs.ReportIntegration
             bookmark = new GridBookmark(reportGridView);
             AppHelper.SetGridEvenRow(reportGridView);
 
+            reportAreaColumn.DisplayFormat.FormatType = FormatType.Custom;
+            reportAreaColumn.DisplayFormat.Format = new ReportAreaFormat();
+
             areaCombo.DataSource = EnumHelper.GetNameValues<EReportArea>();
             areaCombo.DisplayMember = "Name";
             areaCombo.ValueMember = "Value";
@@ -63,13 +66,15 @@ namespace Sgs.ReportIntegration
                 case EReportType.Physical:
                     itemNoLabel.Text = "Item No.";
                     reportItemNoColumn.Caption = "Item No.";
+                    reportProductColumn.Caption = "Product Name";
                     break;
 
                 case EReportType.Chemical:
-                    areaCombo.SelectedIndex = 0;
-                    areaCombo.Enabled = false;
+                    //areaCombo.SelectedIndex = 0;
+                    //areaCombo.Enabled = false;
                     itemNoLabel.Text = "Part No.";
                     reportItemNoColumn.Caption = "Part No.";
+                    reportProductColumn.Caption = "Part Name";
                     break;
             }
         }
@@ -119,8 +124,9 @@ namespace Sgs.ReportIntegration
                 set.To = "";
             }
 
+            set.JobNo = "";
             set.AreaNo = (EReportArea)areaCombo.SelectedValue;
-            set.OrderNo = itemNoEdit.Text.Trim();
+            set.ItemNo = itemNoEdit.Text.Trim();
             set.JobNo = string.Empty;
             set.Select();
 

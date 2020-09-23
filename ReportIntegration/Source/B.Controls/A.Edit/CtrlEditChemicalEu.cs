@@ -1,5 +1,4 @@
-﻿using DevExpress.Utils.Extensions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,7 +10,7 @@ using Ulee.Controls;
 
 namespace Sgs.ReportIntegration
 {
-    public partial class CtrlEditChemicalUs : UlUserControlEng
+    public partial class CtrlEditChemicalEu : UlUserControlEng
     {
         public ChemicalMainDataSet MainSet;
 
@@ -21,7 +20,7 @@ namespace Sgs.ReportIntegration
 
         public List<ChemicalPage2Row> P2Rows;
 
-        public CtrlEditChemicalUs()
+        public CtrlEditChemicalEu()
         {
             InitializeComponent();
             Initialize();
@@ -37,17 +36,18 @@ namespace Sgs.ReportIntegration
         {
             int width = chemical1Page.Width;
 
-            p1ClientNameEdit.Width = width - 172;
-            p1ClientAddressEdit.Width = width - 172;
-            p1SampleDescriptionEdit.Width = width - 410;
-            p1ItemNoEdit.Width = width - 172;
-            p1OrderNoEdit.Width = width - 172;
-            p1ManufacturerEdit.Width = width - 172;
-            p1CountryOfDestinationEdit.Width = width - 410;
-            p1TestPeriodEdit.Width = width - 410;
-            p1TestMethodEdit.Width = width - 172;
-            p1TestResultEdit.Width = width - 172;
-            p1ReportCommentEdit.Width = width - 172;
+            p1ClientNameEdit.Width = width - 134;
+            p1ClientAddressEdit.Width = width - 134;
+            p1FileNoEdit.Width = width - 134;
+            p1SampleDescriptionEdit.Width = width - 134;
+            p1ItemNoEdit.Width = width - 134;
+            p1OrderNoEdit.Width = width - 134;
+            p1ManufacturerEdit.Width = width - 134;
+            p1CountryOfOriginEdit.Width = width - 134;
+            p1CountryOfDestinationEdit.Width = width - 134;
+            p1ReceivedDateEdit.Width = width - 134;
+            p1TestPeriodEdit.Width = width - 134;
+            p1TestResultEdit.Width = width - 134;
             p1TestReqEdit.Width = width - 82;
             p1ConclusionLabel.Left = width - 74;
             p1ConclusionEdit.Left = width - 73;
@@ -56,31 +56,39 @@ namespace Sgs.ReportIntegration
         private void chemical2Page_Resize(object sender, EventArgs e)
         {
             int width = chemical2Page.Width;
+            int height = chemical2Page.Height;
 
             p2Desc1Edit.Width = width - 10;
             p2Desc2Edit.Width = width - 10;
-            p2Desc3Edit.Width = width - 10;
+
             resultGrid.Width = width - 10;
+            resultGrid.Height = height - 198;
 
-            int colWidth = (resultGrid.Width - 158) / 8;
+            resultItemColumn.Width = width - 362;
 
-            resultGrid.RecordWidth = colWidth;
-            resultGrid.RowHeaderWidth = resultGrid.Width - (colWidth * 8) - 12;
+            p2SampleDescLabel.Top = height - 62;
+            p2Desc3Edit.Top = height - 37;
+            p2Desc3Edit.Width = width - 10;
         }
 
         private void chemical3Page_Resize(object sender, EventArgs e)
         {
-            imagePanel.Size = new Size(chemical3Page.Width - 16, chemical3Page.Height - 70);
-            p3ImageBox.Size = new Size(imagePanel.Width - 16, imagePanel.Height - 74);
-            p3DescPanel.Width = imagePanel.Width - 16;
+            int width = chemical3Page.Width;
+            int height = chemical3Page.Height;
 
-            p3FileNoPanel.Top = chemical3Page.Height - 56;
-            p3FileNoPanel.Width = chemical3Page.Width - 16;
+            p3Desc1Edit.Width = width - 16;
+
+            imagePanel.Size = new Size(width - 16, height - 162);
+            p3ImageBox.Size = new Size(imagePanel.Width - 16, imagePanel.Height - 72);
+
+            p3DescPanel.Width = imagePanel.Width - 16;
+            p3FileNoPanel.Top = height - 56;
+            p3FileNoPanel.Width = width - 16;
         }
 
         public void SetControlToDataSet()
         {
-            resultGrid.PostEditor();
+            resultGridView.PostEditor();
 
             MainSet.P1ClientName = p1ClientNameEdit.Text;
             MainSet.P1ClientAddress = p1ClientAddressEdit.Text;
@@ -92,16 +100,14 @@ namespace Sgs.ReportIntegration
             MainSet.P1CountryOfDestination = p1CountryOfDestinationEdit.Text;
             MainSet.P1ReceivedDate = p1ReceivedDateEdit.Text;
             MainSet.P1TestPeriod = p1TestPeriodEdit.Text;
-            MainSet.P1TestMethod = p1TestMethodEdit.Text;
             MainSet.P1TestResults = p1TestResultEdit.Text;
-            MainSet.P1Comments = p1ReportCommentEdit.Text;
             MainSet.P1TestRequested = p1TestReqEdit.Text;
             MainSet.P1Conclusion = p1ConclusionEdit.Text;
             MainSet.P1Name = p1NameEdit.Text;
             MainSet.P2Description1 = p2Desc1Edit.Text;
             MainSet.P2Description2 = p2Desc2Edit.Text;
             MainSet.P2Description3 = p2Desc3Edit.Text;
-            MainSet.P3Description1 = "";
+            MainSet.P3Description1 = p3Desc1Edit.Text;
         }
 
         public void SetDataSetToControl()
@@ -116,7 +122,7 @@ namespace Sgs.ReportIntegration
             ImageSet.Select();
             SetDataSetToPage3();
 
-            RefreshGrid();
+            AppHelper.RefreshGridData(resultGridView);
         }
 
         private void SetDataSetToPage1()
@@ -132,9 +138,7 @@ namespace Sgs.ReportIntegration
             p1CountryOfDestinationEdit.Text = MainSet.P1CountryOfDestination;
             p1ReceivedDateEdit.Text = MainSet.P1ReceivedDate;
             p1TestPeriodEdit.Text = MainSet.P1TestPeriod;
-            p1TestMethodEdit.Text = MainSet.P1TestMethod;
             p1TestResultEdit.Text = MainSet.P1TestResults;
-            p1ReportCommentEdit.Text = MainSet.P1Comments;
             p1TestReqEdit.Text = MainSet.P1TestRequested;
             p1ConclusionEdit.Text = MainSet.P1Conclusion;
             p1NameEdit.Text = "";
@@ -165,23 +169,11 @@ namespace Sgs.ReportIntegration
 
         private void SetDataSetToPage3()
         {
+            p3Desc1Edit.Text = MainSet.P3Description1;
+
             ImageSet.Fetch();
             p3ImageBox.Image = ImageSet.Picture;
             p3FileNoPanel.Text = MainSet.P1FileNo;
-        }
-
-        private void RefreshGrid()
-        {
-            resultGrid.BeginUpdate();
-
-            try
-            {
-                resultGrid.Refresh();
-            }
-            finally
-            {
-                resultGrid.EndUpdate();
-            }
         }
     }
 }

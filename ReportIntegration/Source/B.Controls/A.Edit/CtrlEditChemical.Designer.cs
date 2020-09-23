@@ -44,6 +44,7 @@
             this.chemicalGrid = new DevExpress.XtraGrid.GridControl();
             this.chemicalGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.chemicalApprovalColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.chemicalItemCheckEdit = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.chemicalRegTimeColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.chemicalAreaColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.chemicalItemNoColumn = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -68,6 +69,7 @@
             this.gridPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chemicalGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chemicalGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chemicalItemCheckEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemNoEdit.Properties)).BeginInit();
             this.reportPanel.SuspendLayout();
             this.ulPanel1.SuspendLayout();
@@ -151,6 +153,7 @@
             this.gridPanel.TabStop = true;
             this.gridPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
             this.gridPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            this.gridPanel.Resize += new System.EventHandler(this.gridPanel_Resize);
             // 
             // approvalCombo
             // 
@@ -180,6 +183,7 @@
             this.toDateEdit.Name = "toDateEdit";
             this.toDateEdit.Size = new System.Drawing.Size(102, 21);
             this.toDateEdit.TabIndex = 2;
+            this.toDateEdit.ValueChanged += new System.EventHandler(this.toDateEdit_ValueChanged);
             // 
             // label3
             // 
@@ -213,6 +217,7 @@
             this.fromDateEdit.Name = "fromDateEdit";
             this.fromDateEdit.Size = new System.Drawing.Size(102, 21);
             this.fromDateEdit.TabIndex = 1;
+            this.fromDateEdit.ValueChanged += new System.EventHandler(this.fromDateEdit_ValueChanged);
             // 
             // areaCombo
             // 
@@ -251,6 +256,8 @@
             this.chemicalGrid.Location = new System.Drawing.Point(0, 140);
             this.chemicalGrid.MainView = this.chemicalGridView;
             this.chemicalGrid.Name = "chemicalGrid";
+            this.chemicalGrid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.chemicalItemCheckEdit});
             this.chemicalGrid.Size = new System.Drawing.Size(260, 428);
             this.chemicalGrid.TabIndex = 8;
             this.chemicalGrid.TabStop = false;
@@ -309,7 +316,7 @@
             this.chemicalApprovalColumn.AppearanceHeader.Options.UseTextOptions = true;
             this.chemicalApprovalColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.chemicalApprovalColumn.Caption = "A";
-            this.chemicalApprovalColumn.ColumnEdit = this.chemicalCheckEdit;
+            this.chemicalApprovalColumn.ColumnEdit = this.chemicalItemCheckEdit;
             this.chemicalApprovalColumn.FieldName = "approval";
             this.chemicalApprovalColumn.Name = "chemicalApprovalColumn";
             this.chemicalApprovalColumn.OptionsColumn.AllowEdit = false;
@@ -328,6 +335,13 @@
             this.chemicalApprovalColumn.Visible = true;
             this.chemicalApprovalColumn.VisibleIndex = 0;
             this.chemicalApprovalColumn.Width = 24;
+            // 
+            // chemicalItemCheckEdit
+            // 
+            this.chemicalItemCheckEdit.AutoHeight = false;
+            this.chemicalItemCheckEdit.Name = "chemicalItemCheckEdit";
+            this.chemicalItemCheckEdit.ValueChecked = 1;
+            this.chemicalItemCheckEdit.ValueUnchecked = 0;
             // 
             // chemicalRegTimeColumn
             // 
@@ -506,6 +520,7 @@
             this.reportPanel.TabIndex = 1;
             this.reportPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
             this.reportPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            this.reportPanel.Resize += new System.EventHandler(this.reportPanel_Resize);
             // 
             // ulPanel1
             // 
@@ -625,6 +640,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "CtrlEditChemical";
             this.Size = new System.Drawing.Size(820, 568);
+            this.Load += new System.EventHandler(this.CtrlEditChemical_Load);
             this.Enter += new System.EventHandler(this.CtrlEditChemical_Enter);
             this.bgPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chemicalCheckEdit)).EndInit();
@@ -636,6 +652,7 @@
             this.gridPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chemicalGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chemicalGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chemicalItemCheckEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemNoEdit.Properties)).EndInit();
             this.reportPanel.ResumeLayout(false);
             this.ulPanel1.ResumeLayout(false);
@@ -678,5 +695,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox areaCombo;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit chemicalCheckEdit;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit chemicalItemCheckEdit;
     }
 }
