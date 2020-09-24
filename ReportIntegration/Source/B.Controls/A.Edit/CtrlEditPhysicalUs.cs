@@ -701,8 +701,6 @@ namespace Sgs.ReportIntegration
 
         public void SetDataSetToControl()
         {
-            ImageSet.MainNo = MainSet.RecNo;
-            ImageSet.Select();
             SetDataSetToPage1();
 
             P2Set.MainNo = MainSet.RecNo;
@@ -721,7 +719,10 @@ namespace Sgs.ReportIntegration
             P5Set.Select();
             SetDataSetToPage5();
 
+            ImageSet.RecNo = MainSet.RecNo;
+            ImageSet.Select();
             SetDataSetToPage6();
+
             RefreshGrid();
         }
 
@@ -749,9 +750,6 @@ namespace Sgs.ReportIntegration
 
         private void SetDataSetToPage2()
         {
-            p2ImageBox.Image = ImageSet.Signature;
-            p2NameEdit.Text = MainSet.P2Name;
-
             P2Rows.Clear();
             for (int i = 0; i < P2Set.RowCount; i++)
             {
@@ -836,6 +834,10 @@ namespace Sgs.ReportIntegration
         private void SetDataSetToPage6()
         {
             ImageSet.Fetch();
+
+            p2ImageBox.Image = ImageSet.Signature;
+            p2NameEdit.Text = MainSet.P2Name;
+
             p6ImageBox.Image = ImageSet.Picture;
             p6FileNoPanel.Text = MainSet.P1FileNo;
         }

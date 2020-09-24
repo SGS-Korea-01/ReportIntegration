@@ -1,0 +1,147 @@
+CREATE TABLE [dbo].[TB_PHYMAIN](
+	[pk_recno] [varchar](20) NOT NULL,
+	[regtime] [varchar](23) NOT NULL,
+	[receivedtime] [varchar](23) NOT NULL,
+	[requiredtime] [varchar](23) NOT NULL,
+	[reportedtime] [varchar](23) NOT NULL,
+	[approval] [int] NOT NULL,
+	[areano] [int] NOT NULL,
+	[productno] [varchar](20) NOT NULL,
+	[p1clientno] [varchar](100) NOT NULL,
+	[p1clientname] [varchar](100) NOT NULL,
+	[p1clientaddress] [varchar](500) NOT NULL,
+	[p1fileno] [varchar](40) NOT NULL,
+	[p1sampledesc] [varchar](50) NOT NULL,
+	[p1detailsample] [varchar](140) NOT NULL,
+	[p1itemno] [varchar](40) NOT NULL,
+	[p1orderno] [varchar](40) NOT NULL,
+	[p1packaging] [varchar](40) NOT NULL,
+	[p1instruction] [varchar](40) NOT NULL,
+	[p1buyer] [varchar](40) NOT NULL,
+	[p1manufacturer] [varchar](500) NOT NULL,
+	[p1countryorigin] [varchar](50) NOT NULL,
+	[p1countrydest] [varchar](50) NOT NULL,
+	[p1labelage] [varchar](20) NOT NULL,
+	[p1testage] [varchar](20) NOT NULL,
+	[p1assessedage] [varchar](20) NOT NULL,
+	[p1recevdate] [varchar](20) NOT NULL,
+	[p1testperiod] [varchar](40) NOT NULL,
+	[p1testmethod] [varchar](100) NOT NULL,
+	[p1testresult] [varchar](100) NOT NULL,
+	[p1comment] [varchar](500) NOT NULL,
+	[p2name] [varchar](40) NOT NULL,
+	[p3desc1] [varchar](500) NOT NULL,
+	[p3desc2] [varchar](500) NOT NULL,
+	[p4desc1] [varchar](500) NOT NULL,
+	[p4desc2] [varchar](500) NOT NULL,
+	[p4desc3] [varchar](500) NOT NULL,
+	[p5desc1] [varchar](500) NOT NULL,
+	[p5desc2] [varchar](1500) NOT NULL,
+ CONSTRAINT [PK_TB_PHYMAIN] PRIMARY KEY CLUSTERED 
+(
+	[pk_recno] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+CREATE TABLE [dbo].[TB_PHYIMAGE](
+	[pk_recno] [varchar](20) NOT NULL,
+	[signature] [image] NULL,
+	[picture] [image] NULL,
+ CONSTRAINT [PK_TB_PHYIMAGE] PRIMARY KEY CLUSTERED 
+(
+	[pk_recno] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+CREATE TABLE [dbo].[TB_PHYP2](
+	[pk_recno] [bigint] IDENTITY(1,1) NOT NULL,
+	[fk_phymainno] [varchar](20) NOT NULL,
+	[no] [int] NOT NULL,
+	[line] [int] NOT NULL,
+	[requested] [varchar](250) NOT NULL,
+	[conclusion] [varchar](20) NOT NULL,
+ CONSTRAINT [PK_TB_PHYP2] PRIMARY KEY CLUSTERED 
+(
+	[pk_recno] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+ALTER TABLE [dbo].[TB_PHYP2]  WITH CHECK ADD  CONSTRAINT [FK_PHYMAIN_PHYP2] FOREIGN KEY([fk_phymainno])
+REFERENCES [dbo].[TB_PHYMAIN] ([pk_recno])
+
+ALTER TABLE [dbo].[TB_PHYP2] CHECK CONSTRAINT [FK_PHYMAIN_PHYP2]
+
+CREATE TABLE [dbo].[TB_PHYP3](
+	[pk_recno] [bigint] IDENTITY(1,1) NOT NULL,
+	[fk_phymainno] [varchar](20) NOT NULL,
+	[no] [int] NOT NULL,
+	[line] [int] NOT NULL,
+	[clause] [varchar](20) NOT NULL,
+	[description] [varchar](250) NOT NULL,
+	[result] [varchar](20) NOT NULL,
+ CONSTRAINT [PK_TB_PHYP3] PRIMARY KEY CLUSTERED 
+(
+	[pk_recno] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+ALTER TABLE [dbo].[TB_PHYP3]  WITH CHECK ADD  CONSTRAINT [FK_PHYMAIN_PHYP3] FOREIGN KEY([fk_phymainno])
+REFERENCES [dbo].[TB_PHYMAIN] ([pk_recno])
+
+ALTER TABLE [dbo].[TB_PHYP3] CHECK CONSTRAINT [FK_PHYMAIN_PHYP3]
+
+CREATE TABLE [dbo].[TB_PHYP40](
+	[pk_recno] [bigint] IDENTITY(1,1) NOT NULL,
+	[fk_phymainno] [varchar](20) NOT NULL,
+	[no] [int] NOT NULL,
+	[line] [int] NOT NULL,
+	[clause] [varchar](20) NOT NULL,
+	[description] [varchar](250) NOT NULL,
+	[result] [varchar](20) NOT NULL,
+ CONSTRAINT [PK_TB_PHYP40] PRIMARY KEY CLUSTERED 
+(
+	[pk_recno] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+ALTER TABLE [dbo].[TB_PHYP40]  WITH CHECK ADD  CONSTRAINT [FK_PHYMAIN_PHYP40] FOREIGN KEY([fk_phymainno])
+REFERENCES [dbo].[TB_PHYMAIN] ([pk_recno])
+
+ALTER TABLE [dbo].[TB_PHYP40] CHECK CONSTRAINT [FK_PHYMAIN_PHYP40]
+
+CREATE TABLE [dbo].[TB_PHYP41](
+	[pk_recno] [bigint] IDENTITY(1,1) NOT NULL,
+	[fk_phymainno] [varchar](20) NOT NULL,
+	[no] [int] NOT NULL,
+	[line] [int] NOT NULL,
+	[sample] [varchar](50) NOT NULL,
+	[burningrate] [varchar](20) NOT NULL,
+ CONSTRAINT [PK_TB_PHYP41] PRIMARY KEY CLUSTERED 
+(
+	[pk_recno] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+ALTER TABLE [dbo].[TB_PHYP41]  WITH CHECK ADD  CONSTRAINT [FK_PHYMAIN_PHYP41] FOREIGN KEY([fk_phymainno])
+REFERENCES [dbo].[TB_PHYMAIN] ([pk_recno])
+
+ALTER TABLE [dbo].[TB_PHYP41] CHECK CONSTRAINT [FK_PHYMAIN_PHYP41]
+
+CREATE TABLE [dbo].[TB_PHYP5](
+	[pk_recno] [bigint] IDENTITY(1,1) NOT NULL,
+	[fk_phymainno] [varchar](20) NOT NULL,
+	[no] [int] NOT NULL,
+	[line] [int] NOT NULL,
+	[testitem] [varchar](250) NOT NULL,
+	[result] [varchar](20) NOT NULL,
+	[requirement] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_TB_PHYP5] PRIMARY KEY CLUSTERED 
+(
+	[pk_recno] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+ALTER TABLE [dbo].[TB_PHYP5]  WITH CHECK ADD  CONSTRAINT [FK_PHYMAIN_PHYP5] FOREIGN KEY([fk_phymainno])
+REFERENCES [dbo].[TB_PHYMAIN] ([pk_recno])
+
+ALTER TABLE [dbo].[TB_PHYP5] CHECK CONSTRAINT [FK_PHYMAIN_PHYP5]

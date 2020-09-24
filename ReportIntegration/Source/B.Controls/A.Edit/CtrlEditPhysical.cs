@@ -21,6 +21,8 @@ namespace Sgs.ReportIntegration
 
         private GridBookmark bookmark;
 
+        private PhysicalMainDataSet phyCheckSet;
+
         private PhysicalMainDataSet phyMainSet;
 
         private PhysicalImageDataSet phyImageSet;
@@ -39,6 +41,8 @@ namespace Sgs.ReportIntegration
 
         private ProfJobDataSet profJobSet;
 
+        private StaffDataSet staffSet;
+
         private CtrlEditPhysicalUs ctrlUs;
 
         private CtrlEditPhysicalEu ctrlEu;
@@ -53,7 +57,7 @@ namespace Sgs.ReportIntegration
 
         private void Initialize()
         {
-            phyMainSet = new PhysicalMainDataSet(AppRes.DB.Connect, null, null);
+            phyCheckSet = new PhysicalMainDataSet(AppRes.DB.Connect, null, null);
             phyMainSet = new PhysicalMainDataSet(AppRes.DB.Connect, null, null);
             phyImageSet = new PhysicalImageDataSet(AppRes.DB.Connect, null, null);
             phyP2Set = new PhysicalP2DataSet(AppRes.DB.Connect, null, null);
@@ -63,6 +67,7 @@ namespace Sgs.ReportIntegration
             phyP5Set = new PhysicalP5DataSet(AppRes.DB.Connect, null, null);
             phyReportSet = new PhysicalReportDataSet(AppRes.DB.Connect, null, null);
             profJobSet = new ProfJobDataSet(AppRes.DB.Connect, null, null);
+            staffSet = new StaffDataSet(AppRes.DB.Connect, null, null);
 
             bookmark = new GridBookmark(physicalGridView);
             AppHelper.SetGridEvenRow(physicalGridView);
@@ -100,12 +105,12 @@ namespace Sgs.ReportIntegration
 
         private void CtrlEditPhysical_Load(object sender, EventArgs e)
         {
-            resetButton.PerformClick();
         }
 
         private void CtrlEditPhysical_Enter(object sender, EventArgs e)
         {
             parent.SetMenu(1);
+            resetButton.PerformClick();
         }
 
         private void CtrlEditPhysical_Resize(object sender, EventArgs e)
@@ -142,6 +147,7 @@ namespace Sgs.ReportIntegration
                 set.To = "";
             }
             set.AreaNo = (EReportArea)areaCombo.SelectedValue;
+            set.ReportApproval = (EReportApproval)approvalCombo.SelectedValue;
             set.ProductNo = itemNoEdit.Text.Trim();
             set.Select();
 
@@ -285,7 +291,7 @@ namespace Sgs.ReportIntegration
             if (MessageBox.Show($"Would you like to delete physical report of {phyMainSet.ProductNo}?",
                 "SGS", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
 
-            Int64 mainNo = phyMainSet.RecNo;
+            string mainNo = phyMainSet.RecNo;
             SqlTransaction trans = AppRes.DB.BeginTrans();
 
             try
@@ -305,7 +311,7 @@ namespace Sgs.ReportIntegration
                 phyP5Set.MainNo = mainNo;
                 phyP5Set.Delete(trans);
 
-                phyImageSet.MainNo = mainNo;
+                phyImageSet.RecNo = mainNo;
                 phyImageSet.Delete(trans);
 
                 phyMainSet.Delete(trans);
@@ -500,13 +506,25 @@ namespace Sgs.ReportIntegration
             if (area == EReportArea.None) return;
             if (string.IsNullOrWhiteSpace(profJobSet.ItemNo) == true) return;
 
-            phyMainSet.From = "";
-            phyMainSet.To = "";
-            phyMainSet.AreaNo = area;
-            phyMainSet.ProductNo = profJobSet.ItemNo;
-            phyMainSet.Select();
+            if (string.IsNullOrWhiteSpace(profJobSet.StaffNo) == false)
+            {
+                staffSet.RecNo = profJobSet.StaffNo;
+                staffSet.Select();
+                staffSet.Fetch();
+            }
+            else
+            {
+                staffSet.DataSet.Clear();
+            }
 
-            if (phyMainSet.Empty == false)
+            phyCheckSet.From = "";
+            phyCheckSet.To = "";
+            phyCheckSet.AreaNo = area;
+            phyCheckSet.ReportApproval = EReportApproval.None;
+            phyCheckSet.ProductNo = profJobSet.ItemNo;
+            phyCheckSet.Select();
+
+            if (phyCheckSet.Empty == false)
             {
                 MessageBox.Show("Can't import physical report because this report already exist in DB!",
                     "SGS", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -536,6 +554,7 @@ namespace Sgs.ReportIntegration
 
         private void InsertMain(EReportArea area, SqlTransaction trans)
         {
+            phyMainSet.RecNo = profJobSet.JobNo;
             phyMainSet.RegTime = profJobSet.RegTime;
             phyMainSet.ReceivedTime = profJobSet.ReceivedTime;
             phyMainSet.RequiredTime = profJobSet.RequiredTime;
@@ -543,7 +562,6 @@ namespace Sgs.ReportIntegration
             phyMainSet.Approval = false;
             phyMainSet.AreaNo = profJobSet.AreaNo;
             phyMainSet.ProductNo = profJobSet.ItemNo;
-            phyMainSet.JobNo = profJobSet.JobNo;
             phyMainSet.P1ClientNo = profJobSet.ClientNo;
             phyMainSet.P1ClientName = profJobSet.ClientName;
             phyMainSet.P1ClientAddress = profJobSet.ClientAddress;
@@ -566,7 +584,17 @@ namespace Sgs.ReportIntegration
             phyMainSet.P1TestMethod = "For further details, please refer to following page(s)";
             phyMainSet.P1TestResults = "For further details, please refer to following page(s)";
             phyMainSet.P1Comments = profJobSet.ReportComments;
-            phyMainSet.P2Name = "";
+
+            if (staffSet.Empty == true)
+            {
+                phyMainSet.Approval = false;
+                phyMainSet.P2Name = "";
+            }
+            else
+            {
+                phyMainSet.Approval = true;
+                phyMainSet.P2Name = staffSet.Name;
+            }
 
             if (area == EReportArea.US)
             {
@@ -630,8 +658,18 @@ namespace Sgs.ReportIntegration
 
         private void InsertImage(SqlTransaction trans)
         {
-            phyImageSet.MainNo = phyMainSet.RecNo;
-            phyImageSet.Signature = null;
+            Bitmap signImage = null;
+
+            if (staffSet.Empty == false)
+            {
+                if (string.IsNullOrWhiteSpace(staffSet.FName) == false)
+                {
+                    signImage = new Bitmap(staffSet.FName);
+                }
+            }
+
+            phyImageSet.RecNo = phyMainSet.RecNo;
+            phyImageSet.Signature = signImage;
             phyImageSet.Picture = profJobSet.Image;
             phyImageSet.Insert(trans);
         }

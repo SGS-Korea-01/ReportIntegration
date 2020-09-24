@@ -21,6 +21,8 @@ namespace Sgs.ReportIntegration
 
         private GridBookmark bookmark;
 
+        private ChemicalMainDataSet cheCheckSet;
+
         private ChemicalMainDataSet cheMainSet;
 
         private ChemicalItemJoinDataSet cheJoinSet;
@@ -34,6 +36,8 @@ namespace Sgs.ReportIntegration
         private ProfJobDataSet profJobSet;
 
         private ProfJobSchemeDataSet profJobSchemeSet;
+
+        private StaffDataSet staffSet;
 
         private CtrlEditChemicalUs ctrlUs;
 
@@ -49,6 +53,7 @@ namespace Sgs.ReportIntegration
 
         private void Initialize()
         {
+            cheCheckSet = new ChemicalMainDataSet(AppRes.DB.Connect, null, null);
             cheMainSet = new ChemicalMainDataSet(AppRes.DB.Connect, null, null);
             cheJoinSet = new ChemicalItemJoinDataSet(AppRes.DB.Connect, null, null);
             cheImageSet = new ChemicalImageDataSet(AppRes.DB.Connect, null, null);
@@ -56,6 +61,7 @@ namespace Sgs.ReportIntegration
             cheReportSet = new ChemicalReportDataSet(AppRes.DB.Connect, null, null);
             profJobSet = new ProfJobDataSet(AppRes.DB.Connect, null, null);
             profJobSchemeSet = new ProfJobSchemeDataSet(AppRes.DB.Connect, null, null);
+            staffSet = new StaffDataSet(AppRes.DB.Connect, null, null);
 
             bookmark = new GridBookmark(chemicalGridView);
             AppHelper.SetGridEvenRow(chemicalGridView);
@@ -87,12 +93,12 @@ namespace Sgs.ReportIntegration
 
         private void CtrlEditChemical_Load(object sender, EventArgs e)
         {
-            resetButton.PerformClick();
         }
 
         private void CtrlEditChemical_Enter(object sender, EventArgs e)
         {
             parent.SetMenu(2);
+            resetButton.PerformClick();
         }
 
         private void findButton_Click(object sender, EventArgs e)
@@ -115,6 +121,7 @@ namespace Sgs.ReportIntegration
 
             set.RecNo = "";
             set.AreaNo = (EReportArea)areaCombo.SelectedValue;
+            set.ReportApproval = (EReportApproval)approvalCombo.SelectedValue;
             set.MaterialNo = itemNoEdit.Text.Trim();
             set.Select();
 
@@ -395,13 +402,21 @@ namespace Sgs.ReportIntegration
             if (area == EReportArea.None) return;
             if (string.IsNullOrWhiteSpace(profJobSet.ItemNo) == true) return;
 
-            cheMainSet.From = "";
-            cheMainSet.To = "";
-            cheMainSet.AreaNo = area;
-            cheMainSet.RecNo = profJobSet.JobNo;
-            cheMainSet.Select();
+            if (string.IsNullOrWhiteSpace(profJobSet.StaffNo) == false)
+            {
+                staffSet.RecNo = profJobSet.StaffNo;
+                staffSet.Select();
+                staffSet.Fetch();
+            }
+            else
+            {
+                staffSet.DataSet.Clear();
+            }
 
-            if (cheMainSet.Empty == false)
+            cheCheckSet.RecNo = profJobSet.JobNo;
+            cheCheckSet.Select();
+
+            if (cheCheckSet.Empty == false)
             {
                 MessageBox.Show("Can't import chemical report because this report already exist in DB!",
                     "SGS", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -453,7 +468,17 @@ namespace Sgs.ReportIntegration
             cheMainSet.P1TestMethod = "For further details, please refer to following page(s)";
             cheMainSet.P1TestResults = "For further details, please refer to following page(s)";
             cheMainSet.P1Comments = profJobSet.ReportComments;
-            cheMainSet.P1Name = "";
+
+            if (staffSet.Empty == true)
+            {
+                cheMainSet.Approval = false;
+                cheMainSet.P1Name = "";
+            }
+            else
+            {
+                cheMainSet.Approval = true;
+                cheMainSet.P1Name = staffSet.Name;
+            }
 
             if (area == EReportArea.US)
             {
@@ -504,8 +529,18 @@ namespace Sgs.ReportIntegration
 
         private void InsertImage(SqlTransaction trans)
         {
+            Bitmap signImage = null;
+
+            if (staffSet.Empty == false)
+            {
+                if (string.IsNullOrWhiteSpace(staffSet.FName) == false)
+                {
+                    signImage = new Bitmap(staffSet.FName);
+                }
+            }
+
             cheImageSet.RecNo = cheMainSet.RecNo;
-            cheImageSet.Signature = null;
+            cheImageSet.Signature = signImage;
             cheImageSet.Picture = profJobSet.Image;
             cheImageSet.Insert(trans);
         }

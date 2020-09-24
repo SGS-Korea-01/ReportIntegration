@@ -137,8 +137,6 @@ namespace Sgs.ReportIntegration
             p1ReportCommentEdit.Text = MainSet.P1Comments;
             p1TestReqEdit.Text = MainSet.P1TestRequested;
             p1ConclusionEdit.Text = MainSet.P1Conclusion;
-            p1NameEdit.Text = "";
-            p1ImageBox.Image = ImageSet.Signature;
             p2Desc1Edit.Text = MainSet.P2Description1;
             p2Desc2Edit.Text = MainSet.P2Description2;
             p2Desc3Edit.Text = MainSet.P2Description3;
@@ -166,8 +164,12 @@ namespace Sgs.ReportIntegration
         private void SetDataSetToPage3()
         {
             ImageSet.Fetch();
+
             p3ImageBox.Image = ImageSet.Picture;
             p3FileNoPanel.Text = MainSet.P1FileNo;
+
+            p1NameEdit.Text = MainSet.P1Name;
+            p1ImageBox.Image = ImageSet.Signature;
         }
 
         private void RefreshGrid()

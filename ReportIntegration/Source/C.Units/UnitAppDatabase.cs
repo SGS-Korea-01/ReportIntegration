@@ -308,7 +308,7 @@ namespace Sgs.ReportIntegration
 
     public class PhysicalReportDataSet : UlSqlDataSet
     {
-        public Int64 RecNo { get; set; }
+        public string RecNo { get; set; }
 
         public PhysicalReportDataSet(SqlConnection connect, SqlCommand command, SqlDataAdapter adapter)
             : base(connect, command, adapter)
@@ -319,13 +319,13 @@ namespace Sgs.ReportIntegration
         {
             SetTrans(trans);
             command.CommandText =
-                $" select * from TB_PHYMAIN where pk_recno={RecNo}; " +
-                $" select * from TB_PHYP2 where fk_phymainno={RecNo}; " +
-                $" select * from TB_PHYP3 where fk_phymainno={RecNo}; " +
-                $" select * from TB_PHYP40 where fk_phymainno={RecNo}; " +
-                $" select * from TB_PHYP41 where fk_phymainno={RecNo}; " +
-                $" select * from TB_PHYP5 where fk_phymainno={RecNo}; " +
-                $" select * from TB_PHYIMAGE where fk_phymainno={RecNo}; ";
+                $" select * from TB_PHYMAIN where pk_recno='{RecNo}'; " +
+                $" select * from TB_PHYP2 where fk_phymainno='{RecNo}'; " +
+                $" select * from TB_PHYP3 where fk_phymainno='{RecNo}'; " +
+                $" select * from TB_PHYP40 where fk_phymainno='{RecNo}'; " +
+                $" select * from TB_PHYP41 where fk_phymainno='{RecNo}'; " +
+                $" select * from TB_PHYP5 where fk_phymainno='{RecNo}'; " +
+                $" select * from TB_PHYIMAGE where pk_recno='{RecNo}'; ";
             dataSet.Clear();
             dataSet.Tables.Clear();
             dataAdapter.Fill(dataSet);
@@ -334,7 +334,7 @@ namespace Sgs.ReportIntegration
 
     public class PhysicalMainDataSet : UlSqlDataSet
     {
-        public Int64 RecNo { get; set; }
+        public string RecNo { get; set; }
 
         public DateTime RegTime { get; set; }
 
@@ -349,8 +349,6 @@ namespace Sgs.ReportIntegration
         public EReportArea AreaNo { get; set; }
 
         public string ProductNo { get; set; }
-
-        public string JobNo { get; set; }
 
         public string P1ClientNo { get; set; }
 
@@ -425,7 +423,7 @@ namespace Sgs.ReportIntegration
 
         public void Select(SqlTransaction trans = null)
         {
-            string sql = " select * from TB_PHYMAIN where pk_recno>0 ";
+            string sql = " select * from TB_PHYMAIN where pk_recno<>'' ";
 
             if (ReportApproval != EReportApproval.None)
             {
@@ -461,21 +459,20 @@ namespace Sgs.ReportIntegration
         public void Insert(SqlTransaction trans = null)
         {
             string sql =
-                $" insert into TB_PHYMAIN values ( " +
+                $" insert into TB_PHYMAIN values ('{RecNo}', " +
                 $" '{RegTime.ToString(AppRes.csDateTimeFormat)}', '{ReceivedTime.ToString(AppRes.csDateTimeFormat)}', " +
                 $" '{RequiredTime.ToString(AppRes.csDateTimeFormat)}', '{ReportedTime.ToString(AppRes.csDateTimeFormat)}', " +
-                $" {Convert.ToInt32(Approval)}, {(int)AreaNo}, '{ProductNo.Replace("'", "''")}', '{JobNo.Replace("'", "''")}', " + 
+                $" {Convert.ToInt32(Approval)}, {(int)AreaNo}, '{ProductNo.Replace("'", "''")}', " +
                 $" '{P1ClientNo.Replace("'", "''")}', '{P1ClientName.Replace("'", "''")}', '{P1ClientAddress.Replace("'", "''")}', " +
                 $" '{P1FileNo.Replace("'", "''")}', '{P1SampleDescription.Replace("'", "''")}', '{P1DetailOfSample.Replace("'", "''")}', " +
                 $" '{P1ItemNo.Replace("'", "''")}', '{P1OrderNo.Replace("'", "''")}', '{P1Packaging.Replace("'", "''")}', " +
-                $" '{P1Instruction.Replace("'", "''")}', '{P1Buyer.Replace("'", "''")}', '{P1Manufacturer.Replace("'", "''")}', " + 
+                $" '{P1Instruction.Replace("'", "''")}', '{P1Buyer.Replace("'", "''")}', '{P1Manufacturer.Replace("'", "''")}', " +
                 $" '{P1CountryOfOrigin.Replace("'", "''")}', '{P1CountryOfDestination.Replace("'", "''")}', '{P1LabeledAge.Replace("'", "''")}', " +
                 $" '{P1TestAge.Replace("'", "''")}', '{P1AssessedAge.Replace("'", "''")}', '{P1ReceivedDate.Replace("'", "''")}', " +
-                $" '{P1TestPeriod.Replace("'", "''")}', '{P1TestMethod.Replace("'", "''")}', '{P1TestResults.Replace("'", "''")}', " + 
+                $" '{P1TestPeriod.Replace("'", "''")}', '{P1TestMethod.Replace("'", "''")}', '{P1TestResults.Replace("'", "''")}', " +
                 $" '{P1Comments.Replace("'", "''")}', '{P2Name.Replace("'", "''")}', '{P3Description1.Replace("'", "''")}', " +
-                $" '{P3Description2.Replace("'", "''")}', '{P4Description1.Replace("'", "''")}', '{P4Description2.Replace("'", "''")}', " + 
-                $" '{P4Description3.Replace("'", "''")}', '{P5Description1.Replace("'", "''")}', '{P5Description2.Replace("'", "''")}'); " +
-                $" select cast(scope_identity() as bigint); ";
+                $" '{P3Description2.Replace("'", "''")}', '{P4Description1.Replace("'", "''")}', '{P4Description2.Replace("'", "''")}', " +
+                $" '{P4Description3.Replace("'", "''")}', '{P5Description1.Replace("'", "''")}', '{P5Description2.Replace("'", "''")}') ";
 
             SetTrans(trans);
 
@@ -483,7 +480,7 @@ namespace Sgs.ReportIntegration
             {
                 BeginTrans(trans);
                 command.CommandText = sql;
-                RecNo = (Int64)command.ExecuteScalar();
+                command.ExecuteNonQuery();
                 CommitTrans(trans);
             }
             catch (Exception e)
@@ -495,7 +492,7 @@ namespace Sgs.ReportIntegration
         public void Update(SqlTransaction trans = null)
         {
             string sql =
-                $" update TB_PHYMAIN set approval={Convert.ToInt32(Approval)}, areano={(int)AreaNo}, productno='{ProductNo.Replace("'", "''")}', jobno='{JobNo.Replace("'", "''")}', " +
+                $" update TB_PHYMAIN set approval={Convert.ToInt32(Approval)}, areano={(int)AreaNo}, productno='{ProductNo.Replace("'", "''")}', " +
                 $" p1clientno='{P1ClientNo.Replace("'", "''")}', p1clientname='{P1ClientName.Replace("'", "''")}', p1clientaddress='{P1ClientAddress.Replace("'", "''")}', p1fileno='{P1FileNo.Replace("'", "''")}', " +
                 $" p1sampledesc='{P1SampleDescription.Replace("'", "''")}', p1detailsample='{P1DetailOfSample.Replace("'", "''")}', p1itemno='{P1ItemNo.Replace("'", "''")}', p1orderno='{P1OrderNo.Replace("'", "''")}', " +
                 $" p1packaging='{P1Packaging.Replace("'", "''")}', p1instruction='{P1Instruction.Replace("'", "''")}', p1buyer='{P1Buyer.Replace("'", "''")}', p1manufacturer='{P1Manufacturer.Replace("'", "''")}', " +
@@ -504,7 +501,7 @@ namespace Sgs.ReportIntegration
                 $" p1testmethod='{P1TestMethod.Replace("'", "''")}', p1testresult='{P1TestResults.Replace("'", "''")}', p1comment='{P1Comments.Replace("'", "''")}', p2name='{P2Name.Replace("'", "''")}', " +
                 $" p3desc1='{P3Description1.Replace("'", "''")}', p3desc2='{P3Description2.Replace("'", "''")}', p4desc1='{P4Description1.Replace("'", "''")}', p4desc2='{P4Description2.Replace("'", "''")}', " +
                 $" p4desc3='{P4Description3.Replace("'", "''")}', p5desc1='{P5Description1.Replace("'", "''")}', p5desc2='{P5Description2.Replace("'", "''")}' " +
-                $" where pk_recno={RecNo} ";
+                $" where pk_recno='{RecNo}' ";
 
             SetTrans(trans);
 
@@ -524,8 +521,8 @@ namespace Sgs.ReportIntegration
         public void Delete(SqlTransaction trans = null)
         {
             string sql =
-                $" delete from TB_PHYMAIN " +
-                $" where pk_recno={RecNo} ";
+                $" delete from TB_PHYMAIN   " +
+                $" where pk_recno='{RecNo}' ";
 
             SetTrans(trans);
 
@@ -550,7 +547,7 @@ namespace Sgs.ReportIntegration
             }
             else
             {
-                RecNo = 0;
+                RecNo = "";
                 RegTime = DateTime.Now;
                 ReceivedTime = DateTime.Now;
                 RequiredTime = DateTime.Now;
@@ -558,7 +555,6 @@ namespace Sgs.ReportIntegration
                 Approval = false;
                 AreaNo = EReportArea.None;
                 ProductNo = "";
-                JobNo = "";
                 P1ClientNo = "";
                 P1ClientName = "";
                 P1ClientAddress = "";
@@ -594,7 +590,7 @@ namespace Sgs.ReportIntegration
 
         public void Fetch(DataRow row)
         {
-            RecNo = Convert.ToInt64(row["pk_recno"]);
+            RecNo = Convert.ToString(row["pk_recno"]);
             RegTime = Convert.ToDateTime(row["regtime"]);
             ReceivedTime = Convert.ToDateTime(row["receivedtime"]);
             RequiredTime = Convert.ToDateTime(row["requiredtime"]);
@@ -602,7 +598,6 @@ namespace Sgs.ReportIntegration
             Approval = Convert.ToBoolean(row["approval"]);
             AreaNo = (EReportArea)Convert.ToInt32(row["areano"]);
             ProductNo = Convert.ToString(row["productno"]);
-            JobNo = Convert.ToString(row["jobno"]);
             P1ClientNo = Convert.ToString(row["p1clientno"]);
             P1ClientName = Convert.ToString(row["p1clientname"]);
             P1ClientAddress = Convert.ToString(row["p1clientaddress"]);
@@ -640,7 +635,7 @@ namespace Sgs.ReportIntegration
     {
         public Int64 RecNo { get; set; }
 
-        public Int64 MainNo { get; set; }
+        public string MainNo { get; set; }
 
         public int No { get; set; }
 
@@ -660,7 +655,7 @@ namespace Sgs.ReportIntegration
             SetTrans(trans);
             command.CommandText =
                 $" select * from TB_PHYP2 " +
-                $" where fk_phymainno={MainNo} " +
+                $" where fk_phymainno='{MainNo}' " +
                 $" order by no asc ";
             dataSet.Clear();
             dataAdapter.Fill(dataSet);
@@ -669,8 +664,8 @@ namespace Sgs.ReportIntegration
         public void Insert(SqlTransaction trans = null)
         {
             string sql =
-                $" insert into TB_PHYP2 values " +
-                $" ({MainNo}, {No}, {Convert.ToInt32(Line)}, '{Requested.Replace("'", "''")}', '{Conclusion.Replace("'", "''")}'); " +
+                $" insert into TB_PHYP2 values('{MainNo}', {No}, {Convert.ToInt32(Line)}, " +
+                $" '{Requested.Replace("'", "''")}', '{Conclusion.Replace("'", "''")}');  " +
                 $" select cast(scope_identity() as bigint); ";
 
             SetTrans(trans);
@@ -718,7 +713,7 @@ namespace Sgs.ReportIntegration
             else
             {
                 RecNo = 0;
-                MainNo = 0;
+                MainNo = "";
                 No = 0;
                 Line = false;
                 Requested = "";
@@ -729,7 +724,7 @@ namespace Sgs.ReportIntegration
         public void Fetch(DataRow row)
         {
             RecNo = Convert.ToInt64(row["pk_recno"]);
-            MainNo = Convert.ToInt64(row["fk_phymainno"]);
+            MainNo = Convert.ToString(row["fk_phymainno"]);
             No = Convert.ToInt32(row["no"]);
             Line = Convert.ToBoolean(row["line"]);
             Requested = Convert.ToString(row["requested"]);
@@ -741,7 +736,7 @@ namespace Sgs.ReportIntegration
     {
         public Int64 RecNo { get; set; }
 
-        public Int64 MainNo { get; set; }
+        public string MainNo { get; set; }
 
         public int No { get; set; }
 
@@ -763,7 +758,7 @@ namespace Sgs.ReportIntegration
             SetTrans(trans);
             command.CommandText =
                 $" select * from TB_PHYP3 " +
-                $" where fk_phymainno={MainNo} " +
+                $" where fk_phymainno='{MainNo}' " +
                 $" order by no asc ";
             dataSet.Clear();
             dataAdapter.Fill(dataSet);
@@ -773,7 +768,8 @@ namespace Sgs.ReportIntegration
         {
             string sql =
                 $" insert into TB_PHYP3 values " +
-                $" ({MainNo}, {No}, {Convert.ToInt32(Line)}, '{Clause.Replace("'", "''")}', '{Description.Replace("'", "''")}', '{Result.Replace("'", "''")}'); " +
+                $" ('{MainNo}', {No}, {Convert.ToInt32(Line)}, '{Clause.Replace("'", "''")}', " +
+                $" '{Description.Replace("'", "''")}', '{Result.Replace("'", "''")}'); " +
                 $" select cast(scope_identity() as bigint); ";
 
             SetTrans(trans);
@@ -795,7 +791,7 @@ namespace Sgs.ReportIntegration
         {
             string sql =
                 $" delete from TB_PHYP3 " +
-                $" where fk_phymainno={MainNo} ";
+                $" where fk_phymainno='{MainNo}' ";
 
             SetTrans(trans);
 
@@ -821,7 +817,7 @@ namespace Sgs.ReportIntegration
             else
             {
                 RecNo = 0;
-                MainNo = 0;
+                MainNo = "";
                 No = 0;
                 Line = false;
                 Clause = "";
@@ -833,7 +829,7 @@ namespace Sgs.ReportIntegration
         public void Fetch(DataRow row)
         {
             RecNo = Convert.ToInt64(row["pk_recno"]);
-            MainNo = Convert.ToInt64(row["fk_phymainno"]);
+            MainNo = Convert.ToString(row["fk_phymainno"]);
             No = Convert.ToInt32(row["no"]);
             Line = Convert.ToBoolean(row["line"]);
             Clause = Convert.ToString(row["clause"]);
@@ -846,7 +842,7 @@ namespace Sgs.ReportIntegration
     {
         public Int64 RecNo { get; set; }
 
-        public Int64 MainNo { get; set; }
+        public string MainNo { get; set; }
 
         public int No { get; set; }
 
@@ -868,7 +864,7 @@ namespace Sgs.ReportIntegration
             SetTrans(trans);
             command.CommandText =
                 $" select * from TB_PHYP40 " +
-                $" where fk_phymainno={MainNo} " +
+                $" where fk_phymainno='{MainNo}' " +
                 $" order by no asc ";
             dataSet.Clear();
             dataAdapter.Fill(dataSet);
@@ -878,7 +874,8 @@ namespace Sgs.ReportIntegration
         {
             string sql =
                 $" insert into TB_PHYP40 values " +
-                $" ({MainNo}, {No}, {Convert.ToInt32(Line)}, '{Clause.Replace("'", "''")}', '{Description.Replace("'", "''")}', '{Result.Replace("'", "''")}'); " +
+                $" ('{MainNo}', {No}, {Convert.ToInt32(Line)}, '{Clause.Replace("'", "''")}', " +
+                $" '{Description.Replace("'", "''")}', '{Result.Replace("'", "''")}'); " +
                 $" select cast(scope_identity() as bigint); ";
 
             SetTrans(trans);
@@ -900,7 +897,7 @@ namespace Sgs.ReportIntegration
         {
             string sql =
                 $" delete from TB_PHYP40 " +
-                $" where fk_phymainno={MainNo} ";
+                $" where fk_phymainno='{MainNo}' ";
 
             SetTrans(trans);
 
@@ -926,7 +923,7 @@ namespace Sgs.ReportIntegration
             else
             {
                 RecNo = 0;
-                MainNo = 0;
+                MainNo = "";
                 No = 0;
                 Line = false;
                 Clause = "";
@@ -938,7 +935,7 @@ namespace Sgs.ReportIntegration
         public void Fetch(DataRow row)
         {
             RecNo = Convert.ToInt64(row["pk_recno"]);
-            MainNo = Convert.ToInt64(row["fk_phymainno"]);
+            MainNo = Convert.ToString(row["fk_phymainno"]);
             No = Convert.ToInt32(row["no"]);
             Line = Convert.ToBoolean(row["line"]);
             Clause = Convert.ToString(row["clause"]);
@@ -951,7 +948,7 @@ namespace Sgs.ReportIntegration
     {
         public Int64 RecNo { get; set; }
 
-        public Int64 MainNo { get; set; }
+        public string MainNo { get; set; }
 
         public int No { get; set; }
 
@@ -971,7 +968,7 @@ namespace Sgs.ReportIntegration
             SetTrans(trans);
             command.CommandText =
                 $" select * from TB_PHYP41 " +
-                $" where fk_phymainno={MainNo} " +
+                $" where fk_phymainno='{MainNo}' " +
                 $" order by no asc ";
             dataSet.Clear();
             dataAdapter.Fill(dataSet);
@@ -981,7 +978,8 @@ namespace Sgs.ReportIntegration
         {
             string sql =
                 $" insert into TB_PHYP41 values " +
-                $" ({MainNo}, {No}, {Convert.ToInt32(Line)}, '{Sample.Replace("'", "''")}', '{BurningRate.Replace("'", "''")}'); " +
+                $" ('{MainNo}', {No}, {Convert.ToInt32(Line)}, " +
+                $" '{Sample.Replace("'", "''")}', '{BurningRate.Replace("'", "''")}'); " +
                 $" select cast(scope_identity() as bigint); ";
 
             SetTrans(trans);
@@ -1003,7 +1001,7 @@ namespace Sgs.ReportIntegration
         {
             string sql =
                 $" delete from TB_PHYP41 " +
-                $" where fk_phymainno={MainNo} ";
+                $" where fk_phymainno='{MainNo}' ";
 
             SetTrans(trans);
 
@@ -1029,7 +1027,7 @@ namespace Sgs.ReportIntegration
             else
             {
                 RecNo = 0;
-                MainNo = 0;
+                MainNo = "";
                 No = 0;
                 Line = false;
                 Sample = "";
@@ -1040,7 +1038,7 @@ namespace Sgs.ReportIntegration
         public void Fetch(DataRow row)
         {
             RecNo = Convert.ToInt64(row["pk_recno"]);
-            MainNo = Convert.ToInt64(row["fk_phymainno"]);
+            MainNo = Convert.ToString(row["fk_phymainno"]);
             No = Convert.ToInt32(row["no"]);
             Line = Convert.ToBoolean(row["line"]);
             Sample = Convert.ToString(row["sample"]);
@@ -1052,7 +1050,7 @@ namespace Sgs.ReportIntegration
     {
         public Int64 RecNo { get; set; }
 
-        public Int64 MainNo { get; set; }
+        public string MainNo { get; set; }
 
         public int No { get; set; }
 
@@ -1074,7 +1072,7 @@ namespace Sgs.ReportIntegration
             SetTrans(trans);
             command.CommandText =
                 $" select * from TB_PHYP5 " +
-                $" where fk_phymainno={MainNo} " +
+                $" where fk_phymainno='{MainNo}' " +
                 $" order by no asc ";
             dataSet.Clear();
             dataAdapter.Fill(dataSet);
@@ -1084,7 +1082,8 @@ namespace Sgs.ReportIntegration
         {
             string sql =
                 $" insert into TB_PHYP5 values " +
-                $" ({MainNo}, {No}, {Convert.ToInt32(Line)}, '{TestItem.Replace("'", "''")}', '{Result.Replace("'", "''")}', '{Requirement.Replace("'", "''")}'); " +
+                $" ('{MainNo}', {No}, {Convert.ToInt32(Line)}, '{TestItem.Replace("'", "''")}', " +
+                $" '{Result.Replace("'", "''")}', '{Requirement.Replace("'", "''")}'); " +
                 $" select cast(scope_identity() as bigint); ";
 
             SetTrans(trans);
@@ -1106,7 +1105,7 @@ namespace Sgs.ReportIntegration
         {
             string sql =
                 $" delete from TB_PHYP5 " +
-                $" where fk_phymainno={MainNo} ";
+                $" where fk_phymainno='{MainNo}' ";
 
             SetTrans(trans);
 
@@ -1132,7 +1131,7 @@ namespace Sgs.ReportIntegration
             else
             {
                 RecNo = 0;
-                MainNo = 0;
+                MainNo = "";
                 No = 0;
                 Line = false;
                 TestItem = "";
@@ -1144,7 +1143,7 @@ namespace Sgs.ReportIntegration
         public void Fetch(DataRow row)
         {
             RecNo = Convert.ToInt64(row["pk_recno"]);
-            MainNo = Convert.ToInt64(row["fk_phymainno"]);
+            MainNo = Convert.ToString(row["fk_phymainno"]);
             No = Convert.ToInt32(row["no"]);
             Line = Convert.ToBoolean(row["line"]);
             TestItem = Convert.ToString(row["testitem"]);
@@ -1155,9 +1154,7 @@ namespace Sgs.ReportIntegration
 
     public class PhysicalImageDataSet : UlSqlDataSet
     {
-        public Int64 RecNo { get; set; }
-
-        public Int64 MainNo { get; set; }
+        public string RecNo { get; set; }
 
         public Bitmap Signature { get; set; }
 
@@ -1176,7 +1173,7 @@ namespace Sgs.ReportIntegration
             SetTrans(trans);
             command.CommandText =
                 $" select * from TB_PHYIMAGE " +
-                $" where fk_phymainno={MainNo} ";
+                $" where pk_recno='{RecNo}'  ";
             dataSet.Clear();
             dataAdapter.Fill(dataSet);
         }
@@ -1185,18 +1182,16 @@ namespace Sgs.ReportIntegration
         {
             string sql =
                 $" insert into TB_PHYIMAGE values " +
-                $" ({MainNo}, @signature, @picture); " +
-                $" select cast(scope_identity() as bigint); ";
+                $" ('{RecNo}', @signature, @picture) ";
 
             SetTrans(trans);
 
             try
             {
                 BeginTrans(trans);
+
                 command.CommandText = sql;
-
                 command.Parameters.Clear();
-
                 if (Signature == null)
                 {
                     SqlParameter signatureParam = new SqlParameter("@signature", SqlDbType.Image);
@@ -1220,8 +1215,8 @@ namespace Sgs.ReportIntegration
                     command.Parameters.Add("@picture", SqlDbType.Image);
                     command.Parameters["@picture"].Value = (byte[])imageConvert.ConvertTo(Picture, typeof(byte[]));
                 }
+                command.ExecuteNonQuery();
 
-                RecNo = (Int64)command.ExecuteScalar();
                 CommitTrans(trans);
             }
             catch (Exception e)
@@ -1234,7 +1229,7 @@ namespace Sgs.ReportIntegration
         {
             string sql =
                 $" delete from TB_PHYIMAGE " +
-                $" where fk_phymainno={MainNo} ";
+                $" where fk_phymainno='{RecNo}' ";
 
             SetTrans(trans);
 
@@ -1259,8 +1254,7 @@ namespace Sgs.ReportIntegration
             }
             else
             {
-                RecNo = 0;
-                MainNo = 0;
+                RecNo = "";
                 Signature = null;
                 Picture = null;
             }
@@ -1268,8 +1262,7 @@ namespace Sgs.ReportIntegration
 
         public void Fetch(DataRow row)
         {
-            RecNo = Convert.ToInt64(row["pk_recno"]);
-            MainNo = Convert.ToInt64(row["fk_phymainno"]);
+            RecNo = Convert.ToString(row["pk_recno"]);
 
             if (row["signature"] == DBNull.Value) Signature = null;
             else
@@ -1965,6 +1958,9 @@ namespace Sgs.ReportIntegration
         // PROFJOB.LASTREPORTED
         public DateTime ReportedTime { get; set; }
 
+        // PROFJOB.VALIDATEBY
+        public string StaffNo { get; set; }
+
         // PROFJOBUSER.JOBCOMMENTS
         public string ItemNo { get; set; }
 
@@ -2007,9 +2003,9 @@ namespace Sgs.ReportIntegration
                 " select t2.cli_code, t2.cli_name, t2.address1, t2.address2,           " +
                 "     t2.address3, t2.state, t2.country, t1.orderno, t1.pro_job,       " +
                 "     t1.pro_proj, t1.notes1, t1.registered, t1.received, t1.required, " +
-                "     t1.lastreported, t3.jobcomments, t3.comments1, t4.sam_remarks,   " +
-                "     t4.sam_description, t4.description_1, t4.description_3,          " +
-                "     t4.description_4, t5.photo                                       " +
+                "     t1.lastreported, t1.validatedby, t3.jobcomments, t3.comments1,    " +
+                "     t4.sam_remarks, t4.sam_description, t4.description_1,            " +
+                "     t4.description_3, t4.description_4, t5.photo                     " +
                 " from PROFJOB t1                                                      " +
                 "     join CLIENT t2 on t2.cli_code=t1.cli_code                        " +
                 "     join PROFJOBUSER t3 on t3.pro_job=t1.pro_job                     " +
@@ -2037,7 +2033,7 @@ namespace Sgs.ReportIntegration
                                 sql += $" and t3.jobcomments='{ItemNo} -{AreaNo.ToDescription()}' ";
                             }
                         }
-                        sql += $" and t1.pro_job in (select pro_job from PROFJOB_CUID_SCHEME_ANALYTE where formattedvalue is null)";
+                        sql += $" and t1.pro_job in (select distinct pro_job from PROFJOB_CUID_SCHEME_ANALYTE where formattedvalue is null and finalvalue is null)";
                         break;
 
                     case EReportType.Chemical:
@@ -2054,7 +2050,7 @@ namespace Sgs.ReportIntegration
                         {
                             sql += $" and t3.jobcomments like '%%{ItemNo}%%' ";
                         }
-                        sql += $" and t1.pro_job in (select pro_job from PROFJOB_CUID_SCHEME_ANALYTE where formattedvalue is not null)";
+                        sql += $" and t1.pro_job not in (select distinct pro_job from PROFJOB_CUID_SCHEME_ANALYTE where formattedvalue is null and finalvalue is null)";
                         break;
                 }
 
@@ -2098,6 +2094,7 @@ namespace Sgs.ReportIntegration
                 ReceivedTime = DateTime.Now;
                 RequiredTime = DateTime.Now;
                 ReportedTime = DateTime.Now;
+                StaffNo = "";
                 ItemNo = "";
                 ReportComments = "";
                 SampleRemark = "";
@@ -2126,6 +2123,7 @@ namespace Sgs.ReportIntegration
             ReceivedTime = Convert.ToDateTime(row["received"]);
             RequiredTime = Convert.ToDateTime(row["required"]);
             ReportedTime = Convert.ToDateTime(row["lastreported"]);
+            StaffNo = Convert.ToString(row["validatedby"]);
             ItemNo = Convert.ToString(row["jobcomments"]);
             ReportComments = Convert.ToString(row["comments1"]);
             SampleRemark = Convert.ToString(row["sam_remarks"]);
@@ -2295,6 +2293,50 @@ namespace Sgs.ReportIntegration
             {
                 FormatValue = "ND";
             }
+        }
+    }
+
+    public class StaffDataSet : UlSqlDataSet
+    {
+        public string RecNo { get; set; }
+
+        public string Name { get; set; }
+
+        public string FName { get; set; }
+
+        public StaffDataSet(SqlConnection connect, SqlCommand command, SqlDataAdapter adapter)
+            : base(connect, command, adapter)
+        {
+        }
+        public void Select(SqlTransaction trans = null)
+        {
+            SetTrans(trans);
+            command.CommandText =
+                $" select * from STAFF        " +
+                $" where staff_code='{RecNo}' ";
+            dataSet.Clear();
+            dataAdapter.Fill(dataSet);
+        }
+
+        public void Fetch(int index = 0, int tableNo = 0)
+        {
+            if (index < GetRowCount(tableNo))
+            {
+                Fetch(dataSet.Tables[tableNo].Rows[index]);
+            }
+            else
+            {
+                RecNo = "";
+                Name = "";
+                FName = "";
+            }
+        }
+
+        public void Fetch(DataRow row)
+        {
+            RecNo = Convert.ToString(row["staff_code"]);
+            Name = Convert.ToString(row["first_name"]) + " " + Convert.ToString(row["last_name"]);
+            FName = Convert.ToString(row["picturefile"]).Trim();
         }
     }
 }
