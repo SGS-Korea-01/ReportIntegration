@@ -146,7 +146,13 @@ namespace Sgs.ReportIntegration
 
         public Int64 BomNo { get; set; }
 
+        public bool Valid { get; set; }
+
+        public EReportArea AreaNo { get; set; }
+
         public string Code { get; set; }
+
+        public string JobNo { get; set; }
 
         public string Name { get; set; }
 
@@ -174,7 +180,8 @@ namespace Sgs.ReportIntegration
         {
             string sql =
                 $" insert into TB_PRODUCT values " +
-                $" ({BomNo}, '{Code}', '{Name}', @image); " +
+                $" ({BomNo}, {Convert.ToInt32(Valid)}, '{Code}', " +
+                $" {(int)AreaNo}, '{JobNo}', '{Name}', @image);  " +
                 $" select cast(scope_identity() as bigint); ";
 
             byte[] imageRaw = (Image == null) ? null : (byte[])imageConvert.ConvertTo(Image, typeof(byte[]));
@@ -210,6 +217,8 @@ namespace Sgs.ReportIntegration
             {
                 RecNo = 0;
                 BomNo = 0;
+                Valid = false;
+                AreaNo = EReportArea.None;
                 Code = "";
                 Name = "";
                 Image = null;
@@ -220,7 +229,10 @@ namespace Sgs.ReportIntegration
         {
             RecNo = Convert.ToInt64(row["pk_recno"]);
             BomNo = Convert.ToInt64(row["fk_bomno"]);
+            Valid = Convert.ToBoolean(row["valid"]);
+            AreaNo = (EReportArea)Convert.ToInt32(row["areano"]);
             Code = Convert.ToString(row["code"]);
+            JobNo = Convert.ToString(row["jobno"]);
             Name = Convert.ToString(row["name"]);
             byte[] imageRaw = (byte[])row["image"];
 
@@ -237,9 +249,11 @@ namespace Sgs.ReportIntegration
 
         public Int64 ProductNo { get; set; }
 
-        public string Name { get; set; }
+        public string JobNo { get; set; }
 
         public string MaterialNo { get; set; }
+
+        public string Name { get; set; }
 
         public string MaterialName { get; set; }
 
@@ -262,7 +276,7 @@ namespace Sgs.ReportIntegration
         {
             string sql =
                 $" insert into TB_PART values " +
-                $" ({ProductNo}, '{Name}', '{MaterialNo}', '{MaterialName}'); " +
+                $" ({ProductNo}, '{JobNo}', '{MaterialNo}', '{Name}', '{MaterialName}'); " +
                 $" select cast(scope_identity() as bigint); ";
 
             SetTrans(trans);
@@ -290,8 +304,9 @@ namespace Sgs.ReportIntegration
             {
                 RecNo = 0;
                 ProductNo = 0;
-                Name = "";
+                JobNo = "";
                 MaterialNo = "";
+                Name = "";
                 MaterialName = "";
             }
         }
@@ -300,8 +315,9 @@ namespace Sgs.ReportIntegration
         {
             RecNo = Convert.ToInt64(row["pk_recno"]);
             ProductNo = Convert.ToInt64(row["fk_productno"]);
-            Name = Convert.ToString(row["name"]);
+            JobNo = Convert.ToString(row["jobno"]);
             MaterialNo = Convert.ToString(row["materialno"]);
+            Name = Convert.ToString(row["name"]);
             MaterialName = Convert.ToString(row["materialname"]);
         }
     }
@@ -423,8 +439,16 @@ namespace Sgs.ReportIntegration
 
         public void Select(SqlTransaction trans = null)
         {
-            string sql = " select * from TB_PHYMAIN where pk_recno<>'' ";
+            string sql = " select * from TB_PHYMAIN ";
 
+            if (string.IsNullOrWhiteSpace(RecNo) == true)
+            {
+                sql += " where pk_recno<>'' ";
+            }
+            else
+            {
+                sql += $" where pk_recno like '{RecNo}%%' ";
+            }
             if (ReportApproval != EReportApproval.None)
             {
                 sql += $" and approval={(int)ReportApproval} ";
@@ -686,8 +710,8 @@ namespace Sgs.ReportIntegration
         public void Delete(SqlTransaction trans = null)
         {
             string sql =
-                $" delete from TB_PHYP2 " +
-                $" where fk_phymainno={MainNo} ";
+                $" delete from TB_PHYP2          " +
+                $" where fk_phymainno='{MainNo}' ";
 
             SetTrans(trans);
 
@@ -790,7 +814,7 @@ namespace Sgs.ReportIntegration
         public void Delete(SqlTransaction trans = null)
         {
             string sql =
-                $" delete from TB_PHYP3 " +
+                $" delete from TB_PHYP3          " +
                 $" where fk_phymainno='{MainNo}' ";
 
             SetTrans(trans);
@@ -896,7 +920,7 @@ namespace Sgs.ReportIntegration
         public void Delete(SqlTransaction trans = null)
         {
             string sql =
-                $" delete from TB_PHYP40 " +
+                $" delete from TB_PHYP40         " +
                 $" where fk_phymainno='{MainNo}' ";
 
             SetTrans(trans);
@@ -1000,7 +1024,7 @@ namespace Sgs.ReportIntegration
         public void Delete(SqlTransaction trans = null)
         {
             string sql =
-                $" delete from TB_PHYP41 " +
+                $" delete from TB_PHYP41         " +
                 $" where fk_phymainno='{MainNo}' ";
 
             SetTrans(trans);
@@ -1104,7 +1128,7 @@ namespace Sgs.ReportIntegration
         public void Delete(SqlTransaction trans = null)
         {
             string sql =
-                $" delete from TB_PHYP5 " +
+                $" delete from TB_PHYP5          " +
                 $" where fk_phymainno='{MainNo}' ";
 
             SetTrans(trans);
@@ -1228,8 +1252,8 @@ namespace Sgs.ReportIntegration
         public void Delete(SqlTransaction trans = null)
         {
             string sql =
-                $" delete from TB_PHYIMAGE " +
-                $" where fk_phymainno='{RecNo}' ";
+                $" delete from TB_PHYIMAGE      " +
+                $" where pk_recno='{RecNo}' ";
 
             SetTrans(trans);
 
@@ -1384,39 +1408,51 @@ namespace Sgs.ReportIntegration
                 sql += " join TB_CHEPARTJOIN t2 on t2.pk_recno=t1.pk_recno ";
             }
 
-            sql += " where t1.pk_recno<>'' ";
-
-            if (string.IsNullOrWhiteSpace(RecNo) == false)
+            if (string.IsNullOrWhiteSpace(RecNo) == true)
             {
-                sql += $" and t1.pk_recno='{RecNo}' ";
+                sql += " where t1.pk_recno<>'' ";
             }
             else
             {
-                if (ReportApproval != EReportApproval.None)
+                sql += $" where t1.pk_recno like '{RecNo}%%' ";
+            }
+
+            if (ReportApproval != EReportApproval.None)
+            {
+                sql += $" and t1.approval={(int)ReportApproval} ";
+            }
+            if (AreaNo != EReportArea.None)
+            {
+                sql += $" and t1.areano={(int)AreaNo} ";
+            }
+            if (string.IsNullOrWhiteSpace(From) == false)
+            {
+                if (From == To)
                 {
-                    sql += $" and t1.approval={(int)ReportApproval} ";
+                    sql += $" and t1.regtime like '{From}%%' ";
                 }
-                if (AreaNo != EReportArea.None)
+                else
                 {
-                    sql += $" and t1.areano={(int)AreaNo} ";
-                }
-                if (string.IsNullOrWhiteSpace(From) == false)
-                {
-                    if (From == To)
-                    {
-                        sql += $" and t1.regtime like '{From}%%' ";
-                    }
-                    else
-                    {
-                        sql += $" and (t1.regtime>='{From} 00:00:00.000' ";
-                        sql += $" and t1.regtime<='{To} 23:59:59.999') ";
-                    }
-                }
-                if (string.IsNullOrWhiteSpace(MaterialNo) == false)
-                {
-                    sql += $" and t2.pk_partno='{MaterialNo}' ";
+                    sql += $" and (t1.regtime>='{From} 00:00:00.000' ";
+                    sql += $" and t1.regtime<='{To} 23:59:59.999') ";
                 }
             }
+            if (string.IsNullOrWhiteSpace(MaterialNo) == false)
+            {
+                sql += $" and t2.pk_partno='{MaterialNo}' ";
+            }
+
+            SetTrans(trans);
+            command.CommandText = sql;
+            dataSet.Clear();
+            dataAdapter.Fill(dataSet);
+        }
+
+        public void Select(string recno, SqlTransaction trans = null)
+        {
+            string sql = 
+                $" select t1.* from TB_CHEMAIN t1 " +
+                $" where t1.pk_recno='{recno}'    ";
 
             SetTrans(trans);
             command.CommandText = sql;

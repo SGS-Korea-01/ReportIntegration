@@ -32,6 +32,8 @@
             this.chemicalCheckEdit = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.viewSplit = new System.Windows.Forms.SplitContainer();
             this.gridPanel = new Ulee.Controls.UlPanel();
+            this.jobNoEdit = new DevExpress.XtraEditors.TextEdit();
+            this.label6 = new System.Windows.Forms.Label();
             this.approvalCombo = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.toDateEdit = new System.Windows.Forms.DateTimePicker();
@@ -48,6 +50,7 @@
             this.chemicalRegTimeColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.chemicalAreaColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.chemicalItemNoColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.chemicalJobNoColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.chemicalProductColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.findButton = new System.Windows.Forms.Button();
             this.itemNoEdit = new DevExpress.XtraEditors.TextEdit();
@@ -67,6 +70,7 @@
             this.viewSplit.Panel2.SuspendLayout();
             this.viewSplit.SuspendLayout();
             this.gridPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.jobNoEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chemicalGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chemicalGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chemicalItemCheckEdit)).BeginInit();
@@ -127,6 +131,8 @@
             // 
             this.gridPanel.BevelInner = Ulee.Controls.EUlBevelStyle.None;
             this.gridPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.None;
+            this.gridPanel.Controls.Add(this.jobNoEdit);
+            this.gridPanel.Controls.Add(this.label6);
             this.gridPanel.Controls.Add(this.approvalCombo);
             this.gridPanel.Controls.Add(this.label5);
             this.gridPanel.Controls.Add(this.toDateEdit);
@@ -155,13 +161,37 @@
             this.gridPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
             this.gridPanel.Resize += new System.EventHandler(this.gridPanel_Resize);
             // 
+            // jobNoEdit
+            // 
+            this.jobNoEdit.EditValue = "";
+            this.jobNoEdit.Location = new System.Drawing.Point(174, 84);
+            this.jobNoEdit.Name = "jobNoEdit";
+            this.jobNoEdit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jobNoEdit.Properties.Appearance.Options.UseFont = true;
+            this.jobNoEdit.Properties.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jobNoEdit.Properties.AppearanceFocused.Options.UseFont = true;
+            this.jobNoEdit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jobNoEdit.Properties.AppearanceReadOnly.Options.UseFont = true;
+            this.jobNoEdit.Properties.MaxLength = 20;
+            this.jobNoEdit.Size = new System.Drawing.Size(86, 22);
+            this.jobNoEdit.TabIndex = 6;
+            // 
+            // label6
+            // 
+            this.label6.Location = new System.Drawing.Point(124, 83);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 22);
+            this.label6.TabIndex = 106;
+            this.label6.Text = "Job No.";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // approvalCombo
             // 
             this.approvalCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.approvalCombo.FormattingEnabled = true;
             this.approvalCombo.Location = new System.Drawing.Point(64, 55);
             this.approvalCombo.Name = "approvalCombo";
-            this.approvalCombo.Size = new System.Drawing.Size(102, 23);
+            this.approvalCombo.Size = new System.Drawing.Size(54, 23);
             this.approvalCombo.TabIndex = 3;
             // 
             // label5
@@ -225,7 +255,7 @@
             this.areaCombo.FormattingEnabled = true;
             this.areaCombo.Location = new System.Drawing.Point(64, 84);
             this.areaCombo.Name = "areaCombo";
-            this.areaCombo.Size = new System.Drawing.Size(102, 23);
+            this.areaCombo.Size = new System.Drawing.Size(54, 23);
             this.areaCombo.TabIndex = 4;
             // 
             // resetButton
@@ -237,7 +267,7 @@
             this.resetButton.Name = "resetButton";
             this.resetButton.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.resetButton.Size = new System.Drawing.Size(86, 24);
-            this.resetButton.TabIndex = 7;
+            this.resetButton.TabIndex = 8;
             this.resetButton.Text = "     Reset";
             this.resetButton.UseVisualStyleBackColor = true;
             this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
@@ -253,13 +283,13 @@
             // 
             // chemicalGrid
             // 
-            this.chemicalGrid.Location = new System.Drawing.Point(0, 140);
+            this.chemicalGrid.Location = new System.Drawing.Point(0, 113);
             this.chemicalGrid.MainView = this.chemicalGridView;
             this.chemicalGrid.Name = "chemicalGrid";
             this.chemicalGrid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.chemicalItemCheckEdit});
-            this.chemicalGrid.Size = new System.Drawing.Size(260, 428);
-            this.chemicalGrid.TabIndex = 8;
+            this.chemicalGrid.Size = new System.Drawing.Size(260, 455);
+            this.chemicalGrid.TabIndex = 9;
             this.chemicalGrid.TabStop = false;
             this.chemicalGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.chemicalGridView});
@@ -291,6 +321,7 @@
             this.chemicalRegTimeColumn,
             this.chemicalAreaColumn,
             this.chemicalItemNoColumn,
+            this.chemicalJobNoColumn,
             this.chemicalProductColumn});
             this.chemicalGridView.CustomizationFormBounds = new System.Drawing.Rectangle(2884, 580, 210, 186);
             this.chemicalGridView.GridControl = this.chemicalGrid;
@@ -307,17 +338,19 @@
             // 
             // chemicalApprovalColumn
             // 
-            this.chemicalApprovalColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chemicalApprovalColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F);
             this.chemicalApprovalColumn.AppearanceCell.Options.UseFont = true;
             this.chemicalApprovalColumn.AppearanceCell.Options.UseTextOptions = true;
             this.chemicalApprovalColumn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.chemicalApprovalColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chemicalApprovalColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F);
             this.chemicalApprovalColumn.AppearanceHeader.Options.UseFont = true;
             this.chemicalApprovalColumn.AppearanceHeader.Options.UseTextOptions = true;
             this.chemicalApprovalColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.chemicalApprovalColumn.Caption = "A";
             this.chemicalApprovalColumn.ColumnEdit = this.chemicalItemCheckEdit;
             this.chemicalApprovalColumn.FieldName = "approval";
+            this.chemicalApprovalColumn.MaxWidth = 24;
+            this.chemicalApprovalColumn.MinWidth = 24;
             this.chemicalApprovalColumn.Name = "chemicalApprovalColumn";
             this.chemicalApprovalColumn.OptionsColumn.AllowEdit = false;
             this.chemicalApprovalColumn.OptionsColumn.AllowFocus = false;
@@ -355,8 +388,8 @@
             this.chemicalRegTimeColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.chemicalRegTimeColumn.Caption = "DateTime";
             this.chemicalRegTimeColumn.FieldName = "regtime";
-            this.chemicalRegTimeColumn.MaxWidth = 148;
-            this.chemicalRegTimeColumn.MinWidth = 100;
+            this.chemicalRegTimeColumn.MaxWidth = 110;
+            this.chemicalRegTimeColumn.MinWidth = 110;
             this.chemicalRegTimeColumn.Name = "chemicalRegTimeColumn";
             this.chemicalRegTimeColumn.OptionsColumn.AllowEdit = false;
             this.chemicalRegTimeColumn.OptionsColumn.AllowFocus = false;
@@ -374,7 +407,7 @@
             this.chemicalRegTimeColumn.OptionsFilter.AllowFilter = false;
             this.chemicalRegTimeColumn.Visible = true;
             this.chemicalRegTimeColumn.VisibleIndex = 1;
-            this.chemicalRegTimeColumn.Width = 148;
+            this.chemicalRegTimeColumn.Width = 110;
             // 
             // chemicalAreaColumn
             // 
@@ -412,13 +445,14 @@
             // 
             // chemicalItemNoColumn
             // 
-            this.chemicalItemNoColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chemicalItemNoColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F);
             this.chemicalItemNoColumn.AppearanceCell.Options.UseFont = true;
-            this.chemicalItemNoColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chemicalItemNoColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F);
             this.chemicalItemNoColumn.AppearanceHeader.Options.UseFont = true;
             this.chemicalItemNoColumn.Caption = "Item No.";
             this.chemicalItemNoColumn.FieldName = "productno";
-            this.chemicalItemNoColumn.MinWidth = 80;
+            this.chemicalItemNoColumn.MaxWidth = 160;
+            this.chemicalItemNoColumn.MinWidth = 92;
             this.chemicalItemNoColumn.Name = "chemicalItemNoColumn";
             this.chemicalItemNoColumn.OptionsColumn.AllowEdit = false;
             this.chemicalItemNoColumn.OptionsColumn.AllowFocus = false;
@@ -433,13 +467,39 @@
             this.chemicalItemNoColumn.OptionsFilter.AllowFilter = false;
             this.chemicalItemNoColumn.Visible = true;
             this.chemicalItemNoColumn.VisibleIndex = 3;
-            this.chemicalItemNoColumn.Width = 80;
+            this.chemicalItemNoColumn.Width = 92;
+            // 
+            // chemicalJobNoColumn
+            // 
+            this.chemicalJobNoColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F);
+            this.chemicalJobNoColumn.AppearanceCell.Options.UseFont = true;
+            this.chemicalJobNoColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F);
+            this.chemicalJobNoColumn.AppearanceHeader.Options.UseFont = true;
+            this.chemicalJobNoColumn.Caption = "Job No.";
+            this.chemicalJobNoColumn.FieldName = "pk_recno";
+            this.chemicalJobNoColumn.MaxWidth = 160;
+            this.chemicalJobNoColumn.MinWidth = 92;
+            this.chemicalJobNoColumn.Name = "chemicalJobNoColumn";
+            this.chemicalJobNoColumn.OptionsColumn.AllowEdit = false;
+            this.chemicalJobNoColumn.OptionsColumn.AllowFocus = false;
+            this.chemicalJobNoColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.chemicalJobNoColumn.OptionsColumn.AllowIncrementalSearch = false;
+            this.chemicalJobNoColumn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.chemicalJobNoColumn.OptionsColumn.AllowMove = false;
+            this.chemicalJobNoColumn.OptionsColumn.AllowShowHide = false;
+            this.chemicalJobNoColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.True;
+            this.chemicalJobNoColumn.OptionsColumn.ReadOnly = true;
+            this.chemicalJobNoColumn.OptionsFilter.AllowAutoFilter = false;
+            this.chemicalJobNoColumn.OptionsFilter.AllowFilter = false;
+            this.chemicalJobNoColumn.Visible = true;
+            this.chemicalJobNoColumn.VisibleIndex = 4;
+            this.chemicalJobNoColumn.Width = 92;
             // 
             // chemicalProductColumn
             // 
-            this.chemicalProductColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chemicalProductColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F);
             this.chemicalProductColumn.AppearanceCell.Options.UseFont = true;
-            this.chemicalProductColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chemicalProductColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F);
             this.chemicalProductColumn.AppearanceHeader.Options.UseFont = true;
             this.chemicalProductColumn.Caption = "Product Name";
             this.chemicalProductColumn.FieldName = "sampledesc";
@@ -457,7 +517,7 @@
             this.chemicalProductColumn.OptionsFilter.AllowAutoFilter = false;
             this.chemicalProductColumn.OptionsFilter.AllowFilter = false;
             this.chemicalProductColumn.Visible = true;
-            this.chemicalProductColumn.VisibleIndex = 4;
+            this.chemicalProductColumn.VisibleIndex = 5;
             this.chemicalProductColumn.Width = 100;
             // 
             // findButton
@@ -468,7 +528,7 @@
             this.findButton.Name = "findButton";
             this.findButton.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.findButton.Size = new System.Drawing.Size(86, 24);
-            this.findButton.TabIndex = 6;
+            this.findButton.TabIndex = 7;
             this.findButton.Text = "     Find";
             this.findButton.UseVisualStyleBackColor = true;
             this.findButton.Click += new System.EventHandler(this.findButton_Click);
@@ -476,7 +536,7 @@
             // itemNoEdit
             // 
             this.itemNoEdit.EditValue = "";
-            this.itemNoEdit.Location = new System.Drawing.Point(64, 113);
+            this.itemNoEdit.Location = new System.Drawing.Point(174, 55);
             this.itemNoEdit.Name = "itemNoEdit";
             this.itemNoEdit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.itemNoEdit.Properties.Appearance.Options.UseFont = true;
@@ -485,14 +545,14 @@
             this.itemNoEdit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.itemNoEdit.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.itemNoEdit.Properties.MaxLength = 20;
-            this.itemNoEdit.Size = new System.Drawing.Size(102, 22);
+            this.itemNoEdit.Size = new System.Drawing.Size(86, 22);
             this.itemNoEdit.TabIndex = 5;
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(3, 112);
+            this.label4.Location = new System.Drawing.Point(124, 54);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 22);
+            this.label4.Size = new System.Drawing.Size(53, 22);
             this.label4.TabIndex = 83;
             this.label4.Text = "Item No.";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -650,6 +710,7 @@
             this.viewSplit.ResumeLayout(false);
             this.gridPanel.ResumeLayout(false);
             this.gridPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.jobNoEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chemicalGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chemicalGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chemicalItemCheckEdit)).EndInit();
@@ -696,5 +757,8 @@
         private System.Windows.Forms.ComboBox areaCombo;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit chemicalCheckEdit;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit chemicalItemCheckEdit;
+        public DevExpress.XtraEditors.TextEdit jobNoEdit;
+        private System.Windows.Forms.Label label6;
+        private DevExpress.XtraGrid.Columns.GridColumn chemicalJobNoColumn;
     }
 }

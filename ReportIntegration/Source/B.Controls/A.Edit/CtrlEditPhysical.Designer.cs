@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtrlEditPhysical));
             this.viewSplit = new System.Windows.Forms.SplitContainer();
             this.gridPanel = new Ulee.Controls.UlPanel();
+            this.jobNoEdit = new DevExpress.XtraEditors.TextEdit();
+            this.label6 = new System.Windows.Forms.Label();
             this.approvalCombo = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.toDateEdit = new System.Windows.Forms.DateTimePicker();
@@ -47,6 +49,7 @@
             this.physicalRegTimeColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.physicalAreaColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.physicalItemNoColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.physicalJobNoColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.physicalProductColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.findButton = new System.Windows.Forms.Button();
             this.itemNoEdit = new DevExpress.XtraEditors.TextEdit();
@@ -65,6 +68,7 @@
             this.viewSplit.Panel2.SuspendLayout();
             this.viewSplit.SuspendLayout();
             this.gridPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.jobNoEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.physicalGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.physicalGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.physicalCheckEdit)).BeginInit();
@@ -105,6 +109,8 @@
             // 
             this.gridPanel.BevelInner = Ulee.Controls.EUlBevelStyle.None;
             this.gridPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.None;
+            this.gridPanel.Controls.Add(this.jobNoEdit);
+            this.gridPanel.Controls.Add(this.label6);
             this.gridPanel.Controls.Add(this.approvalCombo);
             this.gridPanel.Controls.Add(this.label5);
             this.gridPanel.Controls.Add(this.toDateEdit);
@@ -133,13 +139,37 @@
             this.gridPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
             this.gridPanel.Resize += new System.EventHandler(this.gridPanel_Resize);
             // 
+            // jobNoEdit
+            // 
+            this.jobNoEdit.EditValue = "";
+            this.jobNoEdit.Location = new System.Drawing.Point(174, 85);
+            this.jobNoEdit.Name = "jobNoEdit";
+            this.jobNoEdit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jobNoEdit.Properties.Appearance.Options.UseFont = true;
+            this.jobNoEdit.Properties.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jobNoEdit.Properties.AppearanceFocused.Options.UseFont = true;
+            this.jobNoEdit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jobNoEdit.Properties.AppearanceReadOnly.Options.UseFont = true;
+            this.jobNoEdit.Properties.MaxLength = 20;
+            this.jobNoEdit.Size = new System.Drawing.Size(86, 22);
+            this.jobNoEdit.TabIndex = 6;
+            // 
+            // label6
+            // 
+            this.label6.Location = new System.Drawing.Point(124, 82);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 22);
+            this.label6.TabIndex = 104;
+            this.label6.Text = "Job No.";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // approvalCombo
             // 
             this.approvalCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.approvalCombo.FormattingEnabled = true;
             this.approvalCombo.Location = new System.Drawing.Point(64, 55);
             this.approvalCombo.Name = "approvalCombo";
-            this.approvalCombo.Size = new System.Drawing.Size(102, 23);
+            this.approvalCombo.Size = new System.Drawing.Size(54, 23);
             this.approvalCombo.TabIndex = 3;
             // 
             // label5
@@ -203,7 +233,7 @@
             this.areaCombo.FormattingEnabled = true;
             this.areaCombo.Location = new System.Drawing.Point(64, 84);
             this.areaCombo.Name = "areaCombo";
-            this.areaCombo.Size = new System.Drawing.Size(102, 23);
+            this.areaCombo.Size = new System.Drawing.Size(54, 23);
             this.areaCombo.TabIndex = 4;
             // 
             // resetButton
@@ -215,7 +245,7 @@
             this.resetButton.Name = "resetButton";
             this.resetButton.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.resetButton.Size = new System.Drawing.Size(86, 24);
-            this.resetButton.TabIndex = 7;
+            this.resetButton.TabIndex = 8;
             this.resetButton.Text = "     Reset";
             this.resetButton.UseVisualStyleBackColor = true;
             this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
@@ -231,13 +261,13 @@
             // 
             // physicalGrid
             // 
-            this.physicalGrid.Location = new System.Drawing.Point(0, 140);
+            this.physicalGrid.Location = new System.Drawing.Point(0, 113);
             this.physicalGrid.MainView = this.physicalGridView;
             this.physicalGrid.Name = "physicalGrid";
             this.physicalGrid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.physicalCheckEdit});
-            this.physicalGrid.Size = new System.Drawing.Size(260, 428);
-            this.physicalGrid.TabIndex = 8;
+            this.physicalGrid.Size = new System.Drawing.Size(260, 455);
+            this.physicalGrid.TabIndex = 9;
             this.physicalGrid.TabStop = false;
             this.physicalGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.physicalGridView});
@@ -269,6 +299,7 @@
             this.physicalRegTimeColumn,
             this.physicalAreaColumn,
             this.physicalItemNoColumn,
+            this.physicalJobNoColumn,
             this.physicalProductColumn});
             this.physicalGridView.CustomizationFormBounds = new System.Drawing.Rectangle(2884, 580, 210, 186);
             this.physicalGridView.GridControl = this.physicalGrid;
@@ -285,11 +316,11 @@
             // 
             // physicalApprovalColumn
             // 
-            this.physicalApprovalColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.physicalApprovalColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F);
             this.physicalApprovalColumn.AppearanceCell.Options.UseFont = true;
             this.physicalApprovalColumn.AppearanceCell.Options.UseTextOptions = true;
             this.physicalApprovalColumn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.physicalApprovalColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.physicalApprovalColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F);
             this.physicalApprovalColumn.AppearanceHeader.Options.UseFont = true;
             this.physicalApprovalColumn.AppearanceHeader.Options.UseTextOptions = true;
             this.physicalApprovalColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -346,8 +377,8 @@
             this.physicalRegTimeColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.physicalRegTimeColumn.Caption = "DateTime";
             this.physicalRegTimeColumn.FieldName = "regtime";
-            this.physicalRegTimeColumn.MaxWidth = 148;
-            this.physicalRegTimeColumn.MinWidth = 100;
+            this.physicalRegTimeColumn.MaxWidth = 110;
+            this.physicalRegTimeColumn.MinWidth = 110;
             this.physicalRegTimeColumn.Name = "physicalRegTimeColumn";
             this.physicalRegTimeColumn.OptionsColumn.AllowEdit = false;
             this.physicalRegTimeColumn.OptionsColumn.AllowFocus = false;
@@ -356,6 +387,7 @@
             this.physicalRegTimeColumn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.physicalRegTimeColumn.OptionsColumn.AllowMove = false;
             this.physicalRegTimeColumn.OptionsColumn.AllowShowHide = false;
+            this.physicalRegTimeColumn.OptionsColumn.AllowSize = false;
             this.physicalRegTimeColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.True;
             this.physicalRegTimeColumn.OptionsColumn.ImmediateUpdateRowPosition = DevExpress.Utils.DefaultBoolean.False;
             this.physicalRegTimeColumn.OptionsColumn.Printable = DevExpress.Utils.DefaultBoolean.False;
@@ -365,7 +397,7 @@
             this.physicalRegTimeColumn.OptionsFilter.AllowFilter = false;
             this.physicalRegTimeColumn.Visible = true;
             this.physicalRegTimeColumn.VisibleIndex = 1;
-            this.physicalRegTimeColumn.Width = 148;
+            this.physicalRegTimeColumn.Width = 110;
             // 
             // physicalAreaColumn
             // 
@@ -403,13 +435,14 @@
             // 
             // physicalItemNoColumn
             // 
-            this.physicalItemNoColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.physicalItemNoColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F);
             this.physicalItemNoColumn.AppearanceCell.Options.UseFont = true;
-            this.physicalItemNoColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.physicalItemNoColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F);
             this.physicalItemNoColumn.AppearanceHeader.Options.UseFont = true;
             this.physicalItemNoColumn.Caption = "Item No.";
             this.physicalItemNoColumn.FieldName = "productno";
-            this.physicalItemNoColumn.MinWidth = 80;
+            this.physicalItemNoColumn.MaxWidth = 160;
+            this.physicalItemNoColumn.MinWidth = 92;
             this.physicalItemNoColumn.Name = "physicalItemNoColumn";
             this.physicalItemNoColumn.OptionsColumn.AllowEdit = false;
             this.physicalItemNoColumn.OptionsColumn.AllowFocus = false;
@@ -424,13 +457,39 @@
             this.physicalItemNoColumn.OptionsFilter.AllowFilter = false;
             this.physicalItemNoColumn.Visible = true;
             this.physicalItemNoColumn.VisibleIndex = 3;
-            this.physicalItemNoColumn.Width = 80;
+            this.physicalItemNoColumn.Width = 92;
+            // 
+            // physicalJobNoColumn
+            // 
+            this.physicalJobNoColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.physicalJobNoColumn.AppearanceCell.Options.UseFont = true;
+            this.physicalJobNoColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.physicalJobNoColumn.AppearanceHeader.Options.UseFont = true;
+            this.physicalJobNoColumn.Caption = "Job No.";
+            this.physicalJobNoColumn.FieldName = "pk_recno";
+            this.physicalJobNoColumn.MaxWidth = 160;
+            this.physicalJobNoColumn.MinWidth = 92;
+            this.physicalJobNoColumn.Name = "physicalJobNoColumn";
+            this.physicalJobNoColumn.OptionsColumn.AllowEdit = false;
+            this.physicalJobNoColumn.OptionsColumn.AllowFocus = false;
+            this.physicalJobNoColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.physicalJobNoColumn.OptionsColumn.AllowIncrementalSearch = false;
+            this.physicalJobNoColumn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.physicalJobNoColumn.OptionsColumn.AllowMove = false;
+            this.physicalJobNoColumn.OptionsColumn.AllowShowHide = false;
+            this.physicalJobNoColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.True;
+            this.physicalJobNoColumn.OptionsColumn.ReadOnly = true;
+            this.physicalJobNoColumn.OptionsFilter.AllowAutoFilter = false;
+            this.physicalJobNoColumn.OptionsFilter.AllowFilter = false;
+            this.physicalJobNoColumn.Visible = true;
+            this.physicalJobNoColumn.VisibleIndex = 4;
+            this.physicalJobNoColumn.Width = 92;
             // 
             // physicalProductColumn
             // 
-            this.physicalProductColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.physicalProductColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F);
             this.physicalProductColumn.AppearanceCell.Options.UseFont = true;
-            this.physicalProductColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.physicalProductColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F);
             this.physicalProductColumn.AppearanceHeader.Options.UseFont = true;
             this.physicalProductColumn.Caption = "Product Name";
             this.physicalProductColumn.FieldName = "sampledesc";
@@ -448,7 +507,7 @@
             this.physicalProductColumn.OptionsFilter.AllowAutoFilter = false;
             this.physicalProductColumn.OptionsFilter.AllowFilter = false;
             this.physicalProductColumn.Visible = true;
-            this.physicalProductColumn.VisibleIndex = 4;
+            this.physicalProductColumn.VisibleIndex = 5;
             this.physicalProductColumn.Width = 100;
             // 
             // findButton
@@ -459,7 +518,7 @@
             this.findButton.Name = "findButton";
             this.findButton.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.findButton.Size = new System.Drawing.Size(86, 24);
-            this.findButton.TabIndex = 6;
+            this.findButton.TabIndex = 7;
             this.findButton.Text = "     Find";
             this.findButton.UseVisualStyleBackColor = true;
             this.findButton.Click += new System.EventHandler(this.findButton_Click);
@@ -467,7 +526,7 @@
             // itemNoEdit
             // 
             this.itemNoEdit.EditValue = "";
-            this.itemNoEdit.Location = new System.Drawing.Point(64, 113);
+            this.itemNoEdit.Location = new System.Drawing.Point(174, 55);
             this.itemNoEdit.Name = "itemNoEdit";
             this.itemNoEdit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.itemNoEdit.Properties.Appearance.Options.UseFont = true;
@@ -476,14 +535,14 @@
             this.itemNoEdit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.itemNoEdit.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.itemNoEdit.Properties.MaxLength = 20;
-            this.itemNoEdit.Size = new System.Drawing.Size(102, 22);
+            this.itemNoEdit.Size = new System.Drawing.Size(86, 22);
             this.itemNoEdit.TabIndex = 5;
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(3, 112);
+            this.label4.Location = new System.Drawing.Point(124, 54);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 22);
+            this.label4.Size = new System.Drawing.Size(53, 22);
             this.label4.TabIndex = 83;
             this.label4.Text = "Item No.";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -641,6 +700,7 @@
             this.viewSplit.ResumeLayout(false);
             this.gridPanel.ResumeLayout(false);
             this.gridPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.jobNoEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.physicalGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.physicalGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.physicalCheckEdit)).EndInit();
@@ -686,5 +746,8 @@
         private System.Windows.Forms.Label label5;
         private DevExpress.XtraGrid.Columns.GridColumn physicalApprovalColumn;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit physicalCheckEdit;
+        public DevExpress.XtraEditors.TextEdit jobNoEdit;
+        private System.Windows.Forms.Label label6;
+        private DevExpress.XtraGrid.Columns.GridColumn physicalJobNoColumn;
     }
 }

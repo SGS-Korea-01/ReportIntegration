@@ -36,12 +36,16 @@
             this.bomSplit = new System.Windows.Forms.SplitContainer();
             this.productGrid = new DevExpress.XtraGrid.GridControl();
             this.productGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.productValidColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.productValidCheckEdit = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.productCodeColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.productJobNoColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.productNameColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.productImageColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.partGrid = new DevExpress.XtraGrid.GridControl();
             this.partGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.partNameColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.partJobNoColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.partMaterialNoColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.partMaterialNameColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.bomExcelPage = new System.Windows.Forms.TabPage();
@@ -63,6 +67,8 @@
             this.bomFindButton = new System.Windows.Forms.Button();
             this.bomNameEdit = new DevExpress.XtraEditors.TextEdit();
             this.label4 = new System.Windows.Forms.Label();
+            this.bomMessgaePage = new System.Windows.Forms.TabPage();
+            this.totalLogEdit = new System.Windows.Forms.TextBox();
             this.bgPanel.SuspendLayout();
             this.reportPanel.SuspendLayout();
             this.bomTab.SuspendLayout();
@@ -73,6 +79,7 @@
             this.bomSplit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productValidCheckEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partGridView)).BeginInit();
             this.bomExcelPage.SuspendLayout();
@@ -84,6 +91,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bomGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bomGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bomNameEdit.Properties)).BeginInit();
+            this.bomMessgaePage.SuspendLayout();
             this.SuspendLayout();
             // 
             // bgPanel
@@ -115,6 +123,7 @@
             // 
             this.bomTab.Controls.Add(this.bomProductPage);
             this.bomTab.Controls.Add(this.bomExcelPage);
+            this.bomTab.Controls.Add(this.bomMessgaePage);
             this.bomTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bomTab.Location = new System.Drawing.Point(0, 0);
             this.bomTab.Margin = new System.Windows.Forms.Padding(4);
@@ -132,7 +141,7 @@
             this.bomProductPage.Name = "bomProductPage";
             this.bomProductPage.Size = new System.Drawing.Size(548, 538);
             this.bomProductPage.TabIndex = 2;
-            this.bomProductPage.Text = "  PRODUCT / PART  ";
+            this.bomProductPage.Text = "  Product / Part  ";
             this.bomProductPage.UseVisualStyleBackColor = true;
             this.bomProductPage.Resize += new System.EventHandler(this.bomProductPage_Resize);
             // 
@@ -165,6 +174,8 @@
             this.productGrid.Location = new System.Drawing.Point(0, 0);
             this.productGrid.MainView = this.productGridView;
             this.productGrid.Name = "productGrid";
+            this.productGrid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.productValidCheckEdit});
             this.productGrid.Size = new System.Drawing.Size(548, 266);
             this.productGrid.TabIndex = 0;
             this.productGrid.TabStop = false;
@@ -195,7 +206,9 @@
             this.productGridView.Appearance.ViewCaption.Font = new System.Drawing.Font("Arial", 9F);
             this.productGridView.Appearance.ViewCaption.Options.UseFont = true;
             this.productGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.productValidColumn,
             this.productCodeColumn,
+            this.productJobNoColumn,
             this.productNameColumn,
             this.productImageColumn});
             this.productGridView.CustomizationFormBounds = new System.Drawing.Rectangle(2884, 580, 210, 186);
@@ -211,6 +224,49 @@
             this.productGridView.Tag = 1;
             this.productGridView.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.productGridView_FocusedRowChanged);
             // 
+            // productValidColumn
+            // 
+            this.productValidColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productValidColumn.AppearanceCell.Options.UseFont = true;
+            this.productValidColumn.AppearanceCell.Options.UseTextOptions = true;
+            this.productValidColumn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.productValidColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productValidColumn.AppearanceHeader.Options.UseFont = true;
+            this.productValidColumn.AppearanceHeader.Options.UseTextOptions = true;
+            this.productValidColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.productValidColumn.Caption = "A";
+            this.productValidColumn.ColumnEdit = this.productValidCheckEdit;
+            this.productValidColumn.FieldName = "valid";
+            this.productValidColumn.MaxWidth = 24;
+            this.productValidColumn.MinWidth = 24;
+            this.productValidColumn.Name = "productValidColumn";
+            this.productValidColumn.OptionsColumn.AllowEdit = false;
+            this.productValidColumn.OptionsColumn.AllowFocus = false;
+            this.productValidColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.productValidColumn.OptionsColumn.AllowIncrementalSearch = false;
+            this.productValidColumn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.productValidColumn.OptionsColumn.AllowMove = false;
+            this.productValidColumn.OptionsColumn.AllowShowHide = false;
+            this.productValidColumn.OptionsColumn.AllowSize = false;
+            this.productValidColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.productValidColumn.OptionsColumn.FixedWidth = true;
+            this.productValidColumn.OptionsColumn.ImmediateUpdateRowPosition = DevExpress.Utils.DefaultBoolean.False;
+            this.productValidColumn.OptionsColumn.Printable = DevExpress.Utils.DefaultBoolean.False;
+            this.productValidColumn.OptionsColumn.ReadOnly = true;
+            this.productValidColumn.OptionsFilter.AllowAutoFilter = false;
+            this.productValidColumn.OptionsFilter.AllowFilter = false;
+            this.productValidColumn.Visible = true;
+            this.productValidColumn.VisibleIndex = 0;
+            this.productValidColumn.Width = 24;
+            // 
+            // productValidCheckEdit
+            // 
+            this.productValidCheckEdit.AutoHeight = false;
+            this.productValidCheckEdit.Name = "productValidCheckEdit";
+            this.productValidCheckEdit.ReadOnly = true;
+            this.productValidCheckEdit.ValueChecked = 1;
+            this.productValidCheckEdit.ValueUnchecked = 0;
+            // 
             // productCodeColumn
             // 
             this.productCodeColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F);
@@ -223,7 +279,8 @@
             this.productCodeColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.productCodeColumn.Caption = "Item No";
             this.productCodeColumn.FieldName = "code";
-            this.productCodeColumn.MinWidth = 80;
+            this.productCodeColumn.MaxWidth = 92;
+            this.productCodeColumn.MinWidth = 92;
             this.productCodeColumn.Name = "productCodeColumn";
             this.productCodeColumn.OptionsColumn.AllowEdit = false;
             this.productCodeColumn.OptionsColumn.AllowFocus = false;
@@ -242,8 +299,38 @@
             this.productCodeColumn.OptionsFilter.AllowAutoFilter = false;
             this.productCodeColumn.OptionsFilter.AllowFilter = false;
             this.productCodeColumn.Visible = true;
-            this.productCodeColumn.VisibleIndex = 0;
-            this.productCodeColumn.Width = 80;
+            this.productCodeColumn.VisibleIndex = 1;
+            this.productCodeColumn.Width = 92;
+            // 
+            // productJobNoColumn
+            // 
+            this.productJobNoColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productJobNoColumn.AppearanceCell.Options.UseFont = true;
+            this.productJobNoColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productJobNoColumn.AppearanceHeader.Options.UseFont = true;
+            this.productJobNoColumn.Caption = "Job No";
+            this.productJobNoColumn.FieldName = "jobno";
+            this.productJobNoColumn.MaxWidth = 92;
+            this.productJobNoColumn.MinWidth = 92;
+            this.productJobNoColumn.Name = "productJobNoColumn";
+            this.productJobNoColumn.OptionsColumn.AllowEdit = false;
+            this.productJobNoColumn.OptionsColumn.AllowFocus = false;
+            this.productJobNoColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.productJobNoColumn.OptionsColumn.AllowIncrementalSearch = false;
+            this.productJobNoColumn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.productJobNoColumn.OptionsColumn.AllowMove = false;
+            this.productJobNoColumn.OptionsColumn.AllowShowHide = false;
+            this.productJobNoColumn.OptionsColumn.AllowSize = false;
+            this.productJobNoColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.True;
+            this.productJobNoColumn.OptionsColumn.FixedWidth = true;
+            this.productJobNoColumn.OptionsColumn.ImmediateUpdateRowPosition = DevExpress.Utils.DefaultBoolean.False;
+            this.productJobNoColumn.OptionsColumn.Printable = DevExpress.Utils.DefaultBoolean.False;
+            this.productJobNoColumn.OptionsColumn.ReadOnly = true;
+            this.productJobNoColumn.OptionsFilter.AllowAutoFilter = false;
+            this.productJobNoColumn.OptionsFilter.AllowFilter = false;
+            this.productJobNoColumn.Visible = true;
+            this.productJobNoColumn.VisibleIndex = 2;
+            this.productJobNoColumn.Width = 92;
             // 
             // productNameColumn
             // 
@@ -275,8 +362,8 @@
             this.productNameColumn.OptionsFilter.AllowAutoFilter = false;
             this.productNameColumn.OptionsFilter.AllowFilter = false;
             this.productNameColumn.Visible = true;
-            this.productNameColumn.VisibleIndex = 1;
-            this.productNameColumn.Width = 388;
+            this.productNameColumn.VisibleIndex = 3;
+            this.productNameColumn.Width = 270;
             // 
             // productImageColumn
             // 
@@ -309,7 +396,7 @@
             this.productImageColumn.OptionsFilter.AllowAutoFilter = false;
             this.productImageColumn.OptionsFilter.AllowFilter = false;
             this.productImageColumn.Visible = true;
-            this.productImageColumn.VisibleIndex = 2;
+            this.productImageColumn.VisibleIndex = 4;
             this.productImageColumn.Width = 52;
             // 
             // partGrid
@@ -348,6 +435,7 @@
             this.partGridView.Appearance.ViewCaption.Options.UseFont = true;
             this.partGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.partNameColumn,
+            this.partJobNoColumn,
             this.partMaterialNoColumn,
             this.partMaterialNameColumn});
             this.partGridView.CustomizationFormBounds = new System.Drawing.Rectangle(2884, 580, 210, 186);
@@ -391,7 +479,35 @@
             this.partNameColumn.OptionsFilter.AllowFilter = false;
             this.partNameColumn.Visible = true;
             this.partNameColumn.VisibleIndex = 0;
-            this.partNameColumn.Width = 180;
+            this.partNameColumn.Width = 174;
+            // 
+            // partJobNoColumn
+            // 
+            this.partJobNoColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.partJobNoColumn.AppearanceCell.Options.UseFont = true;
+            this.partJobNoColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.partJobNoColumn.AppearanceHeader.Options.UseFont = true;
+            this.partJobNoColumn.Caption = "Job No";
+            this.partJobNoColumn.FieldName = "jobno";
+            this.partJobNoColumn.MaxWidth = 92;
+            this.partJobNoColumn.MinWidth = 92;
+            this.partJobNoColumn.Name = "partJobNoColumn";
+            this.partJobNoColumn.OptionsColumn.AllowEdit = false;
+            this.partJobNoColumn.OptionsColumn.AllowFocus = false;
+            this.partJobNoColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.partJobNoColumn.OptionsColumn.AllowIncrementalSearch = false;
+            this.partJobNoColumn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.partJobNoColumn.OptionsColumn.AllowMove = false;
+            this.partJobNoColumn.OptionsColumn.AllowShowHide = false;
+            this.partJobNoColumn.OptionsColumn.AllowSize = false;
+            this.partJobNoColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.partJobNoColumn.OptionsColumn.FixedWidth = true;
+            this.partJobNoColumn.OptionsColumn.ReadOnly = true;
+            this.partJobNoColumn.OptionsFilter.AllowAutoFilter = false;
+            this.partJobNoColumn.OptionsFilter.AllowFilter = false;
+            this.partJobNoColumn.Visible = true;
+            this.partJobNoColumn.VisibleIndex = 1;
+            this.partJobNoColumn.Width = 92;
             // 
             // partMaterialNoColumn
             // 
@@ -405,7 +521,8 @@
             this.partMaterialNoColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.partMaterialNoColumn.Caption = "Material No";
             this.partMaterialNoColumn.FieldName = "materialno";
-            this.partMaterialNoColumn.MinWidth = 80;
+            this.partMaterialNoColumn.MaxWidth = 92;
+            this.partMaterialNoColumn.MinWidth = 92;
             this.partMaterialNoColumn.Name = "partMaterialNoColumn";
             this.partMaterialNoColumn.OptionsColumn.AllowEdit = false;
             this.partMaterialNoColumn.OptionsColumn.AllowFocus = false;
@@ -414,15 +531,16 @@
             this.partMaterialNoColumn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.partMaterialNoColumn.OptionsColumn.AllowMove = false;
             this.partMaterialNoColumn.OptionsColumn.AllowShowHide = false;
-            this.partMaterialNoColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.True;
+            this.partMaterialNoColumn.OptionsColumn.AllowSize = false;
+            this.partMaterialNoColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
             this.partMaterialNoColumn.OptionsColumn.ImmediateUpdateRowPosition = DevExpress.Utils.DefaultBoolean.False;
             this.partMaterialNoColumn.OptionsColumn.Printable = DevExpress.Utils.DefaultBoolean.False;
             this.partMaterialNoColumn.OptionsColumn.ReadOnly = true;
             this.partMaterialNoColumn.OptionsFilter.AllowAutoFilter = false;
             this.partMaterialNoColumn.OptionsFilter.AllowFilter = false;
             this.partMaterialNoColumn.Visible = true;
-            this.partMaterialNoColumn.VisibleIndex = 1;
-            this.partMaterialNoColumn.Width = 100;
+            this.partMaterialNoColumn.VisibleIndex = 2;
+            this.partMaterialNoColumn.Width = 92;
             // 
             // partMaterialNameColumn
             // 
@@ -432,7 +550,7 @@
             this.partMaterialNameColumn.AppearanceHeader.Options.UseFont = true;
             this.partMaterialNameColumn.Caption = "Material Name";
             this.partMaterialNameColumn.FieldName = "materialname";
-            this.partMaterialNameColumn.MinWidth = 200;
+            this.partMaterialNameColumn.MinWidth = 140;
             this.partMaterialNameColumn.Name = "partMaterialNameColumn";
             this.partMaterialNameColumn.OptionsColumn.AllowEdit = false;
             this.partMaterialNameColumn.OptionsColumn.AllowFocus = false;
@@ -446,8 +564,8 @@
             this.partMaterialNameColumn.OptionsFilter.AllowAutoFilter = false;
             this.partMaterialNameColumn.OptionsFilter.AllowFilter = false;
             this.partMaterialNameColumn.Visible = true;
-            this.partMaterialNameColumn.VisibleIndex = 2;
-            this.partMaterialNameColumn.Width = 240;
+            this.partMaterialNameColumn.VisibleIndex = 3;
+            this.partMaterialNameColumn.Width = 172;
             // 
             // bomExcelPage
             // 
@@ -456,7 +574,7 @@
             this.bomExcelPage.Name = "bomExcelPage";
             this.bomExcelPage.Size = new System.Drawing.Size(548, 538);
             this.bomExcelPage.TabIndex = 3;
-            this.bomExcelPage.Text = "  EXCEL  ";
+            this.bomExcelPage.Text = "  Excel  ";
             this.bomExcelPage.UseVisualStyleBackColor = true;
             // 
             // bomExcelSheet
@@ -775,6 +893,32 @@
             this.label4.Text = "Name";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // bomMessgaePage
+            // 
+            this.bomMessgaePage.Controls.Add(this.totalLogEdit);
+            this.bomMessgaePage.Location = new System.Drawing.Point(4, 26);
+            this.bomMessgaePage.Name = "bomMessgaePage";
+            this.bomMessgaePage.Padding = new System.Windows.Forms.Padding(3);
+            this.bomMessgaePage.Size = new System.Drawing.Size(548, 538);
+            this.bomMessgaePage.TabIndex = 4;
+            this.bomMessgaePage.Text = "  Message  ";
+            this.bomMessgaePage.UseVisualStyleBackColor = true;
+            // 
+            // totalLogEdit
+            // 
+            this.totalLogEdit.BackColor = System.Drawing.Color.FloralWhite;
+            this.totalLogEdit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.totalLogEdit.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalLogEdit.Location = new System.Drawing.Point(3, 3);
+            this.totalLogEdit.MaxLength = 131071;
+            this.totalLogEdit.Multiline = true;
+            this.totalLogEdit.Name = "totalLogEdit";
+            this.totalLogEdit.ReadOnly = true;
+            this.totalLogEdit.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.totalLogEdit.Size = new System.Drawing.Size(542, 532);
+            this.totalLogEdit.TabIndex = 6;
+            this.totalLogEdit.TabStop = false;
+            // 
             // CtrlEditBom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -794,6 +938,7 @@
             this.bomSplit.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.productGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productValidCheckEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.partGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.partGridView)).EndInit();
             this.bomExcelPage.ResumeLayout(false);
@@ -806,6 +951,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.bomGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bomGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bomNameEdit.Properties)).EndInit();
+            this.bomMessgaePage.ResumeLayout(false);
+            this.bomMessgaePage.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -846,5 +993,11 @@
         private DevExpress.XtraGrid.Columns.GridColumn partMaterialNameColumn;
         private System.Windows.Forms.TabPage bomExcelPage;
         private DevExpress.XtraSpreadsheet.SpreadsheetControl bomExcelSheet;
+        private DevExpress.XtraGrid.Columns.GridColumn productJobNoColumn;
+        private DevExpress.XtraGrid.Columns.GridColumn productValidColumn;
+        private DevExpress.XtraGrid.Columns.GridColumn partJobNoColumn;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit productValidCheckEdit;
+        private System.Windows.Forms.TabPage bomMessgaePage;
+        private System.Windows.Forms.TextBox totalLogEdit;
     }
 }

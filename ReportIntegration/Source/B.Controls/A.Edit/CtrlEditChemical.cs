@@ -39,6 +39,8 @@ namespace Sgs.ReportIntegration
 
         private StaffDataSet staffSet;
 
+        private ChemicalQuery cheQuery;
+
         private CtrlEditChemicalUs ctrlUs;
 
         private CtrlEditChemicalEu ctrlEu;
@@ -63,20 +65,6 @@ namespace Sgs.ReportIntegration
             profJobSchemeSet = new ProfJobSchemeDataSet(AppRes.DB.Connect, null, null);
             staffSet = new StaffDataSet(AppRes.DB.Connect, null, null);
 
-            bookmark = new GridBookmark(chemicalGridView);
-            AppHelper.SetGridEvenRow(chemicalGridView);
-
-            chemicalAreaColumn.DisplayFormat.FormatType = FormatType.Custom;
-            chemicalAreaColumn.DisplayFormat.Format = new ReportAreaFormat();
-
-            approvalCombo.DataSource = EnumHelper.GetNameValues<EReportApproval>();
-            approvalCombo.DisplayMember = "Name";
-            approvalCombo.ValueMember = "Value";
-
-            areaCombo.DataSource = EnumHelper.GetNameValues<EReportArea>();
-            areaCombo.DisplayMember = "Name";
-            areaCombo.ValueMember = "Value";
-
             ctrlUs = new CtrlEditChemicalUs();
             ctrlUs.MainSet = cheMainSet;
             ctrlUs.P2Set = cheP2Set;
@@ -87,6 +75,34 @@ namespace Sgs.ReportIntegration
             ctrlEu.MainSet = cheMainSet;
             ctrlEu.ImageSet = cheImageSet;
             ctrlEu.P2Set = cheP2Set;
+
+            cheQuery = new ChemicalQuery();
+            cheQuery.MainSet = cheMainSet;
+            cheQuery.ImageSet = cheImageSet;
+            cheQuery.JoinSet = cheJoinSet;
+            cheQuery.P2Set = cheP2Set;
+            cheQuery.ProfJobSet = profJobSet;
+            cheQuery.ProfJobSchemeSet = profJobSchemeSet;
+            cheQuery.StaffSet = staffSet;
+            cheQuery.CtrlUs = ctrlUs;
+            cheQuery.CtrlEu = ctrlEu;
+
+            bookmark = new GridBookmark(chemicalGridView);
+            AppHelper.SetGridEvenRow(chemicalGridView);
+
+            chemicalAreaColumn.DisplayFormat.FormatType = FormatType.Custom;
+            chemicalAreaColumn.DisplayFormat.Format = new ReportAreaFormat();
+
+            chemicalRegTimeColumn.DisplayFormat.FormatType = FormatType.Custom;
+            chemicalRegTimeColumn.DisplayFormat.Format = new ReportDateTimeFormat();
+
+            approvalCombo.DataSource = EnumHelper.GetNameValues<EReportApproval>();
+            approvalCombo.DisplayMember = "Name";
+            approvalCombo.ValueMember = "Value";
+
+            areaCombo.DataSource = EnumHelper.GetNameValues<EReportArea>();
+            areaCombo.DisplayMember = "Name";
+            areaCombo.ValueMember = "Value";
 
             SetControl(null);
         }
@@ -119,10 +135,10 @@ namespace Sgs.ReportIntegration
                 set.To = "";
             }
 
-            set.RecNo = "";
             set.AreaNo = (EReportArea)areaCombo.SelectedValue;
             set.ReportApproval = (EReportApproval)approvalCombo.SelectedValue;
             set.MaterialNo = itemNoEdit.Text.Trim();
+            set.RecNo = jobNoEdit.Text.Trim();
             set.Select();
 
             AppHelper.SetGridDataSource(chemicalGrid, set);
@@ -134,11 +150,12 @@ namespace Sgs.ReportIntegration
         private void resetButton_Click(object sender, EventArgs e)
         {
             dateCheck.Checked = true;
-            fromDateEdit.Value = DateTime.Now.AddDays(-30);
+            fromDateEdit.Value = DateTime.Now.AddMonths(-1);
             toDateEdit.Value = DateTime.Now;
             approvalCombo.SelectedIndex = 0;
             areaCombo.SelectedIndex = 0;
             itemNoEdit.Text = string.Empty;
+            jobNoEdit.Text = string.Empty;
             findButton.PerformClick();
 
             chemicalRegTimeColumn.SortOrder = ColumnSortOrder.Descending;
@@ -160,9 +177,15 @@ namespace Sgs.ReportIntegration
 
         private void gridPanel_Resize(object sender, EventArgs e)
         {
-            findButton.Left = gridPanel.Width - 86;
-            resetButton.Left = gridPanel.Width - 86;
-            chemicalGrid.Size = new Size(gridPanel.Width, gridPanel.Height - 142);
+            int width = gridPanel.Width;
+
+            findButton.Left = width - 86;
+            resetButton.Left = width - 86;
+
+            itemNoEdit.Width = width - 174;
+            jobNoEdit.Width = width - 174;
+
+            chemicalGrid.Size = new Size(width, gridPanel.Height - 113);
         }
 
         private void reportPanel_Resize(object sender, EventArgs e)
@@ -277,30 +300,7 @@ namespace Sgs.ReportIntegration
             if (MessageBox.Show($"Would you like to delete chemical report of {cheMainSet.MaterialNo}?",
                 "SGS", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
 
-            string mainNo = cheMainSet.RecNo;
-            SqlTransaction trans = AppRes.DB.BeginTrans();
-
-            try
-            {
-
-                cheImageSet.RecNo = mainNo;
-                cheImageSet.Delete(trans);
-
-                cheJoinSet.RecNo = mainNo;
-                cheJoinSet.Delete(trans);
-
-                cheP2Set.MainNo = mainNo;
-                cheP2Set.Delete(trans);
-
-                cheMainSet.Delete(trans);
-
-                AppRes.DB.CommitTrans();
-            }
-            catch
-            {
-                AppRes.DB.RollbackTrans();
-            }
-
+            cheQuery.Delete();
             findButton.PerformClick();
         }
 
@@ -340,7 +340,8 @@ namespace Sgs.ReportIntegration
             if (MessageBox.Show($"Would you like to save chesical report of {cheMainSet.MaterialNo}?",
                 "SGS", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
 
-            SaveReport();
+            cheQuery.Update();
+            findButton.PerformClick();
         }
 
         public void Cancel()
@@ -350,48 +351,6 @@ namespace Sgs.ReportIntegration
                 "SGS", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
 
             SetReportView(cheMainSet.AreaNo);
-        }
-
-        private void SaveReport()
-        {
-            EReportArea area = cheMainSet.AreaNo;
-            SqlTransaction trans = AppRes.DB.BeginTrans();
-
-            try
-            {
-                SaveMain(area, trans);
-                SavePage2(area, trans);
-
-                AppRes.DB.CommitTrans();
-            }
-            catch
-            {
-                AppRes.DB.RollbackTrans();
-            }
-
-            findButton.PerformClick();
-        }
-
-        private void SaveMain(EReportArea area, SqlTransaction trans)
-        {
-            if (area == EReportArea.US)
-                ctrlUs.SetControlToDataSet();
-            else
-                ctrlEu.SetControlToDataSet();
-
-            cheMainSet.Update(trans);
-        }
-
-        private void SavePage2(EReportArea area, SqlTransaction trans)
-        {
-            List<ChemicalPage2Row> rows = (area == EReportArea.US) ? ctrlUs.P2Rows : ctrlEu.P2Rows;
-
-            foreach (ChemicalPage2Row row in rows)
-            {
-                cheP2Set.RecNo = row.RecNo;
-                cheP2Set.FormatValue = row.FormatValue;
-                cheP2Set.Update(trans);
-            }
         }
 
         private void Insert()
@@ -413,9 +372,7 @@ namespace Sgs.ReportIntegration
                 staffSet.DataSet.Clear();
             }
 
-            cheCheckSet.RecNo = profJobSet.JobNo;
-            cheCheckSet.Select();
-
+            cheCheckSet.Select(profJobSet.JobNo);
             if (cheCheckSet.Empty == false)
             {
                 MessageBox.Show("Can't import chemical report because this report already exist in DB!",
@@ -423,147 +380,8 @@ namespace Sgs.ReportIntegration
                 return;
             }
 
-            SqlTransaction trans = AppRes.DB.BeginTrans();
-
-            try
-            {
-                InsertMain(area, trans);
-                InsertJoin(trans);
-                InsertImage(trans);
-                InsertPage2(trans);
-
-                AppRes.DB.CommitTrans();
-            }
-            catch (Exception e)
-            {
-                AppRes.DbLog["Note"] = e.ToString();
-                AppRes.DB.RollbackTrans();
-            }
-
+            cheQuery.Insert();
             findButton.PerformClick();
-        }
-
-        private void InsertMain(EReportArea area, SqlTransaction trans)
-        {
-            cheMainSet.RecNo = profJobSet.JobNo;
-            cheMainSet.RegTime = profJobSet.RegTime;
-            cheMainSet.ReceivedTime = profJobSet.ReceivedTime;
-            cheMainSet.RequiredTime = profJobSet.RequiredTime;
-            cheMainSet.ReportedTime = profJobSet.ReportedTime;
-            cheMainSet.Approval = false;
-            cheMainSet.AreaNo = profJobSet.AreaNo;
-            cheMainSet.MaterialNo = profJobSet.ItemNo;
-            cheMainSet.P1ClientNo = profJobSet.ClientNo;
-            cheMainSet.P1ClientName = profJobSet.ClientName;
-            cheMainSet.P1ClientAddress = profJobSet.ClientAddress;
-            cheMainSet.P1FileNo = profJobSet.FileNo;
-            cheMainSet.P1SampleDescription = profJobSet.SampleRemark;
-            cheMainSet.P1ItemNo = profJobSet.ItemNo;
-            cheMainSet.P1OrderNo = "-";
-            cheMainSet.P1Manufacturer = profJobSet.Manufacturer;
-            cheMainSet.P1CountryOfOrigin = profJobSet.CountryOfOrigin;
-            cheMainSet.P1CountryOfDestination = "-";
-            cheMainSet.P1ReceivedDate = profJobSet.ReceivedTime.ToString("yyyy. MM. dd");
-            cheMainSet.P1TestPeriod = $"{profJobSet.ReceivedTime.ToString("yyyy. MM. dd")}  to  {profJobSet.RequiredTime.ToString("yyyy. MM. dd")}";
-            cheMainSet.P1TestMethod = "For further details, please refer to following page(s)";
-            cheMainSet.P1TestResults = "For further details, please refer to following page(s)";
-            cheMainSet.P1Comments = profJobSet.ReportComments;
-
-            if (staffSet.Empty == true)
-            {
-                cheMainSet.Approval = false;
-                cheMainSet.P1Name = "";
-            }
-            else
-            {
-                cheMainSet.Approval = true;
-                cheMainSet.P1Name = staffSet.Name;
-            }
-
-            if (area == EReportArea.US)
-            {
-                cheMainSet.P1TestRequested =
-                    "Selected test(s) as requested by applicant for compliance with Public Law 110-314(Consumer Product Safety Improvement Act of 2008, CPSIA):-\r\n" +
-                    "- To determine Heavy Elements in the submitted samples with reference to ASTM F963-16\r\n" +
-                    "    4.3.5.2-Heavy Metal in Substrate Materials";
-                cheMainSet.P1Conclusion = "\r\n\r\n-\r\nPASS";
-                cheMainSet.P2Description1 = "ASTM F963-16, Clause 4.3.5.2 - Heavy Elements in Toys Substrate Materials";
-                cheMainSet.P2Description2 = "Method: With reference to ASTM F963-16 Clause 8.3. Analysis was performed by ICP-OES.";
-                cheMainSet.P2Description3 =
-                    "1. Black textile\r\n\r\n" +
-                    "Note:    -   Soluble results shown are of the adjusted analytical result.\r\n" +
-                    "         -   ND = Not Detected(<MDL)";
-                cheMainSet.P3Description1 = "";
-            }
-            else
-            {
-                cheMainSet.P1TestRequested =
-                    "EN71-3:2013+A3:2018-Migration of certain elements\r\n" +
-                    "(By first action method testing only)";
-                cheMainSet.P1Conclusion = "PASS";
-                cheMainSet.P2Description1 = "EN71-3:2013+A3:2018 - Migration of certain elements";
-                cheMainSet.P2Description2 = "Method : With reference to EN71-3:2013+A3:2018. Analysis of general elements was performed by ICP-OES.";
-                cheMainSet.P2Description3 = profJobSet.SampleDescription;
-                cheMainSet.P3Description1 = 
-                    "Note. 1. mg/kg = milligram per kilogram\r\n" +
-                    "      2. ND = Not Detected(< MDL)\r\n" +
-                    "      3. 1% = 10000 mg/kg = 10000 ppm\r\n" +
-                    "      4. Soluble Chromium(III) = Soluble Total Chromium – Soluble Chromium(VI)\r\n" +
-                    "      5. ^ = Confirmation test of soluble organic tin is not required in case of soluble tin, after conversion, does not exceed the soluble organic tin requirement as specified in EN71-3:2019.";
-            }
-
-            cheMainSet.Insert(trans);
-        }
-
-        private void InsertJoin(SqlTransaction trans)
-        {
-            string[] items = cheMainSet.P1ItemNo.Split(',');
-
-            cheJoinSet.RecNo = cheMainSet.RecNo;
-            foreach (string item in items)
-            {
-                cheJoinSet.PartNo = item.Trim();
-                cheJoinSet.Insert(trans);
-            }
-        }
-
-        private void InsertImage(SqlTransaction trans)
-        {
-            Bitmap signImage = null;
-
-            if (staffSet.Empty == false)
-            {
-                if (string.IsNullOrWhiteSpace(staffSet.FName) == false)
-                {
-                    signImage = new Bitmap(staffSet.FName);
-                }
-            }
-
-            cheImageSet.RecNo = cheMainSet.RecNo;
-            cheImageSet.Signature = signImage;
-            cheImageSet.Picture = profJobSet.Image;
-            cheImageSet.Insert(trans);
-        }
-
-        private void InsertPage2(SqlTransaction trans)
-        {
-            profJobSchemeSet.JobNo = cheMainSet.RecNo;
-            profJobSchemeSet.Select(trans);
-            profJobSchemeSet.Fetch();
-
-            cheP2Set.MainNo = cheMainSet.RecNo;
-
-            for (int i=0; i<profJobSchemeSet.RowCount; i++)
-            {
-                profJobSchemeSet.Fetch(i);
-
-                cheP2Set.Name = profJobSchemeSet.Name;
-                cheP2Set.LoValue = profJobSchemeSet.LoValue;
-                cheP2Set.HiValue = profJobSchemeSet.HiValue;
-                cheP2Set.ReportValue = profJobSchemeSet.ReportValue;
-                cheP2Set.FormatValue = profJobSchemeSet.FormatValue;
-                cheP2Set.Insert(trans);
-            }
         }
     }
 }

@@ -22,9 +22,9 @@ namespace Sgs.ReportIntegration
     {
         [Description("None")]
         None = -1,
-        [Description("Not Approved")]
+        [Description("No")]
         NotApproved = 0,
-        [Description("Approved")]
+        [Description("Yes")]
         Approved = 1
     }
 
@@ -57,6 +57,25 @@ namespace Sgs.ReportIntegration
         public string Format(string formatString, object arg, IFormatProvider formatProvider)
         {
             return ((EReportArea)arg).ToDescription();
+        }
+    }
+
+    class ReportDateTimeFormat : IFormatProvider, ICustomFormatter
+    {
+        public ReportDateTimeFormat()
+        {
+        }
+
+        public object GetFormat(Type type)
+        {
+            return this;
+        }
+
+        public string Format(string formatString, object arg, IFormatProvider formatProvider)
+        {
+            string time = arg.ToString();
+
+            return time.Substring(2, 17);
         }
     }
     #endregion

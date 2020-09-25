@@ -218,7 +218,9 @@
     <Compile Include="Source\C.Units\UnitAppInvalidThread.cs" />
     <Compile Include="Source\C.Units\UnitAppResource.cs" />
     <Compile Include="Source\C.Units\UnitAppType.cs" />
+    <Compile Include="Source\C.Units\UnitChemicalQuery.cs" />
     <Compile Include="Source\C.Units\UnitGridBookmark.cs" />
+    <Compile Include="Source\C.Units\UnitPhysicalQuery.cs" />
     <Compile Include="Source\D.Reports\ReportEuChemical.cs">
       <SubType>Component</SubType>
     </Compile>

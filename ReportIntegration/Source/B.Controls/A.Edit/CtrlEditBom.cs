@@ -32,6 +32,8 @@ namespace Sgs.ReportIntegration
 
         private BomColumns bomRec;
 
+        private PhysicalQuery phyQuery;
+
         public CtrlEditBom(CtrlEditRight parent)
         {
             this.parent = parent;
@@ -45,6 +47,7 @@ namespace Sgs.ReportIntegration
             bomSet = new BomDataSet(AppRes.DB.Connect, null, null);
             productSet = new ProductDataSet(AppRes.DB.Connect, null, null);
             partSet = new PartDataSet(AppRes.DB.Connect, null, null);
+            phyQuery = new PhysicalQuery();
 
             bomRec = new BomColumns();
 
@@ -143,6 +146,11 @@ namespace Sgs.ReportIntegration
             productSet.Select();
 
             AppHelper.SetGridDataSource(productGrid, productSet);
+
+            if (bomTab.SelectedIndex == 1)
+            {
+                LoadExcel();
+            }
         }
 
         private void productGridView_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
@@ -189,23 +197,9 @@ namespace Sgs.ReportIntegration
 
         private void bomTab_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (bomTab.SelectedIndex == 0) return;
-
-            string newFName = Path.Combine(bomSet.FPath, bomSet.FName);
-            string curFName = bomExcelSheet.Options.Save.CurrentFileName;
-
-            if (curFName != newFName)
+            if (bomTab.SelectedIndex == 1)
             {
-                Cursor.Current = Cursors.WaitCursor;
-
-                try
-                {
-                    bomExcelSheet.LoadDocument(newFName);
-                }
-                finally
-                {
-                    Cursor.Current = Cursors.Default;
-                }
+                LoadExcel();
             }
         }
 
@@ -248,6 +242,28 @@ namespace Sgs.ReportIntegration
                 {
                     MessageBox.Show("Can't load BOM file because of its invalid format!",
                         "SGS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void LoadExcel()
+        {
+            if (bomSet.Empty == true) return;
+
+            string newFName = Path.Combine(bomSet.FPath, bomSet.FName);
+            string curFName = bomExcelSheet.Options.Save.CurrentFileName;
+
+            if (curFName != newFName)
+            {
+                Cursor.Current = Cursors.WaitCursor;
+
+                try
+                {
+                    bomExcelSheet.LoadDocument(newFName);
+                }
+                finally
+                {
+                    Cursor.Current = Cursors.Default;
                 }
             }
         }
@@ -323,29 +339,42 @@ namespace Sgs.ReportIntegration
 
                 foreach (ProductColumns productRec in bomRec.Products)
                 {
-                    productSet.BomNo = bomSet.RecNo;
-                    productSet.Code = productRec.Code;
-                    productSet.Name = productRec.Name;
-                    productSet.Image = productRec.Image;
-                    productSet.Insert(trans);
+                    InsertProduct(productRec, trans);
 
                     foreach (PartColumns partRec in productRec.Parts)
                     {
-                        partSet.ProductNo = productSet.RecNo;
-                        partSet.Name = partRec.Name;
-                        partSet.MaterialNo = partRec.MaterialNo;
-                        partSet.MaterialName = partRec.MaterialName;
-                        partSet.Insert(trans);
+                        InsertPart(partRec, trans);
                     }
                 }
 
                 AppRes.DB.CommitTrans();
             }
-            catch (Exception e)
+            catch
             {
-                AppRes.DbLog[ELogTag.Exception] = e.ToString();
                 AppRes.DB.RollbackTrans();
             }
+        }
+
+        private void InsertProduct(ProductColumns col, SqlTransaction trans)
+        {
+            productSet.BomNo = bomSet.RecNo;
+            productSet.Valid = false;
+            productSet.AreaNo = bomSet.AreaNo;
+            productSet.Code = col.Code;
+            productSet.JobNo = "";
+            productSet.Name = col.Name;
+            productSet.Image = col.Image;
+            productSet.Insert(trans);
+        }
+
+        private void InsertPart(PartColumns col, SqlTransaction trans)
+        {
+            partSet.ProductNo = productSet.RecNo;
+            partSet.JobNo = "";
+            partSet.MaterialNo = col.MaterialNo;
+            partSet.Name = col.Name;
+            partSet.MaterialName = col.MaterialName;
+            partSet.Insert(trans);
         }
     }
 }
