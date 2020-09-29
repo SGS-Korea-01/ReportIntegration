@@ -297,7 +297,7 @@ namespace Sgs.ReportIntegration
         public void Delete()
         {
             if (chemicalGridView.FocusedRowHandle < 0) return;
-            if (MessageBox.Show($"Would you like to delete chemical report of {cheMainSet.MaterialNo}?",
+            if (MessageBox.Show($"Would you like to delete chemical report of {cheMainSet.RecNo}?",
                 "SGS", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
 
             cheQuery.Delete();
@@ -337,7 +337,7 @@ namespace Sgs.ReportIntegration
         public void Save()
         {
             if (chemicalGridView.FocusedRowHandle < 0) return;
-            if (MessageBox.Show($"Would you like to save chesical report of {cheMainSet.MaterialNo}?",
+            if (MessageBox.Show($"Would you like to save chemical report of {cheMainSet.RecNo}?",
                 "SGS", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
 
             cheQuery.Update();
@@ -347,7 +347,7 @@ namespace Sgs.ReportIntegration
         public void Cancel()
         {
             if (chemicalGridView.FocusedRowHandle < 0) return;
-            if (MessageBox.Show($"Would you like to cancel chesical report of {cheMainSet.MaterialNo}?",
+            if (MessageBox.Show($"Would you like to cancel chemical report of {cheMainSet.RecNo}?",
                 "SGS", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
 
             SetReportView(cheMainSet.AreaNo);
@@ -358,8 +358,20 @@ namespace Sgs.ReportIntegration
             EReportArea area = profJobSet.AreaNo;
 
             if (profJobSet.Empty == true) return;
-            if (area == EReportArea.None) return;
-            if (string.IsNullOrWhiteSpace(profJobSet.ItemNo) == true) return;
+
+            if (area == EReportArea.None)
+            {
+                MessageBox.Show("Can't import chemical report because AreaNo is none!",
+                    "SGS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(profJobSet.ItemNo) == true)
+            {
+                MessageBox.Show("Can't import chemical report because MaterialNo is none!",
+                    "SGS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             if (string.IsNullOrWhiteSpace(profJobSet.StaffNo) == false)
             {

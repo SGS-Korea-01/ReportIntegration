@@ -315,7 +315,7 @@ namespace Sgs.ReportIntegration
         public void Delete()
         {
             if (physicalGridView.FocusedRowHandle < 0) return;
-            if (MessageBox.Show($"Would you like to delete physical report of {phyMainSet.ProductNo}?",
+            if (MessageBox.Show($"Would you like to delete physical report of {phyMainSet.RecNo}?",
                 "SGS", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
 
             phyQuery.Delete();
@@ -359,7 +359,7 @@ namespace Sgs.ReportIntegration
         public void Save()
         {
             if (physicalGridView.FocusedRowHandle < 0) return;
-            if (MessageBox.Show($"Would you like to save physical report of {phyMainSet.ProductNo}?",
+            if (MessageBox.Show($"Would you like to save physical report of {phyMainSet.RecNo}?",
                 "SGS", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
 
             phyQuery.Update();
@@ -369,7 +369,7 @@ namespace Sgs.ReportIntegration
         public void Cancel()
         {
             if (physicalGridView.FocusedRowHandle < 0) return;
-            if (MessageBox.Show($"Would you like to cancel physical report of {phyMainSet.ProductNo}?",
+            if (MessageBox.Show($"Would you like to cancel physical report of {phyMainSet.RecNo}?",
                 "SGS", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
 
             SetReportView(phyMainSet.AreaNo);

@@ -101,7 +101,7 @@ namespace Sgs.ReportIntegration
         {
             RecNo = 0;
             RegTime = DateTime.Now;
-            AreaNo = EReportArea.US;
+            AreaNo = EReportArea.None;
             FName = "";
             FPath = "";
 

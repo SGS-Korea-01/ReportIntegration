@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraSpreadsheet.PrintLayoutEngine;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -27,6 +28,10 @@ namespace Sgs.ReportIntegration
 
         private bool local;
 
+        private ProductDataSet productSet { get; set; }
+
+        private PartDataSet partSet { get; set; }
+
         public ChemicalQuery(bool local = false)
         {
             this.local = local;
@@ -44,13 +49,15 @@ namespace Sgs.ReportIntegration
                 CtrlEu = null;
             }
 
+            productSet = new ProductDataSet(AppRes.DB.Connect, null, null);
+            partSet = new PartDataSet(AppRes.DB.Connect, null, null);
         }
 
         public void Insert(SqlTransaction trans = null)
         {
             EReportArea area = ProfJobSet.AreaNo;
 
-            if (local == true)
+            if (local == false)
             {
                 trans = AppRes.DB.BeginTrans();
             }
@@ -62,14 +69,15 @@ namespace Sgs.ReportIntegration
                 InsertImage(trans);
                 InsertPage2(trans);
 
-                if (local == true)
+                if (local == false)
                 {
+                    SetReportValidation(trans);
                     AppRes.DB.CommitTrans();
                 }
             }
             catch (Exception e)
             {
-                if (local == true)
+                if (local == false)
                 {
                     AppRes.DB.RollbackTrans();
                 }
@@ -117,14 +125,12 @@ namespace Sgs.ReportIntegration
             {
                 ImageSet.RecNo = mainNo;
                 ImageSet.Delete(trans);
-
                 JoinSet.RecNo = mainNo;
                 JoinSet.Delete(trans);
-
                 P2Set.MainNo = mainNo;
                 P2Set.Delete(trans);
-
                 MainSet.Delete(trans);
+                ResetReportValidation(trans);
 
                 AppRes.DB.CommitTrans();
             }
@@ -143,7 +149,7 @@ namespace Sgs.ReportIntegration
             MainSet.ReportedTime = ProfJobSet.ReportedTime;
             MainSet.Approval = false;
             MainSet.AreaNo = ProfJobSet.AreaNo;
-            MainSet.MaterialNo = ProfJobSet.ItemNo;
+            MainSet.MaterialNo = "";
             MainSet.P1ClientNo = ProfJobSet.ClientNo;
             MainSet.P1ClientName = ProfJobSet.ClientName;
             MainSet.P1ClientAddress = ProfJobSet.ClientAddress;
@@ -277,6 +283,18 @@ namespace Sgs.ReportIntegration
                 P2Set.FormatValue = row.FormatValue;
                 P2Set.Update(trans);
             }
+        }
+
+        private void SetReportValidation(SqlTransaction trans)
+        {
+            partSet.Update(ProfJobSet.AreaNo, ProfJobSet.ItemNo.Split(','), ProfJobSet.JobNo, trans);
+            productSet.UpdateValidSet(trans);
+        }
+
+        private void ResetReportValidation(SqlTransaction trans)
+        {
+            partSet.Update(MainSet.AreaNo, MainSet.P1ItemNo.Split(','), trans);
+            productSet.UpdateValidReset(trans);
         }
     }
 }

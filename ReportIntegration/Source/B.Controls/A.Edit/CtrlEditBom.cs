@@ -30,9 +30,13 @@ namespace Sgs.ReportIntegration
 
         private PartDataSet partSet;
 
+        private ChemicalMainDataSet cheMainSet;
+
         private BomColumns bomRec;
 
         private PhysicalQuery phyQuery;
+
+        private ChemicalQuery cheQuery;
 
         public CtrlEditBom(CtrlEditRight parent)
         {
@@ -47,7 +51,10 @@ namespace Sgs.ReportIntegration
             bomSet = new BomDataSet(AppRes.DB.Connect, null, null);
             productSet = new ProductDataSet(AppRes.DB.Connect, null, null);
             partSet = new PartDataSet(AppRes.DB.Connect, null, null);
-            phyQuery = new PhysicalQuery();
+            cheMainSet = new ChemicalMainDataSet(AppRes.DB.Connect, null, null);
+
+            phyQuery = new PhysicalQuery(true);
+            cheQuery = new ChemicalQuery(true);
 
             bomRec = new BomColumns();
 
@@ -59,6 +66,9 @@ namespace Sgs.ReportIntegration
 
             bomAreaColumn.DisplayFormat.FormatType = FormatType.Custom;
             bomAreaColumn.DisplayFormat.Format = new ReportAreaFormat();
+
+            bomRegTimeColumn.DisplayFormat.FormatType = FormatType.Custom;
+            bomRegTimeColumn.DisplayFormat.Format = new ReportDateTimeFormat();
 
             bomAreaCombo.DataSource = EnumHelper.GetNameValues<EReportArea>();
             bomAreaCombo.DisplayMember = "Name";
@@ -73,6 +83,7 @@ namespace Sgs.ReportIntegration
         private void CtrlEditBom_Enter(object sender, EventArgs e)
         {
             parent.SetMenu(0);
+            bomResetButton.PerformClick();
         }
 
         private void CtrlEditBom_Resize(object sender, EventArgs e)
@@ -89,7 +100,11 @@ namespace Sgs.ReportIntegration
 
         private void bomProductPage_Resize(object sender, EventArgs e)
         {
+            int width = bomProductPage.Width;
 
+            productNameColumn.Width = width - 282;
+            partNameColumn.Width = 171 + (width - 377 - 171) / 2;
+            partMaterialNameColumn.Width = 171 + (width - 377 - 171) / 2;
         }
 
         private void bomFindButton_Click(object sender, EventArgs e)
@@ -206,7 +221,7 @@ namespace Sgs.ReportIntegration
         public void Import(EReportArea area, string fName)
         {
             bomSet.AreaNo = area;
-            bomSet.FName = Path.GetFileName(fName);
+            bomSet.FullFName = fName;
             bomSet.Select();
 
             // if BOM already exist in DB?
@@ -260,6 +275,7 @@ namespace Sgs.ReportIntegration
                 try
                 {
                     bomExcelSheet.LoadDocument(newFName);
+                    bomExcelSheet.ActiveViewZoom = 70;
                 }
                 finally
                 {
@@ -327,6 +343,7 @@ namespace Sgs.ReportIntegration
 
         private void InsertBom()
         {
+            bool valid = true;
             SqlTransaction trans = AppRes.DB.BeginTrans();
 
             try
@@ -343,38 +360,88 @@ namespace Sgs.ReportIntegration
 
                     foreach (PartColumns partRec in productRec.Parts)
                     {
-                        InsertPart(partRec, trans);
+                        if (InsertPart(partRec, trans) == false)
+                        {
+                            valid = false;
+                        }
                     }
+
+                    UpdateProduct(valid, trans);
                 }
 
                 AppRes.DB.CommitTrans();
             }
-            catch
+            catch (Exception e)
             {
+                AppRes.DbLog["ERROR"] = e.ToString();
                 AppRes.DB.RollbackTrans();
             }
         }
 
         private void InsertProduct(ProductColumns col, SqlTransaction trans)
         {
+            phyQuery.ProfJobSet.Type = EReportType.Physical;
+            phyQuery.ProfJobSet.AreaNo = bomSet.AreaNo;
+            phyQuery.ProfJobSet.ItemNo = col.Code;
+            phyQuery.ProfJobSet.Select(trans);
+            phyQuery.ProfJobSet.Fetch();
+            string jobNo = phyQuery.ProfJobSet.JobNo;
+
+            if (string.IsNullOrWhiteSpace(jobNo) == false)
+            {
+                phyQuery.Insert(trans);
+            }
+
             productSet.BomNo = bomSet.RecNo;
             productSet.Valid = false;
             productSet.AreaNo = bomSet.AreaNo;
             productSet.Code = col.Code;
-            productSet.JobNo = "";
+            productSet.JobNo = jobNo;
             productSet.Name = col.Name;
             productSet.Image = col.Image;
             productSet.Insert(trans);
         }
 
-        private void InsertPart(PartColumns col, SqlTransaction trans)
+        private void UpdateProduct(bool valid, SqlTransaction trans)
         {
+            productSet.Valid = valid;
+            productSet.Update(trans);
+        }
+
+        private bool InsertPart(PartColumns col, SqlTransaction trans)
+        {
+            cheQuery.ProfJobSet.Type = EReportType.Chemical;
+            cheQuery.ProfJobSet.JobNo = "";
+            cheQuery.ProfJobSet.AreaNo = bomSet.AreaNo;
+            cheQuery.ProfJobSet.ItemNo = col.MaterialNo;
+            cheQuery.ProfJobSet.Select(trans);
+            cheQuery.ProfJobSet.Fetch();
+            string jobNo = cheQuery.ProfJobSet.JobNo;
+
+            if (string.IsNullOrWhiteSpace(jobNo) == false)
+            {
+                cheMainSet.RecNo = jobNo;
+                cheMainSet.ReportApproval = EReportApproval.None;
+                cheMainSet.AreaNo = EReportArea.None;
+                cheMainSet.From = "";
+                cheMainSet.To = "";
+                cheMainSet.MaterialNo = "";
+                cheMainSet.Select(trans);
+
+                if (cheMainSet.Empty == true)
+                {
+                    cheQuery.Insert(trans);
+                }
+            }
+
             partSet.ProductNo = productSet.RecNo;
-            partSet.JobNo = "";
+            partSet.JobNo = jobNo;
             partSet.MaterialNo = col.MaterialNo;
             partSet.Name = col.Name;
             partSet.MaterialName = col.MaterialName;
             partSet.Insert(trans);
+
+            return (string.IsNullOrWhiteSpace(jobNo) == false) ? true : false;
         }
     }
 }

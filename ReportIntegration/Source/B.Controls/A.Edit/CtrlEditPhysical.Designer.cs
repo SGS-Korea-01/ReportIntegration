@@ -156,7 +156,7 @@
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(124, 82);
+            this.label6.Location = new System.Drawing.Point(120, 83);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 22);
             this.label6.TabIndex = 104;
@@ -167,7 +167,7 @@
             // 
             this.approvalCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.approvalCombo.FormattingEnabled = true;
-            this.approvalCombo.Location = new System.Drawing.Point(64, 55);
+            this.approvalCombo.Location = new System.Drawing.Point(60, 55);
             this.approvalCombo.Name = "approvalCombo";
             this.approvalCombo.Size = new System.Drawing.Size(54, 23);
             this.approvalCombo.TabIndex = 3;
@@ -186,7 +186,7 @@
             this.toDateEdit.CustomFormat = "yyyy-MM-dd";
             this.toDateEdit.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toDateEdit.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.toDateEdit.Location = new System.Drawing.Point(64, 29);
+            this.toDateEdit.Location = new System.Drawing.Point(60, 29);
             this.toDateEdit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.toDateEdit.Name = "toDateEdit";
             this.toDateEdit.Size = new System.Drawing.Size(102, 21);
@@ -220,7 +220,7 @@
             this.fromDateEdit.CustomFormat = "yyyy-MM-dd";
             this.fromDateEdit.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fromDateEdit.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.fromDateEdit.Location = new System.Drawing.Point(64, 3);
+            this.fromDateEdit.Location = new System.Drawing.Point(60, 3);
             this.fromDateEdit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.fromDateEdit.Name = "fromDateEdit";
             this.fromDateEdit.Size = new System.Drawing.Size(102, 21);
@@ -231,7 +231,7 @@
             // 
             this.areaCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.areaCombo.FormattingEnabled = true;
-            this.areaCombo.Location = new System.Drawing.Point(64, 84);
+            this.areaCombo.Location = new System.Drawing.Point(60, 84);
             this.areaCombo.Name = "areaCombo";
             this.areaCombo.Size = new System.Drawing.Size(54, 23);
             this.areaCombo.TabIndex = 4;
@@ -324,7 +324,7 @@
             this.physicalApprovalColumn.AppearanceHeader.Options.UseFont = true;
             this.physicalApprovalColumn.AppearanceHeader.Options.UseTextOptions = true;
             this.physicalApprovalColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.physicalApprovalColumn.Caption = "A";
+            this.physicalApprovalColumn.Caption = " ";
             this.physicalApprovalColumn.ColumnEdit = this.physicalCheckEdit;
             this.physicalApprovalColumn.FieldName = "approval";
             this.physicalApprovalColumn.Name = "physicalApprovalColumn";
@@ -540,7 +540,7 @@
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(124, 54);
+            this.label4.Location = new System.Drawing.Point(120, 54);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 22);
             this.label4.TabIndex = 83;

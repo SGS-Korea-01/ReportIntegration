@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtrlEditBom));
             this.reportPanel = new Ulee.Controls.UlPanel();
             this.bomTab = new System.Windows.Forms.TabControl();
@@ -45,11 +45,13 @@
             this.partGrid = new DevExpress.XtraGrid.GridControl();
             this.partGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.partNameColumn = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.partJobNoColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.partMaterialNoColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.partJobNoColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.partMaterialNameColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.bomExcelPage = new System.Windows.Forms.TabPage();
             this.bomExcelSheet = new DevExpress.XtraSpreadsheet.SpreadsheetControl();
+            this.bomMessgaePage = new System.Windows.Forms.TabPage();
+            this.totalLogEdit = new System.Windows.Forms.TextBox();
             this.viewSplit = new System.Windows.Forms.SplitContainer();
             this.gridPanel = new Ulee.Controls.UlPanel();
             this.bomToDateEdit = new System.Windows.Forms.DateTimePicker();
@@ -67,8 +69,6 @@
             this.bomFindButton = new System.Windows.Forms.Button();
             this.bomNameEdit = new DevExpress.XtraEditors.TextEdit();
             this.label4 = new System.Windows.Forms.Label();
-            this.bomMessgaePage = new System.Windows.Forms.TabPage();
-            this.totalLogEdit = new System.Windows.Forms.TextBox();
             this.bgPanel.SuspendLayout();
             this.reportPanel.SuspendLayout();
             this.bomTab.SuspendLayout();
@@ -83,6 +83,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.partGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partGridView)).BeginInit();
             this.bomExcelPage.SuspendLayout();
+            this.bomMessgaePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.viewSplit)).BeginInit();
             this.viewSplit.Panel1.SuspendLayout();
             this.viewSplit.Panel2.SuspendLayout();
@@ -91,7 +92,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.bomGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bomGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bomNameEdit.Properties)).BeginInit();
-            this.bomMessgaePage.SuspendLayout();
             this.SuspendLayout();
             // 
             // bgPanel
@@ -168,9 +168,9 @@
             // productGrid
             // 
             this.productGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode1.RelationName = "Level1";
+            gridLevelNode2.RelationName = "Level1";
             this.productGrid.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
+            gridLevelNode2});
             this.productGrid.Location = new System.Drawing.Point(0, 0);
             this.productGrid.MainView = this.productGridView;
             this.productGrid.Name = "productGrid";
@@ -234,7 +234,7 @@
             this.productValidColumn.AppearanceHeader.Options.UseFont = true;
             this.productValidColumn.AppearanceHeader.Options.UseTextOptions = true;
             this.productValidColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.productValidColumn.Caption = "A";
+            this.productValidColumn.Caption = " ";
             this.productValidColumn.ColumnEdit = this.productValidCheckEdit;
             this.productValidColumn.FieldName = "valid";
             this.productValidColumn.MaxWidth = 24;
@@ -278,7 +278,7 @@
             this.productCodeColumn.AppearanceHeader.Options.UseTextOptions = true;
             this.productCodeColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.productCodeColumn.Caption = "Item No";
-            this.productCodeColumn.FieldName = "code";
+            this.productCodeColumn.FieldName = "itemno";
             this.productCodeColumn.MaxWidth = 92;
             this.productCodeColumn.MinWidth = 92;
             this.productCodeColumn.Name = "productCodeColumn";
@@ -363,7 +363,7 @@
             this.productNameColumn.OptionsFilter.AllowFilter = false;
             this.productNameColumn.Visible = true;
             this.productNameColumn.VisibleIndex = 3;
-            this.productNameColumn.Width = 270;
+            this.productNameColumn.Width = 266;
             // 
             // productImageColumn
             // 
@@ -435,8 +435,8 @@
             this.partGridView.Appearance.ViewCaption.Options.UseFont = true;
             this.partGridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.partNameColumn,
-            this.partJobNoColumn,
             this.partMaterialNoColumn,
+            this.partJobNoColumn,
             this.partMaterialNameColumn});
             this.partGridView.CustomizationFormBounds = new System.Drawing.Rectangle(2884, 580, 210, 186);
             this.partGridView.GridControl = this.partGrid;
@@ -455,7 +455,7 @@
             this.partNameColumn.AppearanceCell.Options.UseFont = true;
             this.partNameColumn.AppearanceCell.Options.UseTextOptions = true;
             this.partNameColumn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.partNameColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.partNameColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F);
             this.partNameColumn.AppearanceHeader.Options.UseFont = true;
             this.partNameColumn.AppearanceHeader.Options.UseTextOptions = true;
             this.partNameColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
@@ -479,35 +479,7 @@
             this.partNameColumn.OptionsFilter.AllowFilter = false;
             this.partNameColumn.Visible = true;
             this.partNameColumn.VisibleIndex = 0;
-            this.partNameColumn.Width = 174;
-            // 
-            // partJobNoColumn
-            // 
-            this.partJobNoColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.partJobNoColumn.AppearanceCell.Options.UseFont = true;
-            this.partJobNoColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.partJobNoColumn.AppearanceHeader.Options.UseFont = true;
-            this.partJobNoColumn.Caption = "Job No";
-            this.partJobNoColumn.FieldName = "jobno";
-            this.partJobNoColumn.MaxWidth = 92;
-            this.partJobNoColumn.MinWidth = 92;
-            this.partJobNoColumn.Name = "partJobNoColumn";
-            this.partJobNoColumn.OptionsColumn.AllowEdit = false;
-            this.partJobNoColumn.OptionsColumn.AllowFocus = false;
-            this.partJobNoColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
-            this.partJobNoColumn.OptionsColumn.AllowIncrementalSearch = false;
-            this.partJobNoColumn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.partJobNoColumn.OptionsColumn.AllowMove = false;
-            this.partJobNoColumn.OptionsColumn.AllowShowHide = false;
-            this.partJobNoColumn.OptionsColumn.AllowSize = false;
-            this.partJobNoColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
-            this.partJobNoColumn.OptionsColumn.FixedWidth = true;
-            this.partJobNoColumn.OptionsColumn.ReadOnly = true;
-            this.partJobNoColumn.OptionsFilter.AllowAutoFilter = false;
-            this.partJobNoColumn.OptionsFilter.AllowFilter = false;
-            this.partJobNoColumn.Visible = true;
-            this.partJobNoColumn.VisibleIndex = 1;
-            this.partJobNoColumn.Width = 92;
+            this.partNameColumn.Width = 171;
             // 
             // partMaterialNoColumn
             // 
@@ -539,14 +511,42 @@
             this.partMaterialNoColumn.OptionsFilter.AllowAutoFilter = false;
             this.partMaterialNoColumn.OptionsFilter.AllowFilter = false;
             this.partMaterialNoColumn.Visible = true;
-            this.partMaterialNoColumn.VisibleIndex = 2;
+            this.partMaterialNoColumn.VisibleIndex = 1;
             this.partMaterialNoColumn.Width = 92;
+            // 
+            // partJobNoColumn
+            // 
+            this.partJobNoColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F);
+            this.partJobNoColumn.AppearanceCell.Options.UseFont = true;
+            this.partJobNoColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F);
+            this.partJobNoColumn.AppearanceHeader.Options.UseFont = true;
+            this.partJobNoColumn.Caption = "Job No";
+            this.partJobNoColumn.FieldName = "jobno";
+            this.partJobNoColumn.MaxWidth = 92;
+            this.partJobNoColumn.MinWidth = 92;
+            this.partJobNoColumn.Name = "partJobNoColumn";
+            this.partJobNoColumn.OptionsColumn.AllowEdit = false;
+            this.partJobNoColumn.OptionsColumn.AllowFocus = false;
+            this.partJobNoColumn.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.partJobNoColumn.OptionsColumn.AllowIncrementalSearch = false;
+            this.partJobNoColumn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.partJobNoColumn.OptionsColumn.AllowMove = false;
+            this.partJobNoColumn.OptionsColumn.AllowShowHide = false;
+            this.partJobNoColumn.OptionsColumn.AllowSize = false;
+            this.partJobNoColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.partJobNoColumn.OptionsColumn.FixedWidth = true;
+            this.partJobNoColumn.OptionsColumn.ReadOnly = true;
+            this.partJobNoColumn.OptionsFilter.AllowAutoFilter = false;
+            this.partJobNoColumn.OptionsFilter.AllowFilter = false;
+            this.partJobNoColumn.Visible = true;
+            this.partJobNoColumn.VisibleIndex = 2;
+            this.partJobNoColumn.Width = 92;
             // 
             // partMaterialNameColumn
             // 
-            this.partMaterialNameColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.partMaterialNameColumn.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F);
             this.partMaterialNameColumn.AppearanceCell.Options.UseFont = true;
-            this.partMaterialNameColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.partMaterialNameColumn.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F);
             this.partMaterialNameColumn.AppearanceHeader.Options.UseFont = true;
             this.partMaterialNameColumn.Caption = "Material Name";
             this.partMaterialNameColumn.FieldName = "materialname";
@@ -565,7 +565,7 @@
             this.partMaterialNameColumn.OptionsFilter.AllowFilter = false;
             this.partMaterialNameColumn.Visible = true;
             this.partMaterialNameColumn.VisibleIndex = 3;
-            this.partMaterialNameColumn.Width = 172;
+            this.partMaterialNameColumn.Width = 171;
             // 
             // bomExcelPage
             // 
@@ -581,14 +581,43 @@
             // 
             this.bomExcelSheet.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bomExcelSheet.Location = new System.Drawing.Point(0, 0);
+            this.bomExcelSheet.LookAndFeel.SkinName = "DevExpress Style";
             this.bomExcelSheet.Margin = new System.Windows.Forms.Padding(0);
             this.bomExcelSheet.Name = "bomExcelSheet";
-            this.bomExcelSheet.Options.View.ShowColumnHeaders = false;
-            this.bomExcelSheet.Options.View.ShowRowHeaders = false;
+            this.bomExcelSheet.Options.Behavior.Selection.AllowExtendSelection = false;
+            this.bomExcelSheet.Options.Behavior.Selection.AllowMultiSelection = false;
+            this.bomExcelSheet.Options.Behavior.Selection.MoveActiveCellMode = DevExpress.XtraSpreadsheet.MoveActiveCellModeOnEnterPress.None;
+            this.bomExcelSheet.Options.Behavior.Selection.ShowSelectionMode = DevExpress.XtraSpreadsheet.ShowSelectionMode.Focused;
             this.bomExcelSheet.Options.ZoomMode = DevExpress.Spreadsheet.WorksheetZoomMode.ActiveView;
             this.bomExcelSheet.ReadOnly = true;
             this.bomExcelSheet.Size = new System.Drawing.Size(548, 538);
             this.bomExcelSheet.TabIndex = 2;
+            // 
+            // bomMessgaePage
+            // 
+            this.bomMessgaePage.Controls.Add(this.totalLogEdit);
+            this.bomMessgaePage.Location = new System.Drawing.Point(4, 26);
+            this.bomMessgaePage.Name = "bomMessgaePage";
+            this.bomMessgaePage.Padding = new System.Windows.Forms.Padding(3);
+            this.bomMessgaePage.Size = new System.Drawing.Size(548, 538);
+            this.bomMessgaePage.TabIndex = 4;
+            this.bomMessgaePage.Text = "  Message  ";
+            this.bomMessgaePage.UseVisualStyleBackColor = true;
+            // 
+            // totalLogEdit
+            // 
+            this.totalLogEdit.BackColor = System.Drawing.Color.FloralWhite;
+            this.totalLogEdit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.totalLogEdit.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalLogEdit.Location = new System.Drawing.Point(3, 3);
+            this.totalLogEdit.MaxLength = 131071;
+            this.totalLogEdit.Multiline = true;
+            this.totalLogEdit.Name = "totalLogEdit";
+            this.totalLogEdit.ReadOnly = true;
+            this.totalLogEdit.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.totalLogEdit.Size = new System.Drawing.Size(542, 532);
+            this.totalLogEdit.TabIndex = 6;
+            this.totalLogEdit.TabStop = false;
             // 
             // viewSplit
             // 
@@ -780,8 +809,8 @@
             this.bomRegTimeColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.bomRegTimeColumn.Caption = "DateTime";
             this.bomRegTimeColumn.FieldName = "regtime";
-            this.bomRegTimeColumn.MaxWidth = 148;
-            this.bomRegTimeColumn.MinWidth = 100;
+            this.bomRegTimeColumn.MaxWidth = 110;
+            this.bomRegTimeColumn.MinWidth = 110;
             this.bomRegTimeColumn.Name = "bomRegTimeColumn";
             this.bomRegTimeColumn.OptionsColumn.AllowEdit = false;
             this.bomRegTimeColumn.OptionsColumn.AllowFocus = false;
@@ -790,7 +819,9 @@
             this.bomRegTimeColumn.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.bomRegTimeColumn.OptionsColumn.AllowMove = false;
             this.bomRegTimeColumn.OptionsColumn.AllowShowHide = false;
+            this.bomRegTimeColumn.OptionsColumn.AllowSize = false;
             this.bomRegTimeColumn.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.True;
+            this.bomRegTimeColumn.OptionsColumn.FixedWidth = true;
             this.bomRegTimeColumn.OptionsColumn.ImmediateUpdateRowPosition = DevExpress.Utils.DefaultBoolean.False;
             this.bomRegTimeColumn.OptionsColumn.Printable = DevExpress.Utils.DefaultBoolean.False;
             this.bomRegTimeColumn.OptionsColumn.ReadOnly = true;
@@ -799,7 +830,7 @@
             this.bomRegTimeColumn.OptionsFilter.AllowFilter = false;
             this.bomRegTimeColumn.Visible = true;
             this.bomRegTimeColumn.VisibleIndex = 0;
-            this.bomRegTimeColumn.Width = 148;
+            this.bomRegTimeColumn.Width = 110;
             // 
             // bomAreaColumn
             // 
@@ -813,8 +844,8 @@
             this.bomAreaColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.bomAreaColumn.Caption = "Area";
             this.bomAreaColumn.FieldName = "areano";
-            this.bomAreaColumn.MaxWidth = 52;
-            this.bomAreaColumn.MinWidth = 52;
+            this.bomAreaColumn.MaxWidth = 48;
+            this.bomAreaColumn.MinWidth = 48;
             this.bomAreaColumn.Name = "bomAreaColumn";
             this.bomAreaColumn.OptionsColumn.AllowEdit = false;
             this.bomAreaColumn.OptionsColumn.AllowFocus = false;
@@ -833,7 +864,7 @@
             this.bomAreaColumn.OptionsFilter.AllowFilter = false;
             this.bomAreaColumn.Visible = true;
             this.bomAreaColumn.VisibleIndex = 1;
-            this.bomAreaColumn.Width = 52;
+            this.bomAreaColumn.Width = 48;
             // 
             // bomFNameColumn
             // 
@@ -893,32 +924,6 @@
             this.label4.Text = "Name";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // bomMessgaePage
-            // 
-            this.bomMessgaePage.Controls.Add(this.totalLogEdit);
-            this.bomMessgaePage.Location = new System.Drawing.Point(4, 26);
-            this.bomMessgaePage.Name = "bomMessgaePage";
-            this.bomMessgaePage.Padding = new System.Windows.Forms.Padding(3);
-            this.bomMessgaePage.Size = new System.Drawing.Size(548, 538);
-            this.bomMessgaePage.TabIndex = 4;
-            this.bomMessgaePage.Text = "  Message  ";
-            this.bomMessgaePage.UseVisualStyleBackColor = true;
-            // 
-            // totalLogEdit
-            // 
-            this.totalLogEdit.BackColor = System.Drawing.Color.FloralWhite;
-            this.totalLogEdit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.totalLogEdit.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.totalLogEdit.Location = new System.Drawing.Point(3, 3);
-            this.totalLogEdit.MaxLength = 131071;
-            this.totalLogEdit.Multiline = true;
-            this.totalLogEdit.Name = "totalLogEdit";
-            this.totalLogEdit.ReadOnly = true;
-            this.totalLogEdit.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.totalLogEdit.Size = new System.Drawing.Size(542, 532);
-            this.totalLogEdit.TabIndex = 6;
-            this.totalLogEdit.TabStop = false;
-            // 
             // CtrlEditBom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -942,6 +947,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.partGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.partGridView)).EndInit();
             this.bomExcelPage.ResumeLayout(false);
+            this.bomMessgaePage.ResumeLayout(false);
+            this.bomMessgaePage.PerformLayout();
             this.viewSplit.Panel1.ResumeLayout(false);
             this.viewSplit.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.viewSplit)).EndInit();
@@ -951,8 +958,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.bomGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bomGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bomNameEdit.Properties)).EndInit();
-            this.bomMessgaePage.ResumeLayout(false);
-            this.bomMessgaePage.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -55,7 +55,7 @@ namespace Sgs.ReportIntegration
         {
             EReportArea area = ProfJobSet.AreaNo;
 
-            if (local == true)
+            if (local == false)
             {
                 trans = AppRes.DB.BeginTrans();
             }
@@ -69,14 +69,14 @@ namespace Sgs.ReportIntegration
                 InsertPage4(area, trans);
                 InsertPage5(area, trans);
 
-                if (local == true)
+                if (local == false)
                 {
                     AppRes.DB.CommitTrans();
                 }
             }
             catch (Exception e)
             {
-                if (local == true)
+                if (local == false)
                 {
                     AppRes.DB.RollbackTrans();
                 }

@@ -1,0 +1,122 @@
+USE [ReportIntegration]
+GO
+
+/****** Object:  Table [dbo].[TB_CHEMAIN]    Script Date: 2020-09-28 오후 5:17:54 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[TB_CHEMAIN](
+	[pk_recno] [varchar](20) NOT NULL,
+	[regtime] [varchar](23) NOT NULL,
+	[receivedtime] [varchar](23) NOT NULL,
+	[requiredtime] [varchar](23) NOT NULL,
+	[reportedtime] [varchar](23) NOT NULL,
+	[approval] [int] NOT NULL,
+	[areano] [int] NOT NULL,
+	[productno] [varchar](600) NOT NULL,
+	[p1clientno] [varchar](100) NOT NULL,
+	[p1clientname] [varchar](100) NOT NULL,
+	[p1clientaddress] [varchar](500) NOT NULL,
+	[p1fileno] [varchar](40) NOT NULL,
+	[p1sampledesc] [varchar](50) NOT NULL,
+	[p1itemno] [varchar](600) NOT NULL,
+	[p1orderno] [varchar](40) NOT NULL,
+	[p1manufacturer] [varchar](500) NOT NULL,
+	[p1countryorigin] [varchar](50) NOT NULL,
+	[p1countrydest] [varchar](50) NOT NULL,
+	[p1recevdate] [varchar](20) NOT NULL,
+	[p1testperiod] [varchar](40) NOT NULL,
+	[p1testmethod] [varchar](100) NOT NULL,
+	[p1testresult] [varchar](100) NOT NULL,
+	[p1comment] [varchar](500) NOT NULL,
+	[p1testrequested] [varchar](500) NOT NULL,
+	[p1conclusion] [varchar](50) NOT NULL,
+	[p1name] [varchar](40) NOT NULL,
+	[p2desc1] [varchar](500) NOT NULL,
+	[p2desc2] [varchar](500) NOT NULL,
+	[p2desc3] [varchar](500) NOT NULL,
+	[p3desc1] [varchar](1500) NOT NULL,
+ CONSTRAINT [PK_TB_CHEMAIN] PRIMARY KEY CLUSTERED 
+(
+	[pk_recno] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+USE [ReportIntegration]
+GO
+
+/****** Object:  Table [dbo].[TB_CHEP2]    Script Date: 2020-09-28 오후 5:18:15 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[TB_CHEP2](
+	[pk_recno] [bigint] IDENTITY(1,1) NOT NULL,
+	[fk_chemainno] [varchar](20) NOT NULL,
+	[name] [varchar](50) NOT NULL,
+	[lovalue] [varchar](20) NOT NULL,
+	[hivalue] [varchar](20) NOT NULL,
+	[reportvalue] [varchar](20) NOT NULL,
+	[formatvalue] [varchar](20) NOT NULL,
+ CONSTRAINT [PK_TB_CHEP2] PRIMARY KEY CLUSTERED 
+(
+	[pk_recno] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[TB_CHEP2]  WITH CHECK ADD  CONSTRAINT [FK_CHEMAIN_CHEP2] FOREIGN KEY([fk_chemainno])
+REFERENCES [dbo].[TB_CHEMAIN] ([pk_recno])
+GO
+
+ALTER TABLE [dbo].[TB_CHEP2] CHECK CONSTRAINT [FK_CHEMAIN_CHEP2]
+GO
+
+USE [ReportIntegration]
+GO
+
+/****** Object:  Table [dbo].[TB_CHEIMAGE]    Script Date: 2020-09-28 오후 5:18:25 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[TB_CHEIMAGE](
+	[pk_recno] [varchar](20) NOT NULL,
+	[signature] [image] NULL,
+	[picture] [image] NULL,
+ CONSTRAINT [PK_TB_CHEIMAGE] PRIMARY KEY CLUSTERED 
+(
+	[pk_recno] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+USE [ReportIntegration]
+GO
+
+/****** Object:  Table [dbo].[TB_CHEPARTJOIN]    Script Date: 2020-09-28 오후 5:18:40 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[TB_CHEPARTJOIN](
+	[pk_recno] [varchar](20) NOT NULL,
+	[pk_partno] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_TB_CHEPARTJOIN] PRIMARY KEY CLUSTERED 
+(
+	[pk_recno] ASC,
+	[pk_partno] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+

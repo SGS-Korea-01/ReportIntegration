@@ -3,7 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
-
+using System.Windows.Resources;
 using Ulee.Database.SqlServer;
 using Ulee.Utils;
 
@@ -44,7 +44,22 @@ namespace Sgs.ReportIntegration
 
         public string FullFName
         {
-            get { return Path.Combine(FPath, FName); }
+            get 
+            {
+                string name;
+
+                if ((string.IsNullOrWhiteSpace(FPath) == true) ||
+                    (string.IsNullOrWhiteSpace(FName) == true))
+                {
+                    name = "";
+                }
+                else
+                {
+                    name = Path.Combine(FPath, FName);
+                }
+
+                return name; 
+            }
             set 
             {
                 FName = Path.GetFileName(value);
@@ -69,7 +84,11 @@ namespace Sgs.ReportIntegration
             {
                 sql += $" and areano={(int)AreaNo} ";
             }
-            if (string.IsNullOrWhiteSpace(FName) == false)
+            if (string.IsNullOrWhiteSpace(FullFName) == false)
+            {
+                sql += $" and fname='{FullFName}' ";
+            }
+            else if (string.IsNullOrWhiteSpace(FName) == false)
             {
                 sql += $" and fname like '%%{FName}%%' ";
             }
@@ -180,8 +199,8 @@ namespace Sgs.ReportIntegration
         {
             string sql =
                 $" insert into TB_PRODUCT values " +
-                $" ({BomNo}, {Convert.ToInt32(Valid)}, '{Code}', " +
-                $" {(int)AreaNo}, '{JobNo}', '{Name}', @image);  " +
+                $" ({BomNo}, {Convert.ToInt32(Valid)}, {(int)AreaNo}, " +
+                $" '{Code}', '{JobNo}', '{Name}', @image);  " +
                 $" select cast(scope_identity() as bigint); ";
 
             byte[] imageRaw = (Image == null) ? null : (byte[])imageConvert.ConvertTo(Image, typeof(byte[]));
@@ -199,6 +218,73 @@ namespace Sgs.ReportIntegration
 
                 RecNo = (Int64)command.ExecuteScalar();
 
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Update(SqlTransaction trans = null)
+        {
+            string sql =
+                $" update TB_PRODUCT set valid={Convert.ToInt32(Valid)} " +
+                $" where pk_recno={RecNo} ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void UpdateValidSet(SqlTransaction trans = null)
+        {
+            string sql =
+                $" update TB_PRODUCT set valid=1 " +
+                $" where valid=0 and jobno<>'' and pk_recno not in      " +
+                $" (select distinct fk_productno from TB_PART           " +
+                $" where fk_productno=TB_PRODUCT.pk_recno and jobno='') ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void UpdateValidReset(SqlTransaction trans = null)
+        {
+            string sql =
+                $" update TB_PRODUCT set valid=0 " +
+                $" where valid=1 and jobno<>'' and pk_recno in " +
+                $" (select distinct fk_productno from TB_PART  " +
+                $" where fk_productno=TB_PRODUCT.pk_recno and jobno='') ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
                 CommitTrans(trans);
             }
             catch (Exception e)
@@ -231,7 +317,7 @@ namespace Sgs.ReportIntegration
             BomNo = Convert.ToInt64(row["fk_bomno"]);
             Valid = Convert.ToBoolean(row["valid"]);
             AreaNo = (EReportArea)Convert.ToInt32(row["areano"]);
-            Code = Convert.ToString(row["code"]);
+            Code = Convert.ToString(row["itemno"]);
             JobNo = Convert.ToString(row["jobno"]);
             Name = Convert.ToString(row["name"]);
             byte[] imageRaw = (byte[])row["image"];
@@ -257,6 +343,8 @@ namespace Sgs.ReportIntegration
 
         public string MaterialName { get; set; }
 
+        public EReportArea AreaNo { get; set; }
+
         public PartDataSet(SqlConnection connect, SqlCommand command, SqlDataAdapter adapter)
             : base(connect, command, adapter)
         {
@@ -266,10 +354,26 @@ namespace Sgs.ReportIntegration
         {
             SetTrans(trans);
             command.CommandText =
-                $" select * from TB_PART " +
-                $" where fk_productno={ProductNo} ";
+                $" select t1.*, t2.areano from TB_PART t1 " +
+                $" join TB_PRODUCT t2 on t2.pk_recno=t1.fk_productno " +
+                $" where t1.fk_productno={ProductNo} ";
             dataSet.Clear();
             dataAdapter.Fill(dataSet);
+        }
+
+        public bool IsAllJobNoValid(SqlTransaction trans = null)
+        {
+            string sql =
+                $" select t1.*, t2.areano from TB_PART t1 " +
+                $" join TB_PRODUCT t2 on t2.pk_recno=t1.fk_productno " +
+                $" where t1.fk_productno={ProductNo} and t1.jobno='' ";
+
+            SetTrans(trans);
+            command.CommandText = sql;
+            dataSet.Clear();
+            dataAdapter.Fill(dataSet);
+
+            return (Empty == true) ? true : false;
         }
 
         public void Insert(SqlTransaction trans = null)
@@ -294,6 +398,62 @@ namespace Sgs.ReportIntegration
             }
         }
 
+        public void Update(EReportArea area, string[] items, SqlTransaction trans = null)
+        {
+            string sql =
+                $" update TB_PART set jobno='' from TB_PRODUCT t1 " +
+                $" where t1.pk_recno=TB_PART.fk_productno and t1.areano={(int)area} " +
+                $" and TB_PART.jobno<>'' and TB_PART.materialno in ('!@#$%'";
+
+            foreach (string item in items)
+            {
+                sql += $",'{item.Trim()}'";
+            }
+            sql += ")";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Update(EReportArea area, string[] items, string jobNo, SqlTransaction trans = null)
+        {
+            string sql =
+                $" update TB_PART set jobno='{jobNo}' from TB_PRODUCT t1 " +
+                $" where t1.pk_recno=TB_PART.fk_productno and t1.areano={(int)area} " +
+                $" and TB_PART.jobno='' and TB_PART.materialno in ('!@#$%'";
+
+            foreach (string item in items)
+            {
+                sql += $",'{item.Trim()}'";
+            }
+            sql += ")";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
         public void Fetch(int index = 0, int tableNo = 0)
         {
             if (index < GetRowCount(tableNo))
@@ -308,6 +468,7 @@ namespace Sgs.ReportIntegration
                 MaterialNo = "";
                 Name = "";
                 MaterialName = "";
+                AreaNo = EReportArea.None;
             }
         }
 
@@ -319,6 +480,7 @@ namespace Sgs.ReportIntegration
             MaterialNo = Convert.ToString(row["materialno"]);
             Name = Convert.ToString(row["name"]);
             MaterialName = Convert.ToString(row["materialname"]);
+            AreaNo = (EReportArea)Convert.ToInt32(row["areano"]);
         }
     }
 
@@ -2062,11 +2224,11 @@ namespace Sgs.ReportIntegration
                         {
                             if (AreaNo == EReportArea.None)
                             {
-                                sql += $" and t3.jobcomments like '{ItemNo}%%' ";
+                                sql += $" and t1.orderno like '{ItemNo}%%' ";
                             }
                             else
                             {
-                                sql += $" and t3.jobcomments='{ItemNo} -{AreaNo.ToDescription()}' ";
+                                sql += $" and t1.orderno='{ItemNo} -{AreaNo.ToDescription()}' ";
                             }
                         }
                         sql += $" and t1.pro_job in (select distinct pro_job from PROFJOB_CUID_SCHEME_ANALYTE where formattedvalue is null and finalvalue is null)";
@@ -2145,22 +2307,21 @@ namespace Sgs.ReportIntegration
         public void Fetch(DataRow row)
         {
             AreaNo = EReportArea.None;
-            OrderNo = Convert.ToString(row["orderno"]);
-            ClientNo = Convert.ToString(row["cli_code"]);
-            ClientName = Convert.ToString(row["cli_name"]);
+            OrderNo = Convert.ToString(row["orderno"]).Trim();
+            ClientNo = Convert.ToString(row["cli_code"]).Trim();
+            ClientName = Convert.ToString(row["cli_name"]).Trim();
             ClientAddress = Convert.ToString(row["address1"]) + ", " + 
                 Convert.ToString(row["address2"]) + ", " +
                 Convert.ToString(row["address3"]) + "\r\n" + 
                 Convert.ToString(row["state"]) + "\r\n" + 
                 Convert.ToString(row["country"]);
-            JobNo = Convert.ToString(row["pro_job"]);
-            FileNo = Convert.ToString(row["pro_proj"]);
+            JobNo = Convert.ToString(row["pro_job"]).Trim();
+            FileNo = Convert.ToString(row["pro_proj"]).Trim();
             RegTime = Convert.ToDateTime(row["registered"]);
             ReceivedTime = Convert.ToDateTime(row["received"]);
             RequiredTime = Convert.ToDateTime(row["required"]);
             ReportedTime = Convert.ToDateTime(row["lastreported"]);
-            StaffNo = Convert.ToString(row["validatedby"]);
-            ItemNo = Convert.ToString(row["jobcomments"]);
+            StaffNo = Convert.ToString(row["validatedby"]).Trim();
             ReportComments = Convert.ToString(row["comments1"]);
             SampleRemark = Convert.ToString(row["sam_remarks"]);
             SampleDescription = Convert.ToString(row["sam_description"]);
@@ -2170,6 +2331,7 @@ namespace Sgs.ReportIntegration
 
             if (Type == EReportType.Physical)
             {
+                ItemNo = Convert.ToString(row["orderno"]).Trim();
                 string[] strs = ItemNo.Split('-');
 
                 if (strs.Length > 1)
@@ -2199,6 +2361,8 @@ namespace Sgs.ReportIntegration
             }
             else
             {
+                ItemNo = Convert.ToString(row["jobcomments"]).Trim();
+
                 switch (Convert.ToString(row["notes1"]).Trim())
                 {
                     case "HL_ASTM":
@@ -2262,7 +2426,7 @@ namespace Sgs.ReportIntegration
                 $"     join SCHEME_ANALYTE t4 on " +
                 $"         (t4.labcode=t2.labcode and t4.sch_code=t2.sch_code and " +
                 $"         t4.schversion=t2.schversion and t4.analytecode=t2.analytecode) " +
-                $" where t1.pro_job='{JobNo}'  " +
+                $" where t1.pro_job='{JobNo}' and t1.completed>'2000-01-01' " +
                 $" order by t3.repsequence asc ";
             dataSet.Clear();
             dataAdapter.Fill(dataSet);
