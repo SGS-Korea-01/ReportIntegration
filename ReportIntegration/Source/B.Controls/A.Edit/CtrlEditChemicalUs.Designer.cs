@@ -35,13 +35,13 @@
             this.p3ImageBox = new System.Windows.Forms.PictureBox();
             this.chemical2Page = new System.Windows.Forms.TabPage();
             this.p2Desc2Edit = new DevExpress.XtraEditors.MemoEdit();
-            this.resultGrid = new DevExpress.XtraVerticalGrid.VGridControl();
-            this.resultT6TextEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.resultTestItemRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
-            this.resultHiLimitRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
-            this.resultLoLimitRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
-            this.resultReportLimitRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
-            this.resultFormatValueRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
+            this.metalResultGrid = new DevExpress.XtraVerticalGrid.VGridControl();
+            this.metalResultT6TextEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.metalResultTestItemRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
+            this.metalResultHiLimitRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
+            this.metalResultLoLimitRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
+            this.metalResultReportLimitRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
+            this.metalResultFormatValueRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
             this.p2Desc3Edit = new DevExpress.XtraEditors.MemoEdit();
             this.label17 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -82,17 +82,26 @@
             this.label4 = new System.Windows.Forms.Label();
             this.chemicalTab = new System.Windows.Forms.TabControl();
             this.chemicalSignPage = new System.Windows.Forms.TabPage();
+            this.p2SgsNameLabel = new System.Windows.Forms.Label();
             this.p1NameEdit = new DevExpress.XtraEditors.TextEdit();
             this.p1ImageBox = new System.Windows.Forms.PictureBox();
-            this.p2SgsNameLabel = new System.Windows.Forms.Label();
+            this.p2Desc4Edit = new DevExpress.XtraEditors.MemoEdit();
+            this.leadResultGrid = new DevExpress.XtraVerticalGrid.VGridControl();
+            this.leadResultT6TextEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.leadResultTestItemRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
+            this.leadResultHiLimitRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
+            this.leadResultLoLimitRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
+            this.leadResultHeadRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
+            this.leadResultFormatValueRow = new DevExpress.XtraVerticalGrid.Rows.EditorRow();
+            this.label8 = new System.Windows.Forms.Label();
             this.bgPanel.SuspendLayout();
             this.chemical3Page.SuspendLayout();
             this.imagePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.p3ImageBox)).BeginInit();
             this.chemical2Page.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.p2Desc2Edit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.resultGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.resultT6TextEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metalResultGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metalResultT6TextEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2Desc3Edit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2Desc1Edit.Properties)).BeginInit();
             this.chemical1Page.SuspendLayout();
@@ -116,6 +125,9 @@
             this.chemicalSignPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.p1NameEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1ImageBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.p2Desc4Edit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leadResultGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leadResultT6TextEdit)).BeginInit();
             this.SuspendLayout();
             // 
             // bgPanel
@@ -204,8 +216,11 @@
             // 
             // chemical2Page
             // 
+            this.chemical2Page.Controls.Add(this.p2Desc4Edit);
+            this.chemical2Page.Controls.Add(this.leadResultGrid);
+            this.chemical2Page.Controls.Add(this.label8);
             this.chemical2Page.Controls.Add(this.p2Desc2Edit);
-            this.chemical2Page.Controls.Add(this.resultGrid);
+            this.chemical2Page.Controls.Add(this.metalResultGrid);
             this.chemical2Page.Controls.Add(this.p2Desc3Edit);
             this.chemical2Page.Controls.Add(this.label17);
             this.chemical2Page.Controls.Add(this.label12);
@@ -224,7 +239,7 @@
             // p2Desc2Edit
             // 
             this.p2Desc2Edit.EditValue = "";
-            this.p2Desc2Edit.Location = new System.Drawing.Point(6, 91);
+            this.p2Desc2Edit.Location = new System.Drawing.Point(6, 237);
             this.p2Desc2Edit.Name = "p2Desc2Edit";
             this.p2Desc2Edit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p2Desc2Edit.Properties.Appearance.Options.UseFont = true;
@@ -235,209 +250,211 @@
             this.p2Desc2Edit.Properties.MaxLength = 500;
             this.p2Desc2Edit.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.p2Desc2Edit.Properties.WordWrap = false;
-            this.p2Desc2Edit.Size = new System.Drawing.Size(538, 68);
-            this.p2Desc2Edit.TabIndex = 95;
+            this.p2Desc2Edit.Size = new System.Drawing.Size(538, 22);
+            this.p2Desc2Edit.TabIndex = 3;
             // 
-            // resultGrid
+            // metalResultGrid
             // 
-            this.resultGrid.ActiveFilterEnabled = false;
-            this.resultGrid.Appearance.BandBorder.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultGrid.Appearance.BandBorder.Options.UseFont = true;
-            this.resultGrid.Appearance.FixedLine.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultGrid.Appearance.FixedLine.Options.UseFont = true;
-            this.resultGrid.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultGrid.Appearance.FocusedCell.Options.UseFont = true;
-            this.resultGrid.Appearance.FocusedRecord.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultGrid.Appearance.FocusedRecord.Options.UseFont = true;
-            this.resultGrid.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultGrid.Appearance.FocusedRow.Options.UseFont = true;
-            this.resultGrid.Appearance.HorzLine.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultGrid.Appearance.HorzLine.Options.UseFont = true;
-            this.resultGrid.Appearance.ModifiedRecordValue.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultGrid.Appearance.ModifiedRecordValue.Options.UseFont = true;
-            this.resultGrid.Appearance.ModifiedRow.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultGrid.Appearance.ModifiedRow.Options.UseFont = true;
-            this.resultGrid.Appearance.PressedRow.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultGrid.Appearance.PressedRow.Options.UseFont = true;
-            this.resultGrid.Appearance.ReadOnlyRecordValue.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultGrid.Appearance.ReadOnlyRecordValue.Options.UseFont = true;
-            this.resultGrid.Appearance.ReadOnlyRow.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultGrid.Appearance.ReadOnlyRow.Options.UseFont = true;
-            this.resultGrid.Appearance.RecordValue.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultGrid.Appearance.RecordValue.Options.UseFont = true;
-            this.resultGrid.Appearance.RowHeaderPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.resultGrid.Appearance.RowHeaderPanel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultGrid.Appearance.RowHeaderPanel.Options.UseBackColor = true;
-            this.resultGrid.Appearance.RowHeaderPanel.Options.UseFont = true;
-            this.resultGrid.Appearance.RowHeaderPanel.Options.UseTextOptions = true;
-            this.resultGrid.Appearance.RowHeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.resultGrid.Appearance.RowHeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.resultGrid.Appearance.SelectedCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultGrid.Appearance.SelectedCell.Options.UseFont = true;
-            this.resultGrid.Appearance.SelectedRecord.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultGrid.Appearance.SelectedRecord.Options.UseFont = true;
-            this.resultGrid.Appearance.SelectedRow.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultGrid.Appearance.SelectedRow.Options.UseFont = true;
-            this.resultGrid.Cursor = System.Windows.Forms.Cursors.Default;
-            this.resultGrid.CustomizationFormBounds = new System.Drawing.Rectangle(897, 390, 243, 289);
-            this.resultGrid.Location = new System.Drawing.Point(6, 165);
-            this.resultGrid.LookAndFeel.SkinName = "DevExpress Style";
-            this.resultGrid.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.resultGrid.Margin = new System.Windows.Forms.Padding(0);
-            this.resultGrid.Name = "resultGrid";
-            this.resultGrid.OptionsBehavior.AllowAnimatedScrolling = false;
-            this.resultGrid.OptionsBehavior.ResizeHeaderPanel = false;
-            this.resultGrid.OptionsBehavior.ResizeRowHeaders = false;
-            this.resultGrid.OptionsBehavior.ResizeRowValues = false;
-            this.resultGrid.OptionsBehavior.SmartExpand = false;
-            this.resultGrid.OptionsBehavior.UseEnterAsTab = true;
-            this.resultGrid.OptionsFilter.AllowFilter = false;
-            this.resultGrid.OptionsFilter.AllowFilterEditor = false;
-            this.resultGrid.OptionsView.AllowHtmlText = true;
-            this.resultGrid.OptionsView.FixRowHeaderPanelWidth = true;
-            this.resultGrid.OptionsView.MinRowAutoHeight = 40;
-            this.resultGrid.RecordWidth = 46;
-            this.resultGrid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.resultT6TextEdit});
-            this.resultGrid.RowHeaderWidth = 158;
-            this.resultGrid.Rows.AddRange(new DevExpress.XtraVerticalGrid.Rows.BaseRow[] {
-            this.resultTestItemRow,
-            this.resultHiLimitRow,
-            this.resultLoLimitRow,
-            this.resultReportLimitRow,
-            this.resultFormatValueRow});
-            this.resultGrid.Size = new System.Drawing.Size(538, 216);
-            this.resultGrid.TabIndex = 94;
+            this.metalResultGrid.ActiveFilterEnabled = false;
+            this.metalResultGrid.Appearance.BandBorder.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultGrid.Appearance.BandBorder.Options.UseFont = true;
+            this.metalResultGrid.Appearance.DisabledRow.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultGrid.Appearance.DisabledRow.Options.UseFont = true;
+            this.metalResultGrid.Appearance.FixedLine.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultGrid.Appearance.FixedLine.Options.UseFont = true;
+            this.metalResultGrid.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultGrid.Appearance.FocusedCell.Options.UseFont = true;
+            this.metalResultGrid.Appearance.FocusedRecord.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultGrid.Appearance.FocusedRecord.Options.UseFont = true;
+            this.metalResultGrid.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultGrid.Appearance.FocusedRow.Options.UseFont = true;
+            this.metalResultGrid.Appearance.HorzLine.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultGrid.Appearance.HorzLine.Options.UseFont = true;
+            this.metalResultGrid.Appearance.ModifiedRecordValue.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultGrid.Appearance.ModifiedRecordValue.Options.UseFont = true;
+            this.metalResultGrid.Appearance.ModifiedRow.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultGrid.Appearance.ModifiedRow.Options.UseFont = true;
+            this.metalResultGrid.Appearance.PressedRow.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultGrid.Appearance.PressedRow.Options.UseFont = true;
+            this.metalResultGrid.Appearance.ReadOnlyRecordValue.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultGrid.Appearance.ReadOnlyRecordValue.Options.UseFont = true;
+            this.metalResultGrid.Appearance.ReadOnlyRow.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultGrid.Appearance.ReadOnlyRow.Options.UseFont = true;
+            this.metalResultGrid.Appearance.RecordValue.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultGrid.Appearance.RecordValue.Options.UseFont = true;
+            this.metalResultGrid.Appearance.RowHeaderPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.metalResultGrid.Appearance.RowHeaderPanel.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultGrid.Appearance.RowHeaderPanel.Options.UseBackColor = true;
+            this.metalResultGrid.Appearance.RowHeaderPanel.Options.UseFont = true;
+            this.metalResultGrid.Appearance.RowHeaderPanel.Options.UseTextOptions = true;
+            this.metalResultGrid.Appearance.RowHeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.metalResultGrid.Appearance.RowHeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.metalResultGrid.Appearance.SelectedCell.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultGrid.Appearance.SelectedCell.Options.UseFont = true;
+            this.metalResultGrid.Appearance.SelectedRecord.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultGrid.Appearance.SelectedRecord.Options.UseFont = true;
+            this.metalResultGrid.Appearance.SelectedRow.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultGrid.Appearance.SelectedRow.Options.UseFont = true;
+            this.metalResultGrid.Cursor = System.Windows.Forms.Cursors.Default;
+            this.metalResultGrid.CustomizationFormBounds = new System.Drawing.Rectangle(897, 390, 243, 289);
+            this.metalResultGrid.Location = new System.Drawing.Point(6, 262);
+            this.metalResultGrid.LookAndFeel.SkinName = "DevExpress Style";
+            this.metalResultGrid.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.metalResultGrid.Margin = new System.Windows.Forms.Padding(0);
+            this.metalResultGrid.Name = "metalResultGrid";
+            this.metalResultGrid.OptionsBehavior.AllowAnimatedScrolling = false;
+            this.metalResultGrid.OptionsBehavior.ResizeHeaderPanel = false;
+            this.metalResultGrid.OptionsBehavior.ResizeRowHeaders = false;
+            this.metalResultGrid.OptionsBehavior.ResizeRowValues = false;
+            this.metalResultGrid.OptionsBehavior.SmartExpand = false;
+            this.metalResultGrid.OptionsBehavior.UseEnterAsTab = true;
+            this.metalResultGrid.OptionsFilter.AllowFilter = false;
+            this.metalResultGrid.OptionsFilter.AllowFilterEditor = false;
+            this.metalResultGrid.OptionsView.AllowHtmlText = true;
+            this.metalResultGrid.OptionsView.FixRowHeaderPanelWidth = true;
+            this.metalResultGrid.OptionsView.MinRowAutoHeight = 28;
+            this.metalResultGrid.RecordWidth = 46;
+            this.metalResultGrid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.metalResultT6TextEdit});
+            this.metalResultGrid.RowHeaderWidth = 158;
+            this.metalResultGrid.Rows.AddRange(new DevExpress.XtraVerticalGrid.Rows.BaseRow[] {
+            this.metalResultTestItemRow,
+            this.metalResultHiLimitRow,
+            this.metalResultLoLimitRow,
+            this.metalResultReportLimitRow,
+            this.metalResultFormatValueRow});
+            this.metalResultGrid.Size = new System.Drawing.Size(538, 149);
+            this.metalResultGrid.TabIndex = 4;
             // 
-            // resultT6TextEdit
+            // metalResultT6TextEdit
             // 
-            this.resultT6TextEdit.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultT6TextEdit.Appearance.Options.UseFont = true;
-            this.resultT6TextEdit.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultT6TextEdit.AppearanceFocused.Options.UseFont = true;
-            this.resultT6TextEdit.AutoHeight = false;
-            this.resultT6TextEdit.MaxLength = 6;
-            this.resultT6TextEdit.Name = "resultT6TextEdit";
+            this.metalResultT6TextEdit.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultT6TextEdit.Appearance.Options.UseFont = true;
+            this.metalResultT6TextEdit.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultT6TextEdit.AppearanceFocused.Options.UseFont = true;
+            this.metalResultT6TextEdit.AutoHeight = false;
+            this.metalResultT6TextEdit.MaxLength = 6;
+            this.metalResultT6TextEdit.Name = "metalResultT6TextEdit";
             // 
-            // resultTestItemRow
+            // metalResultTestItemRow
             // 
-            this.resultTestItemRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultTestItemRow.AppearanceCell.Options.UseFont = true;
-            this.resultTestItemRow.AppearanceCell.Options.UseTextOptions = true;
-            this.resultTestItemRow.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.resultTestItemRow.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultTestItemRow.AppearanceHeader.Options.UseFont = true;
-            this.resultTestItemRow.AppearanceHeader.Options.UseTextOptions = true;
-            this.resultTestItemRow.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.resultTestItemRow.Fixed = DevExpress.XtraVerticalGrid.Rows.FixedStyle.Top;
-            this.resultTestItemRow.InternalFixed = DevExpress.XtraVerticalGrid.Rows.FixedStyle.Top;
-            this.resultTestItemRow.Name = "resultTestItemRow";
-            this.resultTestItemRow.OptionsRow.AllowFocus = false;
-            this.resultTestItemRow.OptionsRow.AllowHtmlText = DevExpress.Utils.DefaultBoolean.True;
-            this.resultTestItemRow.OptionsRow.AllowMove = false;
-            this.resultTestItemRow.OptionsRow.AllowMoveToCustomizationForm = false;
-            this.resultTestItemRow.OptionsRow.AllowSize = false;
-            this.resultTestItemRow.OptionsRow.DblClickExpanding = false;
-            this.resultTestItemRow.Properties.AllowEdit = false;
-            this.resultTestItemRow.Properties.Caption = "Test Item(s)";
-            this.resultTestItemRow.Properties.DrawEditorBorder = false;
-            this.resultTestItemRow.Properties.FieldName = "Name";
-            this.resultTestItemRow.Properties.Format.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.resultTestItemRow.Properties.OptionsFilter.AllowFilter = false;
-            this.resultTestItemRow.Properties.ReadOnly = true;
-            this.resultTestItemRow.TabStop = false;
+            this.metalResultTestItemRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultTestItemRow.AppearanceCell.Options.UseFont = true;
+            this.metalResultTestItemRow.AppearanceCell.Options.UseTextOptions = true;
+            this.metalResultTestItemRow.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.metalResultTestItemRow.AppearanceHeader.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultTestItemRow.AppearanceHeader.Options.UseFont = true;
+            this.metalResultTestItemRow.AppearanceHeader.Options.UseTextOptions = true;
+            this.metalResultTestItemRow.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.metalResultTestItemRow.Fixed = DevExpress.XtraVerticalGrid.Rows.FixedStyle.Top;
+            this.metalResultTestItemRow.InternalFixed = DevExpress.XtraVerticalGrid.Rows.FixedStyle.Top;
+            this.metalResultTestItemRow.Name = "metalResultTestItemRow";
+            this.metalResultTestItemRow.OptionsRow.AllowFocus = false;
+            this.metalResultTestItemRow.OptionsRow.AllowHtmlText = DevExpress.Utils.DefaultBoolean.True;
+            this.metalResultTestItemRow.OptionsRow.AllowMove = false;
+            this.metalResultTestItemRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.metalResultTestItemRow.OptionsRow.AllowSize = false;
+            this.metalResultTestItemRow.OptionsRow.DblClickExpanding = false;
+            this.metalResultTestItemRow.Properties.AllowEdit = false;
+            this.metalResultTestItemRow.Properties.Caption = "Test Item(s)";
+            this.metalResultTestItemRow.Properties.DrawEditorBorder = false;
+            this.metalResultTestItemRow.Properties.FieldName = "Name";
+            this.metalResultTestItemRow.Properties.Format.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.metalResultTestItemRow.Properties.OptionsFilter.AllowFilter = false;
+            this.metalResultTestItemRow.Properties.ReadOnly = true;
+            this.metalResultTestItemRow.TabStop = false;
             // 
-            // resultHiLimitRow
+            // metalResultHiLimitRow
             // 
-            this.resultHiLimitRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultHiLimitRow.AppearanceCell.Options.UseFont = true;
-            this.resultHiLimitRow.AppearanceCell.Options.UseTextOptions = true;
-            this.resultHiLimitRow.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.resultHiLimitRow.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultHiLimitRow.AppearanceHeader.Options.UseFont = true;
-            this.resultHiLimitRow.AppearanceHeader.Options.UseTextOptions = true;
-            this.resultHiLimitRow.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.resultHiLimitRow.Name = "resultHiLimitRow";
-            this.resultHiLimitRow.OptionsRow.AllowFocus = false;
-            this.resultHiLimitRow.OptionsRow.AllowMove = false;
-            this.resultHiLimitRow.OptionsRow.AllowMoveToCustomizationForm = false;
-            this.resultHiLimitRow.OptionsRow.AllowSize = false;
-            this.resultHiLimitRow.OptionsRow.DblClickExpanding = false;
-            this.resultHiLimitRow.Properties.AllowEdit = false;
-            this.resultHiLimitRow.Properties.Caption = "Migration Limit(mg/kg)<br>-Other Than Modeling<br>Clay";
-            this.resultHiLimitRow.Properties.FieldName = "HiLimit";
-            this.resultHiLimitRow.Properties.OptionsFilter.AllowFilter = false;
-            this.resultHiLimitRow.Properties.ReadOnly = true;
+            this.metalResultHiLimitRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultHiLimitRow.AppearanceCell.Options.UseFont = true;
+            this.metalResultHiLimitRow.AppearanceCell.Options.UseTextOptions = true;
+            this.metalResultHiLimitRow.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.metalResultHiLimitRow.AppearanceHeader.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultHiLimitRow.AppearanceHeader.Options.UseFont = true;
+            this.metalResultHiLimitRow.AppearanceHeader.Options.UseTextOptions = true;
+            this.metalResultHiLimitRow.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.metalResultHiLimitRow.Name = "metalResultHiLimitRow";
+            this.metalResultHiLimitRow.OptionsRow.AllowFocus = false;
+            this.metalResultHiLimitRow.OptionsRow.AllowMove = false;
+            this.metalResultHiLimitRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.metalResultHiLimitRow.OptionsRow.AllowSize = false;
+            this.metalResultHiLimitRow.OptionsRow.DblClickExpanding = false;
+            this.metalResultHiLimitRow.Properties.AllowEdit = false;
+            this.metalResultHiLimitRow.Properties.Caption = "Migration Limit(mg/kg)<br>-Other Than Modeling Clay";
+            this.metalResultHiLimitRow.Properties.FieldName = "HiLimit";
+            this.metalResultHiLimitRow.Properties.OptionsFilter.AllowFilter = false;
+            this.metalResultHiLimitRow.Properties.ReadOnly = true;
             // 
-            // resultLoLimitRow
+            // metalResultLoLimitRow
             // 
-            this.resultLoLimitRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultLoLimitRow.AppearanceCell.Options.UseFont = true;
-            this.resultLoLimitRow.AppearanceCell.Options.UseTextOptions = true;
-            this.resultLoLimitRow.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.resultLoLimitRow.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultLoLimitRow.AppearanceHeader.Options.UseFont = true;
-            this.resultLoLimitRow.AppearanceHeader.Options.UseTextOptions = true;
-            this.resultLoLimitRow.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.resultLoLimitRow.Name = "resultLoLimitRow";
-            this.resultLoLimitRow.OptionsRow.AllowFocus = false;
-            this.resultLoLimitRow.OptionsRow.AllowMove = false;
-            this.resultLoLimitRow.OptionsRow.AllowMoveToCustomizationForm = false;
-            this.resultLoLimitRow.OptionsRow.AllowSize = false;
-            this.resultLoLimitRow.OptionsRow.DblClickExpanding = false;
-            this.resultLoLimitRow.Properties.AllowEdit = false;
-            this.resultLoLimitRow.Properties.Caption = "Migration Limit(mg/kg)<br>-Modeling Clay";
-            this.resultLoLimitRow.Properties.FieldName = "LoLimit";
-            this.resultLoLimitRow.Properties.OptionsFilter.AllowFilter = false;
-            this.resultLoLimitRow.Properties.ReadOnly = true;
+            this.metalResultLoLimitRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultLoLimitRow.AppearanceCell.Options.UseFont = true;
+            this.metalResultLoLimitRow.AppearanceCell.Options.UseTextOptions = true;
+            this.metalResultLoLimitRow.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.metalResultLoLimitRow.AppearanceHeader.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultLoLimitRow.AppearanceHeader.Options.UseFont = true;
+            this.metalResultLoLimitRow.AppearanceHeader.Options.UseTextOptions = true;
+            this.metalResultLoLimitRow.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.metalResultLoLimitRow.Name = "metalResultLoLimitRow";
+            this.metalResultLoLimitRow.OptionsRow.AllowFocus = false;
+            this.metalResultLoLimitRow.OptionsRow.AllowMove = false;
+            this.metalResultLoLimitRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.metalResultLoLimitRow.OptionsRow.AllowSize = false;
+            this.metalResultLoLimitRow.OptionsRow.DblClickExpanding = false;
+            this.metalResultLoLimitRow.Properties.AllowEdit = false;
+            this.metalResultLoLimitRow.Properties.Caption = "Migration Limit(mg/kg)<br>-Modeling Clay";
+            this.metalResultLoLimitRow.Properties.FieldName = "LoLimit";
+            this.metalResultLoLimitRow.Properties.OptionsFilter.AllowFilter = false;
+            this.metalResultLoLimitRow.Properties.ReadOnly = true;
             // 
-            // resultReportLimitRow
+            // metalResultReportLimitRow
             // 
-            this.resultReportLimitRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultReportLimitRow.AppearanceCell.Options.UseFont = true;
-            this.resultReportLimitRow.AppearanceCell.Options.UseTextOptions = true;
-            this.resultReportLimitRow.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.resultReportLimitRow.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultReportLimitRow.AppearanceHeader.Options.UseFont = true;
-            this.resultReportLimitRow.AppearanceHeader.Options.UseTextOptions = true;
-            this.resultReportLimitRow.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.resultReportLimitRow.Name = "resultReportLimitRow";
-            this.resultReportLimitRow.OptionsRow.AllowFocus = false;
-            this.resultReportLimitRow.OptionsRow.AllowMove = false;
-            this.resultReportLimitRow.OptionsRow.AllowMoveToCustomizationForm = false;
-            this.resultReportLimitRow.OptionsRow.AllowSize = false;
-            this.resultReportLimitRow.OptionsRow.DblClickExpanding = false;
-            this.resultReportLimitRow.Properties.AllowEdit = false;
-            this.resultReportLimitRow.Properties.Caption = "Model Detection Limit";
-            this.resultReportLimitRow.Properties.FieldName = "ReportLimit";
-            this.resultReportLimitRow.Properties.OptionsFilter.AllowFilter = false;
-            this.resultReportLimitRow.Properties.ReadOnly = true;
+            this.metalResultReportLimitRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultReportLimitRow.AppearanceCell.Options.UseFont = true;
+            this.metalResultReportLimitRow.AppearanceCell.Options.UseTextOptions = true;
+            this.metalResultReportLimitRow.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.metalResultReportLimitRow.AppearanceHeader.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultReportLimitRow.AppearanceHeader.Options.UseFont = true;
+            this.metalResultReportLimitRow.AppearanceHeader.Options.UseTextOptions = true;
+            this.metalResultReportLimitRow.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.metalResultReportLimitRow.Name = "metalResultReportLimitRow";
+            this.metalResultReportLimitRow.OptionsRow.AllowFocus = false;
+            this.metalResultReportLimitRow.OptionsRow.AllowMove = false;
+            this.metalResultReportLimitRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.metalResultReportLimitRow.OptionsRow.AllowSize = false;
+            this.metalResultReportLimitRow.OptionsRow.DblClickExpanding = false;
+            this.metalResultReportLimitRow.Properties.AllowEdit = false;
+            this.metalResultReportLimitRow.Properties.Caption = "Model Detection Limit";
+            this.metalResultReportLimitRow.Properties.FieldName = "ReportLimit";
+            this.metalResultReportLimitRow.Properties.OptionsFilter.AllowFilter = false;
+            this.metalResultReportLimitRow.Properties.ReadOnly = true;
             // 
-            // resultFormatValueRow
+            // metalResultFormatValueRow
             // 
-            this.resultFormatValueRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultFormatValueRow.AppearanceCell.Options.UseFont = true;
-            this.resultFormatValueRow.AppearanceCell.Options.UseTextOptions = true;
-            this.resultFormatValueRow.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.resultFormatValueRow.AppearanceHeader.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultFormatValueRow.AppearanceHeader.Options.UseFont = true;
-            this.resultFormatValueRow.AppearanceHeader.Options.UseTextOptions = true;
-            this.resultFormatValueRow.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.resultFormatValueRow.Name = "resultFormatValueRow";
-            this.resultFormatValueRow.OptionsRow.AllowMove = false;
-            this.resultFormatValueRow.OptionsRow.AllowMoveToCustomizationForm = false;
-            this.resultFormatValueRow.OptionsRow.AllowSize = false;
-            this.resultFormatValueRow.OptionsRow.DblClickExpanding = false;
-            this.resultFormatValueRow.Properties.Caption = "Mass of trace<br>amount(mg)";
-            this.resultFormatValueRow.Properties.FieldName = "FormatValue";
-            this.resultFormatValueRow.Properties.OptionsFilter.AllowFilter = false;
-            this.resultFormatValueRow.Properties.ReadOnly = false;
-            this.resultFormatValueRow.Properties.RowEdit = this.resultT6TextEdit;
+            this.metalResultFormatValueRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultFormatValueRow.AppearanceCell.Options.UseFont = true;
+            this.metalResultFormatValueRow.AppearanceCell.Options.UseTextOptions = true;
+            this.metalResultFormatValueRow.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.metalResultFormatValueRow.AppearanceHeader.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metalResultFormatValueRow.AppearanceHeader.Options.UseFont = true;
+            this.metalResultFormatValueRow.AppearanceHeader.Options.UseTextOptions = true;
+            this.metalResultFormatValueRow.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.metalResultFormatValueRow.Name = "metalResultFormatValueRow";
+            this.metalResultFormatValueRow.OptionsRow.AllowMove = false;
+            this.metalResultFormatValueRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.metalResultFormatValueRow.OptionsRow.AllowSize = false;
+            this.metalResultFormatValueRow.OptionsRow.DblClickExpanding = false;
+            this.metalResultFormatValueRow.Properties.Caption = "Mass of trace<br>amount(mg)";
+            this.metalResultFormatValueRow.Properties.FieldName = "FormatValue";
+            this.metalResultFormatValueRow.Properties.OptionsFilter.AllowFilter = false;
+            this.metalResultFormatValueRow.Properties.ReadOnly = false;
+            this.metalResultFormatValueRow.Properties.RowEdit = this.metalResultT6TextEdit;
             // 
             // p2Desc3Edit
             // 
             this.p2Desc3Edit.EditValue = "";
-            this.p2Desc3Edit.Location = new System.Drawing.Point(6, 423);
+            this.p2Desc3Edit.Location = new System.Drawing.Point(6, 444);
             this.p2Desc3Edit.Name = "p2Desc3Edit";
             this.p2Desc3Edit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.p2Desc3Edit.Properties.Appearance.Options.UseFont = true;
@@ -448,13 +465,13 @@
             this.p2Desc3Edit.Properties.MaxLength = 500;
             this.p2Desc3Edit.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.p2Desc3Edit.Properties.WordWrap = false;
-            this.p2Desc3Edit.Size = new System.Drawing.Size(538, 82);
-            this.p2Desc3Edit.TabIndex = 93;
+            this.p2Desc3Edit.Size = new System.Drawing.Size(538, 62);
+            this.p2Desc3Edit.TabIndex = 5;
             // 
             // label17
             // 
             this.label17.Font = new System.Drawing.Font("Arial", 9F);
-            this.label17.Location = new System.Drawing.Point(3, 398);
+            this.label17.Location = new System.Drawing.Point(3, 419);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(301, 22);
             this.label17.TabIndex = 92;
@@ -464,7 +481,7 @@
             // label12
             // 
             this.label12.Font = new System.Drawing.Font("Arial", 9F);
-            this.label12.Location = new System.Drawing.Point(3, 66);
+            this.label12.Location = new System.Drawing.Point(3, 212);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(301, 22);
             this.label12.TabIndex = 90;
@@ -484,7 +501,7 @@
             this.p2Desc1Edit.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.p2Desc1Edit.Properties.MaxLength = 100;
             this.p2Desc1Edit.Size = new System.Drawing.Size(538, 22);
-            this.p2Desc1Edit.TabIndex = 89;
+            this.p2Desc1Edit.TabIndex = 0;
             // 
             // label16
             // 
@@ -963,6 +980,16 @@
             this.chemicalSignPage.Text = "  Signature  ";
             this.chemicalSignPage.UseVisualStyleBackColor = true;
             // 
+            // p2SgsNameLabel
+            // 
+            this.p2SgsNameLabel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.p2SgsNameLabel.Location = new System.Drawing.Point(22, 22);
+            this.p2SgsNameLabel.Name = "p2SgsNameLabel";
+            this.p2SgsNameLabel.Size = new System.Drawing.Size(220, 22);
+            this.p2SgsNameLabel.TabIndex = 129;
+            this.p2SgsNameLabel.Text = "SGS Korea Co., Ltd.";
+            this.p2SgsNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // p1NameEdit
             // 
             this.p1NameEdit.EditValue = "";
@@ -993,15 +1020,229 @@
             this.p1ImageBox.TabIndex = 128;
             this.p1ImageBox.TabStop = false;
             // 
-            // p2SgsNameLabel
+            // p2Desc4Edit
             // 
-            this.p2SgsNameLabel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.p2SgsNameLabel.Location = new System.Drawing.Point(22, 22);
-            this.p2SgsNameLabel.Name = "p2SgsNameLabel";
-            this.p2SgsNameLabel.Size = new System.Drawing.Size(220, 22);
-            this.p2SgsNameLabel.TabIndex = 129;
-            this.p2SgsNameLabel.Text = "SGS Korea Co., Ltd.";
-            this.p2SgsNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.p2Desc4Edit.EditValue = "";
+            this.p2Desc4Edit.Location = new System.Drawing.Point(6, 82);
+            this.p2Desc4Edit.Name = "p2Desc4Edit";
+            this.p2Desc4Edit.Properties.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p2Desc4Edit.Properties.Appearance.Options.UseFont = true;
+            this.p2Desc4Edit.Properties.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p2Desc4Edit.Properties.AppearanceFocused.Options.UseFont = true;
+            this.p2Desc4Edit.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p2Desc4Edit.Properties.AppearanceReadOnly.Options.UseFont = true;
+            this.p2Desc4Edit.Properties.MaxLength = 500;
+            this.p2Desc4Edit.Properties.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.p2Desc4Edit.Properties.WordWrap = false;
+            this.p2Desc4Edit.Size = new System.Drawing.Size(538, 22);
+            this.p2Desc4Edit.TabIndex = 1;
+            // 
+            // leadResultGrid
+            // 
+            this.leadResultGrid.Appearance.BandBorder.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultGrid.Appearance.BandBorder.Options.UseFont = true;
+            this.leadResultGrid.Appearance.DisabledRow.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultGrid.Appearance.DisabledRow.Options.UseFont = true;
+            this.leadResultGrid.Appearance.FixedLine.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultGrid.Appearance.FixedLine.Options.UseFont = true;
+            this.leadResultGrid.Appearance.FocusedCell.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultGrid.Appearance.FocusedCell.Options.UseFont = true;
+            this.leadResultGrid.Appearance.FocusedRecord.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultGrid.Appearance.FocusedRecord.Options.UseFont = true;
+            this.leadResultGrid.Appearance.FocusedRow.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultGrid.Appearance.FocusedRow.Options.UseFont = true;
+            this.leadResultGrid.Appearance.HorzLine.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultGrid.Appearance.HorzLine.Options.UseFont = true;
+            this.leadResultGrid.Appearance.ModifiedRecordValue.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultGrid.Appearance.ModifiedRecordValue.Options.UseFont = true;
+            this.leadResultGrid.Appearance.ModifiedRow.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultGrid.Appearance.ModifiedRow.Options.UseFont = true;
+            this.leadResultGrid.Appearance.PressedRow.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultGrid.Appearance.PressedRow.Options.UseFont = true;
+            this.leadResultGrid.Appearance.ReadOnlyRecordValue.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultGrid.Appearance.ReadOnlyRecordValue.Options.UseFont = true;
+            this.leadResultGrid.Appearance.ReadOnlyRow.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultGrid.Appearance.ReadOnlyRow.Options.UseFont = true;
+            this.leadResultGrid.Appearance.RecordValue.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultGrid.Appearance.RecordValue.Options.UseFont = true;
+            this.leadResultGrid.Appearance.RowHeaderPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.leadResultGrid.Appearance.RowHeaderPanel.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultGrid.Appearance.RowHeaderPanel.Options.UseBackColor = true;
+            this.leadResultGrid.Appearance.RowHeaderPanel.Options.UseFont = true;
+            this.leadResultGrid.Appearance.RowHeaderPanel.Options.UseTextOptions = true;
+            this.leadResultGrid.Appearance.RowHeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.leadResultGrid.Appearance.RowHeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.leadResultGrid.Appearance.SelectedCell.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultGrid.Appearance.SelectedCell.Options.UseFont = true;
+            this.leadResultGrid.Appearance.SelectedRecord.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultGrid.Appearance.SelectedRecord.Options.UseFont = true;
+            this.leadResultGrid.Appearance.SelectedRow.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultGrid.Appearance.SelectedRow.Options.UseFont = true;
+            this.leadResultGrid.Cursor = System.Windows.Forms.Cursors.Default;
+            this.leadResultGrid.CustomizationFormBounds = new System.Drawing.Rectangle(897, 390, 243, 289);
+            this.leadResultGrid.Location = new System.Drawing.Point(6, 107);
+            this.leadResultGrid.LookAndFeel.SkinName = "DevExpress Style";
+            this.leadResultGrid.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.leadResultGrid.Margin = new System.Windows.Forms.Padding(0);
+            this.leadResultGrid.Name = "leadResultGrid";
+            this.leadResultGrid.OptionsBehavior.AllowAnimatedScrolling = false;
+            this.leadResultGrid.OptionsBehavior.ResizeHeaderPanel = false;
+            this.leadResultGrid.OptionsBehavior.ResizeRowHeaders = false;
+            this.leadResultGrid.OptionsBehavior.ResizeRowValues = false;
+            this.leadResultGrid.OptionsBehavior.SmartExpand = false;
+            this.leadResultGrid.OptionsBehavior.UseEnterAsTab = true;
+            this.leadResultGrid.OptionsFilter.AllowFilter = false;
+            this.leadResultGrid.OptionsFilter.AllowFilterEditor = false;
+            this.leadResultGrid.OptionsView.AllowHtmlText = true;
+            this.leadResultGrid.OptionsView.FixRowHeaderPanelWidth = true;
+            this.leadResultGrid.OptionsView.MinRowAutoHeight = 18;
+            this.leadResultGrid.RecordWidth = 375;
+            this.leadResultGrid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.leadResultT6TextEdit});
+            this.leadResultGrid.RowHeaderWidth = 158;
+            this.leadResultGrid.Rows.AddRange(new DevExpress.XtraVerticalGrid.Rows.BaseRow[] {
+            this.leadResultTestItemRow,
+            this.leadResultHiLimitRow,
+            this.leadResultLoLimitRow,
+            this.leadResultHeadRow,
+            this.leadResultFormatValueRow});
+            this.leadResultGrid.Size = new System.Drawing.Size(538, 99);
+            this.leadResultGrid.TabIndex = 2;
+            // 
+            // leadResultT6TextEdit
+            // 
+            this.leadResultT6TextEdit.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultT6TextEdit.Appearance.Options.UseFont = true;
+            this.leadResultT6TextEdit.AppearanceFocused.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultT6TextEdit.AppearanceFocused.Options.UseFont = true;
+            this.leadResultT6TextEdit.AutoHeight = false;
+            this.leadResultT6TextEdit.MaxLength = 6;
+            this.leadResultT6TextEdit.Name = "leadResultT6TextEdit";
+            // 
+            // leadResultTestItemRow
+            // 
+            this.leadResultTestItemRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultTestItemRow.AppearanceCell.Options.UseFont = true;
+            this.leadResultTestItemRow.AppearanceCell.Options.UseTextOptions = true;
+            this.leadResultTestItemRow.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.leadResultTestItemRow.AppearanceHeader.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultTestItemRow.AppearanceHeader.Options.UseFont = true;
+            this.leadResultTestItemRow.AppearanceHeader.Options.UseTextOptions = true;
+            this.leadResultTestItemRow.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.leadResultTestItemRow.Fixed = DevExpress.XtraVerticalGrid.Rows.FixedStyle.Top;
+            this.leadResultTestItemRow.InternalFixed = DevExpress.XtraVerticalGrid.Rows.FixedStyle.Top;
+            this.leadResultTestItemRow.Name = "leadResultTestItemRow";
+            this.leadResultTestItemRow.OptionsRow.AllowFocus = false;
+            this.leadResultTestItemRow.OptionsRow.AllowHtmlText = DevExpress.Utils.DefaultBoolean.True;
+            this.leadResultTestItemRow.OptionsRow.AllowMove = false;
+            this.leadResultTestItemRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.leadResultTestItemRow.OptionsRow.AllowSize = false;
+            this.leadResultTestItemRow.OptionsRow.DblClickExpanding = false;
+            this.leadResultTestItemRow.Properties.AllowEdit = false;
+            this.leadResultTestItemRow.Properties.Caption = "Test Item(s)";
+            this.leadResultTestItemRow.Properties.DrawEditorBorder = false;
+            this.leadResultTestItemRow.Properties.FieldName = "Name";
+            this.leadResultTestItemRow.Properties.Format.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.leadResultTestItemRow.Properties.OptionsFilter.AllowFilter = false;
+            this.leadResultTestItemRow.Properties.ReadOnly = true;
+            this.leadResultTestItemRow.TabStop = false;
+            // 
+            // leadResultHiLimitRow
+            // 
+            this.leadResultHiLimitRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultHiLimitRow.AppearanceCell.Options.UseFont = true;
+            this.leadResultHiLimitRow.AppearanceCell.Options.UseTextOptions = true;
+            this.leadResultHiLimitRow.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.leadResultHiLimitRow.AppearanceHeader.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultHiLimitRow.AppearanceHeader.Options.UseFont = true;
+            this.leadResultHiLimitRow.AppearanceHeader.Options.UseTextOptions = true;
+            this.leadResultHiLimitRow.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.leadResultHiLimitRow.Name = "leadResultHiLimitRow";
+            this.leadResultHiLimitRow.OptionsRow.AllowFocus = false;
+            this.leadResultHiLimitRow.OptionsRow.AllowMove = false;
+            this.leadResultHiLimitRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.leadResultHiLimitRow.OptionsRow.AllowSize = false;
+            this.leadResultHiLimitRow.OptionsRow.DblClickExpanding = false;
+            this.leadResultHiLimitRow.Properties.AllowEdit = false;
+            this.leadResultHiLimitRow.Properties.Caption = "Total Limit(mg/kg)";
+            this.leadResultHiLimitRow.Properties.FieldName = "TotalLimit";
+            this.leadResultHiLimitRow.Properties.OptionsFilter.AllowFilter = false;
+            this.leadResultHiLimitRow.Properties.ReadOnly = true;
+            // 
+            // leadResultLoLimitRow
+            // 
+            this.leadResultLoLimitRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultLoLimitRow.AppearanceCell.Options.UseFont = true;
+            this.leadResultLoLimitRow.AppearanceCell.Options.UseTextOptions = true;
+            this.leadResultLoLimitRow.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.leadResultLoLimitRow.AppearanceHeader.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultLoLimitRow.AppearanceHeader.Options.UseFont = true;
+            this.leadResultLoLimitRow.AppearanceHeader.Options.UseTextOptions = true;
+            this.leadResultLoLimitRow.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.leadResultLoLimitRow.Name = "leadResultLoLimitRow";
+            this.leadResultLoLimitRow.OptionsRow.AllowFocus = false;
+            this.leadResultLoLimitRow.OptionsRow.AllowMove = false;
+            this.leadResultLoLimitRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.leadResultLoLimitRow.OptionsRow.AllowSize = false;
+            this.leadResultLoLimitRow.OptionsRow.DblClickExpanding = false;
+            this.leadResultLoLimitRow.Properties.AllowEdit = false;
+            this.leadResultLoLimitRow.Properties.Caption = "Method Detection Limit(mg/kg)";
+            this.leadResultLoLimitRow.Properties.FieldName = "ReportLimit";
+            this.leadResultLoLimitRow.Properties.OptionsFilter.AllowFilter = false;
+            this.leadResultLoLimitRow.Properties.ReadOnly = true;
+            // 
+            // leadResultHeadRow
+            // 
+            this.leadResultHeadRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultHeadRow.AppearanceCell.Options.UseFont = true;
+            this.leadResultHeadRow.AppearanceCell.Options.UseTextOptions = true;
+            this.leadResultHeadRow.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.leadResultHeadRow.AppearanceHeader.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultHeadRow.AppearanceHeader.Options.UseFont = true;
+            this.leadResultHeadRow.AppearanceHeader.Options.UseTextOptions = true;
+            this.leadResultHeadRow.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.leadResultHeadRow.Name = "leadResultHeadRow";
+            this.leadResultHeadRow.OptionsRow.AllowFocus = false;
+            this.leadResultHeadRow.OptionsRow.AllowMove = false;
+            this.leadResultHeadRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.leadResultHeadRow.OptionsRow.AllowSize = false;
+            this.leadResultHeadRow.OptionsRow.DblClickExpanding = false;
+            this.leadResultHeadRow.Properties.AllowEdit = false;
+            this.leadResultHeadRow.Properties.Caption = "Sample No.";
+            this.leadResultHeadRow.Properties.FieldName = "Message";
+            this.leadResultHeadRow.Properties.OptionsFilter.AllowFilter = false;
+            this.leadResultHeadRow.Properties.ReadOnly = true;
+            // 
+            // leadResultFormatValueRow
+            // 
+            this.leadResultFormatValueRow.AppearanceCell.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultFormatValueRow.AppearanceCell.Options.UseFont = true;
+            this.leadResultFormatValueRow.AppearanceCell.Options.UseTextOptions = true;
+            this.leadResultFormatValueRow.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.leadResultFormatValueRow.AppearanceHeader.Font = new System.Drawing.Font("Arial", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leadResultFormatValueRow.AppearanceHeader.Options.UseFont = true;
+            this.leadResultFormatValueRow.AppearanceHeader.Options.UseTextOptions = true;
+            this.leadResultFormatValueRow.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.leadResultFormatValueRow.Name = "leadResultFormatValueRow";
+            this.leadResultFormatValueRow.OptionsRow.AllowMove = false;
+            this.leadResultFormatValueRow.OptionsRow.AllowMoveToCustomizationForm = false;
+            this.leadResultFormatValueRow.OptionsRow.AllowSize = false;
+            this.leadResultFormatValueRow.OptionsRow.DblClickExpanding = false;
+            this.leadResultFormatValueRow.Properties.Caption = "1.";
+            this.leadResultFormatValueRow.Properties.FieldName = "FormatValue";
+            this.leadResultFormatValueRow.Properties.OptionsFilter.AllowFilter = false;
+            this.leadResultFormatValueRow.Properties.ReadOnly = false;
+            this.leadResultFormatValueRow.Properties.RowEdit = this.leadResultT6TextEdit;
+            // 
+            // label8
+            // 
+            this.label8.Font = new System.Drawing.Font("Arial", 9F);
+            this.label8.Location = new System.Drawing.Point(3, 57);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(301, 22);
+            this.label8.TabIndex = 96;
+            this.label8.Text = "Toal Lead";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // CtrlEditChemicalUs
             // 
@@ -1014,8 +1255,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.p3ImageBox)).EndInit();
             this.chemical2Page.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.p2Desc2Edit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.resultGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.resultT6TextEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metalResultGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.metalResultT6TextEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2Desc3Edit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p2Desc1Edit.Properties)).EndInit();
             this.chemical1Page.ResumeLayout(false);
@@ -1039,6 +1280,9 @@
             this.chemicalSignPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.p1NameEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p1ImageBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.p2Desc4Edit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leadResultGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leadResultT6TextEdit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1092,16 +1336,25 @@
         private System.Windows.Forms.Label label12;
         public DevExpress.XtraEditors.TextEdit p2Desc1Edit;
         private DevExpress.XtraEditors.MemoEdit p2Desc2Edit;
-        private DevExpress.XtraVerticalGrid.VGridControl resultGrid;
-        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit resultT6TextEdit;
-        private DevExpress.XtraVerticalGrid.Rows.EditorRow resultTestItemRow;
-        private DevExpress.XtraVerticalGrid.Rows.EditorRow resultHiLimitRow;
-        private DevExpress.XtraVerticalGrid.Rows.EditorRow resultLoLimitRow;
-        private DevExpress.XtraVerticalGrid.Rows.EditorRow resultReportLimitRow;
-        private DevExpress.XtraVerticalGrid.Rows.EditorRow resultFormatValueRow;
+        private DevExpress.XtraVerticalGrid.VGridControl metalResultGrid;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit metalResultT6TextEdit;
+        private DevExpress.XtraVerticalGrid.Rows.EditorRow metalResultTestItemRow;
+        private DevExpress.XtraVerticalGrid.Rows.EditorRow metalResultHiLimitRow;
+        private DevExpress.XtraVerticalGrid.Rows.EditorRow metalResultLoLimitRow;
+        private DevExpress.XtraVerticalGrid.Rows.EditorRow metalResultReportLimitRow;
+        private DevExpress.XtraVerticalGrid.Rows.EditorRow metalResultFormatValueRow;
         private System.Windows.Forms.TabPage chemicalSignPage;
         public DevExpress.XtraEditors.TextEdit p1NameEdit;
         private System.Windows.Forms.PictureBox p1ImageBox;
         private System.Windows.Forms.Label p2SgsNameLabel;
+        private DevExpress.XtraEditors.MemoEdit p2Desc4Edit;
+        private DevExpress.XtraVerticalGrid.VGridControl leadResultGrid;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit leadResultT6TextEdit;
+        private DevExpress.XtraVerticalGrid.Rows.EditorRow leadResultTestItemRow;
+        private DevExpress.XtraVerticalGrid.Rows.EditorRow leadResultHiLimitRow;
+        private DevExpress.XtraVerticalGrid.Rows.EditorRow leadResultLoLimitRow;
+        private DevExpress.XtraVerticalGrid.Rows.EditorRow leadResultHeadRow;
+        private DevExpress.XtraVerticalGrid.Rows.EditorRow leadResultFormatValueRow;
+        private System.Windows.Forms.Label label8;
     }
 }

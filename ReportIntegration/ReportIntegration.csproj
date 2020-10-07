@@ -157,6 +157,18 @@
     <Compile Include="Source\B.Controls\A.Edit\CtrlEditIntegration.Designer.cs">
       <DependentUpon>CtrlEditIntegration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\B.Controls\A.Edit\CtrlEditIntegrationEu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\B.Controls\A.Edit\CtrlEditIntegrationEu.Designer.cs">
+      <DependentUpon>CtrlEditIntegrationEu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\B.Controls\A.Edit\CtrlEditIntegrationUs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\B.Controls\A.Edit\CtrlEditIntegrationUs.Designer.cs">
+      <DependentUpon>CtrlEditIntegrationUs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\B.Controls\A.Edit\CtrlEditPhysical.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -283,6 +295,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Source\B.Controls\A.Edit\CtrlEditIntegration.resx">
       <DependentUpon>CtrlEditIntegration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\B.Controls\A.Edit\CtrlEditIntegrationEu.resx">
+      <DependentUpon>CtrlEditIntegrationEu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\B.Controls\A.Edit\CtrlEditIntegrationUs.resx">
+      <DependentUpon>CtrlEditIntegrationUs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\B.Controls\A.Edit\CtrlEditPhysical.resx">
       <DependentUpon>CtrlEditPhysical.cs</DependentUpon>

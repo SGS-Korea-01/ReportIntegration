@@ -21,8 +21,6 @@ namespace Sgs.ReportIntegration
 
         public PhysicalP5DataSet P5Set { get; set; }
 
-        public StaffDataSet StaffSet { get; set; }
-
         public ProfJobDataSet ProfJobSet { get; set; }
 
         public CtrlEditPhysicalUs CtrlUs { get; set; }
@@ -30,6 +28,8 @@ namespace Sgs.ReportIntegration
         public CtrlEditPhysicalEu CtrlEu { get; set; }
 
         private bool local;
+
+        private ProductDataSet productSet;
 
         public PhysicalQuery(bool local = false)
         {
@@ -45,9 +45,12 @@ namespace Sgs.ReportIntegration
                 P41Set = new PhysicalP41DataSet(AppRes.DB.Connect, null, null);
                 P5Set = new PhysicalP5DataSet(AppRes.DB.Connect, null, null);
                 ProfJobSet = new ProfJobDataSet(AppRes.DB.Connect, null, null);
-                StaffSet = new StaffDataSet(AppRes.DB.Connect, null, null);
                 CtrlUs = null;
                 CtrlEu = null;
+            }
+            else
+            {
+                productSet = new ProductDataSet(AppRes.DB.Connect, null, null);
             }
         }
 
@@ -68,6 +71,7 @@ namespace Sgs.ReportIntegration
                 InsertPage3(area, trans);
                 InsertPage4(area, trans);
                 InsertPage5(area, trans);
+                UpdateProductSet(trans);
 
                 if (local == false)
                 {
@@ -127,23 +131,18 @@ namespace Sgs.ReportIntegration
             {
                 P2Set.MainNo = mainNo;
                 P2Set.Delete(trans);
-
                 P3Set.MainNo = mainNo;
                 P3Set.Delete(trans);
-
                 P40Set.MainNo = mainNo;
                 P40Set.Delete(trans);
-
                 P41Set.MainNo = mainNo;
                 P41Set.Delete(trans);
-
                 P5Set.MainNo = mainNo;
                 P5Set.Delete(trans);
-
                 ImageSet.RecNo = mainNo;
                 ImageSet.Delete(trans);
-
                 MainSet.Delete(trans);
+                UpdateProductReset(trans);
 
                 AppRes.DB.CommitTrans();
             }
@@ -162,6 +161,7 @@ namespace Sgs.ReportIntegration
             MainSet.ReportedTime = ProfJobSet.ReportedTime;
             MainSet.Approval = false;
             MainSet.AreaNo = ProfJobSet.AreaNo;
+            MainSet.StaffNo = "";
             MainSet.ProductNo = ProfJobSet.ItemNo;
             MainSet.P1ClientNo = ProfJobSet.ClientNo;
             MainSet.P1ClientName = ProfJobSet.ClientName;
@@ -185,17 +185,9 @@ namespace Sgs.ReportIntegration
             MainSet.P1TestMethod = "For further details, please refer to following page(s)";
             MainSet.P1TestResults = "For further details, please refer to following page(s)";
             MainSet.P1Comments = ProfJobSet.ReportComments;
-
-            if (StaffSet.Empty == true)
-            {
-                MainSet.Approval = false;
-                MainSet.P2Name = "";
-            }
-            else
-            {
-                MainSet.Approval = true;
-                MainSet.P2Name = StaffSet.Name;
-            }
+            MainSet.Approval = false;
+            MainSet.StaffNo = "";
+            MainSet.P2Name = "";
 
             if (area == EReportArea.US)
             {
@@ -259,18 +251,8 @@ namespace Sgs.ReportIntegration
 
         private void InsertImage(SqlTransaction trans)
         {
-            Bitmap signImage = null;
-
-            if (StaffSet.Empty == false)
-            {
-                if (string.IsNullOrWhiteSpace(StaffSet.FName) == false)
-                {
-                    signImage = new Bitmap(StaffSet.FName);
-                }
-            }
-
             ImageSet.RecNo = MainSet.RecNo;
-            ImageSet.Signature = signImage;
+            ImageSet.Signature = null;
             ImageSet.Picture = ProfJobSet.Image;
             ImageSet.Insert(trans);
         }
@@ -720,6 +702,21 @@ namespace Sgs.ReportIntegration
                 P5Set.Requirement = "Affixed label and Hangtag";
                 P5Set.Insert(trans);
             }
+        }
+
+        private void UpdateProductSet(SqlTransaction trans)
+        {
+            if (local == true) return;
+
+            productSet.JobNo = ProfJobSet.JobNo;
+            productSet.Code = ProfJobSet.ItemNo;
+            productSet.UpdateJobNoSet(trans);
+        }
+
+        private void UpdateProductReset(SqlTransaction trans)
+        {
+            productSet.JobNo = ProfJobSet.JobNo;
+            productSet.UpdateJobNoReset(trans);
         }
 
         private void SaveMain(EReportArea area, SqlTransaction trans)

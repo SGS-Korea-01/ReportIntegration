@@ -16,7 +16,7 @@ namespace Sgs.ReportIntegration
 
         public ChemicalP2DataSet P2Set { get; set; }
 
-        public StaffDataSet StaffSet { get; set; }
+        public ChemicalP2ExtendDataSet P2ExtendSet { get; set; }
 
         public ProfJobDataSet ProfJobSet { get; set; }
 
@@ -28,9 +28,11 @@ namespace Sgs.ReportIntegration
 
         private bool local;
 
-        private ProductDataSet productSet { get; set; }
+        private ProductDataSet productSet;
 
-        private PartDataSet partSet { get; set; }
+        private PartDataSet partSet;
+
+        private StaffDataSet staffSet;
 
         public ChemicalQuery(bool local = false)
         {
@@ -42,18 +44,19 @@ namespace Sgs.ReportIntegration
                 ImageSet = new ChemicalImageDataSet(AppRes.DB.Connect, null, null);
                 JoinSet = new ChemicalItemJoinDataSet(AppRes.DB.Connect, null, null);
                 P2Set = new ChemicalP2DataSet(AppRes.DB.Connect, null, null);
+                P2ExtendSet = new ChemicalP2ExtendDataSet(AppRes.DB.Connect, null, null);
                 ProfJobSet = new ProfJobDataSet(AppRes.DB.Connect, null, null);
                 ProfJobSchemeSet = new ProfJobSchemeDataSet(AppRes.DB.Connect, null, null);
-                StaffSet = new StaffDataSet(AppRes.DB.Connect, null, null);
                 CtrlUs = null;
                 CtrlEu = null;
             }
 
             productSet = new ProductDataSet(AppRes.DB.Connect, null, null);
             partSet = new PartDataSet(AppRes.DB.Connect, null, null);
+            staffSet = new StaffDataSet(AppRes.DB.Connect, null, null);
         }
 
-        public void Insert(SqlTransaction trans = null)
+        public void Insert(string extendJobNo, SqlTransaction trans = null)
         {
             EReportArea area = ProfJobSet.AreaNo;
 
@@ -68,6 +71,7 @@ namespace Sgs.ReportIntegration
                 InsertJoin(trans);
                 InsertImage(trans);
                 InsertPage2(trans);
+                InsertPage2Extend(extendJobNo, trans);
 
                 if (local == false)
                 {
@@ -129,6 +133,8 @@ namespace Sgs.ReportIntegration
                 JoinSet.Delete(trans);
                 P2Set.MainNo = mainNo;
                 P2Set.Delete(trans);
+                P2ExtendSet.RecNo = mainNo;
+                P2ExtendSet.Delete(trans);
                 MainSet.Delete(trans);
                 ResetReportValidation(trans);
 
@@ -149,6 +155,7 @@ namespace Sgs.ReportIntegration
             MainSet.ReportedTime = ProfJobSet.ReportedTime;
             MainSet.Approval = false;
             MainSet.AreaNo = ProfJobSet.AreaNo;
+            MainSet.StaffNo = ProfJobSet.StaffNo;
             MainSet.MaterialNo = "";
             MainSet.P1ClientNo = ProfJobSet.ClientNo;
             MainSet.P1ClientName = ProfJobSet.ClientName;
@@ -160,21 +167,20 @@ namespace Sgs.ReportIntegration
             MainSet.P1Manufacturer = ProfJobSet.Manufacturer;
             MainSet.P1CountryOfOrigin = ProfJobSet.CountryOfOrigin;
             MainSet.P1CountryOfDestination = "-";
-            MainSet.P1ReceivedDate = ProfJobSet.ReceivedTime.ToString("yyyy. MM. dd");
-            MainSet.P1TestPeriod = $"{ProfJobSet.ReceivedTime.ToString("yyyy. MM. dd")}  to  {ProfJobSet.RequiredTime.ToString("yyyy. MM. dd")}";
+            MainSet.P1ReceivedDate = $"{ProfJobSet.ReceivedTime:yyyy. MM. dd}";
+            MainSet.P1TestPeriod = $"{ProfJobSet.ReceivedTime:yyyy. MM. dd}  to  {ProfJobSet.RequiredTime:yyyy. MM. dd}";
             MainSet.P1TestMethod = "For further details, please refer to following page(s)";
             MainSet.P1TestResults = "For further details, please refer to following page(s)";
             MainSet.P1Comments = ProfJobSet.ReportComments;
+            MainSet.P1Name = "";
 
-            if (StaffSet.Empty == true)
+            if (string.IsNullOrWhiteSpace(MainSet.StaffNo) == true)
             {
                 MainSet.Approval = false;
-                MainSet.P1Name = "";
             }
             else
             {
                 MainSet.Approval = true;
-                MainSet.P1Name = StaffSet.Name;
             }
 
             if (area == EReportArea.US)
@@ -226,18 +232,8 @@ namespace Sgs.ReportIntegration
 
         private void InsertImage(SqlTransaction trans)
         {
-            Bitmap signImage = null;
-
-            if (StaffSet.Empty == false)
-            {
-                if (string.IsNullOrWhiteSpace(StaffSet.FName) == false)
-                {
-                    signImage = new Bitmap(StaffSet.FName);
-                }
-            }
-
             ImageSet.RecNo = MainSet.RecNo;
-            ImageSet.Signature = signImage;
+            ImageSet.Signature = null;
             ImageSet.Picture = ProfJobSet.Image;
             ImageSet.Insert(trans);
         }
@@ -263,6 +259,27 @@ namespace Sgs.ReportIntegration
             }
         }
 
+        private void InsertPage2Extend(string jobNo, SqlTransaction trans)
+        {
+            if (string.IsNullOrWhiteSpace(jobNo) == true) return;
+
+            ProfJobSchemeSet.JobNo = jobNo;
+            ProfJobSchemeSet.Select(trans);
+
+            if (ProfJobSchemeSet.Empty == false)
+            {
+                ProfJobSchemeSet.Fetch();
+
+                P2ExtendSet.RecNo = MainSet.RecNo;
+                P2ExtendSet.Name = ProfJobSchemeSet.Name;
+                P2ExtendSet.LoValue = ProfJobSchemeSet.LoValue;
+                P2ExtendSet.HiValue = ProfJobSchemeSet.HiValue;
+                P2ExtendSet.ReportValue = ProfJobSchemeSet.ReportValue;
+                P2ExtendSet.FormatValue = ProfJobSchemeSet.FormatValue;
+                P2ExtendSet.Insert(trans);
+            }
+        }
+
         private void SaveMain(EReportArea area, SqlTransaction trans)
         {
             if (area == EReportArea.US)
@@ -275,6 +292,18 @@ namespace Sgs.ReportIntegration
 
         private void SavePage2(EReportArea area, SqlTransaction trans)
         {
+            if (area == EReportArea.US)
+            {
+                List<ChemicalPage2ExtendRow> extendRows = CtrlUs.P2ExtendRows;
+
+                foreach (ChemicalPage2ExtendRow row in extendRows)
+                {
+                    P2ExtendSet.RecNo = row.RecNo;
+                    P2ExtendSet.FormatValue = row.FormatValue;
+                    P2ExtendSet.Update(trans);
+                }
+            }
+
             List<ChemicalPage2Row> rows = (area == EReportArea.US) ? CtrlUs.P2Rows : CtrlEu.P2Rows;
 
             foreach (ChemicalPage2Row row in rows)

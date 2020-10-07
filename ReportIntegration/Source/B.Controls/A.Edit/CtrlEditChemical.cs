@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Data;
-using System.Linq;
-using System.Data.SqlClient;
 using System.Windows.Forms;
 
 using DevExpress.Data;
@@ -12,6 +9,7 @@ using DevExpress.XtraReports.UI;
 
 using Ulee.Controls;
 using Ulee.Utils;
+using DevExpress.CodeParser;
 
 namespace Sgs.ReportIntegration
 {
@@ -31,13 +29,13 @@ namespace Sgs.ReportIntegration
 
         private ChemicalP2DataSet cheP2Set;
 
+        private ChemicalP2ExtendDataSet cheP2ExtendSet;
+
         private ChemicalReportDataSet cheReportSet;
 
         private ProfJobDataSet profJobSet;
 
         private ProfJobSchemeDataSet profJobSchemeSet;
-
-        private StaffDataSet staffSet;
 
         private ChemicalQuery cheQuery;
 
@@ -60,30 +58,30 @@ namespace Sgs.ReportIntegration
             cheJoinSet = new ChemicalItemJoinDataSet(AppRes.DB.Connect, null, null);
             cheImageSet = new ChemicalImageDataSet(AppRes.DB.Connect, null, null);
             cheP2Set = new ChemicalP2DataSet(AppRes.DB.Connect, null, null);
+            cheP2ExtendSet = new ChemicalP2ExtendDataSet(AppRes.DB.Connect, null, null);
             cheReportSet = new ChemicalReportDataSet(AppRes.DB.Connect, null, null);
             profJobSet = new ProfJobDataSet(AppRes.DB.Connect, null, null);
             profJobSchemeSet = new ProfJobSchemeDataSet(AppRes.DB.Connect, null, null);
-            staffSet = new StaffDataSet(AppRes.DB.Connect, null, null);
 
             ctrlUs = new CtrlEditChemicalUs();
             ctrlUs.MainSet = cheMainSet;
             ctrlUs.P2Set = cheP2Set;
+            ctrlUs.P2ExtendSet = cheP2ExtendSet;
             ctrlUs.ImageSet = cheImageSet;
-            ctrlUs.P2Set = cheP2Set;
 
             ctrlEu = new CtrlEditChemicalEu();
             ctrlEu.MainSet = cheMainSet;
-            ctrlEu.ImageSet = cheImageSet;
             ctrlEu.P2Set = cheP2Set;
+            ctrlEu.ImageSet = cheImageSet;
 
             cheQuery = new ChemicalQuery();
             cheQuery.MainSet = cheMainSet;
             cheQuery.ImageSet = cheImageSet;
             cheQuery.JoinSet = cheJoinSet;
             cheQuery.P2Set = cheP2Set;
+            cheQuery.P2ExtendSet = cheP2ExtendSet;
             cheQuery.ProfJobSet = profJobSet;
             cheQuery.ProfJobSchemeSet = profJobSchemeSet;
-            cheQuery.StaffSet = staffSet;
             cheQuery.CtrlUs = ctrlUs;
             cheQuery.CtrlEu = ctrlEu;
 
@@ -285,11 +283,20 @@ namespace Sgs.ReportIntegration
             {
                 if (dialog.DialogResult == DialogResult.OK)
                 {
-                    profJobSet.Type = EReportType.Chemical;
-                    profJobSet.JobNo = dialog.JobNo;
-                    profJobSet.Select();
-                    profJobSet.Fetch();
-                    Insert();
+                    if (dialog.AreaNo == EReportArea.None)
+                    {
+                        MessageBox.Show("Can't import chemical report because AreaNo is none!",
+                            "SGS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else if (string.IsNullOrWhiteSpace(dialog.ItemNo) == true)
+                    {
+                        MessageBox.Show("Can't import chemical report because MaterialNo is none!",
+                            "SGS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        Insert(dialog.AreaNo, dialog.ItemNo.Split(',')[0]);
+                    }
                 }
             }
         }
@@ -313,7 +320,8 @@ namespace Sgs.ReportIntegration
 
             cheReportSet.DataSet.Tables[0].TableName = "P1";
             cheReportSet.DataSet.Tables[1].TableName = "P2";
-            cheReportSet.DataSet.Tables[2].TableName = "Image";
+            cheReportSet.DataSet.Tables[2].TableName = "P2EXTEND";
+            cheReportSet.DataSet.Tables[3].TableName = "Image";
 
             BindingSource bind = new BindingSource();
             bind.DataSource = cheReportSet.DataSet;
@@ -353,46 +361,46 @@ namespace Sgs.ReportIntegration
             SetReportView(cheMainSet.AreaNo);
         }
 
-        private void Insert()
+        private void Insert(EReportArea areaNo, string itemNo)
         {
-            EReportArea area = profJobSet.AreaNo;
+            string jobNo = "";
+            string extendJobNo = "";
 
-            if (profJobSet.Empty == true) return;
+            profJobSet.Type = EReportType.Chemical;
+            profJobSet.JobNo = "";
+            profJobSet.AreaNo = areaNo;
+            profJobSet.ItemNo = itemNo;
+            profJobSet.Select();
 
-            if (area == EReportArea.None)
+            int rowCount = profJobSet.RowCount;
+            if (rowCount > 0)
             {
-                MessageBox.Show("Can't import chemical report because AreaNo is none!",
-                    "SGS", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                profJobSet.Fetch(0);
+                jobNo = profJobSet.JobNo;
+
+                if (string.IsNullOrWhiteSpace(jobNo) == false)
+                {
+                    cheCheckSet.Select(jobNo);
+
+                    if (cheCheckSet.Empty == false)
+                    {
+                        MessageBox.Show("Can't import chemical report because this report already exist in DB!",
+                            "SGS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else
+                    {
+                        if (rowCount > 1)
+                        {
+                            profJobSet.Fetch(1);
+                            extendJobNo = profJobSet.JobNo;
+                        }
+
+                        cheQuery.Insert(extendJobNo);
+                    }
+                }
             }
 
-            if (string.IsNullOrWhiteSpace(profJobSet.ItemNo) == true)
-            {
-                MessageBox.Show("Can't import chemical report because MaterialNo is none!",
-                    "SGS", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(profJobSet.StaffNo) == false)
-            {
-                staffSet.RecNo = profJobSet.StaffNo;
-                staffSet.Select();
-                staffSet.Fetch();
-            }
-            else
-            {
-                staffSet.DataSet.Clear();
-            }
-
-            cheCheckSet.Select(profJobSet.JobNo);
-            if (cheCheckSet.Empty == false)
-            {
-                MessageBox.Show("Can't import chemical report because this report already exist in DB!",
-                    "SGS", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            cheQuery.Insert();
             findButton.PerformClick();
         }
     }

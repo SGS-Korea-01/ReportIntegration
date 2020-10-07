@@ -19,7 +19,13 @@ namespace Sgs.ReportIntegration
 
         public ChemicalP2DataSet P2Set;
 
+        public ChemicalP2ExtendDataSet P2ExtendSet;
+
         public List<ChemicalPage2Row> P2Rows;
+
+        public List<ChemicalPage2ExtendRow> P2ExtendRows;
+
+        private StaffDataSet staffSet;
 
         public CtrlEditChemicalUs()
         {
@@ -29,8 +35,13 @@ namespace Sgs.ReportIntegration
 
         private void Initialize()
         {
+            staffSet = new StaffDataSet(AppRes.DB.Connect, null, null);
+
+            P2ExtendRows = new List<ChemicalPage2ExtendRow>();
+            leadResultGrid.DataSource = P2ExtendRows;
+
             P2Rows = new List<ChemicalPage2Row>();
-            resultGrid.DataSource = P2Rows;
+            metalResultGrid.DataSource = P2Rows;
         }
 
         private void chemical1Page_Resize(object sender, EventArgs e)
@@ -56,16 +67,20 @@ namespace Sgs.ReportIntegration
         private void chemical2Page_Resize(object sender, EventArgs e)
         {
             int width = chemical2Page.Width;
+            int height = chemical2Page.Height;
 
             p2Desc1Edit.Width = width - 10;
             p2Desc2Edit.Width = width - 10;
-            p2Desc3Edit.Width = width - 10;
-            resultGrid.Width = width - 10;
+            p2Desc3Edit.Size = new Size(width - 10, height - 448);
+            p2Desc4Edit.Width = width - 10;
 
-            int colWidth = (resultGrid.Width - 158) / 8;
+            leadResultGrid.Width = width - 10;
+            leadResultGrid.RecordWidth = width - 173;
 
-            resultGrid.RecordWidth = colWidth;
-            resultGrid.RowHeaderWidth = resultGrid.Width - (colWidth * 8) - 12;
+            int colWidth = (metalResultGrid.Width - 158) / 8;
+            metalResultGrid.Width = width - 10;
+            metalResultGrid.RecordWidth = colWidth;
+            metalResultGrid.RowHeaderWidth = metalResultGrid.Width - (colWidth * 8) - 12;
         }
 
         private void chemical3Page_Resize(object sender, EventArgs e)
@@ -80,7 +95,8 @@ namespace Sgs.ReportIntegration
 
         public void SetControlToDataSet()
         {
-            resultGrid.PostEditor();
+            leadResultGrid.PostEditor();
+            metalResultGrid.PostEditor();
 
             MainSet.P1ClientName = p1ClientNameEdit.Text;
             MainSet.P1ClientAddress = p1ClientAddressEdit.Text;
@@ -110,6 +126,8 @@ namespace Sgs.ReportIntegration
 
             P2Set.MainNo = MainSet.RecNo;
             P2Set.Select();
+            P2ExtendSet.RecNo = MainSet.RecNo;
+            P2ExtendSet.Select();
             SetDataSetToPage2();
 
             ImageSet.RecNo = MainSet.RecNo;
@@ -144,8 +162,22 @@ namespace Sgs.ReportIntegration
 
         private void SetDataSetToPage2()
         {
-            P2Rows.Clear();
+            P2ExtendRows.Clear();
+            for (int i = 0; i < P2ExtendSet.RowCount; i++)
+            {
+                P2ExtendSet.Fetch(i);
 
+                ChemicalPage2ExtendRow p2ExtendRow = new ChemicalPage2ExtendRow();
+                p2ExtendRow.RecNo = P2ExtendSet.RecNo;
+                p2ExtendRow.TotalLimit = "100";
+                p2ExtendRow.ReportLimit = P2ExtendSet.ReportValue;
+                p2ExtendRow.Message = "Total Result(s)(mg/kg)";
+                p2ExtendRow.FormatValue = P2ExtendSet.FormatValue;
+                p2ExtendRow.Name = P2ExtendSet.Name;
+                P2ExtendRows.Add(p2ExtendRow);
+            }
+
+            P2Rows.Clear();
             for (int i = 0; i < P2Set.RowCount; i++)
             {
                 P2Set.Fetch(i);
@@ -168,21 +200,42 @@ namespace Sgs.ReportIntegration
             p3ImageBox.Image = ImageSet.Picture;
             p3FileNoPanel.Text = MainSet.P1FileNo;
 
-            p1NameEdit.Text = MainSet.P1Name;
-            p1ImageBox.Image = ImageSet.Signature;
+            if (string.IsNullOrWhiteSpace(MainSet.StaffNo) == false)
+            {
+                staffSet.StaffNo = MainSet.StaffNo;
+                staffSet.Select();
+                staffSet.Fetch();
+
+                if (staffSet.Signature != null)
+                {
+                    p1ImageBox.Image = staffSet.Signature;
+                    p1NameEdit.Text = staffSet.FirstName + " " + staffSet.LastName;
+                }
+            }
         }
 
         private void RefreshGrid()
         {
-            resultGrid.BeginUpdate();
+            leadResultGrid.BeginUpdate();
 
             try
             {
-                resultGrid.Refresh();
+                leadResultGrid.Refresh();
             }
             finally
             {
-                resultGrid.EndUpdate();
+                leadResultGrid.EndUpdate();
+            }
+
+            metalResultGrid.BeginUpdate();
+
+            try
+            {
+                metalResultGrid.Refresh();
+            }
+            finally
+            {
+                metalResultGrid.EndUpdate();
             }
         }
     }

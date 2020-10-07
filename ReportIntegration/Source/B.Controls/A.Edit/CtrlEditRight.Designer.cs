@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtrlEditRight));
             this.menuPanel = new Ulee.Controls.UlPanel();
+            this.integrationButton = new DevExpress.XtraEditors.SimpleButton();
             this.bomButton = new DevExpress.XtraEditors.SimpleButton();
             this.chemicalButton = new DevExpress.XtraEditors.SimpleButton();
             this.physicalButton = new DevExpress.XtraEditors.SimpleButton();
@@ -49,7 +50,6 @@
             this.bomDeleteButton = new DevExpress.XtraEditors.SimpleButton();
             this.bomImportButton = new DevExpress.XtraEditors.SimpleButton();
             this.viewPanel = new Ulee.Controls.UlPanel();
-            this.integrationButton = new DevExpress.XtraEditors.SimpleButton();
             this.integMenuPanel = new Ulee.Controls.UlPanel();
             this.integSaveButton = new DevExpress.XtraEditors.SimpleButton();
             this.integCancelButton = new DevExpress.XtraEditors.SimpleButton();
@@ -93,6 +93,25 @@
             this.menuPanel.TabIndex = 8;
             this.menuPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
             this.menuPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            // 
+            // integrationButton
+            // 
+            this.integrationButton.AllowFocus = false;
+            this.integrationButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.integrationButton.Appearance.Options.UseFont = true;
+            this.integrationButton.Appearance.Options.UseTextOptions = true;
+            this.integrationButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.integrationButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("integrationButton.ImageOptions.Image")));
+            this.integrationButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.integrationButton.Location = new System.Drawing.Point(2, 182);
+            this.integrationButton.LookAndFeel.SkinName = "DevExpress Style";
+            this.integrationButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.integrationButton.Name = "integrationButton";
+            this.integrationButton.Size = new System.Drawing.Size(80, 58);
+            this.integrationButton.TabIndex = 39;
+            this.integrationButton.TabStop = false;
+            this.integrationButton.Tag = "0";
+            this.integrationButton.Text = "INTEGR.";
             // 
             // bomButton
             // 
@@ -474,25 +493,6 @@
             this.viewPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
             this.viewPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
             // 
-            // integrationButton
-            // 
-            this.integrationButton.AllowFocus = false;
-            this.integrationButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.integrationButton.Appearance.Options.UseFont = true;
-            this.integrationButton.Appearance.Options.UseTextOptions = true;
-            this.integrationButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.integrationButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.integrationButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.integrationButton.Location = new System.Drawing.Point(2, 182);
-            this.integrationButton.LookAndFeel.SkinName = "DevExpress Style";
-            this.integrationButton.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.integrationButton.Name = "integrationButton";
-            this.integrationButton.Size = new System.Drawing.Size(80, 58);
-            this.integrationButton.TabIndex = 39;
-            this.integrationButton.TabStop = false;
-            this.integrationButton.Tag = "0";
-            this.integrationButton.Text = "INTEGR.";
-            // 
             // integMenuPanel
             // 
             this.integMenuPanel.BackColor = System.Drawing.Color.Silver;
@@ -523,7 +523,7 @@
             this.integSaveButton.Appearance.Options.UseFont = true;
             this.integSaveButton.Appearance.Options.UseTextOptions = true;
             this.integSaveButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.integSaveButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image1")));
+            this.integSaveButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("integSaveButton.ImageOptions.Image")));
             this.integSaveButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
             this.integSaveButton.Location = new System.Drawing.Point(0, 180);
             this.integSaveButton.LookAndFeel.SkinName = "DevExpress Style";
@@ -543,7 +543,7 @@
             this.integCancelButton.Appearance.Options.UseFont = true;
             this.integCancelButton.Appearance.Options.UseTextOptions = true;
             this.integCancelButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.integCancelButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
+            this.integCancelButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("integCancelButton.ImageOptions.Image")));
             this.integCancelButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
             this.integCancelButton.Location = new System.Drawing.Point(0, 240);
             this.integCancelButton.LookAndFeel.SkinName = "DevExpress Style";
@@ -562,7 +562,7 @@
             this.integPrintButton.Appearance.Options.UseFont = true;
             this.integPrintButton.Appearance.Options.UseTextOptions = true;
             this.integPrintButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.integPrintButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
+            this.integPrintButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("integPrintButton.ImageOptions.Image")));
             this.integPrintButton.ImageOptions.ImageToTextIndent = 0;
             this.integPrintButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
             this.integPrintButton.Location = new System.Drawing.Point(0, 120);
@@ -582,7 +582,7 @@
             this.integDeleteButton.Appearance.Options.UseFont = true;
             this.integDeleteButton.Appearance.Options.UseTextOptions = true;
             this.integDeleteButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.integDeleteButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton4.ImageOptions.Image")));
+            this.integDeleteButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("integDeleteButton.ImageOptions.Image")));
             this.integDeleteButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
             this.integDeleteButton.Location = new System.Drawing.Point(0, 60);
             this.integDeleteButton.LookAndFeel.SkinName = "DevExpress Style";
@@ -602,7 +602,7 @@
             this.integImportButton.Appearance.Options.UseFont = true;
             this.integImportButton.Appearance.Options.UseTextOptions = true;
             this.integImportButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            this.integImportButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton5.ImageOptions.Image")));
+            this.integImportButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("integImportButton.ImageOptions.Image")));
             this.integImportButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
             this.integImportButton.Location = new System.Drawing.Point(0, 0);
             this.integImportButton.LookAndFeel.SkinName = "DevExpress Style";

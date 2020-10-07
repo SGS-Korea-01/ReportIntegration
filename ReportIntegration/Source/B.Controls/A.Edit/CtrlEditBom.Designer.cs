@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtrlEditBom));
             this.reportPanel = new Ulee.Controls.UlPanel();
             this.bomTab = new System.Windows.Forms.TabControl();
@@ -168,9 +168,9 @@
             // productGrid
             // 
             this.productGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode2.RelationName = "Level1";
+            gridLevelNode1.RelationName = "Level1";
             this.productGrid.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode2});
+            gridLevelNode1});
             this.productGrid.Location = new System.Drawing.Point(0, 0);
             this.productGrid.MainView = this.productGridView;
             this.productGrid.Name = "productGrid";
@@ -342,7 +342,7 @@
             this.productNameColumn.AppearanceHeader.Options.UseFont = true;
             this.productNameColumn.AppearanceHeader.Options.UseTextOptions = true;
             this.productNameColumn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.productNameColumn.Caption = "Product Desc";
+            this.productNameColumn.Caption = "Product Name";
             this.productNameColumn.FieldName = "name";
             this.productNameColumn.MinWidth = 180;
             this.productNameColumn.Name = "productNameColumn";

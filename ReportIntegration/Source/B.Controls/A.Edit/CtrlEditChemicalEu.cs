@@ -20,6 +20,8 @@ namespace Sgs.ReportIntegration
 
         public List<ChemicalPage2Row> P2Rows;
 
+        private StaffDataSet staffSet;
+
         public CtrlEditChemicalEu()
         {
             InitializeComponent();
@@ -28,6 +30,8 @@ namespace Sgs.ReportIntegration
 
         private void Initialize()
         {
+            staffSet = new StaffDataSet(AppRes.DB.Connect, null, null);
+
             P2Rows = new List<ChemicalPage2Row>();
             resultGrid.DataSource = P2Rows;
         }
@@ -174,8 +178,18 @@ namespace Sgs.ReportIntegration
             p3ImageBox.Image = ImageSet.Picture;
             p3FileNoPanel.Text = MainSet.P1FileNo;
 
-            p1NameEdit.Text = MainSet.P1Name;
-            p1ImageBox.Image = ImageSet.Signature;
+            if (string.IsNullOrWhiteSpace(MainSet.StaffNo) == false)
+            {
+                staffSet.StaffNo = MainSet.StaffNo;
+                staffSet.Select();
+                staffSet.Fetch();
+
+                if (staffSet.Signature != null)
+                {
+                    p1ImageBox.Image = staffSet.Signature;
+                    p1NameEdit.Text = staffSet.FirstName + " " + staffSet.LastName;
+                }
+            }
         }
     }
 }

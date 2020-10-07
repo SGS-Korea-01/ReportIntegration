@@ -165,6 +165,8 @@ namespace Sgs.ReportIntegration
 
         public Int64 BomNo { get; set; }
 
+        public DateTime RegTime { get; set; }
+
         public bool Valid { get; set; }
 
         public EReportArea AreaNo { get; set; }
@@ -176,6 +178,10 @@ namespace Sgs.ReportIntegration
         public string Name { get; set; }
 
         public Bitmap Image { get; set; }
+
+        public string From { get; set; }
+
+        public string To { get; set; }
 
         private ImageConverter imageConvert;
 
@@ -189,8 +195,47 @@ namespace Sgs.ReportIntegration
         {
             SetTrans(trans);
             command.CommandText =
-                $" select * from TB_PRODUCT " +
-                $" where fk_bomno={BomNo} ";
+                $" select t2.regtime, t1.* from TB_PRODUCT t1 " +
+                $" join TB_BOM t2 on t2.pk_recno=t1.fk_bomno  " + 
+                $" where t1.fk_bomno={BomNo} ";
+            dataSet.Clear();
+            dataAdapter.Fill(dataSet);
+        }
+
+        public void SelectByValid(SqlTransaction trans = null)
+        {
+            string sql =
+                $" select t2.regtime, t1.* from TB_PRODUCT t1 " +
+                $" join TB_BOM t2 on t2.pk_recno=t1.fk_bomno  " +
+                $" where t1.valid=1 ";
+
+            if (AreaNo != EReportArea.None)
+            {
+                sql += $" and t1.areano={(int)AreaNo} ";
+            }
+            if (string.IsNullOrWhiteSpace(Code) == false)
+            {
+                sql += $" and t1.itemno like '{Code}%%' ";
+            }
+            if (string.IsNullOrWhiteSpace(JobNo) == false)
+            {
+                sql += $" and t1.jobno like '{JobNo}%%' ";
+            }
+            if (string.IsNullOrWhiteSpace(From) == false)
+            {
+                if (From == To)
+                {
+                    sql += $" and t2.regtime like '{From}%%' ";
+                }
+                else
+                {
+                    sql += $" and (t2.regtime>='{From} 00:00:00.000' ";
+                    sql += $" and t2.regtime<='{To} 23:59:59.999') ";
+                }
+            }
+
+            SetTrans(trans);
+            command.CommandText = sql;
             dataSet.Clear();
             dataAdapter.Fill(dataSet);
         }
@@ -226,7 +271,49 @@ namespace Sgs.ReportIntegration
             }
         }
 
-        public void Update(SqlTransaction trans = null)
+        public void UpdateJobNoSet(SqlTransaction trans = null)
+        {
+            string sql =
+                $" update TB_PRODUCT set jobno='{JobNo}' " +
+                $" where itemno='{Code}' ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void UpdateJobNoReset(SqlTransaction trans = null)
+        {
+            string sql =
+                $" update TB_PRODUCT set jobno='' " +
+                $" where jobno='{JobNo}' ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void UpdateValid(SqlTransaction trans = null)
         {
             string sql =
                 $" update TB_PRODUCT set valid={Convert.ToInt32(Valid)} " +
@@ -302,6 +389,7 @@ namespace Sgs.ReportIntegration
             else
             {
                 RecNo = 0;
+                RegTime = DateTime.Now;
                 BomNo = 0;
                 Valid = false;
                 AreaNo = EReportArea.None;
@@ -314,6 +402,7 @@ namespace Sgs.ReportIntegration
         public void Fetch(DataRow row)
         {
             RecNo = Convert.ToInt64(row["pk_recno"]);
+            RegTime = Convert.ToDateTime(row["regtime"]);
             BomNo = Convert.ToInt64(row["fk_bomno"]);
             Valid = Convert.ToBoolean(row["valid"]);
             AreaNo = (EReportArea)Convert.ToInt32(row["areano"]);
@@ -484,6 +573,127 @@ namespace Sgs.ReportIntegration
         }
     }
 
+    public class StaffDataSet : UlSqlDataSet
+    {
+        public string LabNo { get; set; }
+
+        public string StaffNo { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string Title { get; set; }
+
+        public string Passwd { get; set; }
+
+        public string FName { get; set; }
+
+        public EReportAuthority Authority { get; set; }
+
+        public Bitmap Signature { get; private set; }
+
+        public StaffDataSet(SqlConnection connect, SqlCommand command, SqlDataAdapter adapter)
+            : base(connect, command, adapter)
+        {
+        }
+
+        public void Select(SqlTransaction trans = null)
+        {
+            SetTrans(trans);
+            command.CommandText =
+                $" select * from TB_STAFF " +
+                $" where staff_code='{StaffNo}' ";
+            dataSet.Clear();
+            dataAdapter.Fill(dataSet);
+        }
+
+        public void Insert(SqlTransaction trans = null)
+        {
+            string sql =
+                $" insert into TB_STAFF values (" +
+                $" '{LabNo}', '{StaffNo}', '{FirstName}', '{LastName}', '{Title}', " +
+                $" '{Passwd}', 0, 0, 0, '', 0, '', '{FName}', '', {(int)Authority}) ";
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Update(EReportArea area, string[] items, SqlTransaction trans = null)
+        {
+            string sql =
+                $" update TB_STAFF set " +
+                $" first_name='{FirstName}', last_name='{LastName}', title='{Title}', " +
+                $" password='{Passwd}', picturefile=='{FName}', authority={(int)Authority} " +
+                $" where staff_code='{StaffNo}' ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Fetch(int index = 0, int tableNo = 0)
+        {
+            if (index < GetRowCount(tableNo))
+            {
+                Fetch(dataSet.Tables[tableNo].Rows[index]);
+            }
+            else
+            {
+                LabNo = "";
+                StaffNo = "";
+                FirstName = "";
+                LastName = "";
+                Title = "";
+                Passwd = "";
+                FName = "";
+                Authority = EReportAuthority.None;
+                Signature = null;
+            }
+        }
+
+        public void Fetch(DataRow row)
+        {
+            LabNo = Convert.ToString(row["labcode"]);
+            StaffNo = Convert.ToString(row["staff_code"]);
+            FirstName = Convert.ToString(row["first_name"]);
+            LastName = Convert.ToString(row["last_name"]);
+            Title = Convert.ToString(row["title"]);
+            Passwd = Convert.ToString(row["password"]);
+            FName = Convert.ToString(row["picturefile"]);
+            Authority = (EReportAuthority)Convert.ToInt32(row["authority"]);
+
+            if (string.IsNullOrWhiteSpace(FName) == false)
+            {
+                Signature = new Bitmap(FName);
+            }
+            else
+            {
+                Signature = null;
+            }
+        }
+    }
+
     public class PhysicalReportDataSet : UlSqlDataSet
     {
         public string RecNo { get; set; }
@@ -504,6 +714,7 @@ namespace Sgs.ReportIntegration
                 $" select * from TB_PHYP41 where fk_phymainno='{RecNo}'; " +
                 $" select * from TB_PHYP5 where fk_phymainno='{RecNo}'; " +
                 $" select * from TB_PHYIMAGE where pk_recno='{RecNo}'; ";
+
             dataSet.Clear();
             dataSet.Tables.Clear();
             dataAdapter.Fill(dataSet);
@@ -525,6 +736,8 @@ namespace Sgs.ReportIntegration
         public bool Approval { get; set; }
 
         public EReportArea AreaNo { get; set; }
+
+        public string StaffNo { get; set; }
 
         public string ProductNo { get; set; }
 
@@ -648,7 +861,7 @@ namespace Sgs.ReportIntegration
                 $" insert into TB_PHYMAIN values ('{RecNo}', " +
                 $" '{RegTime.ToString(AppRes.csDateTimeFormat)}', '{ReceivedTime.ToString(AppRes.csDateTimeFormat)}', " +
                 $" '{RequiredTime.ToString(AppRes.csDateTimeFormat)}', '{ReportedTime.ToString(AppRes.csDateTimeFormat)}', " +
-                $" {Convert.ToInt32(Approval)}, {(int)AreaNo}, '{ProductNo.Replace("'", "''")}', " +
+                $" {Convert.ToInt32(Approval)}, {(int)AreaNo}, '{StaffNo.Replace("'", "''")}', '{ProductNo.Replace("'", "''")}', " +
                 $" '{P1ClientNo.Replace("'", "''")}', '{P1ClientName.Replace("'", "''")}', '{P1ClientAddress.Replace("'", "''")}', " +
                 $" '{P1FileNo.Replace("'", "''")}', '{P1SampleDescription.Replace("'", "''")}', '{P1DetailOfSample.Replace("'", "''")}', " +
                 $" '{P1ItemNo.Replace("'", "''")}', '{P1OrderNo.Replace("'", "''")}', '{P1Packaging.Replace("'", "''")}', " +
@@ -678,7 +891,7 @@ namespace Sgs.ReportIntegration
         public void Update(SqlTransaction trans = null)
         {
             string sql =
-                $" update TB_PHYMAIN set approval={Convert.ToInt32(Approval)}, areano={(int)AreaNo}, productno='{ProductNo.Replace("'", "''")}', " +
+                $" update TB_PHYMAIN set approval={Convert.ToInt32(Approval)}, areano={(int)AreaNo}, staffno='{StaffNo.Replace("'", "''")}', productno='{ProductNo.Replace("'", "''")}', " +
                 $" p1clientno='{P1ClientNo.Replace("'", "''")}', p1clientname='{P1ClientName.Replace("'", "''")}', p1clientaddress='{P1ClientAddress.Replace("'", "''")}', p1fileno='{P1FileNo.Replace("'", "''")}', " +
                 $" p1sampledesc='{P1SampleDescription.Replace("'", "''")}', p1detailsample='{P1DetailOfSample.Replace("'", "''")}', p1itemno='{P1ItemNo.Replace("'", "''")}', p1orderno='{P1OrderNo.Replace("'", "''")}', " +
                 $" p1packaging='{P1Packaging.Replace("'", "''")}', p1instruction='{P1Instruction.Replace("'", "''")}', p1buyer='{P1Buyer.Replace("'", "''")}', p1manufacturer='{P1Manufacturer.Replace("'", "''")}', " +
@@ -740,6 +953,7 @@ namespace Sgs.ReportIntegration
                 ReportedTime = DateTime.Now;
                 Approval = false;
                 AreaNo = EReportArea.None;
+                StaffNo = "";
                 ProductNo = "";
                 P1ClientNo = "";
                 P1ClientName = "";
@@ -783,6 +997,7 @@ namespace Sgs.ReportIntegration
             ReportedTime = Convert.ToDateTime(row["reportedtime"]);
             Approval = Convert.ToBoolean(row["approval"]);
             AreaNo = (EReportArea)Convert.ToInt32(row["areano"]);
+            StaffNo = Convert.ToString(row["staffno"]);
             ProductNo = Convert.ToString(row["productno"]);
             P1ClientNo = Convert.ToString(row["p1clientno"]);
             P1ClientName = Convert.ToString(row["p1clientname"]);
@@ -1481,6 +1696,7 @@ namespace Sgs.ReportIntegration
             command.CommandText =
                 $" select * from TB_CHEMAIN where pk_recno='{RecNo}'; " +
                 $" select * from TB_CHEP2 where fk_chemainno='{RecNo}'; " +
+                $" select * from TB_CHEP2EXTEND where pk_recno='{RecNo}'; " +
                 $" select * from TB_CHEIMAGE where pk_recno='{RecNo}'; ";
             dataSet.Clear();
             dataSet.Tables.Clear();
@@ -1503,6 +1719,8 @@ namespace Sgs.ReportIntegration
         public bool Approval { get; set; }
 
         public EReportArea AreaNo { get; set; }
+
+        public string StaffNo { get; set; }
 
         public string MaterialNo { get; set; }
 
@@ -1628,7 +1846,7 @@ namespace Sgs.ReportIntegration
                 $" insert into TB_CHEMAIN values ('{RecNo}', " +
                 $" '{RegTime.ToString(AppRes.csDateTimeFormat)}', '{ReceivedTime.ToString(AppRes.csDateTimeFormat)}', " +
                 $" '{RequiredTime.ToString(AppRes.csDateTimeFormat)}', '{ReportedTime.ToString(AppRes.csDateTimeFormat)}', " +
-                $" {Convert.ToInt32(Approval)}, {(int)AreaNo}, '{MaterialNo.Replace("'", "''")}', " +
+                $" {Convert.ToInt32(Approval)}, {(int)AreaNo}, '{StaffNo.Replace("'", "''")}', '{MaterialNo.Replace("'", "''")}', " +
                 $" '{P1ClientNo.Replace("'", "''")}', '{P1ClientName.Replace("'", "''")}', '{P1ClientAddress.Replace("'", "''")}', " +
                 $" '{P1FileNo.Replace("'", "''")}', '{P1SampleDescription.Replace("'", "''")}', '{P1ItemNo.Replace("'", "''")}', " +
                 $" '{P1OrderNo.Replace("'", "''")}', '{P1Manufacturer.Replace("'", "''")}', '{P1CountryOfOrigin.Replace("'", "''")}', " +
@@ -1656,8 +1874,8 @@ namespace Sgs.ReportIntegration
         public void Update(SqlTransaction trans = null)
         {
             string sql =
-                $" update TB_CHEMAIN set approval={Convert.ToInt32(Approval)}, " +
-                $" areano={(int)AreaNo}, productno='{MaterialNo.Replace("'", "''")}', p1clientno='{P1ClientNo.Replace("'", "''")}', " +
+                $" update TB_CHEMAIN set approval={Convert.ToInt32(Approval)}, areano={(int)AreaNo}, " +
+                $" staffno='{StaffNo.Replace("'", "''")}', productno='{MaterialNo.Replace("'", "''")}', " +
                 $" p1clientname='{P1ClientName.Replace("'", "''")}', p1clientaddress='{P1ClientAddress.Replace("'", "''")}', " +
                 $" p1fileno='{P1FileNo.Replace("'", "''")}', p1sampledesc ='{P1SampleDescription.Replace("'", "''")}', " +
                 $" p1itemno='{P1ItemNo.Replace("'", "''")}', p1orderno='{P1OrderNo.Replace("'", "''")}', " +
@@ -1668,7 +1886,7 @@ namespace Sgs.ReportIntegration
                 $" p1testrequested='{P1TestRequested.Replace("'", "''")}', p1conclusion='{P1Conclusion.Replace("'", "''")}', " +
                 $" p2desc1='{P2Description1.Replace("'", "''")}', p2desc2='{P2Description2.Replace("'", "''")}', " + 
                 $" p2desc3='{P2Description3.Replace("'", "''")}', p3desc1='{P3Description1.Replace("'", "''")}', " +
-                $" p1name='{P1Name.Replace("'", "''")}' " +
+                $" p1name='{P1Name.Replace("'", "''")}', p1clientno='{P1ClientNo.Replace("'", "''")}' " +
                 $" where pk_recno='{RecNo}' ";
 
             SetTrans(trans);
@@ -1722,6 +1940,7 @@ namespace Sgs.ReportIntegration
                 ReportedTime = DateTime.Now;
                 Approval = false;
                 AreaNo = EReportArea.None;
+                StaffNo = "";
                 MaterialNo = "";
                 P1ClientNo = "";
                 P1ClientName = "";
@@ -1757,6 +1976,7 @@ namespace Sgs.ReportIntegration
             ReportedTime = Convert.ToDateTime(row["reportedtime"]);
             Approval = Convert.ToBoolean(row["approval"]);
             AreaNo = (EReportArea)Convert.ToInt32(row["areano"]);
+            StaffNo = Convert.ToString(row["staffno"]);
             MaterialNo = Convert.ToString(row["productno"]);
             P1ClientNo = Convert.ToString(row["p1clientno"]);
             P1ClientName = Convert.ToString(row["p1clientname"]);
@@ -2039,6 +2259,127 @@ namespace Sgs.ReportIntegration
         }
     }
 
+    public class ChemicalP2ExtendDataSet : UlSqlDataSet
+    {
+        public string RecNo { get; set; }
+
+        public string Name { get; set; }
+
+        public string LoValue { get; set; }
+
+        public string HiValue { get; set; }
+
+        public string ReportValue { get; set; }
+
+        public string FormatValue { get; set; }
+
+        public ChemicalP2ExtendDataSet(SqlConnection connect, SqlCommand command, SqlDataAdapter adapter)
+            : base(connect, command, adapter)
+        {
+        }
+
+        public void Select(SqlTransaction trans = null)
+        {
+            SetTrans(trans);
+            command.CommandText =
+                $" select * from TB_CHEP2EXTEND " +
+                $" where pk_recno='{RecNo}' ";
+            dataSet.Clear();
+            dataAdapter.Fill(dataSet);
+        }
+
+        public void Insert(SqlTransaction trans = null)
+        {
+            string sql =
+                $" insert into TB_CHEP2EXTEND values " +
+                $" ('{RecNo}', '{Name}', '{LoValue}', '{HiValue}', '{ReportValue}', '{FormatValue}') ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Update(SqlTransaction trans = null)
+        {
+            string sql =
+                $" update TB_CHEP2EXTEND set " +
+                $" formatvalue='{FormatValue}' " +
+                $" where pk_recno='{RecNo}' ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Delete(SqlTransaction trans = null)
+        {
+            string sql =
+                $" delete from TB_CHEP2EXTEND " +
+                $" where pk_recno='{RecNo}' ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Fetch(int index = 0, int tableNo = 0)
+        {
+            if (index < GetRowCount(tableNo))
+            {
+                Fetch(dataSet.Tables[tableNo].Rows[index]);
+            }
+            else
+            {
+                RecNo = "";
+                Name = "";
+                LoValue = "";
+                HiValue = "";
+                ReportValue = "";
+                FormatValue = "";
+            }
+        }
+
+        public void Fetch(DataRow row)
+        {
+            RecNo = Convert.ToString(row["pk_recno"]);
+            Name = Convert.ToString(row["name"]);
+            LoValue = Convert.ToString(row["lovalue"]);
+            HiValue = Convert.ToString(row["hivalue"]);
+            ReportValue = Convert.ToString(row["reportvalue"]);
+            FormatValue = Convert.ToString(row["formatvalue"]);
+        }
+    }
+
     public class ChemicalItemJoinDataSet : UlSqlDataSet
     {
         public string RecNo { get; set; }
@@ -2201,7 +2542,7 @@ namespace Sgs.ReportIntegration
                 " select t2.cli_code, t2.cli_name, t2.address1, t2.address2,           " +
                 "     t2.address3, t2.state, t2.country, t1.orderno, t1.pro_job,       " +
                 "     t1.pro_proj, t1.notes1, t1.registered, t1.received, t1.required, " +
-                "     t1.lastreported, t1.validatedby, t3.jobcomments, t3.comments1,    " +
+                "     t1.lastreported, t1.validatedby, t3.jobcomments, t3.comments1,   " +
                 "     t4.sam_remarks, t4.sam_description, t4.description_1,            " +
                 "     t4.description_3, t4.description_4, t5.photo                     " +
                 " from PROFJOB t1                                                      " +
@@ -2243,7 +2584,6 @@ namespace Sgs.ReportIntegration
                         {
                             sql += $" and t1.notes1='HL_EN' ";
                         }
-
                         if (string.IsNullOrWhiteSpace(ItemNo) == false)
                         {
                             sql += $" and t3.jobcomments like '%%{ItemNo}%%' ";
@@ -2265,6 +2605,7 @@ namespace Sgs.ReportIntegration
                     }
                 }
             }
+            sql += $" order by t1.pro_proj asc ";
 
             SetTrans(trans);
             command.CommandText = sql;
@@ -2493,50 +2834,6 @@ namespace Sgs.ReportIntegration
             {
                 FormatValue = "ND";
             }
-        }
-    }
-
-    public class StaffDataSet : UlSqlDataSet
-    {
-        public string RecNo { get; set; }
-
-        public string Name { get; set; }
-
-        public string FName { get; set; }
-
-        public StaffDataSet(SqlConnection connect, SqlCommand command, SqlDataAdapter adapter)
-            : base(connect, command, adapter)
-        {
-        }
-        public void Select(SqlTransaction trans = null)
-        {
-            SetTrans(trans);
-            command.CommandText =
-                $" select * from STAFF        " +
-                $" where staff_code='{RecNo}' ";
-            dataSet.Clear();
-            dataAdapter.Fill(dataSet);
-        }
-
-        public void Fetch(int index = 0, int tableNo = 0)
-        {
-            if (index < GetRowCount(tableNo))
-            {
-                Fetch(dataSet.Tables[tableNo].Rows[index]);
-            }
-            else
-            {
-                RecNo = "";
-                Name = "";
-                FName = "";
-            }
-        }
-
-        public void Fetch(DataRow row)
-        {
-            RecNo = Convert.ToString(row["staff_code"]);
-            Name = Convert.ToString(row["first_name"]) + " " + Convert.ToString(row["last_name"]);
-            FName = Convert.ToString(row["picturefile"]).Trim();
         }
     }
 }

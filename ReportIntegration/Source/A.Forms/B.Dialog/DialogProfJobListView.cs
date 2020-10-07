@@ -28,7 +28,11 @@ namespace Sgs.ReportIntegration
             set { profJobSet.Type = value; }
         }
 
+        public EReportArea AreaNo { get; private set; }
+
         public string JobNo { get; private set; }
+
+        public string ItemNo { get; private set; }
 
         public DialogProfJobListView()
         {
@@ -51,6 +55,7 @@ namespace Sgs.ReportIntegration
 
             Type = EReportType.None;
             JobNo = string.Empty;
+            ItemNo = string.Empty;
         }
 
         private void DialogProfJobListView_Load(object sender, EventArgs e)
@@ -66,6 +71,7 @@ namespace Sgs.ReportIntegration
                 case EReportType.Physical:
                     itemNoLabel.Text = "Item No.";
                     reportItemNoColumn.Caption = "Item No.";
+                    reportItemNoColumn.FieldName = "orderno";
                     reportProductColumn.Caption = "Product Name";
                     break;
 
@@ -74,6 +80,7 @@ namespace Sgs.ReportIntegration
                     //areaCombo.Enabled = false;
                     itemNoLabel.Text = "Part No.";
                     reportItemNoColumn.Caption = "Part No.";
+                    reportItemNoColumn.FieldName = "jobcomments";
                     reportProductColumn.Caption = "Part Name";
                     break;
             }
@@ -154,7 +161,11 @@ namespace Sgs.ReportIntegration
 
             DataRow row = reportGridView.GetDataRow(reportGridView.FocusedRowHandle);
             profJobSet.Fetch(row);
+
+            AreaNo = profJobSet.AreaNo;
             JobNo = profJobSet.JobNo;
+            ItemNo = profJobSet.ItemNo;
+            
             Close();
         }
     }

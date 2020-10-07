@@ -49,6 +49,7 @@ namespace Sgs.ReportIntegration
 
         private GridBookmark p5Bookmark;
 
+        private StaffDataSet staffSet;
 
         public CtrlEditPhysicalEu()
         {
@@ -58,6 +59,8 @@ namespace Sgs.ReportIntegration
 
         private void Initialize()
         {
+            staffSet = new StaffDataSet(AppRes.DB.Connect, null, null);
+
             p2Bookmark = new GridBookmark(p2ResultGridView);
             P2Rows = new List<PhysicalPage2Row>();
             p2ResultGrid.DataSource = P2Rows;
@@ -994,11 +997,21 @@ namespace Sgs.ReportIntegration
         {
             ImageSet.Fetch();
 
-            p2ImageBox.Image = ImageSet.Signature;
-            p2NameEdit.Text = MainSet.P2Name;
-
             p6ImageBox.Image = ImageSet.Picture;
             p6FileNoPanel.Text = MainSet.P1FileNo;
+
+            if (string.IsNullOrWhiteSpace(MainSet.StaffNo) == false)
+            {
+                staffSet.StaffNo = MainSet.StaffNo;
+                staffSet.Select();
+                staffSet.Fetch();
+
+                if (staffSet.Signature != null)
+                {
+                    p2ImageBox.Image = staffSet.Signature;
+                    p2NameEdit.Text = staffSet.FirstName + " " + staffSet.LastName;
+                }
+            }
         }
     }
 }

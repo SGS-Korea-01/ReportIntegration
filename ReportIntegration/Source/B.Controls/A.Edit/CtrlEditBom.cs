@@ -77,7 +77,6 @@ namespace Sgs.ReportIntegration
 
         private void CtrlEditBom_Load(object sender, EventArgs e)
         {
-            bomResetButton.PerformClick();
         }
 
         private void CtrlEditBom_Enter(object sender, EventArgs e)
@@ -137,7 +136,7 @@ namespace Sgs.ReportIntegration
         private void bomResetButton_Click(object sender, EventArgs e)
         {
             bomDateCheck.Checked = true;
-            bomFromDateEdit.Value = DateTime.Now.AddDays(-30);
+            bomFromDateEdit.Value = DateTime.Now.AddMonths(-1);
             bomToDateEdit.Value = DateTime.Now;
             bomAreaCombo.SelectedIndex = 0;
             bomNameEdit.Text = string.Empty;
@@ -381,6 +380,7 @@ namespace Sgs.ReportIntegration
         private void InsertProduct(ProductColumns col, SqlTransaction trans)
         {
             phyQuery.ProfJobSet.Type = EReportType.Physical;
+            phyQuery.ProfJobSet.JobNo = "";
             phyQuery.ProfJobSet.AreaNo = bomSet.AreaNo;
             phyQuery.ProfJobSet.ItemNo = col.Code;
             phyQuery.ProfJobSet.Select(trans);
@@ -405,32 +405,48 @@ namespace Sgs.ReportIntegration
         private void UpdateProduct(bool valid, SqlTransaction trans)
         {
             productSet.Valid = valid;
-            productSet.Update(trans);
+            productSet.UpdateValid(trans);
         }
 
         private bool InsertPart(PartColumns col, SqlTransaction trans)
         {
+            string jobNo = "";
+            string extendJobNo = "";
+
             cheQuery.ProfJobSet.Type = EReportType.Chemical;
             cheQuery.ProfJobSet.JobNo = "";
             cheQuery.ProfJobSet.AreaNo = bomSet.AreaNo;
             cheQuery.ProfJobSet.ItemNo = col.MaterialNo;
             cheQuery.ProfJobSet.Select(trans);
-            cheQuery.ProfJobSet.Fetch();
-            string jobNo = cheQuery.ProfJobSet.JobNo;
 
-            if (string.IsNullOrWhiteSpace(jobNo) == false)
+            int rowCount = cheQuery.ProfJobSet.RowCount;
+            if (rowCount > 0)
             {
-                cheMainSet.RecNo = jobNo;
-                cheMainSet.ReportApproval = EReportApproval.None;
-                cheMainSet.AreaNo = EReportArea.None;
-                cheMainSet.From = "";
-                cheMainSet.To = "";
-                cheMainSet.MaterialNo = "";
-                cheMainSet.Select(trans);
+                cheQuery.ProfJobSet.Fetch(0);
+                jobNo = cheQuery.ProfJobSet.JobNo;
 
-                if (cheMainSet.Empty == true)
+                if (string.IsNullOrWhiteSpace(jobNo) == false)
                 {
-                    cheQuery.Insert(trans);
+                    cheMainSet.RecNo = jobNo;
+                    cheMainSet.ReportApproval = EReportApproval.None;
+                    cheMainSet.AreaNo = EReportArea.None;
+                    cheMainSet.From = "";
+                    cheMainSet.To = "";
+                    cheMainSet.MaterialNo = "";
+                    cheMainSet.Select(trans);
+
+                    if (cheMainSet.Empty == true)
+                    {
+                        if (rowCount > 1)
+                        {
+                            cheQuery.ProfJobSet.Fetch(1);
+                            extendJobNo = cheQuery.ProfJobSet.JobNo;
+
+                            cheQuery.ProfJobSet.Fetch(0);
+                        }
+
+                        cheQuery.Insert(extendJobNo, trans);
+                    }
                 }
             }
 

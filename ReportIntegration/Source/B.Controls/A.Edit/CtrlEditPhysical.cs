@@ -41,8 +41,6 @@ namespace Sgs.ReportIntegration
 
         private ProfJobDataSet profJobSet;
 
-        private StaffDataSet staffSet;
-
         private CtrlEditPhysicalUs ctrlUs;
 
         private CtrlEditPhysicalEu ctrlEu;
@@ -69,7 +67,6 @@ namespace Sgs.ReportIntegration
             phyP5Set = new PhysicalP5DataSet(AppRes.DB.Connect, null, null);
             phyReportSet = new PhysicalReportDataSet(AppRes.DB.Connect, null, null);
             profJobSet = new ProfJobDataSet(AppRes.DB.Connect, null, null);
-            staffSet = new StaffDataSet(AppRes.DB.Connect, null, null);
 
             ctrlUs = new CtrlEditPhysicalUs();
             ctrlUs.MainSet = phyMainSet;
@@ -97,7 +94,6 @@ namespace Sgs.ReportIntegration
             phyQuery.P41Set = phyP41Set;
             phyQuery.P5Set = phyP5Set;
             phyQuery.ProfJobSet = profJobSet;
-            phyQuery.StaffSet = staffSet;
             phyQuery.CtrlUs = ctrlUs;
             phyQuery.CtrlEu = ctrlEu;
 
@@ -186,7 +182,7 @@ namespace Sgs.ReportIntegration
         private void resetButton_Click(object sender, EventArgs e)
         {
             dateCheck.Checked = true;
-            fromDateEdit.Value = DateTime.Now.AddDays(-30);
+            fromDateEdit.Value = DateTime.Now.AddMonths(-1);
             toDateEdit.Value = DateTime.Now;
             approvalCombo.SelectedIndex = 0;
             areaCombo.SelectedIndex = 0;
@@ -382,17 +378,6 @@ namespace Sgs.ReportIntegration
             if (profJobSet.Empty == true) return;
             if (area == EReportArea.None) return;
             if (string.IsNullOrWhiteSpace(profJobSet.ItemNo) == true) return;
-
-            if (string.IsNullOrWhiteSpace(profJobSet.StaffNo) == false)
-            {
-                staffSet.RecNo = profJobSet.StaffNo;
-                staffSet.Select();
-                staffSet.Fetch();
-            }
-            else
-            {
-                staffSet.DataSet.Clear();
-            }
 
             phyCheckSet.From = "";
             phyCheckSet.To = "";

@@ -18,6 +18,16 @@ namespace Sgs.ReportIntegration
         EU = 1
     }
 
+    public enum EReportAuthority
+    {
+        [Description("None")]
+        None = -1,
+        [Description("Manager")]
+        Manager = 0,
+        [Description("Admin")]
+        Admin = 1
+    }
+
     public enum EReportApproval
     {
         [Description("None")]
@@ -272,6 +282,31 @@ namespace Sgs.ReportIntegration
             HiLimit = "";
             LoLimit = "";
             ReportLimit = "";
+            FormatValue = "";
+            Name = "";
+        }
+    }
+
+    public class ChemicalPage2ExtendRow
+    {
+        public string RecNo { get; set; }
+
+        public string TotalLimit { get; set; }
+
+        public string ReportLimit { get; set; }
+
+        public string Message { get; set; }
+
+        public string FormatValue { get; set; }
+
+        public string Name { get; set; }
+
+        public ChemicalPage2ExtendRow()
+        {
+            RecNo = "";
+            TotalLimit = "";
+            ReportLimit = "";
+            Message = "";
             FormatValue = "";
             Name = "";
         }
