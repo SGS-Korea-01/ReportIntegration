@@ -301,6 +301,7 @@ namespace Sgs.ReportIntegration
                 {
                     profJobSet.Type = EReportType.Physical;
                     profJobSet.JobNo = dialog.JobNo;
+                    profJobSet.ExtendASTM = false;
                     profJobSet.Select();
                     profJobSet.Fetch();
                     Insert();

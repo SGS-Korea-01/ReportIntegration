@@ -45,12 +45,15 @@
             this.etcOptionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewPanel = new Ulee.Controls.UlPanel();
             this.menuPanel = new Ulee.Controls.UlPanel();
+            this.userStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.authorityStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.authorLogoPanel = new Ulee.Controls.UlPanel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.loginButton = new DevExpress.XtraEditors.SimpleButton();
             this.editButton = new DevExpress.XtraEditors.SimpleButton();
             this.settingsButton = new DevExpress.XtraEditors.SimpleButton();
             this.exitButton = new DevExpress.XtraEditors.SimpleButton();
             this.logButton = new DevExpress.XtraEditors.SimpleButton();
-            this.authorLogoPanel = new Ulee.Controls.UlPanel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.bgPanel.SuspendLayout();
             this.mainStatus.SuspendLayout();
             this.menuPanel.SuspendLayout();
@@ -70,6 +73,8 @@
             this.mainStatus.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mainStatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dateTimeStatusLabel,
+            this.userStatusLabel,
+            this.authorityStatusLabel,
             this.companyStatusLabel,
             this.descStatusLabel});
             this.mainStatus.Location = new System.Drawing.Point(0, 577);
@@ -86,8 +91,7 @@
             this.dateTimeStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.dateTimeStatusLabel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimeStatusLabel.Name = "dateTimeStatusLabel";
-            this.dateTimeStatusLabel.Size = new System.Drawing.Size(138, 19);
-            this.dateTimeStatusLabel.Text = "2018-05-29 10:50:00";
+            this.dateTimeStatusLabel.Size = new System.Drawing.Size(140, 19);
             // 
             // companyStatusLabel
             // 
@@ -97,7 +101,7 @@
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.companyStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.companyStatusLabel.Name = "companyStatusLabel";
-            this.companyStatusLabel.Size = new System.Drawing.Size(142, 19);
+            this.companyStatusLabel.Size = new System.Drawing.Size(140, 19);
             this.companyStatusLabel.Text = "SGS Co., Ltd.";
             // 
             // descStatusLabel
@@ -109,7 +113,7 @@
             this.descStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.descStatusLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.descStatusLabel.Name = "descStatusLabel";
-            this.descStatusLabel.Size = new System.Drawing.Size(713, 19);
+            this.descStatusLabel.Size = new System.Drawing.Size(433, 19);
             this.descStatusLabel.Spring = true;
             this.descStatusLabel.Text = " When you need to be sure";
             this.descStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -201,6 +205,7 @@
             this.menuPanel.BackColor = System.Drawing.Color.Silver;
             this.menuPanel.BevelInner = Ulee.Controls.EUlBevelStyle.None;
             this.menuPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.Lowered;
+            this.menuPanel.Controls.Add(this.loginButton);
             this.menuPanel.Controls.Add(this.editButton);
             this.menuPanel.Controls.Add(this.settingsButton);
             this.menuPanel.Controls.Add(this.exitButton);
@@ -216,6 +221,82 @@
             this.menuPanel.TabIndex = 7;
             this.menuPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
             this.menuPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            // 
+            // userStatusLabel
+            // 
+            this.userStatusLabel.AutoSize = false;
+            this.userStatusLabel.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.userStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
+            this.userStatusLabel.Name = "userStatusLabel";
+            this.userStatusLabel.Size = new System.Drawing.Size(140, 19);
+            // 
+            // authorityStatusLabel
+            // 
+            this.authorityStatusLabel.AutoSize = false;
+            this.authorityStatusLabel.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.authorityStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
+            this.authorityStatusLabel.Name = "authorityStatusLabel";
+            this.authorityStatusLabel.Size = new System.Drawing.Size(140, 19);
+            // 
+            // authorLogoPanel
+            // 
+            this.authorLogoPanel.BackColor = System.Drawing.Color.Black;
+            this.authorLogoPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("authorLogoPanel.BackgroundImage")));
+            this.authorLogoPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.authorLogoPanel.BevelInner = Ulee.Controls.EUlBevelStyle.None;
+            this.authorLogoPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.Lowered;
+            this.authorLogoPanel.Controls.Add(this.pictureBox1);
+            this.authorLogoPanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.authorLogoPanel.InnerColor2 = System.Drawing.Color.White;
+            this.authorLogoPanel.Location = new System.Drawing.Point(6, 6);
+            this.authorLogoPanel.Name = "authorLogoPanel";
+            this.authorLogoPanel.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
+            this.authorLogoPanel.OuterColor2 = System.Drawing.Color.White;
+            this.authorLogoPanel.Size = new System.Drawing.Size(84, 40);
+            this.authorLogoPanel.Spacing = 0;
+            this.authorLogoPanel.TabIndex = 9;
+            this.authorLogoPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
+            this.authorLogoPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Black;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(2, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(80, 36);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // loginButton
+            // 
+            this.loginButton.AllowFocus = false;
+            this.loginButton.Appearance.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginButton.Appearance.Options.UseFont = true;
+            this.loginButton.Appearance.Options.UseTextOptions = true;
+            this.loginButton.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            this.loginButton.AppearanceDisabled.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginButton.AppearanceDisabled.Options.UseFont = true;
+            this.loginButton.AppearanceHovered.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginButton.AppearanceHovered.Options.UseFont = true;
+            this.loginButton.AppearancePressed.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginButton.AppearancePressed.Options.UseFont = true;
+            this.loginButton.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("loginButton.ImageOptions.Image")));
+            this.loginButton.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.loginButton.Location = new System.Drawing.Point(2, 404);
+            this.loginButton.LookAndFeel.SkinName = "DevExpress Style";
+            this.loginButton.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.loginButton.Name = "loginButton";
+            this.loginButton.Size = new System.Drawing.Size(80, 58);
+            this.loginButton.TabIndex = 8;
+            this.loginButton.TabStop = false;
+            this.loginButton.Text = "LOGIN";
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
             // editButton
             // 
@@ -314,37 +395,6 @@
             this.logButton.TabStop = false;
             this.logButton.Text = "LOG";
             // 
-            // authorLogoPanel
-            // 
-            this.authorLogoPanel.BackColor = System.Drawing.Color.Black;
-            this.authorLogoPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("authorLogoPanel.BackgroundImage")));
-            this.authorLogoPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.authorLogoPanel.BevelInner = Ulee.Controls.EUlBevelStyle.None;
-            this.authorLogoPanel.BevelOuter = Ulee.Controls.EUlBevelStyle.Lowered;
-            this.authorLogoPanel.Controls.Add(this.pictureBox1);
-            this.authorLogoPanel.InnerColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.authorLogoPanel.InnerColor2 = System.Drawing.Color.White;
-            this.authorLogoPanel.Location = new System.Drawing.Point(6, 6);
-            this.authorLogoPanel.Name = "authorLogoPanel";
-            this.authorLogoPanel.OuterColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
-            this.authorLogoPanel.OuterColor2 = System.Drawing.Color.White;
-            this.authorLogoPanel.Size = new System.Drawing.Size(84, 40);
-            this.authorLogoPanel.Spacing = 0;
-            this.authorLogoPanel.TabIndex = 9;
-            this.authorLogoPanel.TextHAlign = Ulee.Controls.EUlHoriAlign.Center;
-            this.authorLogoPanel.TextVAlign = Ulee.Controls.EUlVertAlign.Middle;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Black;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(2, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(80, 36);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
             // FormReportIntegrationMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -398,6 +448,9 @@
         private Ulee.Controls.UlPanel authorLogoPanel;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStripStatusLabel descStatusLabel;
+        private DevExpress.XtraEditors.SimpleButton loginButton;
+        private System.Windows.Forms.ToolStripStatusLabel userStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel authorityStatusLabel;
     }
 }
 

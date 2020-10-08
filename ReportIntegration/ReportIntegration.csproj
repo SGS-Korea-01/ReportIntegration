@@ -109,6 +109,12 @@
     <Compile Include="Source\A.Forms\A.Main\FormReportIntegrationMain.Designer.cs">
       <DependentUpon>FormReportIntegrationMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\A.Forms\B.Dialog\DialogLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\A.Forms\B.Dialog\DialogLogin.Designer.cs">
+      <DependentUpon>DialogLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\A.Forms\B.Dialog\DialogProductView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,6 +278,9 @@
     <EmbeddedResource Include="Source\A.Forms\A.Main\FormReportIntegrationMain.resx">
       <DependentUpon>FormReportIntegrationMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Source\A.Forms\B.Dialog\DialogLogin.resx">
+      <DependentUpon>DialogLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\A.Forms\B.Dialog\DialogProductView.resx">
       <DependentUpon>DialogProductView.cs</DependentUpon>
     </EmbeddedResource>
@@ -367,6 +376,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Image\SgsLogoOrigin.png" />
+    <None Include="Image\SGS_Logo_2.png" />
     <Content Include="SgsLogo48.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

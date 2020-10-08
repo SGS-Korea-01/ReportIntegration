@@ -80,7 +80,7 @@ namespace Sgs.ReportIntegration
 
         private void bomDeleteButton_Click(object sender, EventArgs e)
         {
-
+            (DefMenu.Controls(0) as CtrlEditBom).Delete();
         }
 
         private void physicalImportButton_Click(object sender, EventArgs e)
@@ -160,6 +160,8 @@ namespace Sgs.ReportIntegration
 
         public void SetMenu(int index)
         {
+            if (AppRes.Authority == EReportAuthority.Manager) return;
+
             bomMenuPanel.Visible = false;
             physicalMenuPanel.Visible = false;
             chemicalMenuPanel.Visible = false;
@@ -187,6 +189,16 @@ namespace Sgs.ReportIntegration
                     integMenuPanel.Visible = true;
                     break;
             }
+        }
+
+        public void SetAuthority()
+        {
+            bool visible = (AppRes.Authority == EReportAuthority.Admin) ? true : false;
+
+            bomMenuPanel.Visible = visible;
+            physicalMenuPanel.Visible = visible;
+            chemicalMenuPanel.Visible = visible;
+            integMenuPanel.Visible = visible;
         }
 
         private string OpenBomFile()

@@ -167,6 +167,7 @@
             this.p2NameEdit = new DevExpress.XtraEditors.TextEdit();
             this.p2SgsNameLabel = new System.Windows.Forms.Label();
             this.p2ImageBox = new System.Windows.Forms.PictureBox();
+            this.approveButton = new System.Windows.Forms.Button();
             this.bgPanel.SuspendLayout();
             this.physicalTab.SuspendLayout();
             this.physical1Page.SuspendLayout();
@@ -836,7 +837,7 @@
             this.physical2Page.Location = new System.Drawing.Point(4, 24);
             this.physical2Page.Margin = new System.Windows.Forms.Padding(0);
             this.physical2Page.Name = "physical2Page";
-            this.physical2Page.Size = new System.Drawing.Size(548, 510);
+            this.physical2Page.Size = new System.Drawing.Size(292, 272);
             this.physical2Page.TabIndex = 1;
             this.physical2Page.Tag = "1";
             this.physical2Page.Text = "  Page 2  ";
@@ -1089,7 +1090,7 @@
             this.physical3Page.Location = new System.Drawing.Point(4, 24);
             this.physical3Page.Margin = new System.Windows.Forms.Padding(0);
             this.physical3Page.Name = "physical3Page";
-            this.physical3Page.Size = new System.Drawing.Size(548, 510);
+            this.physical3Page.Size = new System.Drawing.Size(292, 272);
             this.physical3Page.TabIndex = 2;
             this.physical3Page.Tag = "2";
             this.physical3Page.Text = "  Page 3  ";
@@ -1418,7 +1419,7 @@
             this.physical4Page.Location = new System.Drawing.Point(4, 24);
             this.physical4Page.Margin = new System.Windows.Forms.Padding(0);
             this.physical4Page.Name = "physical4Page";
-            this.physical4Page.Size = new System.Drawing.Size(548, 510);
+            this.physical4Page.Size = new System.Drawing.Size(292, 272);
             this.physical4Page.TabIndex = 3;
             this.physical4Page.Tag = "3";
             this.physical4Page.Text = "  Page 4  ";
@@ -2004,7 +2005,7 @@
             this.physical5Page.Location = new System.Drawing.Point(4, 24);
             this.physical5Page.Margin = new System.Windows.Forms.Padding(0);
             this.physical5Page.Name = "physical5Page";
-            this.physical5Page.Size = new System.Drawing.Size(548, 510);
+            this.physical5Page.Size = new System.Drawing.Size(292, 272);
             this.physical5Page.TabIndex = 4;
             this.physical5Page.Tag = "4";
             this.physical5Page.Text = "  Page 5  ";
@@ -2343,7 +2344,7 @@
             this.physical6Page.Location = new System.Drawing.Point(4, 24);
             this.physical6Page.Name = "physical6Page";
             this.physical6Page.Padding = new System.Windows.Forms.Padding(3);
-            this.physical6Page.Size = new System.Drawing.Size(548, 510);
+            this.physical6Page.Size = new System.Drawing.Size(292, 272);
             this.physical6Page.TabIndex = 5;
             this.physical6Page.Tag = "5";
             this.physical6Page.Text = "  Page 6  ";
@@ -2416,6 +2417,7 @@
             // 
             // physicalSignPage
             // 
+            this.physicalSignPage.Controls.Add(this.approveButton);
             this.physicalSignPage.Controls.Add(this.p2NameEdit);
             this.physicalSignPage.Controls.Add(this.p2SgsNameLabel);
             this.physicalSignPage.Controls.Add(this.p2ImageBox);
@@ -2466,6 +2468,16 @@
             this.p2ImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.p2ImageBox.TabIndex = 90;
             this.p2ImageBox.TabStop = false;
+            // 
+            // approveButton
+            // 
+            this.approveButton.Location = new System.Drawing.Point(22, 172);
+            this.approveButton.Name = "approveButton";
+            this.approveButton.Size = new System.Drawing.Size(220, 32);
+            this.approveButton.TabIndex = 133;
+            this.approveButton.Text = "Approve";
+            this.approveButton.UseVisualStyleBackColor = true;
+            this.approveButton.Click += new System.EventHandler(this.approveButton_Click);
             // 
             // CtrlEditPhysicalEu
             // 
@@ -2685,5 +2697,6 @@
         public DevExpress.XtraEditors.TextEdit p2NameEdit;
         private System.Windows.Forms.Label p2SgsNameLabel;
         private System.Windows.Forms.PictureBox p2ImageBox;
+        private System.Windows.Forms.Button approveButton;
     }
 }

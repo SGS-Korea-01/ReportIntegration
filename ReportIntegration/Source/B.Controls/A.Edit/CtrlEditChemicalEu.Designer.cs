@@ -84,6 +84,7 @@
             this.p2SgsNameLabel = new System.Windows.Forms.Label();
             this.p1NameEdit = new DevExpress.XtraEditors.TextEdit();
             this.p1ImageBox = new System.Windows.Forms.PictureBox();
+            this.approveButton = new System.Windows.Forms.Button();
             this.bgPanel.SuspendLayout();
             this.chemicalTab.SuspendLayout();
             this.chemical1Page.SuspendLayout();
@@ -857,7 +858,7 @@
             this.chemical3Page.Location = new System.Drawing.Point(4, 24);
             this.chemical3Page.Name = "chemical3Page";
             this.chemical3Page.Padding = new System.Windows.Forms.Padding(3);
-            this.chemical3Page.Size = new System.Drawing.Size(292, 272);
+            this.chemical3Page.Size = new System.Drawing.Size(548, 510);
             this.chemical3Page.TabIndex = 5;
             this.chemical3Page.Tag = "5";
             this.chemical3Page.Text = "  Page 3  ";
@@ -947,13 +948,14 @@
             // 
             // chemicalSignPage
             // 
+            this.chemicalSignPage.Controls.Add(this.approveButton);
             this.chemicalSignPage.Controls.Add(this.p2SgsNameLabel);
             this.chemicalSignPage.Controls.Add(this.p1NameEdit);
             this.chemicalSignPage.Controls.Add(this.p1ImageBox);
             this.chemicalSignPage.Location = new System.Drawing.Point(4, 24);
             this.chemicalSignPage.Name = "chemicalSignPage";
             this.chemicalSignPage.Padding = new System.Windows.Forms.Padding(3);
-            this.chemicalSignPage.Size = new System.Drawing.Size(292, 272);
+            this.chemicalSignPage.Size = new System.Drawing.Size(548, 510);
             this.chemicalSignPage.TabIndex = 6;
             this.chemicalSignPage.Text = "  Signature  ";
             this.chemicalSignPage.UseVisualStyleBackColor = true;
@@ -997,6 +999,16 @@
             this.p1ImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.p1ImageBox.TabIndex = 128;
             this.p1ImageBox.TabStop = false;
+            // 
+            // approveButton
+            // 
+            this.approveButton.Location = new System.Drawing.Point(22, 172);
+            this.approveButton.Name = "approveButton";
+            this.approveButton.Size = new System.Drawing.Size(220, 32);
+            this.approveButton.TabIndex = 130;
+            this.approveButton.Text = "Approve";
+            this.approveButton.UseVisualStyleBackColor = true;
+            this.approveButton.Click += new System.EventHandler(this.approveButton_Click);
             // 
             // CtrlEditChemicalEu
             // 
@@ -1099,5 +1111,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit p3DescTextEdit;
         private DevExpress.XtraGrid.Columns.GridColumn resultHiValueColumn;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit p3ResultTextEdit;
+        private System.Windows.Forms.Button approveButton;
     }
 }

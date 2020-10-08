@@ -87,6 +87,20 @@ namespace Sgs.ReportIntegration
             AppHelper.SetGridEvenRow(p5StuffGridView);
         }
 
+        private void approveButton_Click(object sender, EventArgs e)
+        {
+            switch (approveButton.Text)
+            {
+                case "Approve":
+                    SetApproval(AppRes.UserId);
+                    break;
+
+                case "Disapprove":
+                    SetApproval("");
+                    break;
+            }
+        }
+
         private void physical1Page_Resize(object sender, EventArgs e)
         {
             int width = physical1Page.Width;
@@ -1002,7 +1016,23 @@ namespace Sgs.ReportIntegration
 
             if (string.IsNullOrWhiteSpace(MainSet.StaffNo) == false)
             {
-                staffSet.StaffNo = MainSet.StaffNo;
+                SetApproval(MainSet.StaffNo);
+            }
+
+            approveButton.Visible = (AppRes.Authority == EReportAuthority.Manager) ? true : false;
+        }
+
+        private void SetApproval(string staffNo)
+        {
+            if (string.IsNullOrWhiteSpace(staffNo) == true)
+            {
+                p2ImageBox.Image = null;
+                p2NameEdit.Text = "";
+                approveButton.Text = "Approve";
+            }
+            else
+            {
+                staffSet.StaffNo = staffNo;
                 staffSet.Select();
                 staffSet.Fetch();
 
@@ -1010,6 +1040,11 @@ namespace Sgs.ReportIntegration
                 {
                     p2ImageBox.Image = staffSet.Signature;
                     p2NameEdit.Text = staffSet.FirstName + " " + staffSet.LastName;
+                    approveButton.Text = "Disapprove";
+                }
+                else
+                {
+                    approveButton.Text = "Approve";
                 }
             }
         }

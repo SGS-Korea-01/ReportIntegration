@@ -117,11 +117,41 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="SgsLogoOrigin" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Image\SgsLogoOrigin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="cancelButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAyNDUyNDU
+        yNDUyNDUyNDUAAAAAAAAAAAAAAAAAAAAAAAAyNDUyNDUyNDUyNDUyNDUyNDUyNDUyNDUAAAAAAAAwMDA
+        wMDAwMDAwMDAwMDAwMDAAAAAAAAAyNDUyNDUyNDUyNDUyNDUAAAAkJCQsLD/b2//AAC/AAC/AAC/AAC/
+        b2//sLD/kJCQAAAAyNDUyNDUyNDUAAAAkJCQj4//AADfAADfAADfAADfAADfAADfAADfPwC/j4//kJCQ
+        AAAAyNDUyNDUAAAAsLD/AADfAADfAADfAADfAADfAADfAADfAADfAADfPwC/sLD/AAAAyNDUAAAAwMDA
+        b2//AADfAADfAADfAADfAADfAADfAADfAADfAADfAADfTwDfwMDAAAAAAAAA0ND/AADfAADfT0//T0//
+        T0//T0//T0//T0//T0//T0//T0//AAC/wMDAAAAAAAAA0ND/AADfPwC/39/f39/f39/f39/f39/f39/f
+        39/f39/fT0//AAC/wMDAAAAAAAAA0ND/ICD/PwC/8PDw8PDw8PDw8PDw8PDw8PDw8PDw8PDwT0//AAC/
+        wMDAAAAAAAAA0ND/ICD/PwC/PwC/PwC/PwC/PwC/PwC/PwC/PwC/PwC/AADfAAC/wMDAAAAAAAAAwMDA
+        b2//AADfAADfAADfAADfAADfAADfAADfAADfAADfAADfTwDfwMDAAAAAyNDUAAAAsLD/T0//AADfAADf
+        AADfAADfAADfAADfAADfAADfTwDfsLD/AAAAyNDUyNDUAAAAkJCQsLD/T0//ICD/AADfAADfAADfAADf
+        AADfTwDfj4//kJCQAAAAyNDUyNDUyNDUAAAAkJCQsLD/b2//ICD/AADfAADfAADfb2//sLD/kJCQAAAA
+        yNDUyNDUyNDUyNDUyNDUAAAAAAAAwMDA0ND/0ND/0ND/0ND/z8/PAAAAAAAAyNDUyNDUyNDUyNDUyNDU
+        yNDUyNDUyNDUAAAAAAAAAAAAAAAAAAAAAAAAyNDUyNDUyNDUyNDUyNDU
+</value>
   </data>
-  <data name="SGS_Logo_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Image\SGS_Logo_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="okButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAASCwAAEgsAAAAAAAAAAAAAyNDUyNDU
+        yNDUyNDUyNDUAAAAAAAAAAAAAAAAAAAAAAAAyNDUyNDUyNDUyNDUyNDUyNDUyNDUyNDUAAAAAAAAyNDU
+        yNDUyNDUyNDUyNDUyNDUAAAAAAAAyNDUyNDUyNDUyNDUyNDUAAAAyNDUus3CkcSQKJoWKJoWKJoWKJoW
+        kcSQus3CyNDUAAAAyNDUyNDUyNDUAAAAyNDUrMqxcb1pSrU5SrU5SrU5M6EhM6EhKJoWKJoWrMqxyNDU
+        AAAAyNDUyNDUAAAAus3Ccb1pSrU5SrU5SrU5YdBQYdBQSrU5M6EhM6EhKJoWus3CAAAAyNDUAAAAyNDU
+        kcSQSrU5SrU5SrU5SrU5////////YdBQSrU5M6EhKJoWkcSQyNDUAAAAAAAAyNDUbr1lSrU5SrU5SrU5
+        ////////////YdBQSrU5SrU5M6EhKJoWyNDUAAAAAAAAyNDUVLdGSrU5SrU5////////KJoW////YdBQ
+        SrU5SrU5M6EhKJoWyNDUAAAAAAAAyNDUVLdGSrU5////////KJoWKJoW////////YdBQSrU5M6EhKJoW
+        yNDUAAAAAAAAyNDUbr1lSrU5KJoWKJoWSrU5KJoW////////YdBQSrU5SrU5KJoWyNDUAAAAAAAAyNDU
+        kcSQSrU5SrU5SrU5SrU5SrU5KJoW////////SrU5SrU5kcSQyNDUAAAAyNDUAAAAus3Ccb1pSrU5SrU5
+        SrU5SrU5KJoW////////SrU5cb1pus3CAAAAyNDUyNDUAAAAyNDUrMqxcb1pSrU5SrU5SrU5SrU5SrU5
+        SrU5cb1prMqxyNDUAAAAyNDUyNDUyNDUAAAAyNDUus3CkcSQbr1lVLdGVLdGbr1lkcSQus3CyNDUAAAA
+        yNDUyNDUyNDUyNDUyNDUAAAAAAAAyNDUyNDUyNDUyNDUyNDUyNDUAAAAAAAAyNDUyNDUyNDUyNDUyNDU
+        yNDUyNDUyNDUAAAAAAAAAAAAAAAAAAAAAAAAyNDUyNDUyNDUyNDUyNDU
+</value>
   </data>
 </root>

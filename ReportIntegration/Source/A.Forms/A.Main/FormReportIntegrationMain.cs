@@ -16,9 +16,15 @@ namespace Sgs.ReportIntegration
 {
     public partial class FormReportIntegrationMain : UlFormEng
     {
+        private bool First;
+
         private const int csInvalidTime = 250;
+        
         private const string csDateFormat = "yyyy-MM-dd";
+        
         private const string csTimeFormat = "HH:mm:ss";
+
+        private StaffDataSet staffSet;
 
         private InvalidThread invalidThread;
 
@@ -30,7 +36,10 @@ namespace Sgs.ReportIntegration
 
         private void Initialize()
         {
+            First = true;
             invalidThread = null;
+
+            staffSet = new StaffDataSet(AppRes.DB.Connect, null, null);
 
             DefMenu = new UlMenu(viewPanel);
             DefMenu.Add(new CtrlEditRight(), editButton);
@@ -44,6 +53,13 @@ namespace Sgs.ReportIntegration
 
         private void FormReportIntegrationMain_Load(object sender, EventArgs e)
         {
+            if (IsLogin() == false)
+            {
+                Close();
+                return;
+            }
+
+            First = false;
             DispCaption();
 
             AppRes.TotalLog[ELogTag.Note] = "Resume screen invalidation thread";
@@ -58,6 +74,8 @@ namespace Sgs.ReportIntegration
 
         private void FormReportIntegrationMain_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (First == true) return;
+
             if (MessageBox.Show("Would you like to exit this program?",
                 "SGS", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 == DialogResult.No)
@@ -68,7 +86,7 @@ namespace Sgs.ReportIntegration
 
         private void FormReportIntegrationMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (invalidThread.IsAlive == true)
+            if (invalidThread?.IsAlive == true)
             {
                 invalidThread.Terminate();
                 AppRes.TotalLog[ELogTag.Note] = "Terminate screen invalidation thread";
@@ -85,12 +103,58 @@ namespace Sgs.ReportIntegration
             menuPanel.Size = new Size(84, Height - 116);
             viewPanel.Size = new Size(Width - 116, Height - 72);
 
+            loginButton.Top = Height - 236;
             exitButton.Top = Height - 176;
+        }
+
+        private void loginButton_Click(object sender, EventArgs e)
+        {
+            IsLogin();
         }
 
         private void exitButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private bool IsLogin()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                DialogLogin dialog = new DialogLogin();
+
+                dialog.ShowDialog();
+                if (dialog.DialogResult == DialogResult.OK)
+                {
+                    if (string.IsNullOrWhiteSpace(dialog.Passwd) == false)
+                    {
+                        staffSet.StaffNo = dialog.UserId;
+                        staffSet.Select();
+                        staffSet.Fetch();
+
+                        string passwd = staffSet.Passwd;
+                        //string passwd = Encoding.ASCII.GetString(Convert.FromBase64String(staffSet.Passwd));
+
+                        if (dialog.Passwd == passwd)
+                        {
+                            AppRes.UserId = dialog.UserId;
+                            AppRes.Authority = staffSet.Authority;
+                            SetAuthority();
+                 
+                            return true;
+                        }
+                    }
+
+                    MessageBox.Show("Invalid password!\r\nPlease keyin password again!",
+                        AppRes.Caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return false;
         }
 
         public override void InvalidForm(object sender, EventArgs e)
@@ -135,6 +199,14 @@ namespace Sgs.ReportIntegration
         private string GetVersion()
         {
             return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+        }
+
+        private void SetAuthority()
+        {
+            userStatusLabel.Text = AppRes.UserId;
+            authorityStatusLabel.Text = AppRes.Authority.ToDescription();
+
+            (DefMenu.Controls(0) as CtrlEditRight).SetAuthority();
         }
     }
 }

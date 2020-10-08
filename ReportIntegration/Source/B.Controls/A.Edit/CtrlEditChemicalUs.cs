@@ -44,6 +44,20 @@ namespace Sgs.ReportIntegration
             metalResultGrid.DataSource = P2Rows;
         }
 
+        private void approveButton_Click(object sender, EventArgs e)
+        {
+            switch (approveButton.Text)
+            {
+                case "Approve":
+                    SetApproval(AppRes.UserId);
+                    break;
+
+                case "Disapprove":
+                    SetApproval("");
+                    break;
+            }
+        }
+
         private void chemical1Page_Resize(object sender, EventArgs e)
         {
             int width = chemical1Page.Width;
@@ -117,6 +131,7 @@ namespace Sgs.ReportIntegration
             MainSet.P2Description1 = p2Desc1Edit.Text;
             MainSet.P2Description2 = p2Desc2Edit.Text;
             MainSet.P2Description3 = p2Desc3Edit.Text;
+            MainSet.P2Description4 = p2Desc4Edit.Text;
             MainSet.P3Description1 = "";
         }
 
@@ -158,6 +173,7 @@ namespace Sgs.ReportIntegration
             p2Desc1Edit.Text = MainSet.P2Description1;
             p2Desc2Edit.Text = MainSet.P2Description2;
             p2Desc3Edit.Text = MainSet.P2Description3;
+            p2Desc4Edit.Text = MainSet.P2Description4;
         }
 
         private void SetDataSetToPage2()
@@ -202,7 +218,23 @@ namespace Sgs.ReportIntegration
 
             if (string.IsNullOrWhiteSpace(MainSet.StaffNo) == false)
             {
-                staffSet.StaffNo = MainSet.StaffNo;
+                SetApproval(MainSet.StaffNo);
+            }
+
+            approveButton.Visible = (AppRes.Authority == EReportAuthority.Manager) ? true : false;
+        }
+
+        private void SetApproval(string staffNo)
+        {
+            if (string.IsNullOrWhiteSpace(staffNo) == true)
+            {
+                p1ImageBox.Image = null;
+                p1NameEdit.Text = "";
+                approveButton.Text = "Approve";
+            }
+            else
+            {
+                staffSet.StaffNo = staffNo;
                 staffSet.Select();
                 staffSet.Fetch();
 
@@ -210,6 +242,11 @@ namespace Sgs.ReportIntegration
                 {
                     p1ImageBox.Image = staffSet.Signature;
                     p1NameEdit.Text = staffSet.FirstName + " " + staffSet.LastName;
+                    approveButton.Text = "Disapprove";
+                }
+                else
+                {
+                    approveButton.Text = "Approve";
                 }
             }
         }

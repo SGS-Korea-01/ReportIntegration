@@ -21,6 +21,10 @@ namespace Sgs.ReportIntegration
 
         public static bool Busy { get; set; }
 
+        public static string UserId { get; set; }
+
+        public static EReportAuthority Authority { get; set; }
+
         public static UlIniFile Ini { get; private set; }
 
         public static UlLogger TotalLog { get; private set; }

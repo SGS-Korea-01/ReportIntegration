@@ -142,7 +142,8 @@ namespace Sgs.ReportIntegration
                 ImageSet.RecNo = mainNo;
                 ImageSet.Delete(trans);
                 MainSet.Delete(trans);
-                UpdateProductReset(trans);
+                productSet.JobNo = mainNo;
+                productSet.UpdateJobNoReset(trans);
 
                 AppRes.DB.CommitTrans();
             }
@@ -161,7 +162,7 @@ namespace Sgs.ReportIntegration
             MainSet.ReportedTime = ProfJobSet.ReportedTime;
             MainSet.Approval = false;
             MainSet.AreaNo = ProfJobSet.AreaNo;
-            MainSet.StaffNo = "";
+            MainSet.StaffNo = ProfJobSet.StaffNo;
             MainSet.ProductNo = ProfJobSet.ItemNo;
             MainSet.P1ClientNo = ProfJobSet.ClientNo;
             MainSet.P1ClientName = ProfJobSet.ClientName;
@@ -186,8 +187,16 @@ namespace Sgs.ReportIntegration
             MainSet.P1TestResults = "For further details, please refer to following page(s)";
             MainSet.P1Comments = ProfJobSet.ReportComments;
             MainSet.Approval = false;
-            MainSet.StaffNo = "";
             MainSet.P2Name = "";
+
+            if (string.IsNullOrWhiteSpace(MainSet.StaffNo) == true)
+            {
+                MainSet.Approval = false;
+            }
+            else
+            {
+                MainSet.Approval = true;
+            }
 
             if (area == EReportArea.US)
             {
@@ -711,12 +720,6 @@ namespace Sgs.ReportIntegration
             productSet.JobNo = ProfJobSet.JobNo;
             productSet.Code = ProfJobSet.ItemNo;
             productSet.UpdateJobNoSet(trans);
-        }
-
-        private void UpdateProductReset(SqlTransaction trans)
-        {
-            productSet.JobNo = ProfJobSet.JobNo;
-            productSet.UpdateJobNoReset(trans);
         }
 
         private void SaveMain(EReportArea area, SqlTransaction trans)

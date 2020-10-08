@@ -22,10 +22,10 @@ namespace Sgs.ReportIntegration
     {
         [Description("None")]
         None = -1,
+        [Description("Administrator")]
+        Admin = 0,
         [Description("Manager")]
-        Manager = 0,
-        [Description("Admin")]
-        Admin = 1
+        Manager = 1
     }
 
     public enum EReportApproval

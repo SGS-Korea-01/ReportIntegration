@@ -370,6 +370,7 @@ namespace Sgs.ReportIntegration
             profJobSet.JobNo = "";
             profJobSet.AreaNo = areaNo;
             profJobSet.ItemNo = itemNo;
+            profJobSet.ExtendASTM = true;
             profJobSet.Select();
 
             int rowCount = profJobSet.RowCount;
@@ -392,8 +393,19 @@ namespace Sgs.ReportIntegration
                     {
                         if (rowCount > 1)
                         {
-                            profJobSet.Fetch(1);
-                            extendJobNo = profJobSet.JobNo;
+                            // Find jobno for additional test results
+                            for (int i = 1; i < profJobSet.RowCount; i++)
+                            {
+                                profJobSet.Fetch(i);
+
+                                if (profJobSet.Image == null)
+                                {
+                                    extendJobNo = profJobSet.JobNo;
+                                    break;
+                                }
+                            }
+
+                            profJobSet.Fetch(0);
                         }
 
                         cheQuery.Insert(extendJobNo);

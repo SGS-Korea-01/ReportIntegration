@@ -30,6 +30,8 @@ namespace Sgs.ReportIntegration
 
         private PartDataSet partSet;
 
+        private PhysicalMainDataSet phyMainSet;
+
         private ChemicalMainDataSet cheMainSet;
 
         private BomColumns bomRec;
@@ -51,6 +53,7 @@ namespace Sgs.ReportIntegration
             bomSet = new BomDataSet(AppRes.DB.Connect, null, null);
             productSet = new ProductDataSet(AppRes.DB.Connect, null, null);
             partSet = new PartDataSet(AppRes.DB.Connect, null, null);
+            phyMainSet = new PhysicalMainDataSet(AppRes.DB.Connect, null, null);
             cheMainSet = new ChemicalMainDataSet(AppRes.DB.Connect, null, null);
 
             phyQuery = new PhysicalQuery(true);
@@ -260,6 +263,39 @@ namespace Sgs.ReportIntegration
             }
         }
 
+        public void Delete()
+        {
+            if (bomGridView.FocusedRowHandle < 0) return;
+            if (MessageBox.Show($"Would you like to delete chosen BOM?",
+                "SGS", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
+
+            SqlTransaction trans = AppRes.DB.BeginTrans();
+
+            try
+            {
+                for (int i = 0; i < productSet.RowCount; i++)
+                {
+                    productSet.Fetch(i);
+
+                    partSet.ProductNo = productSet.RecNo;
+                    partSet.Delete(trans);
+                }
+
+                productSet.BomNo = bomSet.RecNo;
+                productSet.Delete(trans);
+
+                bomSet.Delete(trans);
+
+                AppRes.DB.CommitTrans();
+            }
+            catch
+            {
+                AppRes.DB.RollbackTrans();
+            }
+
+            bomFindButton.PerformClick();
+        }
+
         private void LoadExcel()
         {
             if (bomSet.Empty == true) return;
@@ -383,13 +419,25 @@ namespace Sgs.ReportIntegration
             phyQuery.ProfJobSet.JobNo = "";
             phyQuery.ProfJobSet.AreaNo = bomSet.AreaNo;
             phyQuery.ProfJobSet.ItemNo = col.Code;
+            phyQuery.ProfJobSet.ExtendASTM = false;
             phyQuery.ProfJobSet.Select(trans);
             phyQuery.ProfJobSet.Fetch();
             string jobNo = phyQuery.ProfJobSet.JobNo;
 
             if (string.IsNullOrWhiteSpace(jobNo) == false)
             {
-                phyQuery.Insert(trans);
+                phyMainSet.RecNo = jobNo;
+                phyMainSet.ReportApproval = EReportApproval.None;
+                phyMainSet.AreaNo = EReportArea.None;
+                phyMainSet.ProductNo = "";
+                phyMainSet.From = "";
+                phyMainSet.To = "";
+                phyMainSet.Select(trans);
+
+                if (phyMainSet.Empty == true)
+                {
+                    phyQuery.Insert(trans);
+                }
             }
 
             productSet.BomNo = bomSet.RecNo;
@@ -417,6 +465,7 @@ namespace Sgs.ReportIntegration
             cheQuery.ProfJobSet.JobNo = "";
             cheQuery.ProfJobSet.AreaNo = bomSet.AreaNo;
             cheQuery.ProfJobSet.ItemNo = col.MaterialNo;
+            cheQuery.ProfJobSet.ExtendASTM = true;
             cheQuery.ProfJobSet.Select(trans);
 
             int rowCount = cheQuery.ProfJobSet.RowCount;
@@ -439,8 +488,17 @@ namespace Sgs.ReportIntegration
                     {
                         if (rowCount > 1)
                         {
-                            cheQuery.ProfJobSet.Fetch(1);
-                            extendJobNo = cheQuery.ProfJobSet.JobNo;
+                            // Find jobno for additional test results
+                            for (int i = 1; i < cheQuery.ProfJobSet.RowCount; i++)
+                            {
+                                cheQuery.ProfJobSet.Fetch(i);
+
+                                if (cheQuery.ProfJobSet.Image == null)
+                                {
+                                    extendJobNo = cheQuery.ProfJobSet.JobNo;
+                                    break;
+                                }
+                            }
 
                             cheQuery.ProfJobSet.Fetch(0);
                         }

@@ -135,6 +135,7 @@ namespace Sgs.ReportIntegration
             set.AreaNo = (EReportArea)areaCombo.SelectedValue;
             set.ItemNo = itemNoEdit.Text.Trim();
             set.JobNo = string.Empty;
+            set.ExtendASTM = false;
             set.Select();
 
             AppHelper.SetGridDataSource(reportGrid, set);

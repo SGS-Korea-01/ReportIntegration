@@ -133,6 +133,27 @@ namespace Sgs.ReportIntegration
             }
         }
 
+        public void Delete(SqlTransaction trans = null)
+        {
+            string sql =
+                $" delete from TB_BOM " +
+                $" where pk_recno={RecNo} ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
         public void Fetch(int index = 0, int tableNo = 0)
         {
             if (index < GetRowCount(tableNo))
@@ -380,6 +401,27 @@ namespace Sgs.ReportIntegration
             }
         }
 
+        public void Delete(SqlTransaction trans = null)
+        {
+            string sql =
+                $" delete from TB_PRODUCT " +
+                $" where fk_bomno={BomNo} ";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
         public void Fetch(int index = 0, int tableNo = 0)
         {
             if (index < GetRowCount(tableNo))
@@ -527,6 +569,27 @@ namespace Sgs.ReportIntegration
                 sql += $",'{item.Trim()}'";
             }
             sql += ")";
+
+            SetTrans(trans);
+
+            try
+            {
+                BeginTrans(trans);
+                command.CommandText = sql;
+                command.ExecuteNonQuery();
+                CommitTrans(trans);
+            }
+            catch (Exception e)
+            {
+                RollbackTrans(trans, e);
+            }
+        }
+
+        public void Delete(SqlTransaction trans = null)
+        {
+            string sql = 
+                $" delete from TB_PART " +
+                $" where fk_productno={ProductNo} ";
 
             SetTrans(trans);
 
@@ -1766,6 +1829,8 @@ namespace Sgs.ReportIntegration
 
         public string P2Description3 { get; set; }
 
+        public string P2Description4 { get; set; }
+
         public string P3Description1 { get; set; }
 
         public string From { get; set; }
@@ -1843,8 +1908,8 @@ namespace Sgs.ReportIntegration
         public void Insert(SqlTransaction trans = null)
         {
             string sql =
-                $" insert into TB_CHEMAIN values ('{RecNo}', " +
-                $" '{RegTime.ToString(AppRes.csDateTimeFormat)}', '{ReceivedTime.ToString(AppRes.csDateTimeFormat)}', " +
+                $" insert into TB_CHEMAIN values ( " +
+                $" '{RecNo}', '{RegTime.ToString(AppRes.csDateTimeFormat)}', '{ReceivedTime.ToString(AppRes.csDateTimeFormat)}', " +
                 $" '{RequiredTime.ToString(AppRes.csDateTimeFormat)}', '{ReportedTime.ToString(AppRes.csDateTimeFormat)}', " +
                 $" {Convert.ToInt32(Approval)}, {(int)AreaNo}, '{StaffNo.Replace("'", "''")}', '{MaterialNo.Replace("'", "''")}', " +
                 $" '{P1ClientNo.Replace("'", "''")}', '{P1ClientName.Replace("'", "''")}', '{P1ClientAddress.Replace("'", "''")}', " +
@@ -1854,7 +1919,7 @@ namespace Sgs.ReportIntegration
                 $" '{P1TestMethod.Replace("'", "''")}', '{P1TestResults.Replace("'", "''")}', '{P1Comments.Replace("'", "''")}', " +
                 $" '{P1TestRequested.Replace("'", "''")}', '{P1Conclusion.Replace("'", "''")}', '{P1Name.Replace("'", "''")}', " +
                 $" '{P2Description1.Replace("'", "''")}', '{P2Description2.Replace("'", "''")}', '{P2Description3.Replace("'", "''")}', " +
-                $" '{P3Description1.Replace("'", "''")}') ";
+                $" '{P2Description4.Replace("'", "''")}', '{P3Description1.Replace("'", "''")}') ";
 
             SetTrans(trans);
 
@@ -1874,8 +1939,9 @@ namespace Sgs.ReportIntegration
         public void Update(SqlTransaction trans = null)
         {
             string sql =
-                $" update TB_CHEMAIN set approval={Convert.ToInt32(Approval)}, areano={(int)AreaNo}, " +
-                $" staffno='{StaffNo.Replace("'", "''")}', productno='{MaterialNo.Replace("'", "''")}', " +
+                $" update TB_CHEMAIN set " +
+                $" approval={Convert.ToInt32(Approval)}, areano={(int)AreaNo}, staffno='{StaffNo.Replace("'", "''")}', " +
+                $" productno='{MaterialNo.Replace("'", "''")}', p1clientno='{P1ClientNo.Replace("'", "''")}', " +
                 $" p1clientname='{P1ClientName.Replace("'", "''")}', p1clientaddress='{P1ClientAddress.Replace("'", "''")}', " +
                 $" p1fileno='{P1FileNo.Replace("'", "''")}', p1sampledesc ='{P1SampleDescription.Replace("'", "''")}', " +
                 $" p1itemno='{P1ItemNo.Replace("'", "''")}', p1orderno='{P1OrderNo.Replace("'", "''")}', " +
@@ -1884,9 +1950,9 @@ namespace Sgs.ReportIntegration
                 $" p1testperiod='{P1TestPeriod.Replace("'", "''")}', p1testmethod='{P1TestMethod.Replace("'", "''")}', " +
                 $" p1testresult='{P1TestResults.Replace("'", "''")}', p1comment='{P1Comments.Replace("'", "''")}', " +
                 $" p1testrequested='{P1TestRequested.Replace("'", "''")}', p1conclusion='{P1Conclusion.Replace("'", "''")}', " +
-                $" p2desc1='{P2Description1.Replace("'", "''")}', p2desc2='{P2Description2.Replace("'", "''")}', " + 
-                $" p2desc3='{P2Description3.Replace("'", "''")}', p3desc1='{P3Description1.Replace("'", "''")}', " +
-                $" p1name='{P1Name.Replace("'", "''")}', p1clientno='{P1ClientNo.Replace("'", "''")}' " +
+                $" p1name='{P1Name.Replace("'", "''")}', p2desc1='{P2Description1.Replace("'", "''")}', " +
+                $" p2desc2='{P2Description2.Replace("'", "''")}', p2desc3='{P2Description3.Replace("'", "''")}', " +
+                $" p2desc4='{P2Description4.Replace("'", "''")}', p3desc1='{P3Description1.Replace("'", "''")}' " +
                 $" where pk_recno='{RecNo}' ";
 
             SetTrans(trans);
@@ -1963,6 +2029,7 @@ namespace Sgs.ReportIntegration
                 P2Description1 = "";
                 P2Description2 = "";
                 P2Description3 = "";
+                P2Description4 = "";
                 P3Description1 = "";
             }
         }
@@ -1999,6 +2066,7 @@ namespace Sgs.ReportIntegration
             P2Description1 = Convert.ToString(row["p2desc1"]);
             P2Description2 = Convert.ToString(row["p2desc2"]);
             P2Description3 = Convert.ToString(row["p2desc3"]);
+            P2Description4 = Convert.ToString(row["p2desc4"]);
             P3Description1 = Convert.ToString(row["p3desc1"]);
         }
     }
@@ -2530,6 +2598,8 @@ namespace Sgs.ReportIntegration
 
         public string To { get; set; }
 
+        public bool ExtendASTM { get; set; }
+
         public ProfJobDataSet(SqlConnection connect, SqlCommand command, SqlDataAdapter adapter)
             : base(connect, command, adapter)
         {
@@ -2549,7 +2619,7 @@ namespace Sgs.ReportIntegration
                 "     join CLIENT t2 on t2.cli_code=t1.cli_code                        " +
                 "     join PROFJOBUSER t3 on t3.pro_job=t1.pro_job                     " +
                 "     join PROFJOB_CUIDUSER t4 on t4.pro_job=t1.pro_job                " +
-                "     join USERPROFJOB_PHOTORTF t5 on t5.pro_job=t1.pro_job            " +
+                "     left join USERPROFJOB_PHOTORTF t5 on t5.pro_job=t1.pro_job       " +
                 " where t1.labcode<>''                                                 ";
 
             if (string.IsNullOrWhiteSpace(JobNo) == false)
@@ -2578,7 +2648,14 @@ namespace Sgs.ReportIntegration
                     case EReportType.Chemical:
                         if (AreaNo == EReportArea.US)
                         {
-                            sql += $" and t1.notes1='HL_ASTM' ";
+                            if (ExtendASTM == true)
+                            {
+                                sql += $" and t1.notes1<>'HL_EN' ";
+                            }
+                            else
+                            {
+                                sql += $" and t1.notes1='HL_ASTM' ";
+                            }
                         }
                         else if (AreaNo == EReportArea.EU)
                         {
@@ -2720,12 +2797,19 @@ namespace Sgs.ReportIntegration
                 }
             }
 
-            byte[] imageRaw = (byte[])row["photo"];
-
-            if (imageRaw == null)
+            if (row["photo"] == DBNull.Value)
+            {
                 Image = null;
+            }
             else
-                Image = new Bitmap(new MemoryStream(imageRaw));
+            {
+                byte[] imageRaw = (byte[])row["photo"];
+
+                if (imageRaw == null)
+                    Image = null;
+                else
+                    Image = new Bitmap(new MemoryStream(imageRaw)); 
+            }
         }
     }
 

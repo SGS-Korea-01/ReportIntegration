@@ -196,6 +196,8 @@ namespace Sgs.ReportIntegration
                     "1. Black textile\r\n\r\n" +
                     "Note:    -   Soluble results shown are of the adjusted analytical result.\r\n" +
                     "         -   ND = Not Detected(<MDL)";
+                MainSet.P2Description4 =
+                    "Method(non-metallic materials): CPSC-CH-E1002-08.3 - Standard Operation Procedure for Determining Total Lead(Pb) in Non-Metal Children Product. Analysis was performed by ICP-OES.";
                 MainSet.P3Description1 = "";
             }
             else
@@ -207,6 +209,7 @@ namespace Sgs.ReportIntegration
                 MainSet.P2Description1 = "EN71-3:2013+A3:2018 - Migration of certain elements";
                 MainSet.P2Description2 = "Method : With reference to EN71-3:2013+A3:2018. Analysis of general elements was performed by ICP-OES.";
                 MainSet.P2Description3 = ProfJobSet.SampleDescription;
+                MainSet.P2Description4 = "";
                 MainSet.P3Description1 =
                     "Note. 1. mg/kg = milligram per kilogram\r\n" +
                     "      2. ND = Not Detected(< MDL)\r\n" +
